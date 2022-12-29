@@ -18,6 +18,7 @@ import { ThreeDots } from 'react-loader-spinner'
 import { FaRegCopy } from 'react-icons/fa';
 import { BsCheck2 } from 'react-icons/bs';
 import toast, { Toaster } from 'react-hot-toast';
+import { setReset } from "../../redux/slices/counterSlice";
 
 const Tool = () => {
   const dispatch = useDispatch();
@@ -139,12 +140,12 @@ const Tool = () => {
             </div> 
             :
             <div>
-              <DropDown data={hasArticle} setFocused={setHasFocusedHeadline} />
+              <DropDown data={hasArticle} setFocused={setHasFocusedHeadline} show={showFocusedHeadline} setShow={setShowFocusedHeadline} />
             </div>}
           </div> 
           <div className="w-full px-3 bg-[#f6f8f9]">
               {goBackToSettings && <div className="m-5 px-3 py-2 bg-white rounded-md">
-                <div>
+                <div className="flex">
                   <p className="font-semibold text-[22px]">
                     Generate your headline
                   </p>
@@ -157,11 +158,12 @@ const Tool = () => {
                         Text to focus on headline
                       </p>
                     </div>
-                    <button className={` ${showFocusedHeadline ?  "rotate-45 fill-[#48535B] ": "rotate-0 " } transition-all ease-in-out duration-500`}>
+                    <button className={` ${hasFocusedHeadline !== "" && showFocusedHeadline ?  "rotate-45 fill-[#48535B] ": "rotate-0 " } transition-all ease-in-out duration-500`}>
                       <BiPlus size={20} fill="#48535B" />
                     </button>
                   </div>
                 {hasFocusedHeadline !== "" && 
+                <section className={` ${showFocusedHeadline ? "h-max ": "max-h-[0px] " } overflow-hidden transition-all ease-in-out duration-500 my-2`}>
                 <div className="flex my-2 justify-between">
                   <div className="border-[1px] rounded-md border-solid border-[#f8f8f8] p-2">
                     <p className="font-normal text-[10px] text-[#252728]">{hasFocusedHeadline}</p>
@@ -171,7 +173,8 @@ const Tool = () => {
                       <RiDeleteBinLine size={15} fill="#48535B" />
                     </button>
                   </div>
-                </div>}
+                </div>
+                </section>}
                 </div>
                 <div className="flex justify-between flex-col py-3 border-solid border-b-[1px] border-[#f8f8f8]">
                   <div className="flex justify-between w-full" onClick={() => setExpIncHeadline(!expIncHeadline)}>
@@ -303,7 +306,8 @@ const Tool = () => {
               setCopySuccess({
                 copied:false,
                 id:null,
-              })}} className="my-2 px-3 py-2 bg-white rounded-md">
+              });
+              dispatch(setReset())}} className="my-2 px-3 py-2 bg-white rounded-md">
                 <div className="flex justify-start items-center">
                   <p className="flex items-center gap-2 font-semibold text-base text-[#2E90FA]"><IoIosArrowDown /> Show headline settings</p>
                 </div>
@@ -311,9 +315,10 @@ const Tool = () => {
                 <p className="font-semibold text-[22px]">
                   {allTitles.length < 0 ? "No" :allTitles.length } Headline Generated 
                 </p>
-                <div className="flex flex-col gap-3 py-2">
+                <div className="group">
+                <div className="flex flex-col gap-3 py-2 max-h-[450px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
                   {allTitles.map((title,id) => (
-                    <div key={id} className="p-2 shadow-lg bg-white rounded-md flex justify-between">
+                    <div key={id} className="px-3 py-2 shadow-lg bg-white rounded-md flex justify-between">
                       <div className="flex flex-col">
                         <p className="font-medium text-base text-[#252728] cursor-default">{title.replace(/[0-9).]/g, '')}</p>
                         <p className="font-normal text-sm text-[#677580]">{title.length} Characters</p>
@@ -335,6 +340,7 @@ const Tool = () => {
                     </div>
                   ))
                   }
+                </div>
                 </div>
               </div>}
           </div>

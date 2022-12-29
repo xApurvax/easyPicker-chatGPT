@@ -15,7 +15,7 @@ export const generateHeadlineFetchAPi = createAsyncThunk(
   async (data) => {
     try {
       const paragraphDetails = await axios.post(
-        'https://Dipika.pythonanywhere.com/',
+        'https://dipika.pythonanywhere.com/',  
         data
       );
       return paragraphDetails;

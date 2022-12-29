@@ -4,7 +4,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { setAddToFocusEffect } from "../../redux/slices/buttonEffectSlice";
 
-const DropDown = ({data,setFocused}) => {
+const DropDown = ({data,setFocused,show,setShow}) => {
     const [dropDown, setDropDown] = useState(true);
     const dispatch = useDispatch();
   const { addToFocusEffect } = useSelector((state) => ({
@@ -22,6 +22,7 @@ const DropDown = ({data,setFocused}) => {
                   onClick={(e) => {
                     dispatch(setAddToFocusEffect(true));
                     setFocused(data)
+                    setShow(true)
                   }}
                   onAnimationEnd={() => {
                     dispatch(setAddToFocusEffect(false));
