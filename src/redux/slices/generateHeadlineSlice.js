@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
+import axios from "axios";
 
 const initialState = {
   isLoading: false,
-  allTitles:null,
+  allTitles: null,
   isFindUseSynonyms: false,
   isIncPowerWords: true,
   isMakeQuestion: false,
@@ -11,12 +11,13 @@ const initialState = {
 };
 
 export const generateHeadlineFetchAPi = createAsyncThunk(
-  'generateHeadlinePage/fetch',
+  "generateHeadlinePage/fetch",
   async (data) => {
     try {
       const paragraphDetails = await axios.post(
-        'https://dipika.pythonanywhere.com/',  
-        data
+        "https://dipika.pythonanywhere.com/",
+        data,
+        { headers: { "Cross-Origin-Opener-Policy": "cross-origin" } }
       );
       return paragraphDetails;
     } catch (error) {
@@ -57,5 +58,10 @@ const generateHeadlineSlice = createSlice({
   },
 });
 
-export const { setIsFindUseSynonyms,setIsIncPowerWords,setIsMakeQuestion,setGoBackToHeadlineSettings } = generateHeadlineSlice.actions;
+export const {
+  setIsFindUseSynonyms,
+  setIsIncPowerWords,
+  setIsMakeQuestion,
+  setGoBackToHeadlineSettings,
+} = generateHeadlineSlice.actions;
 export default generateHeadlineSlice.reducer;

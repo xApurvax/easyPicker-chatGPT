@@ -145,7 +145,7 @@ const Tool = () => {
           </div> 
           <div className="w-full px-3 bg-[#f6f8f9]">
               {goBackToSettings && <div className="m-5 px-3 py-2 bg-white rounded-md">
-                <div className="flex">
+                <div className="flex justify-between">
                   <p className="font-semibold text-[22px]">
                     Generate your headline
                   </p>
