@@ -40,6 +40,7 @@ const Tool = () => {
   const [edit, setEdit] = useState(true);
   const [expIncHeadline ,setExpIncHeadline] = useState(false);
   const [expExcHeadline ,setExpExcHeadline] = useState(false);
+  const [showFocusedHeadline ,setShowFocusedHeadline] = useState(false);
   const [includeTag ,setIncludeTag] = useState([]);
   const [excludeTag ,setExcludeTag] = useState([]);
   const [copySuccess, setCopySuccess] = useState({
@@ -149,14 +150,14 @@ const Tool = () => {
                   </p>
                 </div>
                 <div className="flex flex-col justify-between py-3 border-solid border-b-[1px] border-[#f8f8f8]">
-                  <div className="flex justify-between w-full">
+                  <div className="flex justify-between w-full" onClick={() => setShowFocusedHeadline(!showFocusedHeadline)}>
                     <div>
                       <p className="font-semibold text-[16px]">Hedline Focus</p>
                       <p className="font-normal text-[12px] text-[#aab2b8]">
                         Text to focus on headline
                       </p>
                     </div>
-                    <button>
+                    <button className={` ${showFocusedHeadline ?  "rotate-45 fill-[#48535B] ": "rotate-0 " } transition-all ease-in-out duration-500`}>
                       <BiPlus size={20} fill="#48535B" />
                     </button>
                   </div>
