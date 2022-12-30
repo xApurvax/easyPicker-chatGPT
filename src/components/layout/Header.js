@@ -6,21 +6,23 @@ const Header = () => {
       <nav className="flex justify-center w-full max-w-screen bg-white border-b-[1px] border-solid border-[#ebebeb] items-center">
         <div className="flex justify-between w-full py-3 max-w-6xl">
           <div className="">
+          <a href="/">
             <img src={logo} alt="logo" className="w-14 cursor-pointer" />
+          </a>
           </div>
           <div className="">
             <ul className="flex items-center justify-center gap-5 w-full h-full cursor-pointer">
-              <a href="#">
+              <a href="/">
                 <li className="font-bold text-black hover:text-[#7f8389] transition duration-[0.4s]">
                   How it works?
                 </li>
               </a>
-              <a href="#">
+              <a href="/">
                 <li className="font-bold text-black hover:text-[#7f8389] transition duration-[0.4s]">
                   about us
                 </li>
               </a>
-              <a href="#">
+              <a href="/">
                 <li className="font-bold text-black hover:text-[#7f8389] transition duration-[0.4s]">
                   Help
                 </li>

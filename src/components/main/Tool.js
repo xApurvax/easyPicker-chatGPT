@@ -190,10 +190,16 @@ const Tool = () => {
                 </div>
                 <div className="flex justify-between flex-col py-3 border-solid border-b-[1px] border-[#f8f8f8]">
                   <div className="flex justify-between w-full" onClick={() => setExpIncHeadline(!expIncHeadline)}>
-                    <div>
+                    <div className="flex gap-4 items-center">
                       <p className="font-semibold text-[16px]">
-                        Include specific words on headline
+                        Include specific word based on type
                       </p>
+                      <CustomTooltip 
+                      tooltip="For getting specific heading type i.e, (emotional, controversy, ... )"
+                      width="max-w-[180px]"
+                      >
+                      <IoIosInformationCircleOutline size={20} fill="#B0BABF" />
+                    </CustomTooltip>
                     </div>
                     <button type="button" className={` ${expIncHeadline ?  "rotate-45 fill-[#48535B] ": "rotate-0 " } transition-all ease-in-out duration-500`}>
                       <BiPlus size={20} fill="#48535B" />
@@ -331,6 +337,7 @@ const Tool = () => {
                 </p>
                 <CustomTooltip 
                       tooltip="By including above words as Hastag while posting can add more power to content"
+                      width="max-w-[200px]"
                       >
                       <IoIosInformationCircleOutline size={20} fill="#B0BABF" />
                     </CustomTooltip>
