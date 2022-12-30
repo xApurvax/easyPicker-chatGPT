@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoIosClose } from 'react-icons/io';
 
-const CustomCreateTag = ({tags,setTags,selectedTags}) => {
+const CustomCreateTag = ({tags,setTags,selectedTags,showError,setShowError}) => {
     const addTags = (event) => {
         if (event.key === "Enter" && event.target.value !== "" && event.target.value.trim() !== "") {
             setTags([...tags, event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)]);
@@ -13,6 +13,7 @@ const CustomCreateTag = ({tags,setTags,selectedTags}) => {
         setTags([...tags.filter(tag => tags.indexOf(tag) !== index)]);
     };
 
+    // console.log(tags,"hhhhhhhhhhhhhhhhhhhhhhhhhhhh")
   return (
     <main className='w-full max-w-[700px]'>
     <div className='flex gap-3'> 
@@ -33,6 +34,8 @@ const CustomCreateTag = ({tags,setTags,selectedTags}) => {
             placeholder="Type words and hit Enter ↵ to add"
             className='placeholder:text-[12px] p-1 border-[1px] rounded-md border-solid border-[#f8f8f8] text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md w-full max-w-[200px]'
             />}
+            {showError && tags.length <=0 && 
+            <p className='text-xs text-[#f70000]'>Please enter at least one word</p>}
         </div>
     </div>
     </main>

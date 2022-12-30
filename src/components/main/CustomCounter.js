@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { BiPlus,BiMinus } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
 import { setDecrement,setIncrement } from "../../redux/slices/counterSlice";
@@ -9,6 +9,20 @@ const dispatch = useDispatch();
 const { count } = useSelector((state) => ({
   count: state.counterSlice.count,
 }));
+// const changeTimer = useRef(null);
+// function timeoutClearUp() {
+//     if (changeTimer.current) {
+//       clearInterval(changeTimer.current);
+//       changeTimer.current = null;
+//     }
+//   }
+
+//   function increment() {
+//     if(count<= 30){
+//     changeTimer.current = setInterval(() => {
+//       dispatch(setIncrement(1))
+//     }, 35)}
+//   }
   return (
     <div>
         <div className='flex items-center justify-center h-9 w-12 border-[1px] rounded-md border-solid border-[#f8f8f8]'>
@@ -18,6 +32,7 @@ const { count } = useSelector((state) => ({
                     onClick={(e) => {
                         e.preventDefault();
                         dispatch(setIncrement(1))}}
+                        // onMouseUp={() => timeoutClearUp()} onMouseDown={() => {increment()}}
                     disabled={count === 30}>
                     <BiPlus />
                 </button>
@@ -25,7 +40,7 @@ const { count } = useSelector((state) => ({
                     onClick={(e) => {
                         e.preventDefault();
                         dispatch(setDecrement(1))}} 
-                    disabled={count === 1}>
+                    disabled={count === 3}>
                     <BiMinus/>
                 </button>
             </div>

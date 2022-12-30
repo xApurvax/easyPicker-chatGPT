@@ -4,10 +4,12 @@ import axios from "axios";
 const initialState = {
   isLoading: false,
   allTitles: null,
+  specialTags:null,
   isFindUseSynonyms: false,
   isIncPowerWords: true,
   isMakeQuestion: false,
   goBackToSettings: true,
+  selectedLanguage: null,
 };
 
 export const generateHeadlineFetchAPi = createAsyncThunk(
@@ -17,16 +19,6 @@ export const generateHeadlineFetchAPi = createAsyncThunk(
       const paragraphDetails = await axios.post(
         "https://dipika.pythonanywhere.com/",
         data,
-        {
-          headers: {
-            "Cross-Origin-Opener-Policy": "cross-origin",
-            "Access-Control-Allow-Credentials": "true",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-            "Access-Control-Allow-Headers":
-              "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-          },
-        }
       );
       return paragraphDetails;
     } catch (error) {
@@ -51,6 +43,9 @@ const generateHeadlineSlice = createSlice({
     setGoBackToHeadlineSettings: (state, action) => {
       state.goBackToSettings = action.payload;
     },
+    setSelectedLanguage: (state, action) => {
+      state.selectedLanguage = action.payload;
+    },
   },
   extraReducers: {
     [generateHeadlineFetchAPi.pending]: (state, action) => {
@@ -60,6 +55,7 @@ const generateHeadlineSlice = createSlice({
       state.isLoading = false;
       state.goBackToSettings = false;
       state.allTitles = action.payload?.data?.title;
+      state.specialTags = action.payload?.data?.special_words;
     },
     [generateHeadlineFetchAPi.rejected]: (state, action) => {
       state.isLoading = false;
@@ -72,5 +68,6 @@ export const {
   setIsIncPowerWords,
   setIsMakeQuestion,
   setGoBackToHeadlineSettings,
+  setSelectedLanguage
 } = generateHeadlineSlice.actions;
 export default generateHeadlineSlice.reducer;
