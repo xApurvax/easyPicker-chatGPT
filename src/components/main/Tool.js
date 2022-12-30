@@ -285,7 +285,7 @@ const Tool = () => {
                   <div className="custom-counter">
                     <CustomCounter />
                   </div>
-                  <button disabled={!hasFocusedHeadline || isLoading}
+                  <button disabled={!hasFocusedHeadline || isLoading || includeTag.length <= 0}
                   type="button"
                   className={`${
                     generateHeadlineEffect && "animate-wiggle"
