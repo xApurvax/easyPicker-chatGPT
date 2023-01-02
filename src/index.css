@@ -26,3 +26,7 @@ code {
   /* background-color: #2e90fa  !important; */
 }
 
+.fixScrollToggle--on {
+  overflow: hidden;
+  background-color: #c00;
+ }

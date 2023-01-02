@@ -12,7 +12,7 @@ const DropDown = ({data,setFocused,show,setShow}) => {
   }));
   return (
     <div>
-        <div className='flex items-center' onClick={() => setDropDown(!dropDown)}><BiChevronDown className={` ${dropDown ?  "rotate-180 fill-[#000000] ": "rotate-0 " } transition-all ease-in-out duration-500`} color="#000000" size={25} />Text found</div>
+        <div className='flex items-center cursor-pointer' onClick={() => setDropDown(!dropDown)}><BiChevronDown className={` ${dropDown ?  "rotate-180 fill-[#000000] ": "rotate-0 " } transition-all ease-in-out duration-300`} color="#000000" size={25} /></div>
         {dropDown && 
         <div className='bg-[#f7f8f8] p-3 rounded-md my-3'>
             <p className='font-normal text-[14px] text-[#252728]'>{data}</p>

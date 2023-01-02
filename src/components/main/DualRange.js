@@ -6,7 +6,8 @@ import { useDispatch } from 'react-redux'
 const DualRange = ({defaultValue ,min ,max ,step,setRange}) => {
   const dispatch = useDispatch();
   return (
-    <div> <Slider
+    <div> 
+    <Slider
     color="blue"
     inverted={false}
     min={min} max={max} step={step}
@@ -16,7 +17,8 @@ const DualRange = ({defaultValue ,min ,max ,step,setRange}) => {
     tooltip={false}
     // onAfterChange={() => dispatch(fetchPage())}
     defaultValue={defaultValue}
-  /></div>
+  />
+  </div>
   )
 }
 

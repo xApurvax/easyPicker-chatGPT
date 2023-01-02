@@ -19,7 +19,7 @@ import { ThreeDots } from 'react-loader-spinner'
 import { FaRegCopy } from 'react-icons/fa';
 import { BsCheck2 } from 'react-icons/bs';
 import toast, { Toaster } from 'react-hot-toast';
-import { HiChevronUpDown } from 'react-icons/hi2';
+import { setReset } from "../../redux/slices/counterSlice";
 import ListBoxDropDown from "./ListBoxDropDown";
 
 const Tool = () => {
@@ -92,7 +92,7 @@ const Tool = () => {
         position="top-right"
         reverseOrder={false}
       />
-      <main className="flex justify-center overflow-auto scrollbar-hide">
+      <main className="flex justify-center">
         <div className="flex w-full max-w-7xl my-5">
           <div className="w-full h-full px-3 flex flex-col gap-3 justify-self-stretch items-stretch">
             <div className="flex justify-between items-center">
@@ -157,8 +157,7 @@ const Tool = () => {
             // } */}
           </div> 
           <div className="w-full px-3 bg-[#f6f8f9]">
-              <section className={`${allTitles !== null ? !goBackToSettings ? "max-h-[585px]": "max-h-[0px] " : goBackToSettings ? "max-h-[585px]": "max-h-[0px] "} overflow-hidden transition-all ease-in-out duration-500 my-2`}>
-              <div className="m-5 px-3 py-2 bg-white rounded-md">
+              {goBackToSettings && <div className="m-5 px-3 py-2 bg-white rounded-md">
                 <div className="flex justify-between">
                   <p className="font-semibold text-[22px]">
                     Generate your headline
@@ -182,8 +181,8 @@ const Tool = () => {
                 {hasFocusedHeadline !== "" && 
                 <section className={` ${showFocusedHeadline ? "h-max ": "max-h-[0px] " } overflow-hidden transition-all ease-in-out duration-500 my-2`}>
                 <div className="flex my-2 justify-between">
-                  <div className="border-[1px] rounded-md border-solid border-[#f8f8f8] p-2 group">
-                    <p className="font-normal text-[10px] text-[#252728] max-h-[140px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">{hasFocusedHeadline}</p>
+                  <div className="border-[1px] rounded-md border-solid border-[#f8f8f8] p-2">
+                    <p className="font-normal text-[10px] text-[#252728]">{hasFocusedHeadline}</p>
                   </div>
                   <div className="px-2">
                     <button onClick={() => {setHasFocusedHeadline("")}}>
@@ -215,6 +214,84 @@ const Tool = () => {
                     <CustomCreateTag tags={includeTag} setTags={setIncludeTag} showError={showError} setShowError={setShowError} />
                   </section>
                 </div>
+                {/* <div className="flex justify-between flex-col py-3 border-solid border-b-[1px] border-[#f8f8f8]">
+                <div className="flex justify-between w-full" onClick={() => setExpExcHeadline(!expExcHeadline)}>
+                    <div>
+                      <p className="font-semibold text-[16px]">
+                        Exclude specific words on headline
+                      </p>
+                    </div>
+                    <button className={` ${expExcHeadline ?  "rotate-45 fill-[#48535B] ": "rotate-0 " } transition-all ease-in-out duration-500`}>
+                      <BiPlus size={20} fill="#48535B" />
+                    </button>
+                  </div>
+                  <section className={` ${expExcHeadline ? " max-h-[130px] ": "max-h-[0px] " } overflow-hidden transition-all ease-in-out duration-500 `}>
+                    <CustomCreateTag tags={excludeTag} setTags={setExcludeTag} />
+                    <div className="flex gap-2 mt-2">
+                    <ToggleSwitch toggle={isFindUseSynonyms} setToggle={setIsFindUseSynonyms} /> 
+                    <p className="font-[600] text-[16px] leading-[22px] text-[#252728]">Find & use synonyms for Facebook, Twitter</p>
+                  </div>
+                  </section>
+                </div> */}
+                {/* <div className="flex flex-col gap-3 w-full justify-between py-3 border-solid border-b-[1px] border-[#f8f8f8]">
+                  <div className="flex justify-between">
+                    <div className="flex">
+                      <p className="font-semibold text-[16px]">
+                      Length of Headline
+                      </p>
+                    </div>  
+                    <div className="flex justify-center items-center gap-2">
+                    <div className="flex justify-between items-center">
+                      <div className='flex gap-1'> Min
+                        <div className="bg-[#f0f2f3] px-1 rounded-md min-w-[32px] flex items-center justify-center">
+                          <p className="font-[500] text-[16px] leading-[24px] text-[#252728]">{headlineLength[0]}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="w-[180px]">
+                      <DualRange defaultValue={headlineLength} setRange={setHeadlineLength} min={0} max={150} step={10} />
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className='flex gap-1'> Max
+                        <div className="bg-[#f0f2f3] px-1 rounded-md min-w-[32px] flex items-center justify-center">
+                          <p className="font-[500] text-[16px] leading-[24px] text-[#252728]">{headlineLength[headlineLength.length-1]}</p>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ToggleSwitch toggle={isIncPowerWords} setToggle={setIsIncPowerWords} />
+                    <p className="font-[600] text-[16px] leading-[22px] text-[#252728]">Include Power Words in the headline</p>
+                    <CustomTooltip 
+                      tooltip="By including above words can add more power to content"
+                      >
+                      <IoIosInformationCircleOutline size={20} fill="#B0BABF" />
+                    </CustomTooltip>
+                  </div>
+                  <div className="flex gap-2">
+                    <ToggleSwitch toggle={isMakeQuestion} setToggle={setIsMakeQuestion} /> 
+                    <p className="font-[600] text-[16px] leading-[22px] text-[#252728]">Make the headline as a question</p>
+                  </div>
+                  <div className="flex justify-between">
+                    <div className="flex">
+                      <p className="font-semibold text-[16px]">
+                      Headline Range
+                      </p>
+                    </div>  
+                    <div className="flex justify-center items-center gap-2">
+                    <div className="flex justify-between items-center">
+                      <div className='flex gap-1'><p className="bg-[#f0f2f3] px-1 rounded-md font-[500] text-[16px] leading-[24px] text-[#252728]">Neutral</p></div>
+                    </div>
+                    <div className="w-[180px]">
+                      <StepDotsRange defaultValue={headlineType} setRange={setHeadlineType}  min={0} max={40} step={10} />
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className='flex gap-1 '><p className="bg-[#f0f2f3] px-1 rounded-md font-[600] text-[16px] leading-[24px] text-[#252728]">Sensational</p></div>
+                    </div>
+                    </div>
+                  </div>
+                </div> */}
                 <div className="flex gap-4 justify-between py-3">
                   <div className="custom-counter">
                     <CustomCounter count={count} setCount={setCount} />
@@ -246,35 +323,30 @@ const Tool = () => {
                       }
                   </button>
                 </div>
-              </div>
-              </section>
-              {isLoading === false && allTitles !== null &&
+              </div>}
+              {isLoading === false && allTitles !== null && !goBackToSettings &&
+              <div className="px-6 py-4 cursor-pointer"> 
               <div onClick={() => {dispatch(setGoBackToHeadlineSettings(!goBackToSettings));
               setCopySuccess({
                 copied:false,
                 id:null,
               });
-             }} 
-              data-apply-fix
-              className="my-2 mx-5 px-3 py-2 bg-white rounded-md cursor-pointer">
+              setCount(3)}} className="my-2 px-3 py-2 bg-white rounded-md">
                 <div className="flex justify-start items-center">
-                  <p className="flex items-center gap-2 font-semibold text-base text-[#2E90FA]"><HiChevronUpDown size={20} />{goBackToSettings ? "Show generated headlines":"Show headline settings"}</p>
+                  <p className="flex items-center gap-2 font-semibold text-base text-[#2E90FA]"><IoIosArrowDown /> Show headline settings</p>
                 </div>
-              </div>}
-              <section className={` ${goBackToSettings ? "max-h-[585px]": "max-h-[0px]" } overflow-hidden transition-all ease-in-out duration-500 my-2`}>
-              {isLoading === false && allTitles !== null &&
-              <div className="px-6"> 
-                <div className="flex gap-2 items-center">
-                  <p className="font-semibold text-[22px]">
-                    {specialTags.length <= 0 ? "No" :specialTags.length } Special Tag{specialTags.length <= 1 ? "" : "s"} 
-                  </p>
-                  <CustomTooltip 
-                        tooltip="SEO friendly tag(s) are generated from your article."
-                        width="max-w-[180px]"
-                        >
-                        <IoIosInformationCircleOutline size={18} fill="#B0BABF" />
-                      </CustomTooltip>
-                </div>
+              </div>
+              <div className="flex gap-2 items-center">
+                <p className="font-semibold text-[22px]">
+                  {specialTags.length <= 0 ? "No" :specialTags.length } Special Tag{specialTags.length <= 1 ? "" : "s"} 
+                </p>
+                <CustomTooltip 
+                      tooltip="SEO friendly tag(s) are generated from your article."
+                      width="max-w-[180px]"
+                      >
+                      <IoIosInformationCircleOutline size={18} fill="#B0BABF" />
+                    </CustomTooltip>
+              </div>
                 <div className="group">
                 <div className="flex gap-3 py-2 max-h-[140px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
                   {specialTags && specialTags.map((tag,id) => (
@@ -303,8 +375,18 @@ const Tool = () => {
                 </div>
                 </div>
               </div>}
-              {isLoading === false && allTitles !== null &&
+              {isLoading === false && allTitles !== null && !goBackToSettings &&
               <div className="px-6 py-4 cursor-pointer"> 
+              {/* <div onClick={() => {dispatch(setGoBackToHeadlineSettings(!goBackToSettings));
+              setCopySuccess({
+                copied:false,
+                id:null,
+              });
+              dispatch(setReset())}} className="my-2 px-3 py-2 bg-white rounded-md">
+                <div className="flex justify-start items-center">
+                  <p className="flex items-center gap-2 font-semibold text-base text-[#2E90FA]"><IoIosArrowDown /> Show headline settings</p>
+                </div>
+              </div> */}
                 <p className="font-semibold text-[22px]">
                   {allTitles.length <= 0 ? "No" :allTitles.length } Headline{allTitles.length <= 0 ? "" :"s"} Generated 
                 </p>
@@ -337,9 +419,7 @@ const Tool = () => {
                   }
                 </div>
                 </div>
-              </div>
-              } 
-            </section>
+              </div>}
           </div>
         </div>
       </main>

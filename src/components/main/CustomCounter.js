@@ -1,40 +1,27 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BiPlus, BiMinus } from "react-icons/bi";
-import { useSelector, useDispatch } from "react-redux";
-import { setDecrement, setIncrement } from "../../redux/slices/counterSlice";
 
 const CustomCounter = ({count,setCount}) => {
-  //   const dispatch = useDispatch();
-  //   const { count } = useSelector((state) => ({
-  //     count: state.counterSlice.count,
-  //   }));
+
 
   const changeTimer = useRef(null);
   function timeoutClearUp() {
-    // if (count <= 0 || count>=30) {
     clearInterval(changeTimer.current);
-    //   changeTimer.current = null;
-    // }
   }
 
   function increment() {
     // if(count<= 30){
     changeTimer.current = setInterval(() => {
-      //   dispatch(setIncrement(1));
       if (count >= 30) return clearInterval(changeTimer.current);
       setCount((prev) => prev + 1);
     }, 100);
-    // }
   }
 
   function decrement() {
-    // if(count<= 30){
     changeTimer.current = setInterval(() => {
       if (count <= 3) return clearInterval(changeTimer.current);
       setCount((prev) => prev - 1);
-      //   dispatch(setDecrement(1));
     }, 100);
-    // }
   }
 
   useEffect(() => {
@@ -49,10 +36,9 @@ const CustomCounter = ({count,setCount}) => {
         </p>
         <div className="flex flex-col border-l-[1px] border-solid border-[#f8f8f8]">
           <button
-            className="border-b-[1px] border-solid border-[#f8f8f8] text-[#252728] disabled:text-[#aab2b8]"
+            className="border-b-[1px] border-solid border-[#f8f8f8] text-[#252728] disabled:text-[#aab2b8] disabled:cursor-not-allowed"
             onClick={(e) => {
               e.preventDefault();
-              //   dispatch(setIncrement(1));
               setCount((prev) => prev + 1);
             }}
             onMouseLeave={timeoutClearUp}
@@ -63,10 +49,9 @@ const CustomCounter = ({count,setCount}) => {
             <BiPlus />
           </button>
           <button
-            className="text-[#252728] disabled:text-[#aab2b8]"
+            className="text-[#252728] disabled:text-[#aab2b8] disabled:cursor-not-allowed"
             onClick={(e) => {
               e.preventDefault();
-              //   dispatch(setDecrement(1));
               setCount((prev) => prev - 1);
             }}
             onMouseLeave={timeoutClearUp}

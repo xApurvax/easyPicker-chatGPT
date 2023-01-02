@@ -13,7 +13,6 @@ const CustomCreateTag = ({tags,setTags,selectedTags,showError,setShowError}) => 
         setTags([...tags.filter(tag => tags.indexOf(tag) !== index)]);
     };
 
-    // console.log(tags,"hhhhhhhhhhhhhhhhhhhhhhhhhhhh")
   return (
     <main className='w-full max-w-[700px]'>
     <div className='flex gap-3'> 
@@ -34,8 +33,8 @@ const CustomCreateTag = ({tags,setTags,selectedTags,showError,setShowError}) => 
             placeholder="Type words and hit Enter ↵ to add"
             className='placeholder:text-[12px] p-1 border-[1px] rounded-md border-solid border-[#f8f8f8] text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md w-full max-w-[200px]'
             />}
-            {showError && tags.length <=0 && 
-            <p className='text-xs text-[#f70000]'>Please enter at least one word</p>}
+            {/* {showError && tags.length <=0 && 
+            <p className='text-xs text-[#f70000]'>Please enter at least one word</p>} */}
         </div>
     </div>
     </main>

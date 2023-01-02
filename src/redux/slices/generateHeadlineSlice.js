@@ -53,7 +53,7 @@ const generateHeadlineSlice = createSlice({
     },
     [generateHeadlineFetchAPi.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.goBackToSettings = false;
+      state.goBackToSettings = true;
       state.allTitles = action.payload?.data?.title;
       state.specialTags = action.payload?.data?.special_words;
     },
