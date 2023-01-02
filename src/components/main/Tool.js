@@ -24,7 +24,7 @@ import ListBoxDropDown from "./ListBoxDropDown";
 const Tool = () => {
   const dispatch = useDispatch();
   const copyRef = useRef()
-  const { scanEffect,generateHeadlineEffect,headlineLength,headlineType, isFindUseSynonyms, isIncPowerWords, isMakeQuestion,count,allTitles,isLoading,goBackToSettings,selectedLanguage,specialTags } = useSelector((state) => ({
+  const { scanEffect,generateHeadlineEffect,headlineLength,headlineType, isFindUseSynonyms, isIncPowerWords, isMakeQuestion,allTitles,isLoading,goBackToSettings,selectedLanguage,specialTags } = useSelector((state) => ({
     scanEffect: state.buttonEffectSlice.scanEffect,
     generateHeadlineEffect: state.buttonEffectSlice.generateHeadlineEffect,
     headlineLength: state.RangeSliderSlice.headlineLength,
@@ -37,7 +37,6 @@ const Tool = () => {
     isLoading: state.generateHeadlineSlice.isLoading,
     allTitles: state.generateHeadlineSlice.allTitles,
     specialTags: state.generateHeadlineSlice.specialTags,
-    count: state.counterSlice.count,
   }));
   const [hasArticle, setHasArticle] = useState("");
   const [hasFocusedHeadline, setHasFocusedHeadline] = useState("");
@@ -52,7 +51,8 @@ const Tool = () => {
     id:null,
   });
   const[showError,setShowError] = useState(false)
-  // const [goBackToSettings, setGoBackToHeadlineSettings] = useState(true)
+  const [count, setCount] = useState(3);
+
 
   const handleChange = (e) => {
     setHasArticle(e.target.value);
@@ -289,7 +289,7 @@ const Tool = () => {
                 </div> */}
                 <div className="flex gap-4 justify-between py-3">
                   <div className="custom-counter">
-                    <CustomCounter />
+                    <CustomCounter count={count} setCount={setCount} />
                   </div>
                   <button disabled={!hasFocusedHeadline || isLoading || includeTag.length <= 0}
                   type="button"
@@ -326,7 +326,8 @@ const Tool = () => {
                 copied:false,
                 id:null,
               });
-              dispatch(setReset())}} className="my-2 px-3 py-2 bg-white rounded-md">
+              dispatch(setReset());
+              setCount(3)}} className="my-2 px-3 py-2 bg-white rounded-md">
                 <div className="flex justify-start items-center">
                   <p className="flex items-center gap-2 font-semibold text-base text-[#2E90FA]"><IoIosArrowDown /> Show headline settings</p>
                 </div>

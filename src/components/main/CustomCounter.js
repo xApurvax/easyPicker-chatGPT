@@ -3,8 +3,7 @@ import { BiPlus, BiMinus } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
 import { setDecrement, setIncrement } from "../../redux/slices/counterSlice";
 
-const CustomCounter = () => {
-  const [count, setCount] = useState(3);
+const CustomCounter = ({count,setCount}) => {
   //   const dispatch = useDispatch();
   //   const { count } = useSelector((state) => ({
   //     count: state.counterSlice.count,
