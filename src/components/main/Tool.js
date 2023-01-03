@@ -266,7 +266,7 @@ const Tool = () => {
               <div className="px-6"> 
                 <div className="flex gap-2 items-center">
                   <p className="font-semibold text-[22px]">
-                    {specialTags.length <= 0 ? "No" :specialTags.length } Special Tag{specialTags.length <= 1 ? "" : "s"} 
+                    {specialTags?.length <= 0 ? "No" :specialTags?.length } Special Tag{specialTags?.length <= 1 ? "" : "s"} 
                   </p>
                   <CustomTooltip 
                         tooltip="SEO friendly tag(s) are generated from your article."
