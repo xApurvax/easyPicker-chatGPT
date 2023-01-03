@@ -15,7 +15,7 @@ const CustomCreateTag = ({tags,setTags,selectedTags}) => {
 
   return (
     <main className='w-full max-w-[700px]'>
-    <div className='flex gap-3'> 
+    <div className={`flex ${tags.length > 0 && "gap-3"}`}> 
         <ul className='flex gap-2 flex-wrap'>
         {tags.map((tag, index) => (
             <li key={index} className="flex items-center  p-0.5 px-2 rounded-md bg-[#f0f2f3]">
@@ -31,7 +31,7 @@ const CustomCreateTag = ({tags,setTags,selectedTags}) => {
             onKeyUp={(event) => {addTags(event)}}
             maxLength="15"
             placeholder="Type words and hit Enter ↵ to add"
-            className='placeholder:text-[12px] p-1 border-[1px] rounded-md border-solid border-[#f8f8f8] text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md w-full max-w-[200px]'
+            className='placeholder:text-[12px] p-1 border-[1px] rounded-md bg-[#EDF2F7] border-solid border-[#f8f8f8] text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md w-full max-w-[200px]'
             />}
         </div>
     </div>

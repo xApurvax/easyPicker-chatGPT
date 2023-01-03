@@ -4,6 +4,8 @@ const initialState = {
   scanEffect: false,
   generateHeadlineEffect: false,
   addToFocusEffect: false,
+  saveResult: false,
+  reGenerate:false
 };
 
 const buttonEffectSlice = createSlice({
@@ -19,9 +21,15 @@ const buttonEffectSlice = createSlice({
     setAddToFocusEffect: (state, action) => {
       state.addToFocusEffect = action.payload;
     },
+    setSaveResult: (state, action) => {
+      state.saveResult = action.payload;
+    },
+    setReGenerate: (state, action) => {
+      state.reGenerate = action.payload;
+    },
   },
   extraReducers: {},
 });
 
-export const { setScanEffect,setGenerateHeadlineEffect,setAddToFocusEffect } = buttonEffectSlice.actions;
+export const { setScanEffect,setGenerateHeadlineEffect,setAddToFocusEffect,setSaveResult,setReGenerate } = buttonEffectSlice.actions;
 export default buttonEffectSlice.reducer;
