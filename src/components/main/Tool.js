@@ -306,11 +306,11 @@ const Tool = () => {
               {isLoading === false && allTitles !== null &&
               <div className="px-6 py-4 cursor-pointer"> 
                 <p className="font-semibold text-[22px]">
-                  {allTitles.length <= 0 ? "No" :allTitles.length } Headline{allTitles.length <= 0 ? "" :"s"} Generated 
+                  {allTitles?.length <= 0 ? "No" :allTitles?.length } Headline{allTitles?.length <= 0 ? "" :"s"} Generated 
                 </p>
                 <div className="group">
                 <div className="flex flex-col gap-3 py-2 max-h-[400px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
-                  {allTitles.map((title,id) => (
+                  {allTitles?.map((title,id) => (
                     title.length > 0 && (
                     <div key={id} className="px-3 py-2 shadow-lg bg-white rounded-md flex justify-between">
                       <div className="flex flex-col">
