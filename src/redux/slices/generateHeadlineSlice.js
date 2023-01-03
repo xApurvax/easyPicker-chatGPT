@@ -54,8 +54,8 @@ const generateHeadlineSlice = createSlice({
     [generateHeadlineFetchAPi.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.goBackToSettings = true;
-      state.allTitles = action.payload?.data?.title;
-      state.specialTags = action.payload?.data?.special_words;
+      state.allTitles = action.payload?.data?.titles;
+      state.specialTags = action.payload?.data?.words;
     },
     [generateHeadlineFetchAPi.rejected]: (state, action) => {
       state.isLoading = false;
