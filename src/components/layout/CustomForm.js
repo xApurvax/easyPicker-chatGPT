@@ -4,49 +4,98 @@ import { setGenerateHeadlineEffect,setSaveResult,setReGenerate } from "../../red
 import { ThreeDots } from 'react-loader-spinner'
 import CustomCreateTag from "../main/CustomCreateTag";
 import { FaBookmark } from 'react-icons/fa';
-import { GrPowerCycle } from 'react-icons/gr';
+import toast, { Toaster } from 'react-hot-toast';
+import { FaRegCopy } from 'react-icons/fa';
+import { BsCheck2 } from 'react-icons/bs';
+import {generateHeadlineFetchAPi} from "../../redux/slices/generateHeadlineSlice";
 import logo from "../../assets/recycle.svg";
+import { Formik } from 'formik'
+import InputField from "../form/InputField";
+import CustomButton from "../form/CustomButton";
+import { LoginValidationSchema } from '../../utils/FormValidations';
+import { loginFetchAPi } from '../../redux/slices/auth/loginSlice';
 
 const CustomForm = () => {
   const dispatch = useDispatch();
-  const[count,setCount] = useState(1)
+  const[count,setCount] = useState(0)
   const [hasArticle, setHasArticle] = useState("");
+//   const [login,setLogin] = useState(true)
+  const [latestCopied,setLatestCopied]=useState({
+    copiedId:null,
+    })
   const[tag,setTag] = useState([])
-  const { generateHeadlineEffect,isLoading,saveResult,reGenerate } = useSelector((state) => ({
+  const { generateHeadlineEffect,isLoading,saveResult,reGenerate,allTitles,specialTags,hasTitleTag,copyAllSpecialTags,token,isSuccess } = useSelector((state) => ({
     generateHeadlineEffect: state.buttonEffectSlice.generateHeadlineEffect,
     saveResult: state.buttonEffectSlice.saveResult,
     reGenerate: state.buttonEffectSlice.reGenerate,
     isLoading: state.generateHeadlineSlice.isLoading,
-
+    allTitles: state.generateHeadlineSlice.allTitles,
+    specialTags: state.generateHeadlineSlice.specialTags,
+    hasTitleTag: state.generateHeadlineSlice.hasTitleTag,
+    copyAllSpecialTags: state.generateHeadlineSlice.copyAllSpecialTags,
+    token: state.loginSlice.allData?.token?.access,
+    isSuccess: state.loginSlice.isSuccess,
   }));
+
   const [counter,setCounter] = useState([
-    {countValue : 3 ,id:1},
-    {countValue : 5 ,id:2},
-    {countValue : 10 ,id:3},
-    {countValue : 15 ,id:4},
-    {countValue : 20 ,id:5},
+    {countValue : 1 ,id:1},
+    {countValue : 3 ,id:2},
+    {countValue : 5 ,id:3},
+    {countValue : 7 ,id:4},
+    {countValue : 10 ,id:5},
   ]);
 
   const [ counterSelected, setCounterSelected ] = useState({selected:false,id:null});
 
+  const [copyAllId,setCopyAllId] = useState({id:specialTags?.length + allTitles?.length + 1})
+  useEffect(() => {
+    allTitles && specialTags && setCopyAllId({id:allTitles?.length + specialTags?.length +1})
+  }, [copyAllId,latestCopied])
+  
+ 
 
   const handleChange = (e) => {
     setHasArticle(e.target.value);
   };
 
- 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(generateHeadlineFetchAPi({
+      heading_type: tag.join(","),
+      paragraph : hasArticle,
+      num_headers : count,
+    }))
+  };
+
+  const initialValues = { username: "", password: "" };
+  const handleLoginSubmit = (values) => {
+      dispatch(loginFetchAPi(values));
+      console.log(values,"ffffffffffffffffffff")
+  }
+//   useEffect(() => {
+//     // console.log(copyTag,"qqqqqqqqqqqq")
+//   }, [token])
+  
 
   return (
+    <div>
+     {/* <form onSubmit={(e) => { e.preventDefault();handleSubmit(e)}}> */}
+    <Toaster
+        position="top-right"
+        reverseOrder={false}
+    />
     <div className='bg-white relative z-10 rounded-xl mx-auto max-w-6xl'>
         <div className='flex p-5 gap-8'>
+            {token || token !== undefined ? 
             <div className='flex flex-col gap-3'>
                 <div className='flex flex-col'>
                     <div className=''>
                     <p className='font-medium text-sm text-[#4A5568]'>Put your article text below</p>
                     <textarea
-                        className="resize-none p-3 my-2 bg-[#EDF2F7] border-[1px] rounded-md border-solid border-[#f8f8f8] text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3"
+                        className="resize-none p-3 my-2 bg-[#EDF2F7] border-[1px] rounded-md border-solid border-[#f8f8f8] text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed"
                         rows={10}
                         cols={90}
+                        disabled={isLoading}
                         id="paragraph"
                         name="paragraph"
                         type="text"
@@ -59,57 +108,25 @@ const CustomForm = () => {
                     </div>
                     <div className=''>
                         <p className='font-medium text-sm text-[#4A5568]'>Keywords to Include in Headline</p>
-                        {/* <input className='w-full p-2 my-2 bg-[#EDF2F7] border-[1px] rounded-md border-solid border-[#f8f8f8] text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md' /> */}
                         <div className='my-2'>
-                        <CustomCreateTag tags={tag} setTags={setTag}/>
+                        <CustomCreateTag  disabled = {isLoading} tags={tag} setTags={setTag}/>
                         </div>
                     </div>
                     <div className=''>
                         <p className='font-medium text-sm text-[#4A5568]'>No of Headlines</p>
                         <div className='flex gap-2 my-2'>
-                            {/* <div className="flex items-center justify-center h-10 w-12 border-[1px] rounded-md border-solid border-[#DADADA] bg-[#EDF2F7]">
-                            <p className="font-[600] text-[16px] leading-[24px] text-[#252728] w-5">
-                                    {count}
-                                    </p>
-                                    <div className="flex flex-col border-l-[1px] border-solid border-[#DADADA]">
-                                    <button
-                                        className="border-b-[1px] border-solid border-[#DADADA] text-[#252728] disabled:text-[#aab2b8] disabled:cursor-not-allowed"
-                                        onClick={(e) => {
-                                        e.preventDefault();
-                                        setCount((prev) => prev + 1);
-                                        }}
-                                        onMouseLeave={timeoutClearUp}
-                                        onMouseUp={timeoutClearUp}
-                                        onMouseDown={increment}
-                                        disabled={count >= 30}
-                                    >
-                                        <BiPlus />
-                                    </button>
-                                    <button
-                                        className="text-[#252728] disabled:text-[#aab2b8] disabled:cursor-not-allowed"
-                                        onClick={(e) => {
-                                        e.preventDefault();
-                                        setCount((prev) => prev - 1);
-                                        }}
-                                        onMouseLeave={timeoutClearUp}
-                                        onMouseUp={timeoutClearUp}
-                                        onMouseDown={decrement}
-                                        disabled={count <= 1}
-                                    >
-                                        <BiMinus />
-                                    </button>
-                                    </div>
-                            </div> */}
                             {counter && counter.map((data,id) => (
                                 <>
-                                    <div key={id} onClick={(e) => {
+                                    <button key={id} 
+                                        disabled={isLoading}
+                                        onClick={(e) => {
                                         e.preventDefault()
                                         setCount(data.countValue);
                                         setCounterSelected({selected:true,id:id});
                                     }} 
-                                        className={`${counterSelected.id == id && data.countValue == count ? "bg-[#544BB9] text-white font-bold":"bg-[#EDF2F7] text-[#000000]"} flex items-center justify-center w-11 h-11  rounded-md cursor-pointer`}>
+                                        className={`${counterSelected.id == id && data.countValue == count ? "bg-[#544BB9] text-white font-bold":"bg-[#EDF2F7] text-[#000000]"} flex items-center justify-center w-11 h-11  rounded-md cursor-pointer disabled:cursor-not-allowed`}>
                                             {data.countValue}
-                                    </div>
+                                    </button>
                                 </>
                             ))}
                         </div>
@@ -117,12 +134,14 @@ const CustomForm = () => {
                 </div>
                 <div>
                     <button 
-                    disabled={!hasArticle || count == 1 || isLoading}
+                    type='submit'
+                    disabled={hasArticle.trim() ==="" || count == 0 || isLoading}
                     className={`${
                         generateHeadlineEffect && "animate-wiggle"
-                        } flex px-4 py-3 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-sm disabled:bg-[#2D3748] disabled:cursor-not-allowed`}
+                        } flex items-center justify-center px-4 py-3 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-sm disabled:bg-[#2D3748] disabled:cursor-not-allowed w-1/4`}
                         onClick={(e) => {
                         dispatch(setGenerateHeadlineEffect(true));
+                        handleSubmit(e);
                         // setHasArticle(hasArticle)
                         // setEdit(false)
                         }}
@@ -132,8 +151,8 @@ const CustomForm = () => {
                     >{!isLoading ?
                         "Generate Headlines" :
                         <ThreeDots 
-                          height="40" 
-                          width="40" 
+                          height="20" 
+                          width="35" 
                           radius="9"
                           color="#fafafa" 
                           ariaLabel="three-dots-loading"
@@ -143,38 +162,112 @@ const CustomForm = () => {
                           /> 
                           }</button>
                 </div>
-            </div>
-            <div className='flex justify-center items-start'>
-                {/* <div className='flex justify-center items-center px-4'>
-                    <p className='font-medium text-base text-[#4A5568]'>Fill out the form to the left to generate content</p>
-                </div> */}
-                <div className='flex flex-col gap-5'>
-                    <div className='flex flex-col gap-1'>
-                        <p className='font-500 text-sm text-[#4A5568]'>Headlines</p>
-                        <div className='border-[1px] border-solid border-[#EDF2F7] rounded-md p-2'>
-                            <div className='flex flex-col gap-2'>
-                                <div className='flex items-start justify-between'>
-                                    <p className='font-medium text-sm text-[#4A5568]'>10 Awesome Tools for Taming GitHub Pull Requests for Taming GitHub Pull Requests</p>
-                                    <button type='button' className='px-3 py-2 bg-[#EDF2F7] rounded-md text-[12px] leading-[14px] text-[#4A5568]'>Copy</button>
-                                </div>
+            </div> :
+            <div className='flex flex-col gap-4 h-full w-full justify-center items-center py-10'>
+            <Formik
+                    initialValues={initialValues}
+                    validationSchema={LoginValidationSchema}
+                    validateOnBlur={false}
+                    validateOnChange={false}
+                    onSubmit={handleLoginSubmit}
+                >
+                    {({ handleSubmit }) =>
+                    (<form className='w-full max-w-md' onSubmit={handleSubmit} >
+                        <div className='w-full h-full flex flex-col gap-8 justify-center items-start'>
+                            <div className='flex items-start'>
+                                <p className='font-medium text-3xl'>Log in</p>
+                            </div>
+                            <div className='flex flex-col gap-10 items-start w-full'>
+                            <InputField
+                            type='text'
+                            id='username'
+                            name='username'
+                            inputstyle='w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                            borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                            placeholder='Username' />
+                            <div className='flex flex-col gap-4 items-start w-full'>
+                                <InputField
+                                type='password'
+                                id='password'
+                                name='password'
+                                inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                                borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                                placeholder='Password' />
+                                <a className='flex items-center justify-end w-full font-semibold text-base text-[#4A5568]' href='/'>Forgot password?</a>
+                            </div>
+                            </div>
+                            <div className='py-3 w-full'>
+                            <CustomButton
+                                type='submit'
+                                disabled={isSuccess}
+                                buttonStyle="w-full py-[12px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg"
+                                loaderSize={20}
+                                showLoader>
+                                Log in
+                            </CustomButton >
+                            </div>
+                        </div>
+                    </form>)}
+            </Formik>
+                <div className='flex gap-1'>
+                    <p className='font-normal text-sm text-[##7D7D7D]'>Don’t have an Account ? <a className='font-bold text-sm text-[#544BB9]' href='auth/signin'>Register</a>
+                    </p>     
+                </div>
+            </div>}
+            <div className='flex w-full max-w-[454px] justify-center items-start'>
+                {token !== undefined || !token ?
+                <div className='flex h-full justify-center items-center px-4'>
+                    <p className='font-medium text-base text-[#4A5568]'>Log in/ Sign in first to access AI Headline Generator</p>
+                </div>
+                : hasTitleTag !== null ?
+                <div className='flex flex-col gap-5 w-full'>
+                     <div className='flex flex-col gap-1 w-full group'>
+                         <p className='font-500 text-sm text-[#4A5568]'>Headlines</p>
+                         <div className='border-[1px] border-solid border-[#EDF2F7] rounded-md p-2 max-h-[200px] scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3'>
+                             <div className='flex flex-col gap-2'>
+                                 {allTitles && allTitles.map((title,id) => (
+                                <div key={id} className='flex items-start justify-between'>
+                                    <p className='font-medium text-sm text-[#4A5568] max-w-[360px]'>{title}</p>
+                                    <button onClick={(e) => {  
+                                        navigator.clipboard.writeText(title);
+                                        setLatestCopied({copiedId: id});
+                                        setCopyAllId({id:allTitles.length + specialTags.length +1})
+                                        toast.success('Title Copied!')}} 
+                                        type='button'>
+                                            {latestCopied.copiedId == id ? 
+                                            <p className='flex gap-1 items-center w-16 px-2 py-2 bg-[#544BB9] rounded-md text-[12px] leading-[14px] text-white'><BsCheck2 />copied</p>
+                                            : 
+                                            <p className='flex gap-1 items-center w-16 px-2 py-2 bg-[#EDF2F7] rounded-md text-[12px] leading-[14px] text-[#4A5568]'><FaRegCopy />copy</p>
+                                            }
+                                        </button>
+                                </div>))}
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-col gap-1'>
+                    <div className='flex flex-col gap-1 w-full'>
                         <div className='flex items-center gap-3'>
                             <p className='font-500 text-sm text-[#4A5568]'>Keywords</p>
-                            <button type='button' className='px-2 py-1.5 bg-[#EDF2F7] rounded-md text-[12px] leading-[14px] text-[#4A5568]'>Copy All</button>
+                            <button onClick={() => {navigator.clipboard.writeText(copyAllSpecialTags);
+                            setLatestCopied({copiedId:specialTags.length + allTitles.length + 1});
+                            toast.success('All Tags Copied!')}} type='button' className={`px-2 py-1.5  rounded-md text-[12px] leading-[14px]  ${latestCopied.copiedId == copyAllId.id ? "bg-[#544BB9] text-white":"bg-[#EDF2F7] text-[#4A5568]" }`}>Copy All</button>
                         </div>
-                        <div className='py-1'>
-                            <div className='flex gap-2'>
-                                <button type='button' className='px-3 py-2 border-[1px] border-solid border-[#EDF2F7] rounded-md text-xs text-[#4A5568]'>GitHub</button> 
-                                <button type='button' className='px-3 py-2 border-[1px] border-solid border-[#EDF2F7] rounded-md text-xs text-[#4A5568]'>ChatGPT</button> 
+                        <div className='py-1'>  
+                            <div className='flex gap-2 flex-wrap'>
+                                {specialTags && specialTags.map((tag,id)=>(
+                                <button onClick={(e) => {  
+                                    navigator.clipboard.writeText(tag.trim());
+                                    setLatestCopied({copiedId:id + allTitles.length});
+                                    setCopyAllId({id:allTitles.length + specialTags.length +1})
+                                    toast.success('Tag Copied!') }} 
+                                    type='button' className={`${latestCopied.copiedId === id + allTitles.length ? "bg-[#544BB9] font-medium text-white":"bg-[#EDF2F7]"} px-3 py-2 border-[1px] border-solid border-[#EDF2F7] rounded-md text-xs text-[#4A5568]`}>{tag.trim()}</button>
+                                ))} 
                             </div>
                         </div>
                     </div>
-                    <div className='flex py-3 gap-4'>
+                    <div className='flex py-3 gap-4 w-full'>
                         <div>
                             <button
+                             type='button'
                              className={`${
                                 saveResult && "animate-wiggle"
                                 } flex gap-2 px-4 py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-sm disabled:bg-[#2D3748] disabled:cursor-not-allowed`}
@@ -188,6 +281,7 @@ const CustomForm = () => {
                         </div>
                         <div>
                             <button 
+                            type='button'
                             className={`${
                                 reGenerate && "animate-wiggle"
                                 } flex gap-2 px-4 py-2 rounded-md bg-[#2D3748] text-[#E3E3E3] hover:text-white font-medium text-sm disabled:bg-[#544BB9] disabled:cursor-not-allowed`}
@@ -202,9 +296,16 @@ const CustomForm = () => {
                                     Regenerate</button>
                         </div>
                     </div>
+                </div> 
+                :
+                <div className='flex h-full justify-center items-center px-4'>
+                    <p className='font-medium text-base text-[#4A5568]'>Fill out the form to the left to generate content</p>
                 </div>
+               }
             </div>
         </div>
+    </div>
+    {/* </form> */}
     </div>
   )
 }

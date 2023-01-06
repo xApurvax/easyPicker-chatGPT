@@ -1,22 +1,25 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
+import ApiMiddleware from "../../utils/ApiMiddleware";
 
 const initialState = {
   isLoading: false,
   allTitles:null,
+  specialTags:null,
+  copyAllSpecialTags:null,
   isFindUseSynonyms: false,
   isIncPowerWords: true,
   isMakeQuestion: false,
   goBackToSettings: true,
+  hasTitleTag : null
 };
 
 export const generateHeadlineFetchAPi = createAsyncThunk(
   'generateHeadlinePage/fetch',
   async (data) => {
     try {
-      const paragraphDetails = await axios.post(
-        'http://Dipika.pythonanywhere.com/',
-        data
+      const paragraphDetails = await ApiMiddleware.post(
+        '/',
+        {...data}
       );
       return paragraphDetails;
     } catch (error) {
@@ -49,7 +52,10 @@ const generateHeadlineSlice = createSlice({
     [generateHeadlineFetchAPi.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.goBackToSettings = false;
-      state.allTitles = action.payload?.data?.title;
+      state.allTitles = action.payload?.data?.result[0]["title"];
+      state.specialTags = action.payload?.data?.result[0]["tags"]?.split(",");
+      state.copyAllSpecialTags = action.payload?.data?.result[0]["tags"];
+      state.hasTitleTag = action.payload?.data?.result;
     },
     [generateHeadlineFetchAPi.rejected]: (state, action) => {
       state.isLoading = false;

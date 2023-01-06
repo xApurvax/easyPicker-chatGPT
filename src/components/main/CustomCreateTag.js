@@ -1,8 +1,9 @@
 import React from 'react'
 import { IoIosClose } from 'react-icons/io';
 
-const CustomCreateTag = ({tags,setTags,selectedTags}) => {
+const CustomCreateTag = ({tags,setTags,selectedTags,...props}) => {
     const addTags = (event) => {
+        event.preventDefault()
         if (event.key === "Enter" && event.target.value !== "" && event.target.value.trim() !== "") {
             setTags([...tags, event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)]);
             // selectedTags([...tags, event.target.value]);
@@ -27,11 +28,12 @@ const CustomCreateTag = ({tags,setTags,selectedTags}) => {
         <div className='w-full'>
             {tags.length < 10 && 
             <input
+            {...props}
             type="text"
             onKeyUp={(event) => {addTags(event)}}
             maxLength="15"
             placeholder="Type words and hit Enter ↵ to add"
-            className='placeholder:text-[12px] p-1 border-[1px] rounded-md bg-[#EDF2F7] border-solid border-[#f8f8f8] text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md w-full max-w-[200px]'
+            className='placeholder:text-[12px] p-1 border-[1px] rounded-md bg-[#EDF2F7] border-solid border-[#f8f8f8] text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md w-full max-w-[200px] disabled:cursor-not-allowed'
             />}
         </div>
     </div>
