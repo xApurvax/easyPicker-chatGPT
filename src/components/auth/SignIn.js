@@ -8,17 +8,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { registerFetchAPi } from '../../redux/slices/auth/registerSlice';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import {  setSignInEffect } from '../../redux/slices/buttonEffectSlice';
+import AuthMiddleware from '../../utils/AuthMiddleware';
 
 const SignIn = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { isRegisterLoading } = useSelector((state) => ({
+        isRegisterLoading: state.registerSlice.isRegisterLoading,
+      }));
     const initialValues = { username: "", password: "" , name:"", email:"" };
     const handleSignInSubmit = (values) => {
         dispatch(registerFetchAPi(values));
     }
   return (
-      <div className='flex p-5 gap-8 w-full'>
-             <div className='flex flex-col h-full w-full justify-center items-center pt-32'>
+    <AuthMiddleware>
+      <div className='flex p-10 gap-8 rounded-xl bg-white w-full h-full'>
+             <div className='flex flex-col gap-4 h-full w-full justify-center items-center py-10'>
                 <Formik
                         initialValues={initialValues}
                         validationSchema={registerValidationSchema}
@@ -33,22 +39,22 @@ const SignIn = () => {
                                     <p className='font-medium text-3xl'>Sign in</p>
                                 </div>
                                 <div className='flex flex-col gap-10 items-start w-full'>
-                                <InputField
-                                type='text'
-                                id='username'
-                                name='username'
-                                inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
-                                borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
-                                placeholder='Username' />
-
-                                <InputField
-                                type='text'
+                                <div className='flex gap-3 w-full'>
+                                    <InputField
+                                    type='text'
+                                    id='username'
+                                    name='username'
+                                    inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                                    borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                                    placeholder='Username' />
+                                    <InputField
+                                    type='text'
                                 id='name'
                                 name='name'
                                 inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                 borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                 placeholder='Name' />
-
+                                </div>
                                 <InputField
                                 type='text'
                                 id='email'
@@ -69,7 +75,13 @@ const SignIn = () => {
                                 <div className='py-3 w-full'>
                                 <CustomButton
                                     type='submit'
-                                    // disabled={isLoading}
+                                    disabled={isRegisterLoading}
+                                    onClick={(e) => {
+                                    dispatch(setSignInEffect(true));
+                                    }}
+                                    onAnimationEnd={() => {
+                                    dispatch(setSignInEffect(false));
+                                    }}
                                     buttonStyle="w-full py-[12px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg"
                                     loaderSize={20}
                                     showLoader>
@@ -80,17 +92,22 @@ const SignIn = () => {
                         </form>)}
                 </Formik>
                 <div className='flex flex-col gap-1.5'>
-                        <p className='font-normal text-sm text-[#4A5568]'>Already have an account</p>
-                        <div className='flex gap-1'>
+                    <div className='flex gap-1'>
+                            <p className='font-normal text-sm text-[#4A5568]'>Already have an account ? </p>
+                            <div className='font-bold text-sm text-[#544BB9] cursor-pointer' 
+                            onClick={() => { navigate('/auth/login')}}>Login</div>
+                    </div>
+                        {/* <div className='flex gap-1'>
                             <p className='font-normal text-sm text-[#4A5568]'>You can</p>
                             <div className='font-bold text-sm text-[#544BB9] cursor-pointer' onClick={() => { navigate('/auth/login')}}>Login</div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
-            <div className='flex h-full justify-center items-center px-4'>
+            <div className='flex justify-center items-center px-4 text-center w-full'>
                     <p className='font-medium text-base text-[#4A5568]'>Log in/ Sign in first to access AI Headline Generator</p>
             </div>
-        </div>
+      </div>
+      </AuthMiddleware>
   )
 }
 

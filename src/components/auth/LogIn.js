@@ -9,6 +9,8 @@ import { registerFetchAPi } from '../../redux/slices/auth/registerSlice';
 import toast, { Toaster } from 'react-hot-toast';
 import { loginFetchAPi } from '../../redux/slices/auth/loginSlice';
 import { useNavigate } from 'react-router-dom';
+import { setLoginEffect } from '../../redux/slices/buttonEffectSlice';
+import AuthMiddleware from '../../utils/AuthMiddleware';
 
 const LogIn = () => {
     const dispatch = useDispatch();
@@ -25,13 +27,26 @@ const LogIn = () => {
         token: state.loginSlice.allData?.token?.access,
         isSuccess: state.loginSlice.isSuccess,
       }));
-      const navigate = useNavigate();
+    const navigate = useNavigate();
     const initialValues = { username: "", password: "" };
-  const handleLoginSubmit = (values) => {
-      dispatch(loginFetchAPi(values));
-  }
+    const handleLoginSubmit = (values) => {
+         dispatch(loginFetchAPi(values))
+        //  .then(() => {
+        //     navigate('/');
+        //   });
+    }
+    // const handleLoginSubmit = async (values) => {
+    //     try {
+    //         await dispatch(loginFetchAPi(values));
+    //         navigate('/');
+    //       } catch(error) {
+    //         // handle any rejections/errors
+    //       }
+    // }
+
   return (
-        <div className='flex p-5 gap-8 w-full h-full'>
+    <AuthMiddleware>
+        <div className='flex p-10 gap-8 rounded-xl bg-white w-full h-full'>
             <div className='flex flex-col gap-4 h-full w-full justify-center items-center py-10'>
             <Formik
                     initialValues={initialValues}
@@ -62,13 +77,19 @@ const LogIn = () => {
                                 inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                 borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                 placeholder='Password' />
-                                <a className='flex items-center justify-end w-full font-semibold text-base text-[#4A5568]' href='/'>Forgot password?</a>
+                                <div className='flex items-center justify-end w-full font-semibold text-base text-[#544BB9] cursor-pointer' onClick={() => {{navigate('/auth/forgot')}}}>Forgot Password?</div>
                             </div>
                             </div>
                             <div className='py-3 w-full'>
                             <CustomButton
                                 type='submit'
                                 disabled={isSuccess}
+                                onClick={(e) => {
+                                dispatch(setLoginEffect(true));
+                                }}
+                                onAnimationEnd={() => {
+                                dispatch(setLoginEffect(false));
+                                }}
                                 buttonStyle="w-full py-[12px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg"
                                 loaderSize={20}
                                 showLoader>
@@ -79,14 +100,15 @@ const LogIn = () => {
                     </form>)}
             </Formik>
                 <div className='flex gap-1'>
-                    <p className='font-normal text-sm text-[##7D7D7D]'>Don’t have an Account ? <p className='font-bold text-sm text-[#544BB9] cursor-pointer' onClick={() => {navigate('/auth/register')}}>Register</p>
-                    </p>     
+                    <p className='font-normal text-sm text-[#4A5568]'>Don’t have an Account ? </p>   <div className='font-bold text-sm text-[#544BB9] cursor-pointer' onClick={() => {navigate('/auth/register')}}>Register</div>
+                      
                 </div>
             </div>
-            <div className='flex justify-center items-center text-center px-4'>
+            <div className='flex justify-center items-center text-center px-4 w-full'>
                     <p className='font-medium text-base text-[#4A5568]'>Log in/ Sign in first to access AI Headline Generator</p>
             </div>
         </div>
+    </AuthMiddleware>
   )
 }
 

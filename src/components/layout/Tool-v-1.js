@@ -14,7 +14,6 @@ import { BsCheck2 } from "react-icons/bs";
 import {
   generateHeadlineFetchAPi,
   reGenerateHeadlineFetchAPi,
-  saveResultsFetchAPi,
   setReGenerateData,
 } from "../../redux/slices/generateHeadlineSlice";
 import logo from "../../assets/recycle.svg";
@@ -27,7 +26,6 @@ import { LoginValidationSchema } from "../../utils/FormValidations";
 import { loginFetchAPi } from "../../redux/slices/auth/loginSlice";
 import AuthMiddleware from "../../utils/AuthMiddleware";
 import RouteMiddleWare from "../../utils/RouteMiddleWare";
-import { Link, useNavigate } from "react-router-dom";
 
 const Tool = () => {
   const dispatch = useDispatch();
@@ -54,8 +52,6 @@ const Tool = () => {
     reGenerateData,
     isRegenerate,
     message,
-    saveTags,
-    saveTitles,
   } = useSelector((state) => ({
     generateHeadlineEffect: state.buttonEffectSlice.generateHeadlineEffect,
     saveResult: state.buttonEffectSlice.saveResult,
@@ -65,8 +61,6 @@ const Tool = () => {
     allTitles: state.generateHeadlineSlice.allTitles,
     specialTags: state.generateHeadlineSlice.specialTags,
     hasTitleTag: state.generateHeadlineSlice.hasTitleTag,
-    saveTags: state.generateHeadlineSlice.saveTags,
-    saveTitles: state.generateHeadlineSlice.saveTitles,
     reGenerateData: state.generateHeadlineSlice.reGenerateData,
     copyAllSpecialTags: state.generateHeadlineSlice.copyAllSpecialTags,
     message: state.generateHeadlineSlice.message,
@@ -74,7 +68,7 @@ const Tool = () => {
     isSuccess: state.loginSlice.isSuccess,
     coins: state.loginSlice.coins,
   }));
-  const navigate = useNavigate()
+
   const [counter, setCounter] = useState([
     { countValue: 1, id: 1 },
     { countValue: 3, id: 2 },
@@ -90,7 +84,13 @@ const Tool = () => {
   const [copyAllId, setCopyAllId] = useState({
     id: specialTags?.length + allTitles?.length + 1,
   });
-  
+  let specialTag = new Set(specialTags);
+  useEffect(() => {
+    allTitles &&
+      specialTags &&
+      setCopyAllId({ id: allTitles?.length + specialTags?.length + 1 });
+  }, [copyAllId, latestCopied]);
+
   const handleChange = (e) => {
     setHasArticle(e.target.value);
   };
@@ -115,34 +115,12 @@ const Tool = () => {
     );
   };
 
-  const handleSaveResults = (e) => {
-    e.preventDefault();
-    dispatch(
-      saveResultsFetchAPi({
-        heading_type: tag.join(","),
-        paragraph: hasArticle,
-        num_headers: count,
-        language: "english",
-        tag:saveTags,
-        title:saveTitles,
-      })
-    );
-  };
-
   const hasTypedSomething = (e) => {
     setHasSomethingTyped(e.target.value);
   };
 
-  useEffect(() => {
-    allTitles?.length > 0 &&
-      specialTags?.length > 0  &&
-      setCopyAllId({ id: allTitles?.length + specialTags?.length + 1 });
-  }, [copyAllId, latestCopied]);
-
   useEffect(() => {}, [hasSomethingTyped]);
-  useEffect(() => {
-  }, [hasTitleTag,message])
-  
+
   useEffect(() => {
     if (Cookies.get("coins")) {
       setAvailableCoins(Cookies.get("coins"));
@@ -157,16 +135,6 @@ const Tool = () => {
   return (
     <RouteMiddleWare>
     <div className="flex flex-col w-full">
-      <div className="flex justify-end gap-1">
-      <div className="flex justify-end">
-          <button onClick={() => navigate("/saved-results")} className="flex gap-6 border-l-[5px] border-t-[5px] border-solid border-white bg-[#544BB9] rounded-t-xl px-5 py-1">
-            <p
-              className={`font-semibold text-2xl text-white`}
-            >
-              Previous Results
-            </p>
-          </button>
-      </div>
       <div className="bg-[#544BB9] flex justify-end">
         <div className="flex gap-6 bg-white rounded-t-xl px-5 py-1">
           <GiTwoCoins
@@ -181,7 +149,6 @@ const Tool = () => {
             {availableCoins === "undefined" ? 0 : availableCoins}
           </p>
         </div>
-      </div>
       </div>
       <div className="flex p-10 gap-8 rounded-b-xl rounded-tl-xl bg-white w-full">
         <div className="flex flex-col gap-3 w-full">
@@ -290,192 +257,186 @@ const Tool = () => {
           </div>
         </div>
         <div className="w-full">
-          {message === "You dont have any credit points" ?  (
-            <div className="flex h-full justify-center items-center px-4 w-full">
-              <p className="font-medium text-base text-[#4A5568]">
-                {message}
-              </p>
-            </div>
-          )
-        :
-        (
-          // (allTitles?.length > 0 || allTitles !== null ) && 
-          // (specialTags?.length > 0 || specialTags !== null) &&
-          // (hasTitleTag?.length > 0 || hasTitleTag !== null)
-          (allTitles?.length > 0 || specialTags?.length > 0) &&
-          (hasTitleTag?.length > 0)
-          ? (
-            <div className="flex flex-col gap-5 w-full">
-              {allTitles?.length > 0 && (
-                <div className="flex flex-col gap-1 w-full group">
-                  <p className="font-bold text-lg text-[#4A5568]">
-                    Headlines
-                  </p>
-                  {allTitles?.length > 0 && (
-                    <div className="border-[1px] border-solid border-[#EDF2F7] rounded-md p-2 max-h-[200px] scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
-                      <div className="flex flex-col gap-2">
-                        {allTitles &&
-                          allTitles.map((title, id) => (
-                            <div
-                              key={id}
-                              className="flex gap-5 items-start justify-between"
-                            >
-                              <p className="font-medium text-base text-[#4A5568] max-w-[360px]">
-                                {title}
-                              </p>
-                              <button
-                                onClick={(e) => {
-                                  navigator.clipboard.writeText(title);
-                                  setLatestCopied({ copiedId: id });
-                                  setCopyAllId({
-                                    id:
-                                      allTitles.length +
-                                      specialTags.length +
-                                      1,
-                                  });
-                                  toast.success("Title Copied!");
-                                }}
-                                type="button"
+          {hasTitleTag !== null ? (
+            allTitles?.length > 0 ||
+            (allTitles !== null && specialTags?.length > 0) ||
+            specialTags !== null ? (
+              <div className="flex flex-col gap-5 w-full">
+                {allTitles?.length > 0 && (
+                  <div className="flex flex-col gap-1 w-full group">
+                    <p className="font-bold text-lg text-[#4A5568]">
+                      Headlines
+                    </p>
+                    {allTitles?.length > 0 && (
+                      <div className="border-[1px] border-solid border-[#EDF2F7] rounded-md p-2 max-h-[200px] scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
+                        <div className="flex flex-col gap-2">
+                          {allTitles &&
+                            allTitles.map((title, id) => (
+                              <div
+                                key={id}
+                                className="flex gap-5 items-start justify-between"
                               >
-                                {latestCopied.copiedId == id ? (
-                                  <p className="flex gap-1 items-center px-2 py-2 bg-[#544BB9] rounded-md text-[14px] leading-[14px] text-white">
-                                    <BsCheck2 />
-                                    copied
-                                  </p>
-                                ) : (
-                                  <p className="flex gap-2 items-center px-3 py-2 bg-[#EDF2F7] rounded-md text-[14px] leading-[14px] text-[#4A5568]">
-                                    <FaRegCopy />
-                                    copy
-                                  </p>
-                                )}
-                              </button>
-                            </div>
-                          ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-              {specialTags?.length > 0 &&
-              <div className="flex flex-col gap-1 w-full">
-                <div className="flex items-center gap-3">
-                  <p className="font-bold text-lg text-[#4A5568]">Keywords</p>
-                  {specialTags?.length > 0 && (
-                    <button
-                      onClick={() => {
-                        navigator.clipboard.writeText(copyAllSpecialTags);
-                        setLatestCopied({
-                          copiedId: specialTags.length + allTitles.length + 1,
-                        });
-                        toast.success("All Tags Copied!");
-                      }}
-                      type="button"
-                      className={`px-2 py-1.5  rounded-md text-base  ${
-                        latestCopied.copiedId == copyAllId.id
-                          ? "bg-[#544BB9] text-white"
-                          : "bg-[#EDF2F7] text-[#4A5568]"
-                      }`}
-                    >
-                      Copy All
-                    </button>
-                  )}
-                </div>
-                <div className="py-1">
-                  <div className="flex gap-2 flex-wrap">
-                    {specialTags?.length > 0 &&
-                      specialTags.map((tag, id) => (
-                        <div key={id}>
-                          <button
-                            onClick={(e) => {
-                              navigator.clipboard.writeText(tag.trim());
-                              setLatestCopied({
-                                copiedId: id + allTitles.length,
-                              });
-                              setCopyAllId({
-                                id: allTitles.length + specialTags.length + 1,
-                              });
-                              toast.success("Tag Copied!");
-                            }}
-                            type="button"
-                            className={`${
-                              latestCopied.copiedId === id + allTitles.length
-                                ? "bg-[#544BB9] font-medium text-white"
-                                : "bg-[#EDF2F7]"
-                            } px-3 py-2 border-[1px] border-solid border-[#EDF2F7] rounded-md text-base text-[#4A5568]`}
-                          >
-                            {tag.trim()}
-                          </button>
+                                <p className="font-medium text-base text-[#4A5568] max-w-[360px]">
+                                  {title}
+                                </p>
+                                <button
+                                  onClick={(e) => {
+                                    navigator.clipboard.writeText(title);
+                                    setLatestCopied({ copiedId: id });
+                                    setCopyAllId({
+                                      id:
+                                        allTitles.length +
+                                        specialTags.length +
+                                        1,
+                                    });
+                                    toast.success("Title Copied!");
+                                  }}
+                                  type="button"
+                                >
+                                  {latestCopied.copiedId == id ? (
+                                    <p className="flex gap-1 items-center px-2 py-2 bg-[#544BB9] rounded-md text-[14px] leading-[14px] text-white">
+                                      <BsCheck2 />
+                                      copied
+                                    </p>
+                                  ) : (
+                                    <p className="flex gap-2 items-center px-3 py-2 bg-[#EDF2F7] rounded-md text-[14px] leading-[14px] text-[#4A5568]">
+                                      <FaRegCopy />
+                                      copy
+                                    </p>
+                                  )}
+                                </button>
+                              </div>
+                            ))}
                         </div>
-                      ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+                {/* {specialTags?.length > 0 || !specialTag.has("") && */}
+                <div className="flex flex-col gap-1 w-full">
+                  <div className="flex items-center gap-3">
+                    <p className="font-bold text-lg text-[#4A5568]">Keywords</p>
+                    {specialTags?.length > 0 && (
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(copyAllSpecialTags);
+                          setLatestCopied({
+                            copiedId: specialTags.length + allTitles.length + 1,
+                          });
+                          toast.success("All Tags Copied!");
+                        }}
+                        type="button"
+                        className={`px-2 py-1.5  rounded-md text-base  ${
+                          latestCopied.copiedId == copyAllId.id
+                            ? "bg-[#544BB9] text-white"
+                            : "bg-[#EDF2F7] text-[#4A5568]"
+                        }`}
+                      >
+                        Copy All
+                      </button>
+                    )}
+                  </div>
+                  <div className="py-1">
+                    <div className="flex gap-2 flex-wrap">
+                      {specialTags?.length > 0 &&
+                        specialTags.map((tag, id) => (
+                          <div key={id}>
+                            <button
+                              onClick={(e) => {
+                                navigator.clipboard.writeText(tag.trim());
+                                setLatestCopied({
+                                  copiedId: id + allTitles.length,
+                                });
+                                setCopyAllId({
+                                  id: allTitles.length + specialTags.length + 1,
+                                });
+                                toast.success("Tag Copied!");
+                              }}
+                              type="button"
+                              className={`${
+                                latestCopied.copiedId === id + allTitles.length
+                                  ? "bg-[#544BB9] font-medium text-white"
+                                  : "bg-[#EDF2F7]"
+                              } px-3 py-2 border-[1px] border-solid border-[#EDF2F7] rounded-md text-base text-[#4A5568]`}
+                            >
+                              {tag.trim()}
+                            </button>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                </div>
+                {/* } */}
+                <div className="flex py-3 gap-4 w-full">
+                  <div>
+                    <button
+                      type="button"
+                      className={`${
+                        saveResult && "animate-wiggle"
+                      } flex items-center gap-2 px-4 py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed`}
+                      onClick={(e) => {
+                        dispatch(setSaveResult(true));
+                      }}
+                      onAnimationEnd={() => {
+                        dispatch(setSaveResult(false));
+                      }}
+                    >
+                      <FaBookmark size={20} /> Save Results
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      type="button"
+                      disabled={isRegenerate}
+                      className={`${
+                        reGenerate && "animate-wiggle"
+                      } flex gap-2 px-4 py-2 rounded-md bg-[#2D3748] text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed`}
+                      onClick={(e) => {
+                        dispatch(setReGenerate(true));
+                        dispatch(reGenerateHeadlineFetchAPi(reGenerateData));
+                      }}
+                      onAnimationEnd={() => {
+                        dispatch(setReGenerate(false));
+                      }}
+                    >
+                      {" "}
+                      {isRegenerate ? (
+                        <div className="flex items-center gap-2">
+                          <img
+                            src={logo}
+                            alt="logo"
+                            className="w-6 animate-spin"
+                          />
+                          Regenerating
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2">
+                          <img
+                            src={logo}
+                            alt="logo"
+                            className="w-6 cursor-pointer"
+                          />
+                          Regenerate
+                        </div>
+                      )}
+                    </button>
                   </div>
                 </div>
               </div>
-              }
-              <div className="flex py-3 gap-4 w-full">
-                <div>
-                  <button
-                    type="button"
-                    className={`${
-                      saveResult && "animate-wiggle"
-                    } flex items-center gap-2 px-4 py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed`}
-                    onClick={(e) => {
-                      dispatch(setSaveResult(true));
-                      handleSaveResults(e)
-                    }}
-                    onAnimationEnd={() => {
-                      dispatch(setSaveResult(false));
-                    }}
-                  >
-                    <FaBookmark size={20} /> Save Results
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    disabled={isRegenerate}
-                    className={`${
-                      reGenerate && "animate-wiggle"
-                    } flex gap-2 px-4 py-2 rounded-md bg-[#2D3748] text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed`}
-                    onClick={(e) => {
-                      dispatch(setReGenerate(true));
-                      dispatch(reGenerateHeadlineFetchAPi(reGenerateData));
-                    }}
-                    onAnimationEnd={() => {
-                      dispatch(setReGenerate(false));
-                    }}
-                  >
-                    {" "}
-                    {isRegenerate ? (
-                      <div className="flex items-center gap-2">
-                        <img
-                          src={logo}
-                          alt="logo"
-                          className="w-6 animate-spin"
-                        />
-                        Regenerating
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-2">
-                        <img
-                          src={logo}
-                          alt="logo"
-                          className="w-6 cursor-pointer"
-                        />
-                        Regenerate
-                      </div>
-                    )}
-                  </button>
-                </div>
+            ) : (
+              <div className="flex h-full justify-center items-center px-4 w-full">
+                <p className="font-medium text-base text-[#4A5568]">
+                  Something went wrong please generate again
+                </p>
               </div>
-            </div>
+            )
           ) : (
             <div className="flex h-full justify-center items-center px-4 w-full">
               <p className="font-medium text-base text-[#4A5568]">
                 Fill out the left form to generate content
               </p>
             </div>
-          )
-        )}
+          )}
         </div>
       </div>
     </div>

@@ -37,10 +37,10 @@ const InputField = ({ inputstyle, placeholder, borderstyle, errorRight, iconAfte
                 >
                     {(showPassword ? (
                         // <img src={showEye} alt="" />
-                        <BsEye size={20} />
+                        <BsEyeSlash size={20} />
                     ) : (
                         // <img src={hideEye} alt="" />
-                        <BsEyeSlash size={20} />
+                        <BsEye size={20} />
                     ))}
                 </div>
                 :

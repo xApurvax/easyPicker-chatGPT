@@ -20,10 +20,10 @@ export const registerFetchAPi = createAsyncThunk(
         '/auth/register/',
         {...data}
       );
-      // toast.success(registerUser.data.message)
+      toast.success(registerUser.data.message)
       return registerUser;
     } catch (error) {
-      console.log(error.response.data.message);
+      // console.log(error.response.data.message);
       toast.error(error.response.data.message)
       
     }
@@ -43,19 +43,15 @@ const registerSlice = createSlice({
       state.isRegisterLoading = false;
       state.message = payload;
       if(payload?.data?.status_code === 200) {
-        toast.success(payload?.data?.message)
-      }else{
-        // console.log(payload)
-        // toast.error(payload?.data?.message)
+        // toast.success(payload?.data?.message);
+        state.allData = payload?.data?.result[0];
+        Cookies.set("access_token", payload?.data?.result[0]?.token?.access);
+        Cookies.set("refresh_token", payload?.data?.result[0]?.token?.refresh);
       }
-      state.allData = payload?.data?.result[0];
-      Cookies.set("access_token", payload?.data?.result[0]?.token?.access);
-      Cookies.set("refresh_token", payload?.data?.result[0]?.token?.refresh);
     },
     [registerFetchAPi.rejected]: (state, {payload}) => {
       state.isRegisterLoading = false;
-      // console.log(payload)
-      // toast.error(payload?.data?.message)
+      // toast.error(payload?.data?.message);
     },
   },
 });

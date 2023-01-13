@@ -2,9 +2,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import buttonEffectSlice from "../slices/buttonEffectSlice";
 import RangeSliderSlice from "../slices/RangeSliderSlice";
 import generateHeadlineSlice from "../slices/generateHeadlineSlice";
+import savedRecordSlice from "../slices/savedRecordSlice";
 import counterSlice from "../slices/counterSlice";
 import loginSlice from "../../redux/slices/auth/loginSlice";
 import registerSlice from "../../redux/slices/auth/registerSlice";
+import forgotPasswordSlice from "../../redux/slices/auth/forgotPasswordSlice";
 
 const store = configureStore({
   reducer: { buttonEffectSlice,
@@ -12,7 +14,9 @@ const store = configureStore({
              generateHeadlineSlice,
              counterSlice,
              loginSlice ,
-             registerSlice},
+             registerSlice,
+             forgotPasswordSlice,
+             savedRecordSlice},
   middleware: (getDefaultMiddlerWare) =>
     getDefaultMiddlerWare({
       serializableCheck: false,

@@ -2,9 +2,10 @@ import classNames from 'classnames';
 import React from 'react'
 import { Oval } from "react-loader-spinner";
 
-const CustomButton = ({ buttonStyle, children, loaderSize, showLoader, disabled, ...props }) => {
+const CustomButton = ({ buttonStyle, children, loaderSize, showLoader, disabled,...props }) => {
     return (
         <button
+        // onClick={}
             {...props}
             disabled={disabled || false}
             className={classNames("flex justify-center items-center gap-2", { "bg-gray-500 !text-white !border-none": disabled }, buttonStyle)}>

@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import ApiMiddleware from "../../../utils/ApiMiddleware";
 import Cookies from "js-cookie";
 import toast, { Toaster } from 'react-hot-toast';
+import cookies from 'js-cookie';
+import { Navigate } from "react-router-dom";
 
 const initialState = {
   isSuccess: false,
@@ -11,7 +13,7 @@ const initialState = {
         refresh: Cookies.get('refresh_token'),
     },
   },
-  
+  coins:0,
 };
 
 export const loginFetchAPi = createAsyncThunk(
@@ -35,28 +37,30 @@ const loginSlice = createSlice({
   name: "login",
   initialState,
   reducers: {
-        // setIsFindUseSynonyms: (state, action) => {
-        //   state.isFindUseSynonyms = action.payload;
-        // },
-        // setIsIncPowerWords: (state, action) => {
-        //   state.isIncPowerWords = action.payload;
-        // },
-        // setIsMakeQuestion: (state, action) => {
-        //   state.isMakeQuestion = action.payload;
-        // },
-        // setGoBackToHeadlineSettings: (state, action) => {
-        //   state.goBackToSettings = action.payload;
-        // },
+    logOut: (state) => {
+      state.allData = {
+          token: {
+              access: null,
+              refresh: null,
+          },
+      };
+      cookies.remove('access_token');
+      cookies.remove('refresh_token');
+  }
   },
   extraReducers: {
     [loginFetchAPi.pending]: (state, action) => {
       state.isSuccess = true;
     },
-    [loginFetchAPi.fulfilled]: (state, action) => {
+    [loginFetchAPi.fulfilled]: (state,{payload}) => {
       state.isSuccess = false;
-      state.allData = action.payload?.data?.result[0];
-      Cookies.set("access_token", action.payload?.data?.result[0]?.token?.access);
-      Cookies.set("refresh_token", action.payload?.data?.result[0]?.token?.refresh);
+      if(payload?.data?.status_code === 200) {
+      state.allData = payload?.data?.result[0];
+      state.coins = payload?.data?.result[0]?.avaliable_credit;
+      Cookies.set("access_token", payload?.data?.result[0]?.token?.access);
+      Cookies.set("refresh_token", payload?.data?.result[0]?.token?.refresh);
+      Cookies.set("coins", payload?.data?.result[0]?.avaliable_credit);
+      }
     },
     [loginFetchAPi.rejected]: (state, action) => {
       state.isSuccess = false;
@@ -64,5 +68,5 @@ const loginSlice = createSlice({
   },
 });
 
-// export const {  } = generateHeadlineSlice.actions;
+export const { logOut } = loginSlice.actions;
 export default loginSlice.reducer;

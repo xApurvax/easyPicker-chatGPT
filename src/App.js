@@ -5,24 +5,35 @@ import Tool from "./components/layout/Tool";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LogIn from "./components/auth/LogIn";
 import SignIn from "./components/auth/SignIn";
+import toast, { Toaster } from 'react-hot-toast';
+import Forgot from "./components/auth/Forgot";
+import PasswordReset from "./components/auth/PasswordReset";
+import PrivateRoute from "./utils/PrivateRoute";
+import FooterNew from "./components/layout/FooterNew";
+import SavedRecords from "./components/layout/SavedRecords";
 
 function App() {
   return (
     <div className="">
-    <NavbarNew />
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+    />
+    {/* <NavbarNew /> */}
     <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HeaderNew Tool={<Tool />} />} />
-          <Route path="/auth/login" element={<HeaderNew LogIn={<LogIn />}  />} />
-          <Route path="/auth/register" element={<HeaderNew SignIn={<SignIn />} />} />
+          <Route path="/" element={<HeaderNew ><Tool /></HeaderNew>} />
+          {/* <Route element={<PrivateRoute />}>
+              <Route path="/" element={<HeaderNew ><Tool /></HeaderNew>} exact /> 
+          </Route> */}
+          <Route path="/auth/login" element={<HeaderNew ><LogIn /></HeaderNew>}   />
+          <Route path="/auth/register" element={<HeaderNew ><SignIn /></HeaderNew>}  />
+          <Route path="/auth/forgot" element={<HeaderNew ><Forgot /></HeaderNew>}  />
+          <Route path="/reset-password" element={<HeaderNew ><PasswordReset /></HeaderNew>}  />
+          <Route path="/saved-results" element={<HeaderNew ><SavedRecords /></HeaderNew>}  />
         </Routes>
-        {/* <Routes>
-        <Route path="/" element={<Tool />}>
-          <Route path="login" element={<LogIn />} />
-          <Route path="register" element={<SignIn />} />
-        </Route>
-        </Routes> */}
     </BrowserRouter>
+    {/* <FooterNew /> */}
     </div>
   );
 }
