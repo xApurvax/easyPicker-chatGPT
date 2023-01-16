@@ -1,66 +1,90 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { useTable, usePagination } from "react-table";
 import { useDispatch, useSelector } from "react-redux";
 import { useGlobalFilter } from "react-table/dist/react-table.development.js";
-// import ReactPaginate from "react-paginate";  
+import ReactPaginate from "react-paginate";  
 import { CgSmileNeutral } from "react-icons/cg";
+import { IoSearchOutline,IoCopyOutline } from "react-icons/io5";
 import { Oval,RevolvingDot } from  'react-loader-spinner'
 import { saveResultsDataFetchAPi } from '../../redux/slices/savedRecordSlice';
+import { toast } from 'react-hot-toast';
+import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 
 const SavedRecords = () => {
     const dispatch = useDispatch();
     const {
-        isLoading,saveResultsData
+        isLoading,saveResultsData,totalResults
       } = useSelector((state) => ({
         isLoading: state.savedRecordSlice.isLoading,
         saveResultsData: state.savedRecordSlice.saveResultsData,
+        totalResults: state.savedRecordSlice.totalResults,
       }));
+      const [showInputIcon,setShowInputIcon] = useState(true)
+      const [currentPageLocal, setCurrentPageLocal] = useState(1);
+      const [searchByHeading, setSearchByHeading] = useState();
 
+      const handlePageClick = (event) => {
+        setCurrentPageLocal(event.selected + 1);
+      };
+
+     const handleFilter = (e) => {
+        e.preventDefault()
+        // if(e.target.value.trim().length > 0)
+        // {
+        // setShowInputIcon(false)}
+        setSearchByHeading(e.target.value)
+      }
+    // const [latestCopied, setLatestCopied] = useState({
+    // copiedId: null,
+    // });
+
+    // const [copyAllId, setCopyAllId] = useState({
+    //     id: saveResultsData.results?.title?.split(",")?.length + saveResultsData.results?.tag?.split(",")?.length + 1,
+    //   });
+
+    // useEffect(() => {
+    //     dispatch(saveResultsDataFetchAPi())
+    // }, [])
+    //   console.log(Math.round(saveResultsData.length/3),"dddddddddddddddddd")
     useEffect(() => {
-        dispatch(saveResultsDataFetchAPi())
-    }, [])
-    useEffect(() => {
-    }, [isLoading])
+        if (currentPageLocal === 1) {
+          dispatch(
+            saveResultsDataFetchAPi({
+              search: searchByHeading,
+              page: currentPageLocal,
+            })
+          );
+        } else setCurrentPageLocal(1);
+      }, [searchByHeading]);
     
+      useEffect(() => {
+        dispatch(
+            saveResultsDataFetchAPi({
+            search: searchByHeading,
+            page: currentPageLocal,
+          })
+        );
+      }, [currentPageLocal]);
+
+    // useEffect(() => {
+    //     saveResultsData.results?.title?.split(",")?.length > 0 &&
+    //     saveResultsData.results?.tag?.split(",")?.length  > 0  &&
+    //       setCopyAllId({ id: saveResultsData.results?.title?.split(",")?.length + saveResultsData.results?.tag?.split(",")?.length + 1 });
+    //   }, [copyAllId, latestCopied]);
 
     const columns = React.useMemo(
         () => [
           {
             Header: "Heading Type",
             id: "headingType",
-            accessor: function (row) {
+            accessor: function (row,i) {
               return (
-                <div className="flex gap-30">
-                  {/* <div className="bg-white rounded-5 min-w-50 flex flex-col items-center justify-center">
-                    <p className="font-medium text-base text-center text-black">
-                      {monthNames[new Date(row?.endDate).getMonth()]}
+                <div key={i} className='group'>
+                <div className="flex gap-30 max-w-[100px]">
+                    <p className="font-medium text-base text-black">
+                      {row?.heading_type}
                     </p>
-                    <p className="font-medium text-base text-center text-black">
-                      {new Date(row?.endDate).getDate()}
-                    </p>
-                  </div>
-                  <div className="rounded-full h-56 w-56 overflow-hidden relative">
-                    <Image
-                      src={row?.coverImage ? row?.coverImage : headerLogo}
-                      layout="fill"
-                      alt="test"
-                    />
-                  </div>
-                  <div className="min-w-50 max-w-352 flex flex-col text-ellipsis overflow-hidden whitespace-nowrap">
-                    <p className="font-medium text-sm text-black">
-                        {row.name}
-                    </p>
-                    <p className="font-normal text-xs text-black">
-                      {row.category?.name}
-                    </p>
-                    <p className="font-normal text-xs text-black">
-                      {row?.startDate && row?.endDate
-                        ? `${formatDateTime(row?.startDate)}` +
-                          "-" +
-                          `${formatDateTime(row?.endDate)}`
-                        : "- -"}
-                    </p>
-                  </div> */}
+                </div>
                 </div>
               );
             },
@@ -68,10 +92,14 @@ const SavedRecords = () => {
           {
             Header: "Paragraph",
             id: "Paragraph",
-            accessor: (row) => {
+            accessor: (row,i) => {
               return (
-                <div className="">
-                    
+                <div key={i} className='group'>
+                <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
+                    <p className="font-medium text-base text-black ">
+                      {row?.paragraph}
+                    </p>
+                </div>
                 </div>
               );
             },
@@ -79,10 +107,28 @@ const SavedRecords = () => {
           {
             Header: "Titles",
             id: "Titles",
-            accessor: (row) => {
+            accessor: (row,i) => {
               return (
-                <div className="flex gap-15">
-            
+                <div key={i} className='group'>
+                <div className="flex flex-col gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
+                      {row?.title.length > 0 && row?.title?.split(",")?.map((title,id) => (
+                        <div key={id} className="flex gap-2">
+                             <p className="font-medium text-base text-black">
+                                {title}
+                             </p>
+                                <button
+                                onClick={(e) => {
+                                    navigator.clipboard.writeText(title);
+                                    toast.success("Title copied");
+                                }}
+                                type="button" 
+                                className='flex items-start py-1'
+                                >
+                                <IoCopyOutline size={15} color="#544bb9" />
+                            </button>
+                        </div>
+                      ))}
+                </div>
                 </div>
               );
             },
@@ -90,24 +136,42 @@ const SavedRecords = () => {
           {
             Header: "Tags",
             id: "Tags",
-            accessor: (row) => {
+            accessor: (row,i) => {
               return (
-                <div className="rounded-25 bg-[#70f3b533]">
-                
+                <div key={i} className='group'>
+                <div className="flex flex-col gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
+                {row?.tag.length > 0 && row?.tag?.split(",")?.map((tag,id) => (
+                  <div key={id} className="flex gap-1 justify-between">
+                       <p className="font-medium text-base text-center text-black">
+                          {tag}
+                       </p>
+                       <button
+                        onClick={(e) => {
+                            navigator.clipboard.writeText(tag);
+                            toast.success("Tag copied");
+                        }}
+                        type="button"
+                        className='flex items-start py-1'
+                        >
+                        <IoCopyOutline size={15} color="#544bb9" />
+                       </button>
+                  </div>
+                ))}
+                </div>
                 </div>
               );
             },
           },
-          {
-            Header: "Action",
-            id: "Action",
-            accessor: (row) => {
-              return (
-                <div className="flex">
-                </div>
-              );
-            },
-          },
+        //   {
+        //     Header: "Action",
+        //     id: "Action",
+        //     accessor: (row,i) => {
+        //       return (
+        //         <div key={i} className="flex">
+        //         </div>
+        //       );
+        //     },
+        //   },
         ],
         []
       );
@@ -129,7 +193,7 @@ const SavedRecords = () => {
         {
           columns,
           data: saveResultsData,
-        //   initialState: { pageSize: 4 },
+          initialState: { pageSize: 3 },
         //   globalFilter: ourGlobalFilterFunction,
         },
         useGlobalFilter,
@@ -137,18 +201,32 @@ const SavedRecords = () => {
       );
 
   return (
-    <div className="flex p-5 gap-8 rounded-xl bg-white w-full h-full group">
-        <table className="border-separate border-spacing-y-2 w-full h-full  border-[1px] border-solid border-[#aab2b8] rounded-md px-4 py-2">
+    <div className="flex flex-col p-5 gap-5 rounded-xl bg-white w-full h-full group">
+        <div className='relative'>
+            <input
+            type='text'
+            id='search'
+            name='search'
+            placeholder='Search by heading' 
+            // onFocus={() => setShowInputIcon(true)}
+            // onBlur={() => setShowInputIcon(true)}
+            onChange={(e) => handleFilter(e)}
+            autoComplete="off"
+            className={`pr-2 py-2 text-lg border-[1px] border-solid border-[#aab2b8] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2" : "px-6"}`}
+            />
+            {showInputIcon && <IoSearchOutline color='#544bb9' size={25} className='absolute top-1/4 left-2' />}
+        </div>
+        <table className="border-separate border-spacing-y-2 w-full h-full  border-[1px] border-solid border-[#aab2b8] rounded-md px-4 py-2 max-h-[532px] min-h-[572px]">
               <thead>
                 {headerGroups.map((headerGroup, i) => (
                   <tr
-                    className="rounded-sm shadow-lg hover:shadow-[#ab97d0] py-2"
+                    className="rounded-sm shadow-lg hover:shadow-[#ab97d0] py-2 bg-[#544bb9]"
                     key={i}
                     {...headerGroup.getHeaderGroupProps()}
                   >
                     {headerGroup.headers.map((column, i) => (
                       <th
-                        className="border-b-1 border-solid text-left border-black text-black-bold  text-sm font-bold whitespace-nowrap p-2"
+                        className="border-b-1 border-solid text-left border-black text-white text-sm font-bold whitespace-nowrap p-2"
                         key={i}
                         {...column.getHeaderProps()}
                       >
@@ -158,7 +236,7 @@ const SavedRecords = () => {
                   </tr>
                 ))}
               </thead>
-              {isLoading ? (
+              {!isLoading ? (
                 <tbody>
                   {(page.length > 0 && (
                     <>
@@ -175,7 +253,7 @@ const SavedRecords = () => {
                                 <td
                                   key={i}
                                   {...cell.getCellProps()}
-                                  className={`text-left my-20 border-black rounded-tl-5 rounded-bl-5 rounded-tr-5 rounded-br-5 text-black text-sm py-20 px-12 w-10 whitespace-nowrap bg-[#87dfff33]`}
+                                  className={`text-left border-black rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-md text-black text-sm p-5 whitespace-nowrap`}
                                 >
                                   {cell.render("Cell")}
                                 </td>
@@ -238,6 +316,67 @@ const SavedRecords = () => {
                 </tbody>
               )}
         </table>
+        {saveResultsData?.length > 0 && (
+          <div className="flex justify-center items-center gap-12">
+            <ReactPaginate
+              breakLabel="..."
+              nextLabel={
+                <button
+                  className="disabled:opacity-60"
+                  onClick={() => nextPage()}
+                  disabled={!canNextPage}
+                >
+                  <div className="disabled:bg-black-medium disabled:cursor-not-allowed min-w-30 px-10 h-35 rounded-5 flex justify-center items-center">
+                    <MdArrowForwardIos size={15} />
+                  </div>
+                </button>
+              }
+              forcePage={currentPageLocal - 1}
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={3}
+              marginPagesDisplayed={1}
+              pageCount={Math.ceil(totalResults/3)}
+              previousLabel={
+                <button
+                  className="disabled:opacity-60"
+                  onClick={() => previousPage()}
+                  disabled={!canPreviousPage}
+                >
+                  <div className="min-w-30 px-10 h-35 rounded-5 flex justify-center items-center">
+                    <MdArrowBackIosNew size={15} />
+                  </div>
+                </button>
+              }
+              renderOnZeroPageCount={1}
+              containerClassName={"flex py-2 justify-center gap-x-[24px]"}
+              pageClassName={
+                "flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB]"
+              }
+              previousClassName={
+                "prev-btn flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB]"
+              }
+              nextClassName={
+                "next-btn flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB]"
+              }
+              pageLinkClassName={
+                "flex items-center justify-center h-full w-full"
+              }
+              previousLinkClassName={
+                "flex items-center justify-center h-full w-full px-9 rounded-[6px] border-1 border-solid border-[#E4E4EB] disabled:bg-gray"
+              }
+              nextLinkClassName={
+                "flex items-center justify-center h-full w-full px-9 rounded-[6px] border-1 border-solid border-[#E4E4EB] disabled:bg-gray"
+              }
+              breakClassName={
+                "flex items-center justify-center w-[36px] bg-[#FFFFFF] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB]"
+              }
+              activeLinkClassName={"text-blue"}
+              activeClassName={
+                "bg-[#544bb9] text-white"
+              }
+            />
+          </div>
+        )}
       </div>
   )
 }

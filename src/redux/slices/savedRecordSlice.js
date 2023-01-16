@@ -8,16 +8,17 @@ import Cookies from "js-cookie";
 const initialState = {
   isLoading: false,
   isRegenerate: false,
-  saveResultsData:[]
+  saveResultsData:[],
+  totalResults:1,
 };
 
 export const saveResultsDataFetchAPi = createAsyncThunk(
-  'generateHeadlinePage/fetch',
+  'saveResultsFetch/fetch',
   async (data, {rejectWithValue} ) => {
     try {
       const response = await ApiMiddleware.get(
-        // `/search/?search=${data?.heading_type}`,
-        `/search/`,
+        // `/search/?page=2`,
+        `/search/?search=${data?.search || ""}&page=${data?.page || "1"}`,
         {...data}
       );
       return response;
@@ -35,7 +36,7 @@ export const saveResultsDataFetchAPi = createAsyncThunk(
 
 
 const savedRecordSlice = createSlice({
-  name: "GenerateHeadline",
+  name: "saveRecordSlice",
   initialState,
   reducers: {
     // setIsFindUseSynonyms: (state, action) => {
@@ -60,7 +61,8 @@ const savedRecordSlice = createSlice({
     },
     [saveResultsDataFetchAPi.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action?.payload,"rrrrrrrrrrrrrrrrrrrrrrr")
+      state.saveResultsData = action?.payload?.data?.results;
+      state.totalResults = action?.payload?.data?.count;
     },
     [saveResultsDataFetchAPi.rejected]: (state, action) => {
       state.isLoading = false;
