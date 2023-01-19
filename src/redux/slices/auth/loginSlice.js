@@ -14,6 +14,7 @@ const initialState = {
     },
   },
   coins:0,
+  logOutModal: false,
 };
 
 export const loginFetchAPi = createAsyncThunk(
@@ -21,7 +22,7 @@ export const loginFetchAPi = createAsyncThunk(
   async (data) => {
     try {
       const loginCredentials = await ApiMiddleware.post(
-        '/auth/login/',
+        '/api/auth/login/',
         {...data}
       );
       toast.success(loginCredentials.data.message)
@@ -46,7 +47,11 @@ const loginSlice = createSlice({
       };
       cookies.remove('access_token');
       cookies.remove('refresh_token');
-  }
+      state.logOutModal = false;
+  },
+  setLogOutModal: (state, action) => {
+    state.logOutModal = action.payload;
+  },
   },
   extraReducers: {
     [loginFetchAPi.pending]: (state, action) => {
@@ -68,5 +73,5 @@ const loginSlice = createSlice({
   },
 });
 
-export const { logOut } = loginSlice.actions;
+export const { logOut,setLogOutModal } = loginSlice.actions;
 export default loginSlice.reducer;

@@ -20,9 +20,12 @@ const CustomCreateTag = ({tags,setTags,selectedTags,setHasSomethingTyped,...prop
     <div className={`flex ${tags.length > 0 && "gap-3"}`}> 
         <ul className='flex gap-2 flex-wrap'>
         {tags.map((tag, index) => (
-            <li key={index} className="flex items-center p-2 gap-2 rounded-md bg-[#f0f2f3]">
+            <li key={index} className="flex items-center p-2 gap-2
+            text-[16px] ms:text-xs sm:text-base md:text-lg lg:text-lg rounded-md bg-[#f0f2f3]">
                 <span>{tag}</span>
-                <IoIosClose size={20} onClick={() => removeTags(index)} />
+                <IoIosClose 
+                // size={20} 
+                onClick={() => removeTags(index)} />
             </li>
         ))}
         </ul>
@@ -34,7 +37,8 @@ const CustomCreateTag = ({tags,setTags,selectedTags,setHasSomethingTyped,...prop
             onKeyUp={(event) => {addTags(event)}}
             maxLength="15"
             placeholder="Type words and hit Enter ↵ to add"
-            className='placeholder:text-[16px] p-2 border-[1px] rounded-md bg-[#EDF2F7] border-solid border-[#f8f8f8] text-[16px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md w-full max-w-[260px] disabled:cursor-not-allowed'
+            className='placeholder:text-[16px] ms:text-[10px] sm:text-base md:text-base lg:text-base
+            placeholder:ms:text-[10px] placeholder:sm:text-base placeholder:md:text-base placeholder:lg:text-base p-2 border-[1px] rounded-md bg-[#EDF2F7] border-solid border-[#f8f8f8] text-[16px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md w-full max-w-[260px] disabled:cursor-not-allowed'
             />}
         </div>
     </div>

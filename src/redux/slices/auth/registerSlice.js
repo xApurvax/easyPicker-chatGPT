@@ -17,7 +17,7 @@ export const registerFetchAPi = createAsyncThunk(
   async (data) => {
     try {
       const registerUser = await ApiMiddleware.post(
-        '/auth/register/',
+        '/api/auth/register/',
         {...data}
       );
       toast.success(registerUser.data.message)

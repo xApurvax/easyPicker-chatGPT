@@ -33,7 +33,7 @@ export const generateHeadlineFetchAPi = createAsyncThunk(
   async (data, {rejectWithValue} ) => {
     try {
       const paragraphDetails = await ApiMiddleware.post(
-        '/',
+        '/api/generate/title/',
         {...data}
       );
       return paragraphDetails;
@@ -54,7 +54,7 @@ export const reGenerateHeadlineFetchAPi = createAsyncThunk(
   async (data, {rejectWithValue}) => {
     try {
       const paragraphDetails = await ApiMiddleware.post(
-        '/',
+        '/api/generate/title/',
         {...data}
       );
       return paragraphDetails;
@@ -75,9 +75,10 @@ export const saveResultsFetchAPi = createAsyncThunk(
   async (data, {rejectWithValue}) => {
     try {
       const paragraphDetails = await ApiMiddleware.post(
-        '/saveresults/',
+        '/api/save/results/',
         {...data}
       );
+      toast.success(paragraphDetails.data.message)
       return paragraphDetails;
     } catch (error) {
       if(error.response.data.message !== "You dont have any credit points"){
@@ -109,6 +110,9 @@ const generateHeadlineSlice = createSlice({
     },
     setReGenerateData: (state, action) => {
       state.reGenerateData = action.payload;
+    },
+    setHasTitleTag: (state, action) => {
+      state.hasTitleTag = action.payload;
     },
   },
   extraReducers: {
@@ -186,6 +190,8 @@ const generateHeadlineSlice = createSlice({
       state.saveTags = action.payload?.data?.result[0]["tags"];
       Cookies.set("coins", action.payload?.data?.result[0]["remaining_credit"]);
       state.hasTitleTag = action.payload?.data?.result;
+      console.log(action?.payload?.data)
+      toast.success(action?.payload?.data?.message)
       if(action.payload?.data?.result.length === 0){
         toast.error("Something went wrong!")
       }
@@ -193,9 +199,20 @@ const generateHeadlineSlice = createSlice({
     },
     [saveResultsFetchAPi.rejected]: (state, action) => {
       state.isSaved = false;
+      if(action.payload === "You dont have any credit points"){
+        state.message = action.payload
+        toast(action?.payload, {
+          icon: <GiTwoCoins color="#FFD700" size={35} className="animate-pulse" />,
+        });
+        const audio = new Audio(coins)
+        audio.play()
+        }
+      else{
+        toast.error(action?.payload)
+      }
     },
   },
 });
 
-export const { setIsFindUseSynonyms,setIsIncPowerWords,setIsMakeQuestion,setGoBackToHeadlineSettings,setReGenerateData } = generateHeadlineSlice.actions;
+export const { setIsFindUseSynonyms,setIsIncPowerWords,setIsMakeQuestion,setGoBackToHeadlineSettings,setReGenerateData,setHasTitleTag } = generateHeadlineSlice.actions;
 export default generateHeadlineSlice.reducer;

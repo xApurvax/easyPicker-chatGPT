@@ -9,9 +9,12 @@ import { Oval,RevolvingDot } from  'react-loader-spinner'
 import { saveResultsDataFetchAPi } from '../../redux/slices/savedRecordSlice';
 import { toast } from 'react-hot-toast';
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
+import {  RiArrowGoBackLine } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
 
 const SavedRecords = () => {
     const dispatch = useDispatch();
+    const history = useNavigate();
     const {
         isLoading,saveResultsData,totalResults
       } = useSelector((state) => ({
@@ -81,7 +84,7 @@ const SavedRecords = () => {
               return (
                 <div key={i} className='group'>
                 <div className="flex gap-30 max-w-[100px]">
-                    <p className="font-medium text-base text-black">
+                    <p className="font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-black">
                       {row?.heading_type}
                     </p>
                 </div>
@@ -96,7 +99,7 @@ const SavedRecords = () => {
               return (
                 <div key={i} className='group'>
                 <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
-                    <p className="font-medium text-base text-black ">
+                    <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-black ">
                       {row?.paragraph}
                     </p>
                 </div>
@@ -113,7 +116,7 @@ const SavedRecords = () => {
                 <div className="flex flex-col gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
                       {row?.title.length > 0 && row?.title?.split(",")?.map((title,id) => (
                         <div key={id} className="flex gap-2">
-                             <p className="font-medium text-base text-black">
+                             <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-black">
                                 {title}
                              </p>
                                 <button
@@ -139,10 +142,10 @@ const SavedRecords = () => {
             accessor: (row,i) => {
               return (
                 <div key={i} className='group'>
-                <div className="flex flex-col gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
+                <div className="flex flex-col gap-5 ms:gap-2 sm:gap-2 md:gap-5 lg:gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
                 {row?.tag.length > 0 && row?.tag?.split(",")?.map((tag,id) => (
-                  <div key={id} className="flex gap-1 justify-between">
-                       <p className="font-medium text-base text-center text-black">
+                  <div key={id} className="flex gap-1 justify-between items-center">
+                       <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-center text-black">
                           {tag}
                        </p>
                        <button
@@ -202,6 +205,7 @@ const SavedRecords = () => {
 
   return (
     <div className="flex flex-col p-5 gap-5 rounded-xl bg-white w-full h-full group">
+        <div className='flex justify-between items-center'>
         <div className='relative'>
             <input
             type='text'
@@ -212,11 +216,18 @@ const SavedRecords = () => {
             // onBlur={() => setShowInputIcon(true)}
             onChange={(e) => handleFilter(e)}
             autoComplete="off"
-            className={`pr-2 py-2 text-lg border-[1px] border-solid border-[#aab2b8] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2" : "px-6"}`}
+            className={`pr-2 py-2 text-lg ms:text-sm sm:text-base md:text-lg lg:text-lg border-[1px] border-solid border-[#aab2b8] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6"}`}
             />
-            {showInputIcon && <IoSearchOutline color='#544bb9' size={25} className='absolute top-1/4 left-2' />}
+            {showInputIcon && <IoSearchOutline color='#544bb9'
+            //  size={25} 
+             className='absolute top-1/4 left-2 text-lg ms:text-base sm:text-lg md:text-xl lg:text-xl' />}
         </div>
-        <table className="border-separate border-spacing-y-2 w-full h-full  border-[1px] border-solid border-[#aab2b8] rounded-md px-4 py-2 max-h-[532px] min-h-[572px]">
+        <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl' onClick={(e) => {e.preventDefault();
+                history('/');
+        }} />
+        </div>
+        <div className='min-h-[20vh] h-max overflow-x-auto max-w-[100vw] border-[1px] border-solid border-[#aab2b8] rounded-md'>
+        <table className="border-separate border-spacing-y-2 w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[532px] min-h-[572px]">
               <thead>
                 {headerGroups.map((headerGroup, i) => (
                   <tr
@@ -226,7 +237,7 @@ const SavedRecords = () => {
                   >
                     {headerGroup.headers.map((column, i) => (
                       <th
-                        className="border-b-1 border-solid text-left border-black text-white text-sm font-bold whitespace-nowrap p-2"
+                        className="border-b-1 border-solid text-left border-black text-white ms:text-[10px] sm:text-[10px] md:text-sm lg:text-sm text-sm font-bold whitespace-nowrap p-2"
                         key={i}
                         {...column.getHeaderProps()}
                       >
@@ -244,7 +255,8 @@ const SavedRecords = () => {
                         prepareRow(row);
                         return (
                           <tr
-                            className=""
+                            // className={`${row.length == 1 && "max-h-[150px]"}`}
+                            // rowSpan={1}
                             key={i}
                             {...row.getRowProps()}
                           >
@@ -253,7 +265,7 @@ const SavedRecords = () => {
                                 <td
                                   key={i}
                                   {...cell.getCellProps()}
-                                  className={`text-left border-black rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-md text-black text-sm p-5 whitespace-nowrap`}
+                                  className={`text-left border-black rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-md text-black text-sm p-5 ms:p-2 sm:p-3 md:p-5 lg:p-5 whitespace-nowrap `}
                                 >
                                   {cell.render("Cell")}
                                 </td>
@@ -316,6 +328,7 @@ const SavedRecords = () => {
                 </tbody>
               )}
         </table>
+        </div>
         {saveResultsData?.length > 0 && (
           <div className="flex justify-center items-center gap-12">
             <ReactPaginate

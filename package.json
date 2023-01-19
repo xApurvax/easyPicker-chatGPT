@@ -4,16 +4,20 @@
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.7.7",
+    "@motionone/utils": "^10.15.1",
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "animate.css": "^4.1.1",
     "axios": "^1.2.1",
     "copy-to-clipboard": "^3.3.3",
     "formik": "^2.2.9",
+    "framer-motion": "^8.4.6",
     "js-cookie": "^3.0.1",
     "rc-slider": "^10.1.0",
     "react": "^18.2.0",
+    "react-animation-on-scroll": "^5.1.0",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
@@ -27,6 +31,7 @@
     "react-scripts": "5.0.1",
     "react-table": "^7.8.0",
     "tailwind-scrollbar": "^2.0.1",
+    "vanilla-tilt": "^1.8.0",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
@@ -55,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "@kamona/tailwindcss-perspective": "^0.1.1",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
     "tailwindcss": "^3.2.4"

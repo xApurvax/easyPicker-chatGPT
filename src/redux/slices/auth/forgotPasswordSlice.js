@@ -23,9 +23,10 @@ export const forgotFetchAPi = createAsyncThunk(
   async (data) => {
     try {
       const forgotPassword = await ApiMiddleware.post(
-        '/auth/password/reset/email/',
+        'api/auth/password/reset/email/',
         {...data}
       );
+      Cookies.set('user_mail',data.email);
       toast.success(forgotPassword.data.message)
       return {...forgotPassword,...data};
     } catch (error) {
@@ -37,7 +38,7 @@ export const forgotFetchAPi = createAsyncThunk(
 
 export const forgotOtpVerifyApi = createAsyncThunk("/auth/otp-verify", async (values, { rejectWithValue }) => {
   try {
-      const response = await ApiMiddleware.post("/auth/password/reset/otp/", {
+      const response = await ApiMiddleware.post("/api/auth/password/reset/otp/", {
           ...values,
       });
       // toast.success(response.data.message)
@@ -54,7 +55,7 @@ export const forgotOtpVerifyApi = createAsyncThunk("/auth/otp-verify", async (va
 
 export const resetPasswordApi = createAsyncThunk("/auth/reset-password", async (values, { rejectWithValue }) => {
   try {
-      const response = await ApiMiddleware.post("/auth/password/reset/", {
+      const response = await ApiMiddleware.post("/api/auth/password/reset/", {
           ...values,
       });
       return response.data;
@@ -71,9 +72,9 @@ const forgotPasswordSlice = createSlice({
   name: "forgot",
   initialState,
   reducers: {
-        // setIsFindUseSynonyms: (state, action) => {
-        //   state.isFindUseSynonyms = action.payload;
-        // },
+        setResetPasswordStatus: (state, action) => {
+          state.resetPasswordStatus = action.payload;
+        },
         // setIsIncPowerWords: (state, action) => {
         //   state.isIncPowerWords = action.payload;
         // },
@@ -127,6 +128,7 @@ const forgotPasswordSlice = createSlice({
         state.forgotModal = { ...state.forgotModal, isVisible: false, otpVerified: false };
         toast.success(payload?.message);
         state.resetPasswordStatus = payload?.status_code;
+        Cookies.remove('user_mail')
         }
     },
     [resetPasswordApi.rejected]: (state, { payload }) => {
@@ -136,5 +138,5 @@ const forgotPasswordSlice = createSlice({
   },
 });
 
-// export const {  } = generateHeadlineSlice.actions;
+export const { setResetPasswordStatus } = forgotPasswordSlice.actions;
 export default forgotPasswordSlice.reducer;

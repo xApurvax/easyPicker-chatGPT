@@ -49,8 +49,8 @@ const Forgot = () => {
 
   return (
     <AuthMiddleware>
-    <div className='flex p-10 gap-8 rounded-xl bg-white w-full h-full'>
-        <div className='flex flex-col gap-4 h-full w-full justify-center items-center py-10'>
+    <div className='flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-10 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[300px] sm:max-w-[400px] md:max-w-[700px] lg:max-w-[980px]'>
+        <div className='flex flex-col gap-4 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-10'>
             <Formik
                     initialValues={initialValues}
                     validationSchema={forgotPasswordValidationSchema}
@@ -59,13 +59,13 @@ const Forgot = () => {
                     onSubmit={handleLoginSubmit}
                 >
                     {({ handleSubmit }) =>
-                    (<form className='w-full max-w-md' onSubmit={handleSubmit} >
-                        <div className='w-full h-full flex flex-col gap-8 justify-center items-start'>
+                    (<form className='w-full max-w-md sm:max-w-sm ms:max-w-xs' onSubmit={handleSubmit} >
+                        <div className='w-full h-full flex flex-col gap-8 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-8 justify-center items-start'>
                             <div className='flex items-start'>
-                                <p className='font-medium text-3xl'>Forgot password</p>
+                                <p className='font-medium text-3xl ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Forgot password</p>
                             </div>
-                            <div className='flex flex-col gap-10 items-start w-full'>
-                            <p className='font-medium text-base text-[#4A5568]'>Enter the email address associated with your account and we will send you instructions to reset your password.</p>
+                            <div className='flex flex-col gap-10 ms:gap-5 sm:gap-5 md:gap-10 lg:gap-10 items-start w-full'>
+                            <p className='font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]'>Enter the email address associated with your account and we will send you instructions to reset your password.</p>
                             <InputField
                             type='email'
                             id='email'
@@ -74,7 +74,7 @@ const Forgot = () => {
                             borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
                             placeholder='Email' />
                             </div> 
-                            <div className='py-3 w-full'>
+                            <div className='py-3 ms:py-2 sm:py-2 md:py-3 lg:py-3 w-full'>
                             <CustomButton
                                 type='submit'
                                 disabled={isVerify}
@@ -93,13 +93,13 @@ const Forgot = () => {
             </div>
             <div className=''>
                 <VerifyOtpModal modal={forgotModal} onClose={() => { }} >
-                                <div className="p-[10px] sm:p-[30px] flex flex-col gap-[40px] items-center bg-[#FFFFFF] border max-w-[500px] rounded-[10px]">
+                                <div className="p-[10px] ms:p-[30px] flex flex-col gap-[40px] items-center bg-[#FFFFFF] border max-w-[500px] rounded-[10px]">
                                     <form
                                         onSubmit={handleOtpVerify}
                                     >
-                                        <div className='flex flex-col items-center gap-6 sm:gap-6'>
+                                        <div className='flex flex-col items-center gap-6 ms:gap-3 sm:gap-3 md:gap-6 lg:gap-6'>
                                             <div className='flex flex-col gap-3'>
-                                                <p className='text-center text-black text-3xl sm:text-3xl font-bold leading-[21px] tracking-wide'>OTP Verification</p>
+                                                <p className='text-center text-black text-3xl ms:text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-[21px] tracking-wide'>OTP Verification</p>
                                                 <p className="text-center text-black text-xs sm:text-xl font-normal leading-[21px] tracking-wide">
                                                     Please check your email. We sent a OTP on your registered email
                                                     id.
@@ -119,8 +119,8 @@ const Forgot = () => {
                                                 separator={<span>&nbsp; &nbsp;</span>}
                                             />
                                             <div className='flex gap-2 justify-center items-center'>
-                                                <p className='font-semibold text-base text-[#4A5568] '>Didn't receive OTP ? </p>
-                                                <div className='font-bold text-base text-[#544BB9] cursor-pointer' 
+                                                <p className='font-semibold text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568] '>Didn't receive OTP ? </p>
+                                                <div className='font-bold text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#544BB9] cursor-pointer' 
                                                 onClick={() => dispatch(forgotFetchAPi({ email: forgotModal?.email }))}>Resend OTP</div>
                                             </div>
                                             </div>
@@ -129,7 +129,7 @@ const Forgot = () => {
                                                 loaderSize={15}
                                                 showLoader={isVerified}
                                                 disabled={otp.length < 6 || isLoading}
-                                                buttonStyle="w-[90px] mt-[20px] h-[40px] text-sm font-bold rounded-md text-white bg-[#544BB9]">
+                                                buttonStyle="w-[90px] mt-[20px] ms:mt-[5px] sm:mt-[10px] md:mt-[20px] lg:mt-[20px] h-[40px] text-sm font-bold rounded-md text-white bg-[#544BB9]">
                                                 Submit
                                             </CustomButton >
                                             
@@ -139,9 +139,9 @@ const Forgot = () => {
                 </VerifyOtpModal>
             </div>
         </div>
-        <div className='flex justify-center items-center text-center px-4 w-full'>
+        {/* <div className='hidden md:flex justify-center items-center text-center px-4 w-full'>
                 <p className='font-medium text-base text-[#4A5568]'>Log in/ Sign in first to access AI Headline Generator</p>
-        </div>
+        </div> */}
     </div>
     </AuthMiddleware>
   )

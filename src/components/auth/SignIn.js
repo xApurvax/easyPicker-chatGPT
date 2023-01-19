@@ -23,8 +23,8 @@ const SignIn = () => {
     }
   return (
     <AuthMiddleware>
-      <div className='flex p-10 gap-8 rounded-xl bg-white w-full h-full'>
-             <div className='flex flex-col gap-4 h-full w-full justify-center items-center py-10'>
+      <div className='flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-10 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[300px] sm:max-w-[400px] md:max-w-[700px] lg:max-w-[980px]'>
+             <div className='flex flex-col gap-4 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-10'>
                 <Formik
                         initialValues={initialValues}
                         validationSchema={registerValidationSchema}
@@ -34,11 +34,11 @@ const SignIn = () => {
                     >
                         {({ handleSubmit }) =>
                         (<form className='w-full max-w-md' onSubmit={handleSubmit} >
-                            <div className='w-full h-full flex flex-col gap-8 justify-center items-start'>
+                            <div className='w-full h-full flex flex-col gap-8 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-8 justify-center items-start'>
                                 <div className='flex items-start'>
-                                    <p className='font-medium text-3xl'>Sign in</p>
+                                    <p className='font-medium text-3xl ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Sign in</p>
                                 </div>
-                                <div className='flex flex-col gap-10 items-start w-full'>
+                                <div className='flex flex-col gap-10 ms:gap-5 sm:gap-5 md:gap-10 lg:gap-10 items-start w-full'>
                                 <div className='flex gap-3 w-full'>
                                     <InputField
                                     type='text'
@@ -72,7 +72,7 @@ const SignIn = () => {
                                 placeholder='Password' />
                                
                                 </div>
-                                <div className='py-3 w-full'>
+                                <div className='py-3 ms:py-2 sm:py-2 md:py-3 lg:py-3 w-full'>
                                 <CustomButton
                                     type='submit'
                                     disabled={isRegisterLoading}
@@ -93,8 +93,8 @@ const SignIn = () => {
                 </Formik>
                 <div className='flex flex-col gap-1.5'>
                     <div className='flex gap-1'>
-                            <p className='font-normal text-sm text-[#4A5568]'>Already have an account ? </p>
-                            <div className='font-bold text-sm text-[#544BB9] cursor-pointer' 
+                            <p className='font-normal text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#4A5568]'>Already have an account ? </p>
+                            <div className='font-bold text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#544BB9] cursor-pointer' 
                             onClick={() => { navigate('/auth/login')}}>Login</div>
                     </div>
                         {/* <div className='flex gap-1'>
@@ -103,9 +103,9 @@ const SignIn = () => {
                         </div> */}
                     </div>
                 </div>
-            <div className='flex justify-center items-center px-4 text-center w-full'>
-                    <p className='font-medium text-base text-[#4A5568]'>Log in/ Sign in first to access AI Headline Generator</p>
-            </div>
+            {/* <div className='hidden md:flex justify-center items-center px-4 text-center w-full'>
+                    <p className='font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]'>Log in/ Sign in first to access AI Headline Generator</p>
+            </div> */}
       </div>
       </AuthMiddleware>
   )

@@ -18,7 +18,7 @@ export const saveResultsDataFetchAPi = createAsyncThunk(
     try {
       const response = await ApiMiddleware.get(
         // `/search/?page=2`,
-        `/search/?search=${data?.search || ""}&page=${data?.page || "1"}`,
+        `/api/search/heading/?search=${data?.search || ""}&page=${data?.page || "1"}`,
         {...data}
       );
       return response;
