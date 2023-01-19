@@ -14,7 +14,7 @@ const initialState = {
 
 export const registerFetchAPi = createAsyncThunk(
   'register/fetch',
-  async (data) => {
+  async (data, {rejectWithValue}) => {
     try {
       const registerUser = await ApiMiddleware.post(
         '/api/auth/register/',
@@ -24,8 +24,11 @@ export const registerFetchAPi = createAsyncThunk(
       return registerUser;
     } catch (error) {
       // console.log(error.response.data.message);
-      toast.error(error.response.data.message)
-      
+      // toast.error(error.response.data.message)
+      if (!error.response) {
+        throw rejectWithValue(error);
+      }
+      throw rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -52,6 +55,7 @@ const registerSlice = createSlice({
     [registerFetchAPi.rejected]: (state, {payload}) => {
       state.isRegisterLoading = false;
       // toast.error(payload?.data?.message);
+      toast.error(payload);
     },
   },
 });

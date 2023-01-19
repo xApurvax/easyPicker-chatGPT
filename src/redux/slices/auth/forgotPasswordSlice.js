@@ -20,7 +20,7 @@ const initialState = {
 
 export const forgotFetchAPi = createAsyncThunk(
   'forgot-password/fetch',
-  async (data) => {
+  async (data, { rejectWithValue }) => {
     try {
       const forgotPassword = await ApiMiddleware.post(
         'api/auth/password/reset/email/',
@@ -30,8 +30,12 @@ export const forgotFetchAPi = createAsyncThunk(
       toast.success(forgotPassword.data.message)
       return {...forgotPassword,...data};
     } catch (error) {
-      console.log(error.response.data.message);
-      toast.error(error.response.data.message)
+      // console.log(error.response.data.message);
+      // toast.error(error.response.data.message)
+      if (!error.response) {
+        throw rejectWithValue(error);
+    }
+    throw rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -104,6 +108,7 @@ const forgotPasswordSlice = createSlice({
     },
     [forgotFetchAPi.rejected]: (state, action) => {
       state.isVerify = false;
+      toast.error(action?.payload);
     },
     [forgotOtpVerifyApi.pending]: (state) => {
       state.isVerified = true;
