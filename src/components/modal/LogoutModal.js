@@ -5,9 +5,11 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut, setLogOutModal } from "../../redux/slices/auth/loginSlice";
 import { IoClose } from 'react-icons/io5';
+import { useNavigate } from "react-router-dom";
 
 export const LogoutModal = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
     const {
         logOutModal,
       } = useSelector((state) => ({
@@ -64,6 +66,7 @@ export const LogoutModal = () => {
                     ms:py-1 sm:py-1 md:py-2 lg:py-2 text-sm font-medium text-white hover:bg-[#966FD6] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 tracking-widest"
                     onClick={() => {
                         dispatch(logOut());
+                        navigate("/auth/login");
                     }}
                   >
                     Yes

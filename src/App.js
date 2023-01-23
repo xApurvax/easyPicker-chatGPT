@@ -11,6 +11,7 @@ import PasswordReset from "./components/auth/PasswordReset";
 import PrivateRoute from "./utils/PrivateRoute";
 import FooterNew from "./components/layout/FooterNew";
 import SavedRecords from "./components/layout/SavedRecords";
+import TransactionHistory from "./components/layout/TransactionHistory";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/auth/forgot" element={<HeaderNew ><Forgot /></HeaderNew>}  />
           <Route path="/reset-password" element={<HeaderNew ><PasswordReset /></HeaderNew>}  />
           <Route path="/saved-results" element={<HeaderNew ><SavedRecords /></HeaderNew>}  />
+          <Route path="/transaction-history" element={<HeaderNew ><TransactionHistory /></HeaderNew>}  />
         </Routes>
     </BrowserRouter>
     {/* <FooterNew /> */}

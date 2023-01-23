@@ -4,8 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { logOut, setLogOutModal } from '../../redux/slices/auth/loginSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
+import { CgProfile } from 'react-icons/cg';
 import { setHasTitleTag } from '../../redux/slices/generateHeadlineSlice';
 import { LogoutModal } from '../modal/LogoutModal';
+import { Menu, Transition } from '@headlessui/react'
+import { Fragment, useRef } from 'react'
+import { BsPerson } from 'react-icons/bs';
+import { MdHistory } from 'react-icons/md';
 
 const NavbarNewA = () => {
   const dispatch = useDispatch();
@@ -86,7 +91,7 @@ const NavbarNewA = () => {
               dispatch(setHasTitleTag([]));
               const coinsText = document.querySelector("#nav-icon4")
             coinsText?.classList?.remove("open");
-              navigate("/auth/login")}}
+             }}
             className='flex gap-2 items-center font-bold text-lg px-3 py-1 rounded-md bg-[#544BB9] text-white hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap'>
               Log out
               <FiLogOut />
@@ -103,49 +108,7 @@ const NavbarNewA = () => {
             </div>
             </div>
         </div>
-          {/* <div className={isNavOpen ? "flex flex-col absolute w-full h-screen top-[55px] left-0 bg-white z-10 justify-start items-start px-5" : "hidden"}>
-            <ul className="flex flex-col gap-5 my-5 items-start justify-between">
-            <Link href="/">
-                  <li className="font-normal text-lg text-black hover:text-[#141414] transition duration-[0.4s]">
-                    How it works?
-                  </li>
-                </Link>
-                <Link href="/">
-                  <li className="font-normal text-lg text-black hover:text-[#141414] transition duration-[0.4s]">
-                    Pricing
-                  </li>
-                </Link>
-                <button onClick={() => navigate("https://infynno.com/about-us/")} >
-                  <li className="font-normal text-lg text-black hover:text-[#141414] transition duration-[0.4s]">
-                    About us
-                  </li>
-                  </button>
-                <Link href="/">
-                  <li className="font-normal text-lg text-black hover:text-[#141414] transition duration-[0.4s]">
-                    Help
-                  </li>
-                </Link> 
-            </ul>
-            {token?
-            <button 
-            onClick={() => {dispatch(logOut()); setIsNavOpen(false);
-              const coinsText = document.querySelector("#nav-icon4")
-            coinsText?.classList?.remove("open");
-              navigate("/auth/login")}}
-            className='flex gap-2 items-center font-bold text-lg px-3 py-1 rounded-md bg-[#544BB9] text-white hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap'>
-              Log out
-              <FiLogOut />
-            </button> 
-            :
-              <button onClick={() => {setIsNavOpen(false);
-              const coinsText = document.querySelector("#nav-icon4")
-              coinsText?.classList?.remove("open");
-              navigate("/auth/register");}} className="font-bold text-lg px-3 py-1 rounded-md bg-[#544BB9] text-white hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap list-none">
-                Get Started
-              </button>
-            }
-          </div> */}
-          <ul className="flex items-center justify-center gap-10 w-full h-full cursor-pointer ms:hidden md:flex">
+          <ul className="flex items-center justify-center gap-5 w-full h-full cursor-pointer ms:hidden md:flex">
             <div className='flex items-center justify-center gap-5 w-full h-full cursor-pointer'>
               <Link href="/">
                 <li className="font-bold text-lg text-[#e5e5e5] hover:text-[#141414] transition duration-[0.4s]">
@@ -181,16 +144,99 @@ const NavbarNewA = () => {
               </li>
             </Link>} */}
               {token?
-            <button 
-            onClick={() => {dispatch(setLogOutModal(true)); setIsNavOpen(false);
-              const coinsText = document.querySelector("#nav-icon4")
-            coinsText?.classList?.remove("open");
-            dispatch(setHasTitleTag([]));
-              navigate("/auth/login")}}
-            className='flex gap-2 items-center font-bold text-lg px-3 py-1 rounded-md bg-white text-[#544BB9] hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap'>
-              Log out
-              <FiLogOut />
-            </button> 
+            // <button 
+            // onClick={() => {dispatch(setLogOutModal(true)); setIsNavOpen(false);
+            //   const coinsText = document.querySelector("#nav-icon4")
+            // coinsText?.classList?.remove("open");
+            // dispatch(setHasTitleTag([]));
+            //   navigate("/auth/login")}}
+            // className='flex gap-2 items-center font-bold text-lg px-3 py-1 rounded-md bg-white text-[#544BB9] hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap'>
+            //   Log out
+            //   <FiLogOut />
+            // </button> 
+            <div className="">
+              <Menu as="div" className="relative inline-block text-left">
+                <div>
+                  <Menu.Button className="inline-flex w-full justify-center rounded-md bg-transparent bg-opacity-20 text-4xl font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                    <CgProfile />
+                  </Menu.Button>
+                </div>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div className="px-1 py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button
+                            className={`${
+                              active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                            } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm`}
+                          >
+                            {active ? (
+                              <BsPerson/>
+                            ) : (
+                              <BsPerson />
+                            )}
+                            Profile
+                          </button>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button
+                          onClick={() => {setIsNavOpen(false);
+                            const coinsText = document.querySelector("#nav-icon4")
+                          coinsText?.classList?.remove("open");
+                          dispatch(setHasTitleTag([]));
+                            navigate("/transaction-history")}}
+                            className={`${
+                              active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                            } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm`}
+                          >
+                            {active ? (
+                              <MdHistory />
+                            ) : (
+                              <MdHistory />
+                            )}
+                              Transaction
+                          </button>
+                        )}
+                      </Menu.Item>
+                    </div>
+                    <div className="px-1 py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button
+                          onClick={() => {dispatch(setLogOutModal(true)); setIsNavOpen(false);
+                              const coinsText = document.querySelector("#nav-icon4")
+                            coinsText?.classList?.remove("open");
+                            dispatch(setHasTitleTag([]));
+                             }}
+                            className={`${
+                              active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                            } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm`}
+                          >
+                            {active ? (
+                              <FiLogOut />
+                            ) : (
+                              <FiLogOut />
+                            )}
+                            Log out
+                          </button>
+                        )}
+                      </Menu.Item>
+                    </div>
+                  </Menu.Items>
+                </Transition>
+              </Menu>
+            </div>
             :
               <button onClick={() => {setIsNavOpen(false);
               const coinsText = document.querySelector("#nav-icon4")

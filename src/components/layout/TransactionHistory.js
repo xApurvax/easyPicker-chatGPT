@@ -5,39 +5,47 @@ import { useGlobalFilter } from "react-table/dist/react-table.development.js";
 import ReactPaginate from "react-paginate";  
 import { CgSmileNeutral } from "react-icons/cg";
 import { IoSearchOutline,IoCopyOutline } from "react-icons/io5";
+import { IoIosArrowUp } from "react-icons/io";
 import { Oval,RevolvingDot } from  'react-loader-spinner'
 import { saveResultsDataFetchAPi } from '../../redux/slices/savedRecordSlice';
 import { toast } from 'react-hot-toast';
-import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
+import { MdArrowBackIosNew, MdArrowForwardIos,MdDateRange } from "react-icons/md";
 import {  RiArrowGoBackLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
+import { transactionHistoryFetchAPi } from '../../redux/slices/pointsSlice';
+import { GiTwoCoins ,GiCoins} from 'react-icons/gi';
+import { RiCoinFill } from 'react-icons/ri';
+import { FaCoins } from 'react-icons/fa';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment';
 import RouteMiddleWare from '../../utils/RouteMiddleWare';
 
 const SavedRecords = () => {
     const dispatch = useDispatch();
     const history = useNavigate();
     const {
-        isLoading,saveResultsData,totalResults
+        isLoadingTransactionHistory,allTransactionHistory,totalResults
       } = useSelector((state) => ({
-        isLoading: state.savedRecordSlice.isLoading,
-        saveResultsData: state.savedRecordSlice.saveResultsData,
-        totalResults: state.savedRecordSlice.totalResults,
+        isLoadingTransactionHistory: state.pointsSlice.isLoadingTransactionHistory,
+        allTransactionHistory: state.pointsSlice.allTransactionHistory,
+        totalResults: state.pointsSlice.totalResults,
       }));
       const [showInputIcon,setShowInputIcon] = useState(true)
       const [currentPageLocal, setCurrentPageLocal] = useState(1);
       const [searchByHeading, setSearchByHeading] = useState();
-
+      const [startDate, setStartDate] = useState(new Date());
       const handlePageClick = (event) => {
         setCurrentPageLocal(event.selected + 1);
       };
-
-     const handleFilter = (e) => {
-        e.preventDefault()
-        // if(e.target.value.trim().length > 0)
-        // {
-        // setShowInputIcon(false)}
-        setSearchByHeading(e.target.value)
-      }
+      const [dateOrder,setDateOrder] = useState(false);
+    //  const handleFilter = (e) => {
+    //     e.preventDefault()
+    //     // if(e.target.value.trim().length > 0)
+    //     // {
+    //     // setShowInputIcon(false)}
+    //     setSearchByHeading(e.target.value)
+    //   }
     // const [latestCopied, setLatestCopied] = useState({
     // copiedId: null,
     // });
@@ -53,18 +61,18 @@ const SavedRecords = () => {
     useEffect(() => {
         if (currentPageLocal === 1) {
           dispatch(
-            saveResultsDataFetchAPi({
-              search: searchByHeading,
+            transactionHistoryFetchAPi({
+              date: moment(startDate).format('YYYY-MM-DD'),
               page: currentPageLocal,
             })
           );
         } else setCurrentPageLocal(1);
-      }, [searchByHeading]);
+      }, [startDate]);
     
       useEffect(() => {
         dispatch(
-            saveResultsDataFetchAPi({
-            search: searchByHeading,
+            transactionHistoryFetchAPi({
+            date: moment(startDate).format('YYYY-MM-DD'),
             page: currentPageLocal,
           })
         );
@@ -76,17 +84,19 @@ const SavedRecords = () => {
     //       setCopyAllId({ id: saveResultsData.results?.title?.split(",")?.length + saveResultsData.results?.tag?.split(",")?.length + 1 });
     //   }, [copyAllId, latestCopied]);
 
+    // console.log(moment(startDate).format('YYYY-MM-DD'),"hhhhhhhhhhhhhhhhhhhh")
     const columns = React.useMemo(
         () => [
           {
-            Header: "Heading Type",
-            id: "headingType",
+            Header: "Purchase Date",
+            id: "purchaseDate",
+            sortable: true,
             accessor: function (row,i) {
               return (
                 <div key={i} className='group'>
                 <div className="flex gap-30 max-w-[100px]">
                     <p className="font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-black">
-                      {row?.heading_type}
+                      23/01/2023
                     </p>
                 </div>
                 </div>
@@ -94,84 +104,65 @@ const SavedRecords = () => {
             },
           },
           {
-            Header: "Paragraph",
-            id: "Paragraph",
+            Header: "App Coins",
+            id: "appCoins",
+            // sortable: true,
             accessor: (row,i) => {
               return (
                 <div key={i} className='group'>
-                <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
+                <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap">
+                    <p className="flex gap-2 items-center justify-center font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-black ">
+                      {row?.points >= 1 && row?.points < 10 && <RiCoinFill color="#FFD700" />} 
+                      {row?.points >= 10 && row?.points < 100 && <FaCoins color="#FFD700" />} 
+                      {row?.points >= 100 && <GiCoins color="#FFD700" />} 
+                      {row?.points}
+                    </p>
+                </div>
+                </div>
+              );
+            },
+          },
+          {
+            Header: "Amount Spent",
+            id: "amountSpent",
+            // sortable: true,
+            accessor: (row,i) => {
+              return (
+                <div key={i} className='group'>
+                <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap">
                     <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-black ">
-                      {row?.paragraph}
+                    ₹ {row?.amount}
                     </p>
-                </div>
-                </div>
-              );
-            },
-          },
-          {
-            Header: "Titles",
-            id: "Titles",
-            accessor: (row,i) => {
-              return (
-                <div key={i} className='group'>
-                <div className="flex flex-col gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
-                      {row?.title.length > 0 && row?.title?.split(",")?.map((title,id) => (
-                        <div key={id} className="flex gap-2">
-                             <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-black">
-                                {title}
-                             </p>
-                                <button
-                                onClick={(e) => {
-                                    navigator.clipboard.writeText(title);
-                                    toast.success("Title copied");
-                                }}
-                                type="button" 
-                                className='flex items-start py-1'
-                                >
-                                <IoCopyOutline size={15} color="#544bb9" />
-                            </button>
-                        </div>
-                      ))}
-                </div>
-                </div>
-              );
-            },
-          },
-          {
-            Header: "Tags",
-            id: "Tags",
-            accessor: (row,i) => {
-              return (
-                <div key={i} className='group'>
-                <div className="flex flex-col gap-5 ms:gap-2 sm:gap-2 md:gap-5 lg:gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
-                {row?.tag.length > 0 && row?.tag?.split(",")?.map((tag,id) => (
-                  <div key={id} className="flex gap-1 justify-between items-center">
-                       <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-center text-black">
-                          {tag}
-                       </p>
-                       <button
-                        onClick={(e) => {
-                            navigator.clipboard.writeText(tag);
-                            toast.success("Tag copied");
-                        }}
-                        type="button"
-                        className='flex items-start py-1'
-                        >
-                        <IoCopyOutline size={15} color="#544bb9" />
-                       </button>
-                  </div>
-                ))}
                 </div>
                 </div>
               );
             },
           },
         //   {
-        //     Header: "Action",
-        //     id: "Action",
+        //     Header: "Tags",
+        //     id: "Tags",
         //     accessor: (row,i) => {
         //       return (
-        //         <div key={i} className="flex">
+        //         <div key={i} className='group'>
+        //         <div className="flex flex-col gap-5 ms:gap-2 sm:gap-2 md:gap-5 lg:gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
+        //         {row?.tag.length > 0 && row?.tag?.split(",")?.map((tag,id) => (
+        //           <div key={id} className="flex gap-1 justify-between items-center">
+        //                <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-center text-black">
+        //                   {tag}
+        //                </p>
+        //                <button
+        //                 onClick={(e) => {
+        //                     navigator.clipboard.writeText(tag);
+        //                     toast.success("Tag copied");
+        //                 }}
+        //                 type="button"
+        //                 className='flex items-start py-1'
+        //                 >
+        //                 <IoCopyOutline size={15} color="#544bb9" />
+        //                </button>
+        //           </div>
+        //         ))}
+        //         </div>
         //         </div>
         //       );
         //     },
@@ -196,8 +187,8 @@ const SavedRecords = () => {
       } = useTable(
         {
           columns,
-          data: saveResultsData,
-          initialState: { pageSize: 3 },
+          data: allTransactionHistory,
+          initialState: { pageSize: 6 },
         //   globalFilter: ourGlobalFilterFunction,
         },
         useGlobalFilter,
@@ -209,7 +200,7 @@ const SavedRecords = () => {
     <div className="flex flex-col p-5 gap-5 rounded-xl bg-white w-full h-full group">
         <div className='flex justify-between items-center'>
         <div className='relative'>
-            <input
+            {/* <input
             type='text'
             id='search'
             name='search'
@@ -219,8 +210,15 @@ const SavedRecords = () => {
             onChange={(e) => handleFilter(e)}
             autoComplete="off"
             className={`pr-2 py-2 text-lg ms:text-sm sm:text-base md:text-lg lg:text-lg border-[1px] border-solid border-[#aab2b8] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6"}`}
-            />
-            {showInputIcon && <IoSearchOutline color='#544bb9'
+            /> */}
+            <DatePicker 
+            autoComplete="off" 
+            selected={startDate} 
+            onChange={(date) => setStartDate(date)}
+            placeholderText="Select Date"
+            className={`pr-2 py-2 text-lg ms:text-sm sm:text-base md:text-lg lg:text-lg border-[1px] border-solid border-[#aab2b8] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6"}`}
+             />
+            {showInputIcon && <MdDateRange color='#544bb9'
             //  size={25} 
              className='absolute top-1/4 left-2 text-lg ms:text-base sm:text-lg md:text-xl lg:text-xl' />}
         </div>
@@ -243,13 +241,18 @@ const SavedRecords = () => {
                         key={i}
                         {...column.getHeaderProps()}
                       >
+                        <div className='flex gap-2 items-center'>
                         {column.render("Header")}
+                        {column.sortable && 
+                        <IoIosArrowUp onClick={() => setDateOrder(!dateOrder)} className={`transform duration-200 ${dateOrder ? "rotate-0" : "rotate-180"}`}
+                        />}
+                        </div>
                       </th>
                     ))}
                   </tr>
                 ))}
               </thead>
-              {!isLoading ? (
+              {!isLoadingTransactionHistory ? (
                 <tbody>
                   {(page.length > 0 && (
                     <>
@@ -331,7 +334,7 @@ const SavedRecords = () => {
               )}
         </table>
         </div>
-        {saveResultsData?.length > 0 && (
+        {allTransactionHistory?.length > 0 && (
           <div className="flex justify-center items-center gap-12">
             <ReactPaginate
               breakLabel="..."
@@ -350,7 +353,7 @@ const SavedRecords = () => {
               onPageChange={handlePageClick}
               pageRangeDisplayed={3}
               marginPagesDisplayed={1}
-              pageCount={Math.ceil(totalResults/3)}
+              pageCount={Math.ceil(totalResults/6)}
               previousLabel={
                 <button
                   className="disabled:opacity-60"

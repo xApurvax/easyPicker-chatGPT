@@ -20,6 +20,7 @@ import {
 } from "../../redux/slices/generateHeadlineSlice";
 import logo from "../../assets/recycle.svg";
 import { GiTwoCoins } from "react-icons/gi";
+import { AiOutlinePlus } from "react-icons/ai";
 import Cookies from "js-cookie";
 import { Formik } from "formik";
 import InputField from "../form/InputField";
@@ -29,6 +30,8 @@ import { loginFetchAPi } from "../../redux/slices/auth/loginSlice";
 import AuthMiddleware from "../../utils/AuthMiddleware";
 import RouteMiddleWare from "../../utils/RouteMiddleWare";
 import { Link, useNavigate } from "react-router-dom";
+import { setShowBuyPointsModal } from "../../redux/slices/pointsSlice";
+import { BuyPointsModal } from "../modal/BuyPointsModal";
 
 const Tool = () => {
   const dispatch = useDispatch();
@@ -175,12 +178,15 @@ const Tool = () => {
             // size={35}
             className={`${availableCoins && "origin-center hover:rotate-12 text-2xl ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-4xl cursor-pointer"}`}
           />
+          <button onClick={() =>{ dispatch(setShowBuyPointsModal(true))}} className="flex items-center justify-center">
+          <AiOutlinePlus color="#000" className={`${"text-2xl ms:text-[16px] sm:text-[20px] md:text-[20px] lg:text-2xl cursor-pointer"}`}/>
           <p
             id="coins-text"
             className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-xl lg:text-2xl text-[#544BB9]`}
           >
             {availableCoins === "undefined" ? 0 : availableCoins}
           </p>
+          </button>
         </div>
       </div>
       </div>
@@ -488,6 +494,7 @@ const Tool = () => {
         </div>
       </div>
     </div>
+    <BuyPointsModal />
     </RouteMiddleWare>
   );
 };
