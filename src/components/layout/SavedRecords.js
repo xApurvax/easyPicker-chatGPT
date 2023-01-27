@@ -116,6 +116,7 @@ const SavedRecords = () => {
                 <div key={i} className='group'>
                 <div className="flex flex-col gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
                       {row?.title.length > 0 && row?.title?.split(",")?.map((title,id) => (
+                        title.trim().length >0 && 
                         <div key={id} className="flex gap-2">
                              <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-black">
                                 {title}
@@ -145,6 +146,7 @@ const SavedRecords = () => {
                 <div key={i} className='group'>
                 <div className="flex flex-col gap-5 ms:gap-2 sm:gap-2 md:gap-5 lg:gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
                 {row?.tag.length > 0 && row?.tag?.split(",")?.map((tag,id) => (
+                  tag.replace(".","") && tag.trim().length > 0 ?
                   <div key={id} className="flex gap-1 justify-between items-center">
                        <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-center text-black">
                           {tag}
@@ -160,6 +162,8 @@ const SavedRecords = () => {
                         <IoCopyOutline size={15} color="#544bb9" />
                        </button>
                   </div>
+                  :
+                  <p className='font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base whitespace-nowrap text-black'>No tags were generated</p>
                 ))}
                 </div>
                 </div>
