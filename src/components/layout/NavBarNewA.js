@@ -63,30 +63,36 @@ const NavbarNewA = () => {
            >
             <div className={`block min-h-[130px] transform transition ${toggle ? "opacity-100 -translate-y-1/3 delay-[0.45s]" : "opacity-0 -translate-y-0  delay-[0s]"}`}>
                 <ul className={`transition flex flex-col gap-5 my-5 items-start justify-between ${toggle ? "delay-[0.45s]" : "delay-[0s]"}` }>
-            <Link href="/">
+                {/* <Link href="/">
                   <li className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
                     How it works?
                   </li>
-                </Link>
-                <Link href="/">
+                </Link> */}
+                {/* <Link href="/">
                   <li className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
                     Pricing
                   </li>
-                </Link>
+                </Link> */}
                 <a href="https://infynno.com/about-us/" target='_blank' >
                   <li className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
                     About us
                   </li>
                 </a>
-                <Link href="/">
-                  <li className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
-                    Help
+                {/* <Link href="/"> */}
+                  <li onClick={() => {setIsNavOpen(false);
+                          setToggle(false);
+                            const coinsText = document.querySelector("#nav-icon4")
+                          coinsText?.classList?.remove("open");
+                          dispatch(setHasTitleTag([]));
+                            navigate("/transaction-history")}} className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
+                    Transactions
                   </li>
-                </Link> 
+                {/* </Link>  */}
             </ul>
             {token?
             <button 
-            onClick={() => {dispatch(setLogOutModal(true)); setIsNavOpen(false);
+            onClick={() => {dispatch(setLogOutModal(true)); 
+              setIsNavOpen(false);
               setToggle(false);
               dispatch(setHasTitleTag([]));
               const coinsText = document.querySelector("#nav-icon4")
@@ -110,16 +116,16 @@ const NavbarNewA = () => {
         </div>
           <ul className="flex items-center justify-center gap-5 w-full h-full cursor-pointer ms:hidden md:flex">
             <div className='flex items-center justify-center gap-5 w-full h-full cursor-pointer'>
-              <Link href="/">
+              {/* <Link href="/">
                 <li className="font-bold text-lg text-[#e5e5e5] hover:text-[#141414] transition duration-[0.4s]">
                   How it works?
                 </li>
-              </Link>
-              <Link href="/">
+              </Link> */}
+              {/* <Link href="/">
                 <li className="font-bold text-lg text-[#e5e5e5] hover:text-[#141414] transition duration-[0.4s]">
                   Pricing
                 </li>
-              </Link>
+              </Link> */}
               {/* <Link href="https://infynno.com/about-us/" target="_blank"> */}
               <a href="https://infynno.com/about-us/" target="_blank">
                 <li className="font-bold text-lg text-[#e5e5e5] hover:text-white transition duration-[0.4s]">
@@ -127,11 +133,11 @@ const NavbarNewA = () => {
                 </li>
                 </a>
               {/* </Link> */}
-              <Link href="/">
+              {/* <Link href="/">
                 <li className="font-bold text-lg text-[#e5e5e5] hover:text-white transition duration-[0.4s]">
                   Help
                 </li>
-              </Link>
+              </Link> */}
             </div>
             {/* {token?
             <button 
@@ -172,7 +178,7 @@ const NavbarNewA = () => {
                 >
                   <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="px-1 py-1">
-                      <Menu.Item>
+                      {/* <Menu.Item>
                         {({ active }) => (
                           <button
                             className={`${
@@ -187,7 +193,7 @@ const NavbarNewA = () => {
                             Profile
                           </button>
                         )}
-                      </Menu.Item>
+                      </Menu.Item> */}
                       <Menu.Item>
                         {({ active }) => (
                           <button
@@ -205,7 +211,7 @@ const NavbarNewA = () => {
                             ) : (
                               <MdHistory />
                             )}
-                              Transaction
+                              Transactions
                           </button>
                         )}
                       </Menu.Item>

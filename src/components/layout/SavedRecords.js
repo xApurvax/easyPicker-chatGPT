@@ -9,7 +9,7 @@ import { Oval,RevolvingDot } from  'react-loader-spinner'
 import { saveResultsDataFetchAPi } from '../../redux/slices/savedRecordSlice';
 import { toast } from 'react-hot-toast';
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
-import {  RiArrowGoBackLine } from "react-icons/ri";
+import {  GoHome } from "react-icons/go";
 import { useNavigate } from 'react-router-dom';
 import RouteMiddleWare from '../../utils/RouteMiddleWare';
 
@@ -207,7 +207,10 @@ const SavedRecords = () => {
   return (
     <RouteMiddleWare>
     <div className="flex flex-col p-5 gap-5 rounded-xl bg-white w-full h-full group">
-        <div className='flex justify-between items-center'>
+        <div className='flex items-center justify-center'>
+            <p className='font-semibold text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer'>Saved Records</p>
+        </div>
+        <div className='flex flex-row-reverse justify-between items-center'>
         <div className='relative'>
             <input
             type='text'
@@ -218,15 +221,19 @@ const SavedRecords = () => {
             // onBlur={() => setShowInputIcon(true)}
             onChange={(e) => handleFilter(e)}
             autoComplete="off"
-            className={`pr-2 py-2 text-lg ms:text-sm sm:text-base md:text-lg lg:text-lg border-[1px] border-solid border-[#aab2b8] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6"}`}
+            className={`pr-2 py-2 text-lg ms:text-sm sm:text-base md:text-lg lg:text-lg border-[1px] border-solid border-[#aab2b8] ms:max-w-[155px] sm:max-w-[180px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6"}`}
             />
             {showInputIcon && <IoSearchOutline color='#544bb9'
             //  size={25} 
              className='absolute top-1/4 left-2 text-lg ms:text-base sm:text-lg md:text-xl lg:text-xl' />}
         </div>
-        <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' onClick={(e) => {e.preventDefault();
-                history('/');
-        }} />
+        <div className='flex gap-1 items-center' onClick={(e) => {e.preventDefault();
+                    history('/');
+            }} >
+            <p className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer whitespace-nowrap'>Go back to</p>
+            <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer'/>
+            {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
+        </div>
         </div>
         <div className='min-h-[20vh] h-max overflow-x-auto max-w-[100vw] border-[1px] border-solid border-[#aab2b8] rounded-md'>
         <table className="border-separate border-spacing-y-2 w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[532px] min-h-[572px]">
@@ -333,64 +340,64 @@ const SavedRecords = () => {
         </div>
         {saveResultsData?.length > 0 && (
           <div className="flex justify-center items-center gap-12">
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel={
-                <button
-                  className="disabled:opacity-60"
-                  onClick={() => nextPage()}
-                  disabled={!canNextPage}
-                >
-                  <div className="disabled:bg-black-medium disabled:cursor-not-allowed min-w-30 px-10 h-35 rounded-5 flex justify-center items-center">
-                    <MdArrowForwardIos size={15} />
-                  </div>
-                </button>
-              }
-              forcePage={currentPageLocal - 1}
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={3}
-              marginPagesDisplayed={1}
-              pageCount={Math.ceil(totalResults/3)}
-              previousLabel={
-                <button
-                  className="disabled:opacity-60"
-                  onClick={() => previousPage()}
-                  disabled={!canPreviousPage}
-                >
-                  <div className="min-w-30 px-10 h-35 rounded-5 flex justify-center items-center">
-                    <MdArrowBackIosNew size={15} />
-                  </div>
-                </button>
-              }
-              renderOnZeroPageCount={1}
-              containerClassName={"flex py-2 justify-center gap-x-[24px]"}
-              pageClassName={
-                "flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB]"
-              }
-              previousClassName={
-                "prev-btn flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB]"
-              }
-              nextClassName={
-                "next-btn flex items-center justify-center w-[36px] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB]"
-              }
-              pageLinkClassName={
-                "flex items-center justify-center h-full w-full"
-              }
-              previousLinkClassName={
-                "flex items-center justify-center h-full w-full px-9 rounded-[6px] border-1 border-solid border-[#E4E4EB] disabled:bg-gray"
-              }
-              nextLinkClassName={
-                "flex items-center justify-center h-full w-full px-9 rounded-[6px] border-1 border-solid border-[#E4E4EB] disabled:bg-gray"
-              }
-              breakClassName={
-                "flex items-center justify-center w-[36px] bg-[#FFFFFF] rounded-[6px] h-[36px] border-[1px] border-solid border-[#E4E4EB]"
-              }
-              activeLinkClassName={"text-blue"}
-              activeClassName={
-                "bg-[#544bb9] text-white"
-              }
-            />
-          </div>
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel={
+              <button
+                className="disabled:opacity-60"
+                onClick={() => nextPage()}
+                disabled={!canNextPage}
+              >
+                <div className="disabled:bg-black-medium disabled:cursor-not-allowed min-w-[30px] ms:max-w-[20px] sm:max-w-[20px] h-35 rounded-5 flex justify-center items-center ms:text-xs sm:text-xs md:text-sm lg:text-sm">
+                  <MdArrowForwardIos />
+                </div>
+              </button>
+            }
+            forcePage={currentPageLocal - 1}
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={1}
+            pageCount={Math.ceil(totalResults/3)}
+            previousLabel={
+              <button
+                className="disabled:opacity-60"
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                <div className="disabled:bg-black-medium disabled:cursor-not-allowed min-w-[30px] h-35 rounded-5 flex justify-center items-center ms:text-xs sm:text-xs md:text-sm lg:text-sm">
+                  <MdArrowBackIosNew />
+                </div>
+              </button>
+            }
+            renderOnZeroPageCount={1}
+            containerClassName={"flex py-2 justify-center gap-x-[24px] ms:gap-x-[10px] sm:gap-x-[15px] md:gap-x-[20px] lg:gap-x-[24px]"}
+            pageClassName={
+              "flex items-center justify-center w-[36px] rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[36px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] ms:text-xs sm:text-xs md:text-sm lg:text-sm"
+            }
+            previousClassName={
+              "prev-btn flex items-center justify-center w-[36px] rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[36px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] ms:text-xs sm:text-xs md:text-sm lg:text-sm"
+            }
+            nextClassName={
+              "next-btn flex items-center justify-center w-[36px] rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[36px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] ms:text-xs sm:text-xs md:text-sm lg:text-sm"
+            }
+            pageLinkClassName={
+              "flex items-center justify-center h-full w-full"
+            }
+            previousLinkClassName={
+              "flex items-center justify-center h-full w-full rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] border-1 border-solid border-[#E4E4EB] disabled:bg-gray"
+            }
+            nextLinkClassName={
+              "flex items-center justify-center h-full w-full rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] border-1 border-solid border-[#E4E4EB] disabled:bg-gray"
+            }
+            breakClassName={
+              "flex items-center justify-center w-[36px] bg-[#FFFFFF] rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[36px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] ms:text-xs sm:text-xs md:text-sm lg:text-sm"
+            }
+            activeLinkClassName={"text-blue"}
+            activeClassName={
+              "bg-[#544bb9] text-white"
+            }
+          />
+        </div>
         )}
     </div>
     </RouteMiddleWare>

@@ -167,7 +167,7 @@ const Tool = () => {
             <p
               className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-xl lg:text-2xl text-white`}
             >
-              Previous Results
+              Saved Results
             </p>
           </button>
       </div>
@@ -268,8 +268,8 @@ const Tool = () => {
                     className={`${
                       generateHeadlineEffect && "animate-wiggle"
                     } flex items-center justify-center px-6 py-3 ms:px-2 sm:px-3 md:px-4 lg:px-5 
-                    ms:py-1 sm:py-1.5 md:py-2 lg:py-2.5 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-base sm:text-lg md:text-xl lg:text-2xl disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap
-                    ${isLoading ? "disabled:px-20 ms:disabled:px-[55px] sm:disabled:px-[70px] md:disabled:px-20 lg:disabled:px-20 ": "disabled:px-5 ms:disabled:p-2 sm:disabled:p-3 md:disabled:p-4 lg:disabled:px-5"}`}
+                    ms:py-2 sm:py-1.5 md:py-2 lg:py-2.5 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-base sm:text-lg md:text-xl lg:text-2xl disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap
+                    ${isLoading ? "disabled:px-20 ms:disabled:px-[55px] sm:disabled:px-[70px] md:disabled:px-20 lg:disabled:px-20 ": "disabled:px-5 ms:disabled:px-2 sm:disabled:px-3 md:disabled:px-4 md:disabled:py-2 lg:disabled:px-5 lg:disabled:py-3"}`}
                     onClick={(e) => {
                       dispatch(setGenerateHeadlineEffect(true));
                       handleSubmit(e);
