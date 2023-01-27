@@ -73,13 +73,13 @@ export const BuyPointsModal = () => {
               <Dialog.Panel className="w-full relative max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[400px] p-5 transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
-                  className="flex gap-1 items-center justify-center text-lg font-medium leading-6 text-gray-900 mt-2 ms:mt-2 sm:mt-2 md:mt-4 lg:mt-4 ms:text-xs sm:text-base md:text-xl lg:text-xl"
+                  className="flex gap-1 items-center justify-center text-lg font-medium leading-6 text-gray-900 mt-2 ms:mt-2 sm:mt-2 md:mt-4 lg:mt-4"
                 >
                   Buy Coins 
                   <GiTwoCoins
                     color="#FFD700"
                     // size={35}
-                    className={`${"text-2xl ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-4xl cursor-pointer"}`}
+                    className={`${"text-2xl cursor-pointer"}`}
                 />
                 </Dialog.Title>
                 <div onClick={() => {
