@@ -211,9 +211,9 @@ const SavedRecords = () => {
   return (
     <RouteMiddleWare>
     <div className="flex flex-col p-5 gap-5 rounded-xl bg-white w-full h-full group">
-        <div className='flex items-center justify-center'>
+        {/* <div className='flex items-center justify-center'>
             <p className='font-semibold text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer'>Saved Records</p>
-        </div>
+        </div> */}
         <div className='flex flex-row-reverse justify-between items-center'>
         <div className='relative'>
             <input
@@ -231,11 +231,12 @@ const SavedRecords = () => {
             //  size={25} 
              className='absolute top-1/4 left-2 text-lg ms:text-base sm:text-lg md:text-xl lg:text-xl' />}
         </div>
-        <div className='flex gap-1 items-center' onClick={(e) => {e.preventDefault();
+        <div className='flex gap-1 items-center'>
+            {/* <p className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer whitespace-nowrap text-[#544bb9] underline'>back to home</p> */}
+            <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer'  onClick={(e) => {e.preventDefault();
                     history('/');
-            }} >
-            <p className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer whitespace-nowrap'>Go back to</p>
-            <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer'/>
+            }}  />
+            <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl'>/ Saved Results</p>
             {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
         </div>
         </div>
@@ -300,9 +301,9 @@ const SavedRecords = () => {
                               <p className="font-bold text-25 text-center">
                                 No records found
                               </p>
-                              <p className="font-normal text-18 text-center">
+                              {/* <p className="font-normal text-18 text-center">
                                 Try changing filters or create new event
-                              </p>
+                              </p> */}
                             </div>
                           </div>
                         </td>

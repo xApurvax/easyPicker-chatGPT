@@ -34,11 +34,11 @@ const SavedRecords = () => {
       const [showInputIcon,setShowInputIcon] = useState(true)
       const [currentPageLocal, setCurrentPageLocal] = useState(1);
       const [searchByHeading, setSearchByHeading] = useState();
-      const [startDate, setStartDate] = useState(new Date());
+      const [startDate, setStartDate] = useState();
       const handlePageClick = (event) => {
         setCurrentPageLocal(event.selected + 1);
       };
-      const [dateOrder,setDateOrder] = useState(false);
+      const [dateOrder,setDateOrder] = useState(true);
     //  const handleFilter = (e) => {
     //     e.preventDefault()
     //     // if(e.target.value.trim().length > 0)
@@ -62,18 +62,20 @@ const SavedRecords = () => {
         if (currentPageLocal === 1) {
           dispatch(
             transactionHistoryFetchAPi({
-              date: moment(startDate).format('YYYY-MM-DD'),
+              date: startDate && moment(startDate).format('YYYY-MM-DD'),
               page: currentPageLocal,
+              order: dateOrder ? "":"descending",
             })
           );
         } else setCurrentPageLocal(1);
-      }, [startDate]);
+      }, [startDate,dateOrder]);
     
       useEffect(() => {
         dispatch(
             transactionHistoryFetchAPi({
-            date: moment(startDate).format('YYYY-MM-DD'),
+            date: startDate && moment(startDate).format('YYYY-MM-DD'),
             page: currentPageLocal,
+            order: dateOrder ? "":"descending",
           })
         );
       }, [currentPageLocal]);
@@ -96,7 +98,7 @@ const SavedRecords = () => {
                 <div key={i} className='group'>
                 <div className="flex gap-30 max-w-[100px]">
                     <p className="font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-black">
-                      23/01/2023
+                    {row?.purchased_at}
                     </p>
                 </div>
                 </div>
@@ -198,9 +200,9 @@ const SavedRecords = () => {
   return (
     <RouteMiddleWare>
     <div className="flex flex-col p-5 gap-5 rounded-xl bg-white w-full h-full group">
-        <div className='flex items-center justify-center'>
+        {/* <div className='flex items-center justify-center'>
             <p className='font-semibold text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer'>Transaction history</p>
-        </div>
+        </div> */}
         <div className='flex flex-row-reverse justify-between items-center'>
         <div className='relative'>
             {/* <input
@@ -225,16 +227,17 @@ const SavedRecords = () => {
             //  size={25} 
              className='absolute top-1/4 left-2 text-lg ms:text-base sm:text-lg md:text-xl lg:text-xl' />}
         </div>
-        <div className='flex gap-1 items-center' onClick={(e) => {e.preventDefault();
+        <div className='flex gap-1 items-center'>
+            {/* <p className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer whitespace-nowrap text-[#544bb9] underline'>back to home</p> */}
+            <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' onClick={(e) => {e.preventDefault();
                     history('/');
-            }} >
-            <p className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer whitespace-nowrap'>Go back to</p>
-            <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer'/>
+            }} />
+            <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl'>/ Transactions History</p>
             {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
         </div>
         </div>
         <div className='min-h-[20vh] h-max overflow-x-auto max-w-[100vw] border-[1px] border-solid border-[#aab2b8] rounded-md'>
-        <table className="border-separate border-spacing-y-2 w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[532px] min-h-[572px]">
+        <table className="border-separate border-spacing-y-2 w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[480px] min-h-[480px]">
               <thead>
                 {headerGroups.map((headerGroup, i) => (
                   <tr
@@ -248,12 +251,15 @@ const SavedRecords = () => {
                         key={i}
                         {...column.getHeaderProps()}
                       >
-                        <div className='flex gap-2 items-center'>
+                        {column.sortable ? 
+                        <div className='flex gap-2 items-center cursor-pointer' onClick={() => setDateOrder(!dateOrder)}>
                         {column.render("Header")}
-                        {column.sortable && 
-                        <IoIosArrowUp onClick={() => setDateOrder(!dateOrder)} className={`transform duration-200 ${dateOrder ? "rotate-0" : "rotate-180"}`}
-                        />}
-                        </div>
+                        <IoIosArrowUp  className={`transform duration-200 ${dateOrder ? "rotate-0" : "rotate-180"}`}
+                        />
+                        </div>:
+                         <div className='flex gap-2 items-center'>
+                         {column.render("Header")}
+                         </div>}
                       </th>
                     ))}
                   </tr>
@@ -299,9 +305,9 @@ const SavedRecords = () => {
                               <p className="font-bold text-25 text-center">
                                 No records found
                               </p>
-                              <p className="font-normal text-18 text-center">
+                              {/* <p className="font-normal text-18 text-center">
                                 Try changing filters or create new event
-                              </p>
+                              </p> */}
                             </div>
                           </div>
                         </td>
@@ -313,7 +319,7 @@ const SavedRecords = () => {
                 <tbody>
                   <tr className='h-full'>
                     <td colSpan={5}>
-                      <div className="flex justify-center items-center h-full min-h-[500px]">
+                      <div className="flex justify-center items-center h-full min-h-[400px]">
                         <Oval
                           color="#544bb9"
                           height="50"
@@ -360,7 +366,7 @@ const SavedRecords = () => {
               onPageChange={handlePageClick}
               pageRangeDisplayed={3}
               marginPagesDisplayed={1}
-              pageCount={Math.ceil(totalResults/3)}
+              pageCount={Math.ceil(totalResults/4)}
               previousLabel={
                 <button
                   className="disabled:opacity-60"

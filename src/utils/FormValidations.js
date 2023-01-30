@@ -26,6 +26,16 @@ export const registerValidationSchema = Yup.object({
     email: Yup.string().email('Enter valid email').required('E-mail is required'),
 });
 
+export const profileUpdateValidationSchema = Yup.object({
+    username: Yup.string()
+        .min(3, "Must be 3 char long.")
+        .required("Username is required.").trim(),
+    name: Yup.string()
+    .min(3, "Must be 3 char long.")
+    .required("Name is required.").trim(),
+    email: Yup.string().email('Enter valid email').required('E-mail is required'),
+});
+
 export const forgotPasswordValidationSchema = Yup.object({
     email: Yup.string().email('Enter valid email').required('E-mail is required'),
 });

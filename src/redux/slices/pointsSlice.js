@@ -37,7 +37,7 @@ export const transactionHistoryFetchAPi = createAsyncThunk(
   async (data, {rejectWithValue} ) => {
     try {
       const response = await ApiMiddleware.get(
-        `/api/upgrade/points/?date=${data?.date || ""}&page=${data?.page || ""}`,
+        `/api/upgrade/points/?date=${data?.date || ""}&page=${data?.page || ""}&dsc=${data?.order || ""}`,
         {...data}
       );
       return response;
@@ -74,10 +74,10 @@ const pointsSlice = createSlice({
     },
     [transactionHistoryFetchAPi.fulfilled]: (state, action) => {
       state.isLoadingTransactionHistory = false;
-      state.allTransactionHistory = action?.payload?.data?.result[0]?.history;
-      // state.allTransactionHistory = action?.payload?.data?.results;
-      state.totalResults = action?.payload?.data?.result[0]?.history?.length;
-      // state.totalResults = action?.payload?.data?.count;
+      // state.allTransactionHistory = action?.payload?.data?.result[0]?.history;
+      state.allTransactionHistory = action?.payload?.data?.results;
+      // state.totalResults = action?.payload?.data?.result[0]?.history?.length;
+      state.totalResults = action?.payload?.data?.count;
       // }
     },
     [transactionHistoryFetchAPi.rejected]: (state, action) => {

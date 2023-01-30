@@ -79,6 +79,14 @@ const NavbarNewA = () => {
                   </li>
                 </a>
                 {/* <Link href="/"> */}
+                <li onClick={() => {setIsNavOpen(false);
+                          setToggle(false);
+                            const coinsText = document.querySelector("#nav-icon4")
+                          coinsText?.classList?.remove("open");
+                          dispatch(setHasTitleTag([]));
+                            navigate("/profile")}} className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
+                    Profile
+                  </li>
                   <li onClick={() => {setIsNavOpen(false);
                           setToggle(false);
                             const coinsText = document.querySelector("#nav-icon4")
@@ -178,9 +186,14 @@ const NavbarNewA = () => {
                 >
                   <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="px-1 py-1">
-                      {/* <Menu.Item>
+                      <Menu.Item>
                         {({ active }) => (
                           <button
+                            onClick={() => {setIsNavOpen(false);
+                              const coinsText = document.querySelector("#nav-icon4")
+                              coinsText?.classList?.remove("open");
+                              dispatch(setHasTitleTag([]));
+                              navigate("/profile")}}
                             className={`${
                               active ? 'bg-violet-500 text-white' : 'text-gray-900'
                             } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm`}
@@ -193,7 +206,7 @@ const NavbarNewA = () => {
                             Profile
                           </button>
                         )}
-                      </Menu.Item> */}
+                      </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
                           <button
