@@ -220,8 +220,8 @@ const SavedRecords = () => {
             autoComplete="off" 
             selected={startDate} 
             onChange={(date) => setStartDate(date)}
-            placeholderText="Select Date"
-            className={`pr-2 py-2 text-lg ms:text-sm sm:text-base md:text-lg lg:text-lg border-[1px] border-solid border-[#aab2b8] max-w-[130px] ms:max-w-[120px] sm:max-w-[150px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6"}`}
+            placeholderText="Select date"
+            className={`pr-2 py-2 lg:py-1.5 text-lg ms:text-sm sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] max-w-[130px] ms:max-w-[120px] sm:max-w-[150px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6"}`}
              />
             {showInputIcon && <MdDateRange color='#544bb9'
             //  size={25} 
@@ -232,12 +232,12 @@ const SavedRecords = () => {
             <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' onClick={(e) => {e.preventDefault();
                     history('/');
             }} />
-            <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl'>/ Transactions History</p>
+            <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-lg'>/ Transactions History</p>
             {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
         </div>
         </div>
         <div className='min-h-[20vh] h-max overflow-x-auto max-w-[100vw] border-[1px] border-solid border-[#aab2b8] rounded-md'>
-        <table className="border-separate border-spacing-y-2 w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[480px] min-h-[480px]">
+        <table className="border-separate border-spacing-y-2 w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[480px] min-h-[300px]">
               <thead>
                 {headerGroups.map((headerGroup, i) => (
                   <tr
@@ -247,7 +247,7 @@ const SavedRecords = () => {
                   >
                     {headerGroup.headers.map((column, i) => (
                       <th
-                        className="border-b-1 border-solid text-left border-black text-white ms:text-[10px] sm:text-[10px] md:text-sm lg:text-sm text-sm font-bold whitespace-nowrap p-2"
+                        className="border-b-1 border-solid text-left border-black text-white ms:text-[10px] sm:text-[10px] md:text-sm lg:text-xs text-sm font-bold whitespace-nowrap p-2"
                         key={i}
                         {...column.getHeaderProps()}
                       >
@@ -283,7 +283,7 @@ const SavedRecords = () => {
                                 <td
                                   key={i}
                                   {...cell.getCellProps()}
-                                  className={`text-left border-black rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-md text-black text-sm p-5 ms:p-2 sm:p-3 md:p-5 lg:p-5 whitespace-nowrap `}
+                                  className={`text-left border-black rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-md text-black text-sm p-5 ms:p-2 sm:p-3 md:p-5 lg:p-5 whitespace-nowrap h-full min-h-max w-max`}
                                 >
                                   {cell.render("Cell")}
                                 </td>
@@ -297,7 +297,7 @@ const SavedRecords = () => {
                     <>
                       <tr>
                         <td colSpan={5}>
-                          <div className="flex justify-center items-center h-[500px]">
+                          <div className="flex justify-center items-center h-[300px]">
                             <div className="flex flex-col gap-15">
                               <div className="flex justify-center items-center">
                                 <CgSmileNeutral size={50} fill="black" />
@@ -319,7 +319,7 @@ const SavedRecords = () => {
                 <tbody>
                   <tr className='h-full'>
                     <td colSpan={5}>
-                      <div className="flex justify-center items-center h-full min-h-[400px]">
+                      <div className="flex justify-center items-center h-full min-h-[240px]">
                         <Oval
                           color="#544bb9"
                           height="50"

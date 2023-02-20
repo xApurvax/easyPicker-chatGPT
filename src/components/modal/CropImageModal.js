@@ -18,20 +18,20 @@ const CropImageModal = ({ photoURL, setImage, ...props }) => {
   const cropComplete = (croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   };
-
+  
   const zoomPercentage = (value) => {
     return `${Math.round(value - 1)}%`;
   };
-
+  
   const saveCropImage = async () => {
     const croppedImage = await getCroppedImg(
       photoURL.data_url,
       croppedAreaPixels,
       rotation
-    );
-    setImage(croppedImage);
-  };
-
+      );
+      setImage(croppedImage);
+    };
+    
   function closeModal() {
     setIsOpen(false);
     setImage([]);
@@ -40,7 +40,6 @@ const CropImageModal = ({ photoURL, setImage, ...props }) => {
   function openModal() {
     setIsOpen(true);
   }
-
   return (
     <div>
       <Field name={props.name}>
@@ -67,35 +66,30 @@ const CropImageModal = ({ photoURL, setImage, ...props }) => {
 
                 <div className="fixed inset-0">
                   <div className="flex min-h-full items-center justify-center p-4 text-center">
-                    <Dialog.Panel className="w-full max-w-md p-15 transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
+                    <Dialog.Panel className="w-full max-w-md p-4 transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
                       <Dialog.Title
                         as="h3"
                         className="text-lg font-medium leading-6 text-gray-900"
                       >
                         Crop Image
                       </Dialog.Title>
-                      <div className="mt-2">
-                        <p className="text-sm text-gray-500">
-                          Use a high quality image: 2160x1080px (2:1 ratio)
-                        </p>
-                      </div>
-                      <div className="p-15 relative h-250">
+                      <div className="m-2 relative h-[250px]">
                         <Cropper
                           image={photoURL?.data_url}
                           crop={crop}
                           zoom={zoom}
                           rotation={rotation}
-                          aspect={2 / 1}
+                          aspect={1 / 1}
                           onZoomChange={setZoom}
                           onRotationChange={setRotation}
                           onCropChange={setCrop}
                           onCropComplete={cropComplete}
                         />
                       </div>
-                      <div className="px-15">
-                        <div className="flex gap-25 items-center py-10">
-                          <p className="text-sm text-black max-w-50 w-screen">
-                            Zoom:
+                      <div className="px-2">
+                        <div className="flex gap-[2%] items-center py-2">
+                          <p className="text-sm text-black max-w-[50px] w-screen">
+                            Zoom :
                           </p>
                           <Slider
                             min={1}
@@ -106,9 +100,9 @@ const CropImageModal = ({ photoURL, setImage, ...props }) => {
                             ariaValueTextFormatterForHandle={zoomPercentage}
                           />
                         </div>
-                        <div className="flex gap-25 items-center py-10">
-                          <p className="text-sm text-black max-w-50 w-screen">
-                            Rotate:
+                        <div className="flex gap-[2%] items-center py-2">
+                          <p className="text-sm text-black max-w-[50px] w-screen">
+                            Rotate :
                           </p>
                           <Slider
                             min={0}
@@ -120,17 +114,17 @@ const CropImageModal = ({ photoURL, setImage, ...props }) => {
                           />
                         </div>
                       </div>
-                      <div className="mt-4 flex gap-10 justify-end">
+                      <div className="mt-4 flex gap-[5%] justify-end">
                         <button
                           type="button"
-                          className="inline-flex justify-center rounded-md border-1 border-solid border-light-blue px-6 py-4 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          className="inline-flex justify-center rounded-md border-1 border-solid border-light-blue px-3 py-2 text-sm font-medium bg-[#544BB9] text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                           onClick={saveCropImage}
                         >
                           Save
                         </button>
                         <button
                           type="button"
-                          className="inline-flex justify-center rounded-md border border-transparent bg-blue-bgcomman px-6 py-4 text-sm font-medium text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          className="inline-flex justify-center rounded-md b border-[1px] border-solid border-[#544BB9] px-3 py-2 text-sm font-medium text-[#544BB9]focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                           onClick={closeModal}
                         >
                           Cancel

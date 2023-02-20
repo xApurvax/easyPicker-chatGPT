@@ -98,7 +98,7 @@ const SavedRecords = () => {
             id: "Paragraph",
             accessor: (row,i) => {
               return (
-                <div key={i} className='group'>
+                <div key={i} className=''>
                 <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
                     <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-black ">
                       {row?.paragraph}
@@ -113,7 +113,7 @@ const SavedRecords = () => {
             id: "Titles",
             accessor: (row,i) => {
               return (
-                <div key={i} className='group'>
+                <div key={i} className=''>
                 <div className="flex flex-col gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
                       {row?.title.length > 0 && row?.title?.split(",")?.map((title,id) => (
                         title.trim().length >0 && 
@@ -127,7 +127,7 @@ const SavedRecords = () => {
                                     toast.success("Title copied");
                                 }}
                                 type="button" 
-                                className='flex items-start py-1'
+                                className='flex h-max w-max items-start py-1'
                                 >
                                 <IoCopyOutline size={15} color="#544bb9" />
                             </button>
@@ -143,7 +143,7 @@ const SavedRecords = () => {
             id: "Tags",
             accessor: (row,i) => {
               return (
-                <div key={i} className='group'>
+                <div key={i} className=''>
                 <div className="flex flex-col gap-5 ms:gap-2 sm:gap-2 md:gap-5 lg:gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
                 {row?.tag.length > 0 && row?.tag?.split(",")?.map((tag,id) => (
                   tag.replace(".","") && tag.trim().length > 0 ?
@@ -157,7 +157,7 @@ const SavedRecords = () => {
                             toast.success("Tag copied");
                         }}
                         type="button"
-                        className='flex items-start py-1'
+                        className='flex h-max w-max items-start py-1'
                         >
                         <IoCopyOutline size={15} color="#544bb9" />
                        </button>
@@ -210,7 +210,7 @@ const SavedRecords = () => {
 
   return (
     <RouteMiddleWare>
-    <div className="flex flex-col p-5 gap-5 rounded-xl bg-white w-full h-full group">
+    <div className="flex flex-col p-5 gap-5 rounded-xl bg-white w-full h-full">
         {/* <div className='flex items-center justify-center'>
             <p className='font-semibold text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer'>Saved Records</p>
         </div> */}
@@ -225,7 +225,7 @@ const SavedRecords = () => {
             // onBlur={() => setShowInputIcon(true)}
             onChange={(e) => handleFilter(e)}
             autoComplete="off"
-            className={`pr-2 py-2 text-lg ms:text-sm sm:text-base md:text-lg lg:text-lg border-[1px] border-solid border-[#aab2b8] ms:max-w-[155px] sm:max-w-[180px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6"}`}
+            className={`pr-2 py-2 lg:py-1.5 text-lg ms:text-sm sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] ms:max-w-[155px] sm:max-w-[180px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6"}`}
             />
             {showInputIcon && <IoSearchOutline color='#544bb9'
             //  size={25} 
@@ -236,12 +236,12 @@ const SavedRecords = () => {
             <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer'  onClick={(e) => {e.preventDefault();
                     history('/');
             }}  />
-            <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl'>/ Saved Results</p>
+            <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-lg'>/ History</p>
             {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
         </div>
         </div>
         <div className='min-h-[20vh] h-max overflow-x-auto max-w-[100vw] border-[1px] border-solid border-[#aab2b8] rounded-md'>
-        <table className="border-separate border-spacing-y-2 w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[532px] min-h-[572px]">
+        <table className="border-separate border-spacing-y-2 w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[404px]">
               <thead>
                 {headerGroups.map((headerGroup, i) => (
                   <tr
@@ -251,7 +251,7 @@ const SavedRecords = () => {
                   >
                     {headerGroup.headers.map((column, i) => (
                       <th
-                        className="border-b-1 border-solid text-left border-black text-white ms:text-[10px] sm:text-[10px] md:text-sm lg:text-sm text-sm font-bold whitespace-nowrap p-2"
+                        className="border-b-1 border-solid text-left border-black text-white ms:text-[10px] sm:text-[10px] md:text-sm lg:text-xs text-sm font-bold whitespace-nowrap p-2"
                         key={i}
                         {...column.getHeaderProps()}
                       >
@@ -279,7 +279,7 @@ const SavedRecords = () => {
                                 <td
                                   key={i}
                                   {...cell.getCellProps()}
-                                  className={`text-left border-black rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-md text-black text-sm p-5 ms:p-2 sm:p-3 md:p-5 lg:p-5 whitespace-nowrap `}
+                                  className={`text-left border-black rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-md text-black text-sm p-5 ms:p-2 sm:p-3 md:p-5 lg:p-5 whitespace-nowrap group`}
                                 >
                                   {cell.render("Cell")}
                                 </td>
@@ -293,7 +293,7 @@ const SavedRecords = () => {
                     <>
                       <tr>
                         <td colSpan={5}>
-                          <div className="flex justify-center items-center h-[500px]">
+                          <div className="flex justify-center items-center h-[404px]">
                             <div className="flex flex-col gap-15">
                               <div className="flex justify-center items-center">
                                 <CgSmileNeutral size={50} fill="black" />
@@ -315,7 +315,7 @@ const SavedRecords = () => {
                 <tbody>
                   <tr className='h-full'>
                     <td colSpan={5}>
-                      <div className="flex justify-center items-center h-full min-h-[500px]">
+                      <div className="flex justify-center items-center h-full min-h-[404px]">
                         <Oval
                           color="#544bb9"
                           height="50"

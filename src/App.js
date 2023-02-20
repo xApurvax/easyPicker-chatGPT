@@ -13,6 +13,7 @@ import FooterNew from "./components/layout/FooterNew";
 import SavedRecords from "./components/layout/SavedRecords";
 import TransactionHistory from "./components/layout/TransactionHistory";
 import Profile from "./components/auth/Profile";
+import HeaderAfterAuth from "./components/layout/HeaderAfterAuth";
 
 function App() {
   return (
@@ -24,17 +25,17 @@ function App() {
     {/* <NavbarNew /> */}
     <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HeaderNew ><Tool /></HeaderNew>} />
+          <Route path="/" element={<HeaderAfterAuth ><Tool /></HeaderAfterAuth>} />
           {/* <Route element={<PrivateRoute />}>
               <Route path="/" element={<HeaderNew ><Tool /></HeaderNew>} exact /> 
           </Route> */}
-          <Route path="/auth/login" element={<HeaderNew ><LogIn /></HeaderNew>}   />
+          <Route path="/auth/signin" element={<HeaderNew ><LogIn /></HeaderNew>}   />
           <Route path="/auth/register" element={<HeaderNew ><SignIn /></HeaderNew>}  />
           <Route path="/auth/forgot" element={<HeaderNew ><Forgot /></HeaderNew>}  />
           <Route path="/reset-password" element={<HeaderNew ><PasswordReset /></HeaderNew>}  />
-          <Route path="/saved-results" element={<HeaderNew ><SavedRecords /></HeaderNew>}  />
-          <Route path="/transaction-history" element={<HeaderNew ><TransactionHistory /></HeaderNew>}  />
-          <Route path="/profile" element={<HeaderNew ><Profile /></HeaderNew>}  />
+          <Route path="/history" element={<HeaderAfterAuth ><SavedRecords /></HeaderAfterAuth>}  />
+          <Route path="/transaction-history" element={<HeaderAfterAuth ><TransactionHistory /></HeaderAfterAuth>}  />
+          <Route path="/profile" element={<HeaderAfterAuth ><Profile /></HeaderAfterAuth>}  />
         </Routes>
     </BrowserRouter>
     {/* <FooterNew /> */}

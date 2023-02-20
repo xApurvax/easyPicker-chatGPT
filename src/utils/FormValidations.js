@@ -3,7 +3,7 @@ import * as Yup from "yup";
 export const LoginValidationSchema = Yup.object({
     username: Yup.string()
         .min(3, "Must be 3 char long.")
-        .required("Username is required.").trim(),
+        .required("Username or E-mail is required.").trim(),
     password: Yup.string()
         .trim()
         .oneOf([Yup.ref("password"), null])

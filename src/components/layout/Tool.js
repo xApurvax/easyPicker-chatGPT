@@ -19,8 +19,6 @@ import {
   setReGenerateData,
 } from "../../redux/slices/generateHeadlineSlice";
 import logo from "../../assets/recycle.svg";
-import { GiTwoCoins } from "react-icons/gi";
-import { AiOutlinePlus } from "react-icons/ai";
 import Cookies from "js-cookie";
 import { Formik } from "formik";
 import InputField from "../form/InputField";
@@ -32,10 +30,11 @@ import RouteMiddleWare from "../../utils/RouteMiddleWare";
 import { Link, useNavigate } from "react-router-dom";
 import { setShowBuyPointsModal } from "../../redux/slices/pointsSlice";
 import { BuyPointsModal } from "../modal/BuyPointsModal";
+import { profileDetailsFetchAPI } from "../../redux/slices/ProfileSlice";
 
 const Tool = () => {
   const dispatch = useDispatch();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(3);
   const [hasArticle, setHasArticle] = useState("");
   const [hasSomethingTyped, setHasSomethingTyped] = useState("");
   const [latestCopied, setLatestCopied] = useState({
@@ -80,16 +79,16 @@ const Tool = () => {
   }));
   const navigate = useNavigate()
   const [counter, setCounter] = useState([
-    { countValue: 1, id: 1 },
-    { countValue: 3, id: 2 },
-    { countValue: 5, id: 3 },
-    { countValue: 7, id: 4 },
-    { countValue: 10, id: 5 },
+    // { countValue: 1, id: 1 },
+    { countValue: 3, id: 1 },
+    { countValue: 5, id: 2 },
+    { countValue: 7, id: 3 },
+    { countValue: 10, id: 4 },
   ]);
 
   const [counterSelected, setCounterSelected] = useState({
     selected: false,
-    id: null,
+    id: 0,
   });
   const [copyAllId, setCopyAllId] = useState({
     id: specialTags?.length + allTitles?.length + 1,
@@ -147,21 +146,16 @@ const Tool = () => {
   // useEffect(() => {
   // }, [hasTitleTag,message])
   
+
+
   useEffect(() => {
-    if (Cookies.get("coins")) {
-      setAvailableCoins(Cookies.get("coins"));
-      const coinsText = document.querySelector("#coins-text");
-      coinsText?.classList?.add("animate-ping");
-      setTimeout(() => {
-        coinsText?.classList?.remove("animate-ping");
-      }, 100);
-    }
-  }, [availableCoins, Cookies.get("coins")]);
+    dispatch(profileDetailsFetchAPI())
+}, [])
 
   return (
     <RouteMiddleWare>
     <div className="flex flex-col w-full">
-      <div className="flex justify-end gap-1 ms:justify-between md:justify-end">
+      {/* <div className="flex justify-end gap-1 ms:justify-between md:justify-end">
       <div className="flex justify-end">
           <button onClick={() => {navigate("/saved-results");dispatch(setHasTitleTag([]));}} className="flex gap-6 border-l-[5px] border-t-[5px] ms:border-x-[1px] ms:border-t-[1px] md:border-t-[3px] md:border-l-[3px] md:border-r-[0px] lg:border-l-[5px] lg:border-t-[5px] lg:border-r-[0px] border-solid border-white bg-[#544BB9] rounded-t-xl px-5 py-1">
             <p
@@ -189,17 +183,17 @@ const Tool = () => {
           </button>
         </div>
       </div>
-      </div>
-      <div className="flex lg:flex-row p-10 ms:p-4 sm:p-6 md:p-8 lg:p-10 gap-8 md:rounded-b-xl md:rounded-tl-xl ms:rounded-b-xl ms:rounded-t-none bg-white w-full ms:flex-col">
+      </div> */}
+      <div className="flex lg:flex-row p-10 ms:p-4 sm:p-6 md:p-8 lg:p-5 gap-8 md:rounded-xl lg:rounded-xl bg-white w-full ms:flex-col">
         <div className="flex flex-col gap-3 w-full">
           <div className="flex flex-col">
             <div className="">
-              <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-2xl text-[#4A5568]">
-                Add your article text below
+              <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]">
+              Get Unique and Catchy Title Ideas by Entering Your Article Text!" 💥📝💡
               </p>
               <div className="w-full">
               <textarea
-                className="resize-none ms:resize-y p-3 my-2 bg-[#EDF2F7] border-[1px] rounded-md border-solid border-[#f8f8f8] text-[16px] ms:text-xs sm:text-base md:text-lg lg:text-lg min-h-[267px] w-full focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed"
+                className="resize-none ms:resize-y p-3 my-2 lg:my-1 bg-[#EDF2F7] border-[1px] rounded-md border-solid border-[#f8f8f8] text-[16px] ms:text-xs sm:text-base md:text-lg lg:text-xs min-h-[180px] w-full focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed"
                 rows={10}
                 cols={75}
                 disabled={isLoading}
@@ -215,7 +209,7 @@ const Tool = () => {
               </div>
             </div>
             <div className="mt-2">
-              <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-2xl text-[#4A5568]">
+              <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]">
                 Keywords to Include in Headline
               </p>
               <div className="my-2">
@@ -229,7 +223,7 @@ const Tool = () => {
               </div>
             </div>
             <div className="mt-4">
-              <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-2xl text-[#4A5568]">
+              <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]">
                 No of Headlines
               </p>
               {/* <div className="flex lg:flex-row justify-between items-center ms:items-start ms:gap-5 sm:flex-col"> */}
@@ -249,7 +243,7 @@ const Tool = () => {
                             counterSelected.id == id && data.countValue == count
                               ? "bg-[#544BB9] text-white font-bold"
                               : "bg-[#EDF2F7] text-[#000000]"
-                          } flex items-center justify-center w-11 h-11 ms:w-7 sm:w-8 md:w-10 lg:w-11 ms:h-7 sm:h-8 md:h-10 lg:h-11 rounded-md ms:rounded-sm md:rounded lg:rounded-md cursor-pointer disabled:cursor-not-allowed`}
+                          } flex items-center justify-center w-11 h-11 ms:w-7 sm:w-8 md:w-10 lg:w-8 ms:h-7 sm:h-8 md:h-10 lg:h-8 rounded-md ms:rounded-sm md:rounded lg:rounded-md cursor-pointer disabled:cursor-not-allowed`}
                         >
                           {data.countValue}
                         </button>
@@ -268,8 +262,8 @@ const Tool = () => {
                     className={`${
                       generateHeadlineEffect && "animate-wiggle"
                     } flex items-center justify-center px-6 py-3 ms:px-2 sm:px-3 md:px-4 lg:px-5 
-                    ms:py-2 sm:py-1.5 md:py-2 lg:py-2.5 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-base sm:text-lg md:text-xl lg:text-2xl disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap
-                    ${isLoading ? "disabled:px-20 ms:disabled:px-[55px] sm:disabled:px-[70px] md:disabled:px-20 lg:disabled:px-20 ": "disabled:px-5 ms:disabled:px-2 sm:disabled:px-3 md:disabled:px-4 md:disabled:py-2 lg:disabled:px-5 lg:disabled:py-3"}`}
+                    ms:py-2 sm:py-1.5 md:py-2 lg:py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-base sm:text-lg md:text-xl lg:text-base disabled:bg-[#544BB9] disabled:opacity-[0.7] disabled:cursor-not-allowed whitespace-nowrap
+                    ${isLoading ? "disabled:px-20 ms:disabled:px-[55px] sm:disabled:px-[70px] md:disabled:px-20 lg:disabled:px-20 ": "disabled:px-5 ms:disabled:px-2 sm:disabled:px-3 md:disabled:px-4 md:disabled:py-2 lg:disabled:px-5 lg:disabled:py-2"}`}
                     onClick={(e) => {
                       dispatch(setGenerateHeadlineEffect(true));
                       handleSubmit(e);
@@ -284,8 +278,8 @@ const Tool = () => {
                       "Generate Headlines"
                     ) : (
                       <ThreeDots
-                        height="27"
-                        width="47"
+                        height="25"
+                        width="25"
                         radius="9"
                         color="#fafafa"
                         ariaLabel="three-dots-loading"
@@ -319,19 +313,19 @@ const Tool = () => {
             <div className="flex flex-col gap-5 w-full">
               {allTitles?.length > 0 && (
                 <div className="flex flex-col gap-1 w-full group">
-                  <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-2xl text-[#4A5568]">
+                  <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-base text-[#4A5568]">
                     Headlines
                   </p>
                   {allTitles?.length > 0 && (
-                    <div className="border-[1px] border-solid border-[#EDF2F7] rounded-md p-2 max-h-[200px] scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
+                    <div className="max-h-[200px] scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
                       <div className="flex flex-col gap-2">
                         {allTitles &&
                           allTitles.map((title, id) => (
                             <div
                               key={id}
-                              className="flex gap-5 w-full items-start justify-between"
+                              className="flex gap-5 w-full items-start justify-between border-[1px] border-solid border-[#EDF2F7] rounded-md p-2"
                             >
-                              <p className="font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]">
+                              <p className="font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-sm text-[#4A5568]">
                                 {title}
                               </p>
                               <button
@@ -349,12 +343,12 @@ const Tool = () => {
                                 type="button"
                               >
                                 {latestCopied.copiedId == id ? (
-                                  <p className="flex gap-1 items-center px-2 py-2 ms:px-1 sm:px-1 md:px-1 lg:px-2 ms:py-1 sm:py-1 md:py-1 lg:py-2 bg-[#544BB9] rounded-md text-[14px] leading-[14px] ms:text-xs sm:text-sm md:text-base lg:text-base text-white">
+                                  <p className="flex gap-1 items-center px-2 py-2 ms:px-1 sm:px-1 md:px-1 lg:px-1 ms:py-1 sm:py-1 md:py-1 lg:py-1 bg-[#544BB9] rounded-md text-[14px] leading-[14px] ms:text-xs sm:text-sm md:text-base lg:text-sm text-white">
                                     <BsCheck2 />
                                     copied
                                   </p>
                                 ) : (
-                                  <p className="flex gap-2 items-center px-3 py-2 ms:px-2 sm:px-2 md:px-2 lg:px-3 ms:py-1 sm:py-1 md:py-1 lg:py-2 bg-[#EDF2F7] rounded-md text-[14px] leading-[14px] ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]">
+                                  <p className="flex gap-2 items-center px-3 py-2 ms:px-2 sm:px-2 md:px-2 lg:px-2 ms:py-1 sm:py-1 md:py-1 lg:py-1 bg-[#EDF2F7] rounded-md text-[14px] leading-[14px] ms:text-xs sm:text-sm md:text-base lg:text-sm text-[#4A5568]">
                                     <FaRegCopy />
                                     copy
                                   </p>
@@ -370,7 +364,7 @@ const Tool = () => {
               {specialTags?.length > 0 &&
               <div className="flex flex-col gap-1 w-full">
                 <div className="flex items-center gap-3">
-                  <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-2xl text-[#4A5568]">Keywords</p>
+                  <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-base text-[#4A5568]">Keywords</p>
                   {specialTags?.length > 0 && (
                     <button
                       onClick={() => {
@@ -381,7 +375,7 @@ const Tool = () => {
                         toast.success("All Tags Copied!");
                       }}
                       type="button"
-                      className={`px-2 py-1.5 ms:px-1.5 sm:px-1.5 md:px-1.5 lg:px-2 ms:py-1 sm:py-1 md:py-1 lg:py-2 rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-base ${
+                      className={`px-2 py-1.5 ms:px-1.5 sm:px-1.5 md:px-1.5 lg:px-1.5 ms:py-1 sm:py-1 md:py-1 lg:py-1 rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-sm ${
                         latestCopied.copiedId == copyAllId.id
                           ? "bg-[#544BB9] text-white"
                           : "bg-[#EDF2F7] text-[#4A5568]"
@@ -412,7 +406,7 @@ const Tool = () => {
                               latestCopied.copiedId === id + allTitles.length
                                 ? "bg-[#544BB9] font-medium text-white"
                                 : "bg-[#EDF2F7]"
-                            } px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-3 ms:py-1 sm:py-1 md:py-2 lg:py-2 border-[1px] border-solid border-[#EDF2F7] rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]`}
+                            } px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-2 ms:py-1 sm:py-1 md:py-2 lg:py-1 border-[1px] border-solid border-[#EDF2F7] rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]`}
                           >
                             {tag.trim()}
                           </button>
@@ -428,7 +422,7 @@ const Tool = () => {
                     type="button"
                     className={`${
                       saveResult && "animate-wiggle"
-                    } flex items-center gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-xs sm:text-sm md:text-base lg:text-base disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap`}
+                    } flex items-center gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-xs sm:text-sm md:text-base lg:text-sm disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap`}
                     onClick={(e) => {
                       dispatch(setSaveResult(true));
                       handleSaveResults(e)
@@ -448,7 +442,7 @@ const Tool = () => {
                     disabled={isRegenerate}
                     className={`${
                       reGenerate && "animate-wiggle"
-                    } flex gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 rounded-md bg-[#2D3748] text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed`}
+                    } flex gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-[7px] rounded-md border-[1px] border-solid border-[#544BB9] text-[#544BB9] hover:text-[#544BB9] font-medium text-lg disabled:cursor-not-allowed`}
                     onClick={(e) => {
                       dispatch(setReGenerate(true));
                       dispatch(reGenerateHeadlineFetchAPi(reGenerateData));
@@ -458,20 +452,20 @@ const Tool = () => {
                     }}
                   >
                     {isRegenerate ? (
-                      <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-base">
+                      <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm">
                         <img
                           src={logo}
                           alt="logo"
-                          className="w-6 ms:w-3 sm:w-3 md:w-6 lg:w-6 animate-spin"
+                          className="w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5 animate-spin"
                         />
                         Regenerating
                       </div>
                     ) : (
-                      <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-base">
+                      <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm">
                         <img
                           src={logo}
                           alt="logo"
-                          className="w-6 ms:w-3 sm:w-3 md:w-6 lg:w-6 cursor-pointer"
+                          className="w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5 cursor-pointer"
                         />
                         Regenerate
                       </div>
@@ -494,7 +488,7 @@ const Tool = () => {
         </div>
       </div>
     </div>
-    <BuyPointsModal />
+    {/* <BuyPointsModal /> */}
     </RouteMiddleWare>
   );
 };

@@ -11,36 +11,57 @@ import { useNavigate } from 'react-router-dom';
 import {  setSignInEffect } from '../../redux/slices/buttonEffectSlice';
 import RouteMiddleWare from '../../utils/RouteMiddleWare';
 import { profileDetailsFetchAPI, profileDetailsUpdateFetchAPI } from '../../redux/slices/ProfileSlice';
+import { GoHome } from "react-icons/go";
 import DropZone from '../layout/DropZone';
 import CropImageModal from '../modal/CropImageModal';
+import Cookies from "js-cookie";
 
 const Profile = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const[image,setImage] = useState()
+    const[image,setImage] = useState({})
     const { isLoading,isUpdating ,profileDetails} = useSelector((state) => ({
         isLoading: state.ProfileSlice.isLoading,
         isUpdating: state.ProfileSlice.isUpdating,
         profileDetails: state.ProfileSlice.profileDetails,
       }));
-      const handleProfileUpdateSubmit = (values) => {
-          dispatch(profileDetailsUpdateFetchAPI(values));
-        }
+     
         
         useEffect(() => {
             dispatch(profileDetailsFetchAPI())
         }, [])
+
         const initialValues = { username: profileDetails?.username || "", 
                                 name: profileDetails?.name || "", 
                                 email: profileDetails?.email || "" };
-        // useEffect(() => {
-        //     console.log(profileDetails,"ggggggggggg")
-        // }, [profileDetails])
-        
+        useEffect(() => {
+            setImage({url :profileDetails?.profile_pic})
+        }, [profileDetails])
+
+        const handleProfileUpdateSubmit = (values) => {
+            const formData = {
+                ...values
+            }    
+            const fData = new FormData();
+            if(image.file){
+                fData.append("profile_pic", image?.file, image?.file?.name);
+            }
+            Object.entries(formData).map((field) => {
+                fData.append(field[0], field[1] || "");
+            })
+            dispatch(profileDetailsUpdateFetchAPI(fData));
+        }
+
   return (
     <RouteMiddleWare>
-      <div className='flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-10 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[300px] sm:max-w-[400px] md:max-w-[700px] lg:max-w-[980px]'>
-             <div className='flex flex-col gap-4 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-10'>
+      <div className='flex flex-col p-10 ms:p-5 sm:p-5 md:p-10 lg:p-5 gap-2 rounded-xl bg-white w-full h-full ms:max-w-[300px] sm:max-w-[400px] md:max-w-[700px] lg:max-w-[980px]'>
+            <div className='flex gap-1 items-center'>
+                <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' onClick={(e) => {e.preventDefault();
+                        navigate('/');
+                }} />
+                <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-lg'>/ Account Information</p>
+            </div>
+             <div className='flex flex-col gap-4 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-2 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-5'>
                 <Formik
                         initialValues={initialValues}
                         validationSchema={profileUpdateValidationSchema}
@@ -50,15 +71,21 @@ const Profile = () => {
                         enableReinitialize
                     >
                         {({ handleSubmit }) =>
-                        (<form className='w-full max-w-md' onSubmit={handleSubmit} >
-                            <div className='w-full h-full flex flex-col gap-8 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-8 justify-center items-start'>
-                                <div className='flex items-start'>
-                                    <p className='font-medium text-3xl ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Account Information</p>
-                                </div>
-                                {/* <div>
-                                    <DropZone image={image} setImage={setImage}/>
+                        (<form className='w-full max-w-md' onSubmit={handleSubmit} encType="multipart/form-data">
+                            <div className='w-full h-full flex flex-col gap-8 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-6 justify-center items-start'>
+                                {/* <div className='flex gap-1 items-center'>
+                                    <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' onClick={(e) => {e.preventDefault();
+                                            navigate('/');
+                                    }} />
+                                    <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl'>/ Account Information</p>
                                 </div> */}
-                                <div className='flex flex-col gap-10 ms:gap-5 sm:gap-5 md:gap-8 lg:gap-8 items-start w-full'>
+                                <div className='w-full h-full'>
+                                    <DropZone 
+                                    imageAfterCrop={image && image?.url}
+                                    image={image} setImage={setImage}/>
+                                </div>
+                                <div className='flex flex-col gap-10 ms:gap-5 sm:gap-5 md:gap-8 lg:gap-5 items-start w-full'>
+                                <div className='flex justify-between gap-[5%] w-full h-full'>
                                 <div className='flex flex-col gap-1 w-full'>
                                     <label className="text-xs sm:text-sm md:text-base lg:text-base">Username :</label>
                                     <InputField
@@ -80,6 +107,7 @@ const Profile = () => {
                                     borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                     placeholder='Name' />
                                 </div>
+                                </div>
                                 <div className='flex flex-col gap-1 w-full'>
                                 <label className="text-xs sm:text-sm md:text-base lg:text-base">Email :</label>
                                 <InputField
@@ -92,26 +120,8 @@ const Profile = () => {
                                 placeholder='Email'
                                 />
                                 </div>
-
-                                {/* {console.log(values)} */}
-                                {/* <InputField
-                                type='password'
-                                id='password'
-                                name='password'
-                                inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
-                                borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
-                                placeholder='Existing Password' />
-
-                                <InputField
-                                type='password'
-                                id='newPassword'
-                                name='newPassword'
-                                inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
-                                borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
-                                placeholder='New Password' /> */}
-                               
                                 </div>
-                                <div className='py-3 ms:py-2 sm:py-2 md:py-3 lg:py-3 w-full'>
+                                <div className='py-3 ms:py-2 sm:py-2 md:py-3 lg:py-1 w-full'>
                                 <CustomButton
                                     type='submit'
                                     disabled={isLoading || isUpdating}
@@ -126,6 +136,16 @@ const Profile = () => {
                                     showLoader>
                                     Update
                                 </CustomButton >
+                                </div>
+                                <div>
+                                    {Array.isArray(image) && image.length > 0 && (
+                                        <CropImageModal
+                                            name="profile"
+                                            id="profile"
+                                            setImage={setImage}
+                                            photoURL={image[image.length - 1]}
+                                        />
+                                    )}
                                 </div>
                             </div>
                         </form>)}
@@ -142,14 +162,7 @@ const Profile = () => {
                         </div>
                     </div> */}
                 </div>
-                {/* <div>
-                {Array.isArray(image) && image.length > 0 && (
-                    <CropImageModal
-                    setImage={setImage}
-                    photoURL={image[image.length - 1]}
-                    />
-                )}
-                </div> */}
+                
             {/* <div className='hidden md:flex justify-center items-center px-4 text-center w-full'>
                     <p className='font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]'>Log in/ Sign in first to access AI Headline Generator</p>
             </div> */}

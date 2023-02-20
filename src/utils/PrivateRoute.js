@@ -9,7 +9,7 @@ const PrivateRoute = ({children,...rest}) => {
         ?
         <Outlet />
         :
-        <Navigate to="/auth/login" />
+        <Navigate to="/auth/signin" />
   )
 }
 

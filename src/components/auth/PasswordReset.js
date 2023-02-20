@@ -25,7 +25,7 @@ const PasswordReset = () => {
 
     useEffect(() => {
     if(resetPasswordStatus === 200){
-        navigate('/auth/login')
+        navigate('/auth/signin')
     }
     dispatch(setResetPasswordStatus(0))
     }, [resetPasswordStatus])

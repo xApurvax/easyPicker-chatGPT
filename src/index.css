@@ -133,6 +133,8 @@ code {
 
 
 .parallax {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   letter-spacing: -2px;
   line-height: 0.8;

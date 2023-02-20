@@ -39,7 +39,7 @@ export const profileDetailsUpdateFetchAPI = createAsyncThunk(
     try {
       const response = await ApiMiddleware.put(
         `/api/auth/register/`,
-        {...data}
+        data
       );
       return response;
     } catch (error) {
@@ -82,6 +82,7 @@ const ProfileSlice = createSlice({
     [profileDetailsFetchAPI.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.profileDetails = action.payload?.data?.result[0]?.user[0];
+      Cookies.set("userDetails", JSON.stringify(action.payload?.data?.result[0]?.user[0]));
     },
     [profileDetailsFetchAPI.rejected]: (state, action) => {
       state.isLoading = false;

@@ -126,7 +126,7 @@ export const BuyPointsModal = () => {
                   <button
                     type="button"
                     disabled={isLoading}
-                    className="inline-flex justify-center rounded-md border-1 px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-3 ms:py-1 sm:py-1 md:py-2 lg:py-2 text-sm font-medium text-[#544BB9] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:bg-[#595957] disabled:cursor-not-allowed border-[1px] border-solid border-[#544BB9]"
+                    className="inline-flex justify-center rounded-md border-1 px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-3 ms:py-1 sm:py-1 md:py-2 lg:py-2 text-sm font-medium text-[#544BB9] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed border-[1px] border-solid border-[#544BB9]"
                     onClick={() => {
                         dispatch(setShowBuyPointsModal(false));setCount(0);
                     }}
