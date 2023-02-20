@@ -14,7 +14,7 @@ import { MdHistory } from 'react-icons/md';
 import Cookies from 'js-cookie';
 import { profileDetailsFetchAPI } from '../../redux/slices/ProfileSlice';
 import { GiTwoCoins } from "react-icons/gi";
-import { AiOutlinePlus } from "react-icons/ai";
+import { BiPlus } from "react-icons/bi";
 import { setShowBuyPointsModal } from "../../redux/slices/pointsSlice";
 
 const NavbarNewA = () => {
@@ -237,7 +237,7 @@ const NavbarNewA = () => {
                           className={`${availableCoins && "origin-center hover:rotate-12 text-2xl ms:text-[16px] sm:text-[24px] md:text-lg lg:text-lg cursor-pointer"}`}
                         />
                         <button onClick={() =>{ dispatch(setShowBuyPointsModal(true))}} className="flex items-center justify-center">
-                        <AiOutlinePlus className={`${"text-2xl ms:text-[16px] sm:text-[20px] md:text-xs lg:text-base cursor-pointer text-white md:px-0.5"}`}/>
+                        <BiPlus className={`${"text-2xl ms:text-[16px] sm:text-[20px] md:text-xl lg:text-2xl cursor-pointer text-white md:px-0.5"}`}/>
                         <p
                           id="coins-text"
                           className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-base lg:text-base text-white`}
