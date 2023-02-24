@@ -109,7 +109,7 @@ const Profile = () => {
                                 </div>
                                 </div>
                                 <div className='flex flex-col gap-1 w-full'>
-                                <label className="text-xs sm:text-sm md:text-base lg:text-base">Email :</label>
+                                <label className="text-xs sm:text-sm md:text-base lg:text-base">E-mail :</label>
                                 <InputField
                                 type='text'
                                 id='email'
@@ -117,7 +117,7 @@ const Profile = () => {
                                 // disabled={true}
                                 inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373] disabled:cursor-not-allowed'
                                 borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
-                                placeholder='Email'
+                                placeholder='E-mail'
                                 />
                                 </div>
                                 </div>

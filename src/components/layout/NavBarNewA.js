@@ -56,8 +56,9 @@ const NavbarNewA = () => {
   }
 
   return (
-    <div className='w-full z-50'>
-    <nav className="flex justify-center w-full max-w-screen bg-[#544BB9] items-center px-4">
+    <div className={`w-full z-50 flex justify-center items-center `}>
+    <nav className={`flex justify-center max-w-screen bg-[#544BB9] items-center w-full px-[5%]
+    ${toggle ? "fixed top-0" : ""}`}>
       <div className="flex justify-between w-full py-3 max-w-6xl">
         <div className="flex gap-5 items-center justify-center">
         <a href="/">
@@ -242,7 +243,7 @@ const NavbarNewA = () => {
                           id="coins-text"
                           className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-base lg:text-base text-white`}
                         >
-                          {availableCoins === "undefined" ? 0 : availableCoins}
+                          {!availableCoins ? 0 : availableCoins}
                         </p>
                         </button>
                       </div>

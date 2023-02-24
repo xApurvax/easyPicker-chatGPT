@@ -297,7 +297,7 @@ const SavedRecords = () => {
                     <>
                       <tr>
                         <td colSpan={5}>
-                          <div className="flex justify-center items-center h-[300px]">
+                          <div className="flex justify-center items-center h-[250px]">
                             <div className="flex flex-col gap-15">
                               <div className="flex justify-center items-center">
                                 <CgSmileNeutral size={50} fill="black" />

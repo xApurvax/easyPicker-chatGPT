@@ -24,7 +24,7 @@ const CustomCreateTag = ({tags,setTags,selectedTags,setHasSomethingTyped,...prop
             text-[16px] ms:text-xs sm:text-base md:text-lg lg:text-xs rounded-md bg-[#f0f2f3]">
                 <span>{tag}</span>
                 <IoIosClose 
-                onClick={() => removeTags(index)} />
+                onClick={() => removeTags(index)} className="cursor-pointer ms:text-xs sm:text-base md:text-lg lg:text-lg" />
             </li>
         ))}
         </ul>
