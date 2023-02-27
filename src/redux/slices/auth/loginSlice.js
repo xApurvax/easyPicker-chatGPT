@@ -31,6 +31,8 @@ export const loginFetchAPi = createAsyncThunk(
       // console.log(error.response.data.message);
       // toast.error(error.response.data.message)
       if (!error.response) {
+        // console.log(error,"ttttttttttttttttt")
+        toast.error(error?.message)
         throw rejectWithValue(error);
       }
       throw rejectWithValue(error.response.data.message);
@@ -73,7 +75,7 @@ const loginSlice = createSlice({
     },
     [loginFetchAPi.rejected]: (state, action) => {
       state.isSuccess = false;
-      toast.error(action?.payload);
+      // toast.error(action?.payload);
     },
   },
 });

@@ -23,7 +23,7 @@ const SignIn = () => {
     }
   return (
     <AuthMiddleware>
-      <div className='flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-8 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[300px] sm:max-w-[400px] md:max-w-[700px] lg:max-w-[980px]'>
+      <div className='flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-8 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[90%]'>
              <div className='flex flex-col gap-4 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-0'>
                 <Formik
                         initialValues={initialValues}
@@ -95,7 +95,7 @@ const SignIn = () => {
                     <div className='flex gap-1'>
                             <p className='font-normal text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#4A5568]'>Already have an account ? </p>
                             <div className='font-bold text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#544BB9] cursor-pointer' 
-                            onClick={() => { navigate('/auth/signin')}}>Sign in</div>
+                            onClick={() => { navigate('/auth/signin')}}>sign in</div>
                     </div>
                         {/* <div className='flex gap-1'>
                             <p className='font-normal text-sm text-[#4A5568]'>You can</p>

@@ -47,7 +47,7 @@ const LogIn = () => {
 
   return (
     <AuthMiddleware>
-        <div className='flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-5 gap-8 rounded-xl bg-white w-full h-full  ms:max-w-[300px] sm:max-w-[400px] md:max-w-[700px] lg:max-w-[980px]'>
+        <div className='flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-5 gap-8 rounded-xl bg-white w-full h-full  ms:max-w-[90%]'>
             <div className='flex flex-col gap-4 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-2'>
             <Formik
                     initialValues={initialValues}
@@ -102,7 +102,7 @@ const LogIn = () => {
             </Formik>
                 <div className='flex gap-1'>
                    <div className='font-bold text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#544BB9] cursor-pointer' onClick={() => {navigate('/auth/register')}}>Register</div>
-                   <p className='font-normal text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#4A5568]'>to Sign up for an account </p>   
+                   <p className='font-normal text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#4A5568]'>to sign up for an account </p>   
                 </div>
             </div>
             {/* <div className='hidden md:flex md:flex-col gap-10 justify-center items-center text-center px-4 w-full bg-[#544BB9] rounded-md'>

@@ -11,6 +11,8 @@ import { FaBookmark } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import { FaRegCopy } from "react-icons/fa";
 import { BsCheck2 } from "react-icons/bs";
+import { GiTwoCoins } from "react-icons/gi";
+import { AiOutlinePlus } from "react-icons/ai";
 import {
   generateHeadlineFetchAPi,
   reGenerateHeadlineFetchAPi,
@@ -155,8 +157,8 @@ const Tool = () => {
   return (
     <RouteMiddleWare>
     <div className="flex flex-col w-full">
-      {/* <div className="flex justify-end gap-1 ms:justify-between md:justify-end">
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-1 md:hidden">
+      {/* <div className="flex justify-end">
           <button onClick={() => {navigate("/saved-results");dispatch(setHasTitleTag([]));}} className="flex gap-6 border-l-[5px] border-t-[5px] ms:border-x-[1px] ms:border-t-[1px] md:border-t-[3px] md:border-l-[3px] md:border-r-[0px] lg:border-l-[5px] lg:border-t-[5px] lg:border-r-[0px] border-solid border-white bg-[#544BB9] rounded-t-xl px-5 py-1">
             <p
               className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-xl lg:text-2xl text-white`}
@@ -164,7 +166,7 @@ const Tool = () => {
               Saved Results
             </p>
           </button>
-      </div>
+      </div> */}
       <div className="bg-[#544BB9] flex justify-end">
         <div className="flex gap-6 ms:gap-2 sm:gap-3 md:gap-4 bg-white rounded-t-xl px-5 py-1">
           <GiTwoCoins
@@ -178,12 +180,12 @@ const Tool = () => {
             id="coins-text"
             className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-xl lg:text-2xl text-[#544BB9]`}
           >
-            {availableCoins === "undefined" ? 0 : availableCoins}
+            {!availableCoins ? 0 : availableCoins}
           </p>
           </button>
         </div>
       </div>
-      </div> */}
+      </div>
       <div className="flex lg:flex-row p-10 ms:p-4 sm:p-6 md:p-8 lg:p-5 gap-8 md:rounded-xl lg:rounded-xl bg-white w-full ms:flex-col">
         <div className="flex flex-col gap-3 w-full">
           <div className="flex flex-col">

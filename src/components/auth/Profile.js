@@ -54,7 +54,7 @@ const Profile = () => {
 
   return (
     <RouteMiddleWare>
-      <div className='flex flex-col p-10 ms:p-5 sm:p-5 md:p-10 lg:p-5 gap-2 rounded-xl bg-white w-full h-full ms:max-w-[300px] sm:max-w-[400px] md:max-w-[700px] lg:max-w-[980px]'>
+      <div className='flex flex-col p-10 ms:p-5 sm:p-5 md:p-10 lg:p-5 gap-2 rounded-xl bg-white w-full h-full ms:max-w-[90%]'>
             <div className='flex gap-1 items-center'>
                 <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' onClick={(e) => {e.preventDefault();
                         navigate('/');

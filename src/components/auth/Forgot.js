@@ -28,8 +28,8 @@ const Forgot = () => {
         hasTitleTag: state.generateHeadlineSlice.hasTitleTag,
         copyAllSpecialTags: state.generateHeadlineSlice.copyAllSpecialTags,
         token: state.loginSlice.allData?.token?.access,
-        isVerify: state.loginSlice.isVerify,
-        isVerified: state.loginSlice.isVerified,
+        isVerify: state.forgotPasswordSlice.isVerify,
+        isVerified: state.forgotPasswordSlice.isVerified,
         forgotModal: state.forgotPasswordSlice.forgotModal,
       }));
     const navigate = useNavigate();
@@ -49,7 +49,7 @@ const Forgot = () => {
 
   return (
     <AuthMiddleware>
-    <div className='flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-8 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[300px] sm:max-w-[400px] md:max-w-[700px] lg:max-w-[980px]'>
+    <div className='flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-8 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[90%]'>
         <div className='flex flex-col gap-4 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-3'>
             <Formik
                     initialValues={initialValues}
@@ -67,7 +67,7 @@ const Forgot = () => {
                             <div className='flex flex-col gap-10 ms:gap-5 sm:gap-5 md:gap-10 lg:gap-8 items-start w-full'>
                             <p className='font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]'>Enter the email address associated with your account and we will send you instructions to reset your password.</p>
                             <InputField
-                            type='email'
+                            type='text'
                             id='email'
                             name='email'
                             inputstyle='w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
@@ -78,7 +78,7 @@ const Forgot = () => {
                             <CustomButton
                                 type='submit'
                                 disabled={isVerify}
-                                buttonStyle="w-full py-[12px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg  disabled:cursor-not-allowed"
+                                buttonStyle="w-full py-[12px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg disabled:opacity-75  disabled:cursor-not-allowed"
                                 loaderSize={20}
                                 showLoader>
                                 Verify
@@ -120,7 +120,7 @@ const Forgot = () => {
                                             <div className='flex gap-2 justify-center items-center'>
                                                 <p className='font-semibold text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568] '>Didn't receive OTP ? </p>
                                                 <div className='font-bold text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#544BB9] cursor-pointer' 
-                                                onClick={() => dispatch(forgotFetchAPi({ email: forgotModal?.email }))}>Resend OTP</div>
+                                                onClick={() => dispatch(forgotFetchAPi({ email: forgotModal?.email }))}>resend OTP</div>
                                             </div>
                                             </div>
                                             <CustomButton
