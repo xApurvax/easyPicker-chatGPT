@@ -145,9 +145,10 @@ const Tool = () => {
   }, [copyAllId, latestCopied]);
 
   useEffect(() => {}, [hasSomethingTyped]);
-  // useEffect(() => {
-  // }, [hasTitleTag,message])
-  
+
+  useEffect(() => {
+    setAvailableCoins(Cookies.get("coins"));
+  }, [availableCoins])
 
 
   useEffect(() => {

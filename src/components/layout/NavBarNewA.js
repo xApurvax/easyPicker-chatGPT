@@ -23,7 +23,7 @@ const NavbarNewA = () => {
   const [toggle, setToggle] = useState(false); 
   const [userDetails,setUserDetails] = useState({})
   const [availableCoins, setAvailableCoins] = useState();
-
+  const [accessToken, setAccessToken] = useState();
   // const navigate = useNavigate();
     const { token,tokenR,profileDetails } = useSelector((state) => ({
     token: state.loginSlice.allData?.token?.access,
@@ -33,6 +33,10 @@ const NavbarNewA = () => {
   const navigate = useNavigate()
   useEffect(() => {
   }, [token,tokenR])
+  
+  useEffect(() => {
+    setAccessToken(Cookies.get("access_token"))
+  }, [accessToken])
   
   useEffect(() => {
     // setUserDetails(JSON.parse(Cookies.get('userDetails')))
@@ -104,7 +108,7 @@ const NavbarNewA = () => {
                   </li>
                 </a> */}
                 {/* <Link href="/"> */}
-                  {token || tokenR ? 
+                  {token || tokenR || accessToken ? 
                   <>
                 <li onClick={() => {setIsNavOpen(false);
                           setToggle(false);
@@ -153,7 +157,7 @@ const NavbarNewA = () => {
               </>
                   }
             </ul>
-            {token || tokenR?
+            {token || tokenR || accessToken?
             <button 
             onClick={() => {dispatch(setLogOutModal(true)); 
               setIsNavOpen(false);
@@ -216,7 +220,7 @@ const NavbarNewA = () => {
                 Get Started
               </li>
             </Link>} */}
-              {token || tokenR?
+              {token || tokenR || accessToken ?
             // <button 
             // onClick={() => {dispatch(setLogOutModal(true)); setIsNavOpen(false);
             //   const coinsText = document.querySelector("#nav-icon4")
