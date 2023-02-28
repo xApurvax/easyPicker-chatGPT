@@ -30,6 +30,9 @@ const PasswordReset = () => {
     dispatch(setResetPasswordStatus(0))
     }, [resetPasswordStatus])
     
+    useEffect(() => {
+        document.title = "Reset Password | Tagline Generator"
+      }, [])
 
   return (
     <AuthMiddleware>

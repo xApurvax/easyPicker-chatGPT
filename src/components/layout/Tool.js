@@ -154,6 +154,11 @@ const Tool = () => {
   useEffect(() => {
     dispatch(profileDetailsFetchAPI())
 }, [])
+
+  useEffect(() => {
+    document.title = "Home | Tagline Generator"
+  }, [])
+
   return (
     <RouteMiddleWare>
     <div className="flex flex-col w-full justify-center items-center">

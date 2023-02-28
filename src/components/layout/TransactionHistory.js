@@ -87,6 +87,10 @@ const SavedRecords = () => {
     //   }, [copyAllId, latestCopied]);
 
     // // console.log(moment(startDate).format('YYYY-MM-DD'),"hhhhhhhhhhhhhhhhhhhh")
+
+    useEffect(() => {
+      document.title = "History | Tagline Generator"
+    }, [])
     const columns = React.useMemo(
         () => [
           {

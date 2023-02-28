@@ -47,6 +47,9 @@ const Forgot = () => {
         forgotModal.otpVerified && navigate('/reset-password');
     }, [forgotModal.otpVerified, navigate]);
 
+    useEffect(() => {
+        document.title = "Forgot password | Tagline Generator"
+      }, [])
   return (
     <AuthMiddleware>
     <div className='flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-8 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[90%]'>

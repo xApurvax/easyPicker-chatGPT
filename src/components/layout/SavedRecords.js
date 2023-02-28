@@ -76,6 +76,10 @@ const SavedRecords = () => {
     //       setCopyAllId({ id: saveResultsData.results?.title?.split(",")?.length + saveResultsData.results?.tag?.split(",")?.length + 1 });
     //   }, [copyAllId, latestCopied]);
 
+    useEffect(() => {
+      document.title = "Records | Tagline Generator"
+    }, [])
+
     const columns = React.useMemo(
         () => [
           {

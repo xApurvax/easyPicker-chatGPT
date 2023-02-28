@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Formik } from 'formik'
 import logo from "../../assets/men-holding-phone.svg";
 import InputField from "../form/InputField";
@@ -44,6 +44,9 @@ const LogIn = () => {
     //         // handle any rejections/errors
     //       }
     // }
+    useEffect(() => {
+        document.title = "Sign in | Tagline Generator"
+      }, [])
 
   return (
     <AuthMiddleware>

@@ -34,6 +34,10 @@ const Profile = () => {
             dispatch(profileDetailsFetchAPI())
         }, [])
 
+        useEffect(() => {
+            document.title = "Profile | Tagline Generator"
+          }, [])
+
         const initialValues = { username: profileDetails?.username || "", 
                                 name: profileDetails?.name || "", 
                                 email: profileDetails?.email || "" };

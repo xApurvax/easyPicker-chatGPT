@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Formik } from 'formik'
 import logo from "../../assets/men-holding-phone.svg";
 import InputField from "../form/InputField";
@@ -21,6 +21,11 @@ const SignIn = () => {
     const handleSignInSubmit = (values) => {
         dispatch(registerFetchAPi(values));
     }
+
+    useEffect(() => {
+        document.title = "Sign up | Tagline Generator"
+      }, [])
+
   return (
     <AuthMiddleware>
       <div className='flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-8 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[90%]'>
