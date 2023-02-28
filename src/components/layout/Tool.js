@@ -162,7 +162,7 @@ const Tool = () => {
   return (
     <RouteMiddleWare>
     <div className="flex flex-col w-full justify-center items-center">
-      <div className="flex justify-end gap-1 md:hidden">
+      <div className="flex justify-end gap-1 md:hidden w-full">
       {/* <div className="flex justify-end">
           <button onClick={() => {navigate("/saved-results");dispatch(setHasTitleTag([]));}} className="flex gap-6 border-l-[5px] border-t-[5px] ms:border-x-[1px] ms:border-t-[1px] md:border-t-[3px] md:border-l-[3px] md:border-r-[0px] lg:border-l-[5px] lg:border-t-[5px] lg:border-r-[0px] border-solid border-white bg-[#544BB9] rounded-t-xl px-5 py-1">
             <p
@@ -172,8 +172,8 @@ const Tool = () => {
             </p>
           </button>
       </div> */}
-      <div className="bg-[#544BB9] flex justify-end">
-        <div className="flex gap-6 ms:gap-2 sm:gap-3 md:gap-4 bg-white rounded-t-xl px-5 py-1">
+      <div className="bg-[#544BB9] flex justify-end items-end">
+        <div className="flex gap-6 ms:gap-2 sm:gap-3 md:gap-4 bg-white rounded-t-xl px-5 py-1 justify-end items-end">
           <GiTwoCoins
             color="#FFD700"
             // size={35}
