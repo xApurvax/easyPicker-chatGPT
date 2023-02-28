@@ -70,10 +70,10 @@ const CustomForm = ({tool,login,register}) => {
 //   const initialValues = { username: "", password: "" };
 //   const handleLoginSubmit = (values) => {
 //       dispatch(loginFetchAPi(values));
-//       console.log(values,"ffffffffffffffffffff")
+//       // console.log(values,"ffffffffffffffffffff")
 //   }
 //   useEffect(() => {
-//     // console.log(copyTag,"qqqqqqqqqqqq")
+//     // // console.log(copyTag,"qqqqqqqqqqqq")
 //   }, [token])
   
 

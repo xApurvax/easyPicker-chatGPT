@@ -11,7 +11,7 @@ const StepDotsRange = ({defaultValue ,min ,max ,step,setRange}) => {
     min={min} max={max} step={step}
     dots={true}
     allowCross={false}
-    onChange={(e) => {console.log(e)}}
+    onChange={(e) => {// console.log(e)}}
     tooltip={false}
     // onAfterChange={() => dispatch(fetchPage())}
     defaultValue={defaultValue}

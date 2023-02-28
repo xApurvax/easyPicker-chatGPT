@@ -29,7 +29,7 @@ const Profile = () => {
         
         useEffect(() => {
         }, [profileDetails?.profile_pic])
-        console.log(profileDetails?.profile_pic,"profile")
+        // console.log(profileDetails?.profile_pic,"profile")
         useEffect(() => {
             dispatch(profileDetailsFetchAPI())
         }, [])

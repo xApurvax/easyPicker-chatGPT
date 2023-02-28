@@ -51,7 +51,7 @@ const NavbarNewA = () => {
 
   useEffect(() => {
   }, [profileDetails?.profile_pic])
-  console.log([profileDetails?.profile_pic],"navbar")
+  // console.log([profileDetails?.profile_pic],"navbar")
 
   
   const toggleClass = () => {

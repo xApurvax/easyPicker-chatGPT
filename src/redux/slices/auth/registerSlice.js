@@ -23,7 +23,7 @@ export const registerFetchAPi = createAsyncThunk(
       toast.success(registerUser.data.message)
       return registerUser;
     } catch (error) {
-      // console.log(error.response.data.message);
+      // // console.log(error.response.data.message);
       // toast.error(error.response.data.message)
       if (!error.response) {
         throw rejectWithValue(error);

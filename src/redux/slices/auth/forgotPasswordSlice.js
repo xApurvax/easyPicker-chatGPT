@@ -30,7 +30,7 @@ export const forgotFetchAPi = createAsyncThunk(
       toast.success(forgotPassword.data.message)
       return {...forgotPassword,...data};
     } catch (error) {
-      // console.log(error.response.data.message);
+      // // console.log(error.response.data.message);
       // toast.error(error.response.data.message)
       if (!error.response) {
         throw rejectWithValue(error);
@@ -48,7 +48,7 @@ export const forgotOtpVerifyApi = createAsyncThunk("/auth/otp-verify", async (va
       // toast.success(response.data.message)
       return response.data;
   } catch (error) {
-    console.log(error.response.data.message);
+    // console.log(error.response.data.message);
     // toast.error(error.response.data.message)
       if (!error.response) {
           throw rejectWithValue(error);

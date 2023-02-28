@@ -28,10 +28,10 @@ export const loginFetchAPi = createAsyncThunk(
       toast.success(loginCredentials.data.message)
       return loginCredentials;
     } catch (error) {
-      // console.log(error.response.data.message);
+      // // console.log(error.response.data.message);
       // toast.error(error.response.data.message)
       if (!error.response) {
-        // console.log(error,"ttttttttttttttttt")
+        // // console.log(error,"ttttttttttttttttt")
         toast.error(error?.message)
         throw rejectWithValue(error);
       }

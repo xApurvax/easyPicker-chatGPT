@@ -49,7 +49,7 @@ const SavedRecords = () => {
     // useEffect(() => {
     //     dispatch(saveResultsDataFetchAPi())
     // }, [])
-    //   console.log(Math.round(saveResultsData.length/3),"dddddddddddddddddd")
+    //   // console.log(Math.round(saveResultsData.length/3),"dddddddddddddddddd")
     useEffect(() => {
         if (currentPageLocal === 1) {
           dispatch(

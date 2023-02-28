@@ -62,14 +62,14 @@ const Tool = () => {
   };
 
   // const copyToClipboard = (e) => {
-  //   console.log(e,"wwwwwwwwwwwwwwwww")
+  //   // console.log(e,"wwwwwwwwwwwwwwwww")
   //   copyRef.current.select();
   //   document.execCommand('copy');
   //   e.target.focus();
   //   setCopySuccess('Copied!');
   // }
   // useEffect(() => {
-  //   console.log(hasFocusedHeadline)
+  //   // console.log(hasFocusedHeadline)
   // }, [])
   
   return (

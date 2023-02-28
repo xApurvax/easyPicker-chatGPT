@@ -57,7 +57,7 @@ const SavedRecords = () => {
     // useEffect(() => {
     //     dispatch(saveResultsDataFetchAPi())
     // }, [])
-    //   console.log(Math.round(saveResultsData.length/3),"dddddddddddddddddd")
+    //   // console.log(Math.round(saveResultsData.length/3),"dddddddddddddddddd")
     useEffect(() => {
         if (currentPageLocal === 1) {
           dispatch(
@@ -86,7 +86,7 @@ const SavedRecords = () => {
     //       setCopyAllId({ id: saveResultsData.results?.title?.split(",")?.length + saveResultsData.results?.tag?.split(",")?.length + 1 });
     //   }, [copyAllId, latestCopied]);
 
-    // console.log(moment(startDate).format('YYYY-MM-DD'),"hhhhhhhhhhhhhhhhhhhh")
+    // // console.log(moment(startDate).format('YYYY-MM-DD'),"hhhhhhhhhhhhhhhhhhhh")
     const columns = React.useMemo(
         () => [
           {
