@@ -109,7 +109,7 @@ const NavbarNewA = () => {
                   </li>
                 </a> */}
                 {/* <Link href="/"> */}
-                  {token || tokenR || accessToken ? 
+                  {accessToken ? 
                   <>
                 <li onClick={() => {setIsNavOpen(false);
                           setToggle(false);
@@ -155,10 +155,10 @@ const NavbarNewA = () => {
                     </li>
                   </a>
               {/* </div> */}
-              </>
+                  </>
                   }
             </ul>
-            {token || tokenR || accessToken?
+            {accessToken ?
             <button 
             onClick={() => {dispatch(setLogOutModal(true)); 
               setIsNavOpen(false);
@@ -181,7 +181,7 @@ const NavbarNewA = () => {
               navigate("/auth/register");}} className="font-bold text-lg px-3 py-1 rounded-md bg-[#544BB9] text-white hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap list-none">
                 Get Started
               </button>
-              </div>
+            </div>
             }
             </div>
             </div>
