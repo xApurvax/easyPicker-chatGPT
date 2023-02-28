@@ -37,10 +37,6 @@ const NavbarNewA = () => {
   useEffect(() => {
     setAccessToken(Cookies.get("access_token"))
   }, [accessToken])
-  
-  useEffect(() => {
-    // setUserDetails(JSON.parse(Cookies.get('userDetails')))
-  }, [profileDetails?.profile_pic])
 
   useEffect(() => {
     if (Cookies.get("coins")) {
@@ -53,6 +49,11 @@ const NavbarNewA = () => {
     }
   }, [availableCoins, Cookies.get("coins")]);
 
+  useEffect(() => {
+  }, [profileDetails?.profile_pic])
+  console.log([profileDetails?.profile_pic],"navbar")
+
+  
   const toggleClass = () => {
     setIsNavOpen(!isNavOpen);
     const coinsText = document.querySelector("#nav-icon4")

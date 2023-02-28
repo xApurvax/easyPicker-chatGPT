@@ -93,7 +93,7 @@ const ProfileSlice = createSlice({
     [profileDetailsUpdateFetchAPI.fulfilled]: (state, action) => {
       state.isUpdating = false;
       toast.success(action.payload?.data?.message)
-    //   state.profileDetails = action.payload?.data?.result[0]?.user[0];
+      state.profileDetails = action.payload?.data?.result[0]?.profile;
     },
     [profileDetailsUpdateFetchAPI.rejected]: (state, action) => {
       state.isUpdating = false;

@@ -154,10 +154,9 @@ const Tool = () => {
   useEffect(() => {
     dispatch(profileDetailsFetchAPI())
 }, [])
-
   return (
     <RouteMiddleWare>
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full justify-center items-center">
       <div className="flex justify-end gap-1 md:hidden">
       {/* <div className="flex justify-end">
           <button onClick={() => {navigate("/saved-results");dispatch(setHasTitleTag([]));}} className="flex gap-6 border-l-[5px] border-t-[5px] ms:border-x-[1px] ms:border-t-[1px] md:border-t-[3px] md:border-l-[3px] md:border-r-[0px] lg:border-l-[5px] lg:border-t-[5px] lg:border-r-[0px] border-solid border-white bg-[#544BB9] rounded-t-xl px-5 py-1">
@@ -187,7 +186,7 @@ const Tool = () => {
         </div>
       </div>
       </div>
-      <div className="flex lg:flex-row p-10 ms:p-4 sm:p-6 md:p-8 lg:p-5 gap-8 md:rounded-xl lg:rounded-xl bg-white w-full ms:flex-col">
+      <div className="flex lg:flex-row p-10 ms:p-4 sm:p-6 md:p-8 lg:p-5 gap-8 md:rounded-xl lg:rounded-xl bg-white w-full ms:flex-col lg:max-w-[95%]">
         <div className="flex flex-col gap-3 w-full">
           <div className="flex flex-col">
             <div className="">
@@ -314,7 +313,7 @@ const Tool = () => {
           (hasTitleTag?.length > 0)
           ? (
             <div className="flex flex-col gap-5 w-full">
-              {allTitles?.length > 0 && (
+              {allTitles?.length > 0 && allTitles.filter((data) => { return data.trim().length > 0 && data !== "."}).length > 0 && (
                 <div className="flex flex-col gap-1 w-full group">
                   <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-base text-[#4A5568]">
                     Headlines
@@ -323,7 +322,7 @@ const Tool = () => {
                     <div className="max-h-[200px] scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
                       <div className="flex flex-col gap-2">
                         {allTitles &&
-                          allTitles.map((title, id) => (
+                          allTitles.filter((data) => { return data.trim().length > 0}).map((title, id) => (
                             <div
                               key={id}
                               className="flex gap-5 w-full items-start justify-between border-[1px] border-solid border-[#EDF2F7] rounded-md p-2"
@@ -364,11 +363,11 @@ const Tool = () => {
                   )}
                 </div>
               )}
-              {specialTags?.length > 0 &&
+              {specialTags?.length > 0 && specialTags.filter((data) => { return data.trim().length > 0 && data !== "."}).length > 0 &&
               <div className="flex flex-col gap-1 w-full">
                 <div className="flex items-center gap-3">
                   <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-base text-[#4A5568]">Keywords</p>
-                  {specialTags?.length > 0 && (
+                  {specialTags?.length > 1 && (
                     <button
                       onClick={() => {
                         navigator.clipboard.writeText(copyAllSpecialTags);
@@ -391,7 +390,7 @@ const Tool = () => {
                 <div className="py-1">
                   <div className="flex gap-2 flex-wrap">
                     {specialTags?.length > 0 &&
-                      specialTags.map((tag, id) => (
+                      specialTags.filter((data) => { return data.trim().length > 0 && data !== "."}).map((tag, id) => (
                         <div key={id}>
                           <button
                             onClick={(e) => {
