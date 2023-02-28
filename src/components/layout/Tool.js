@@ -156,7 +156,7 @@ const Tool = () => {
 }, [])
 
   useEffect(() => {
-    document.title = "Home | Tagline Generator"
+    document.title = "Tagline Generator"
   }, [])
 
   return (
