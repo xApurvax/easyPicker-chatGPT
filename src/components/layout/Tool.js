@@ -484,10 +484,10 @@ const Tool = () => {
           ) : (
             <div className="flex h-full justify-center items-center px-4 w-full">
               <p className="font-medium text-base text-[#4A5568] hidden lg:flex">
-                Fill out the left form to generate content
+                Fill out the left form to generate titles
               </p>
               <p className="font-medium text-base text-[#4A5568] ms:text-xs sm:text-base md:text-lg lg:text-lg sm:flex lg:hidden">
-                Fill out the above form to generate content
+                Fill out the above form to generate titles
               </p>
             </div>
           )
