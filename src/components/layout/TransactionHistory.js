@@ -241,7 +241,7 @@ const SavedRecords = () => {
         </div>
         </div>
         <div className='min-h-[20vh] h-max overflow-x-auto max-w-[100vw] border-[1px] border-solid border-[#aab2b8] rounded-md'>
-        <table className="border-separate border-spacing-y-2 w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[480px] min-h-[300px]">
+        <table className="border-separate border-spacing-y-2 w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[480px] min-h-[320px]">
               <thead>
                 {headerGroups.map((headerGroup, i) => (
                   <tr
@@ -301,7 +301,7 @@ const SavedRecords = () => {
                     <>
                       <tr>
                         <td colSpan={5}>
-                          <div className="flex justify-center items-center h-[250px]">
+                          <div className="flex justify-center items-center h-[320px]">
                             <div className="flex flex-col gap-15">
                               <div className="flex justify-center items-center">
                                 <CgSmileNeutral size={50} fill="black" />
@@ -323,7 +323,7 @@ const SavedRecords = () => {
                 <tbody>
                   <tr className='h-full'>
                     <td colSpan={5}>
-                      <div className="flex justify-center items-center h-full min-h-[240px]">
+                      <div className="flex justify-center items-center h-full min-h-[320px]">
                         <Oval
                           color="#544bb9"
                           height="50"

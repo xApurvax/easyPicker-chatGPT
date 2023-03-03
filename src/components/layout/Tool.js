@@ -200,7 +200,7 @@ const Tool = () => {
               </p>
               <div className="w-full">
               <textarea
-                className="resize-none ms:resize-y p-3 my-2 lg:my-1 bg-[#EDF2F7] border-[1px] rounded-md border-solid border-[#f8f8f8] text-[16px] ms:text-xs sm:text-base md:text-lg lg:text-xs min-h-[180px] w-full focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed"
+                className="resize-none ms:resize-y p-3 my-2 lg:my-1 bg-[#EDF2F7] border-[1px] rounded-md border-solid border-[#aab2b8] text-[16px] ms:text-xs sm:text-base md:text-lg lg:text-xs min-h-[180px] w-full focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed"
                 rows={10}
                 cols={75}
                 disabled={isLoading}
@@ -495,7 +495,7 @@ const Tool = () => {
         </div>
       </div>
     </div>
-    {/* <BuyPointsModal /> */}
+    {/* // <BuyPointsModal /> */}
     </RouteMiddleWare>
   );
 };

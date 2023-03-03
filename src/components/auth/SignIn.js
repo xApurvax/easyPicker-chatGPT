@@ -100,7 +100,7 @@ const SignIn = () => {
                     <div className='flex gap-1'>
                             <p className='font-normal text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#4A5568]'>Already have an account ? </p>
                             <div className='font-bold text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#544BB9] cursor-pointer' 
-                            onClick={() => { navigate('/auth/signin')}}>sign in</div>
+                            onClick={() => { navigate('/auth/signin')}}>Sign in</div>
                     </div>
                         {/* <div className='flex gap-1'>
                             <p className='font-normal text-sm text-[#4A5568]'>You can</p>

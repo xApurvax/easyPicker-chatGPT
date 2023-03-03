@@ -8,7 +8,7 @@ import FooterNew from "./FooterNew";
 import NavBarNewA from "./NavBarNewA";
 import { dynamicHeadline } from "../../utils/Data";
 
-let COUNT = 0;
+let COUNT = 0;  
 const HeaderNew = ({ children }) => {
   const [heading, setHeading] = useState(dynamicHeadline[0]);
   const [headingCount, setHeadingCount] = useState(0);
@@ -29,7 +29,7 @@ const HeaderNew = ({ children }) => {
     <div className='flex flex-col bg-[#544BB9] h-screen'>
       <NavBarNewA />
       <div className="">
-        <header className="bg-[#544BB9] py-0 relative after:content-[''] after:h-[30%] after:w-full after:absolute after:top-full after:bg-[#EDF2F7] after:-translate-y-full after:z-0 h-full min-h-[80vh] flex flex-col items-center justify-center w-full">
+        <header className="bg-[#544BB9] py-0 relative after:content-[''] after:h-[30%] after:w-full after:absolute after:top-full after:bg-[#EDF2F7] after:-translate-y-full after:z-0 h-full min-h-[80vh] flex flex-col items-center w-full">
           <div className="flex flex-col justify-center items-center ms:gap-1">
             <p className="font-bold text-6xl ms:text-2xl sm:text-3xl md:text-3xl lg:text-3xl text-white">
               AI Title Generator

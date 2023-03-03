@@ -3,7 +3,7 @@ import logo from "../../assets/logo-infynno-white.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut, setLogOutModal } from '../../redux/slices/auth/loginSlice';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiLogOut } from 'react-icons/fi';
+import { FiLogOut, FiSettings} from 'react-icons/fi';
 import { CgProfile } from 'react-icons/cg';
 import { setHasTitleTag } from '../../redux/slices/generateHeadlineSlice';
 import { LogoutModal } from '../modal/LogoutModal';
@@ -66,7 +66,7 @@ const NavbarNewA = () => {
     ${toggle ? "fixed top-0" : ""}`}>
       <div className="flex justify-between w-full py-3 max-w-6xl">
         <div className="flex gap-5 items-center justify-center">
-        <a href="/">
+        <a href="/generator">
           <img src={logo} alt="logo" className="w-14 cursor-pointer" />
         </a>
         {/* <a href="/">
@@ -135,6 +135,16 @@ const NavbarNewA = () => {
                             navigate("/history")}} className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
                     History
                   </li>
+                  {/* <li onClick={() => {setIsNavOpen(false);
+                          setToggle(false);
+                            const coinsText = document.querySelector("#nav-icon4")
+                          coinsText?.classList?.remove("open");
+                          dispatch(setHasTitleTag([]));
+                            navigate("/transaction-history")
+                            dispatch(setLogOutModal(true)); 
+                            }} className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
+                    How it works
+                  </li> */}
                   <li onClick={() => {setIsNavOpen(false);
                           setToggle(false);
                             const coinsText = document.querySelector("#nav-icon4")
@@ -149,6 +159,13 @@ const NavbarNewA = () => {
                   :
                   <>
                   {/* <div className='flex items-center justify-center'> */}
+                  <button onClick={() => {setIsNavOpen(false);
+                    setToggle(false);
+                  const coinsText = document.querySelector("#nav-icon4")
+                  coinsText?.classList?.remove("open");
+                  navigate("/");}} className="font-bold text-lg rounded-md text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap list-none">
+                    How it works
+                  </button>
                   <a href="https://infynno.com/about-us/" target="_blank">
                     <li className="font-bold text-lg text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap">
                       About us
@@ -169,17 +186,17 @@ const NavbarNewA = () => {
             // Cookies.remove("userDetails");
              }}
             className='flex gap-2 items-center font-bold text-lg px-3 py-1 rounded-md bg-[#544BB9] text-white hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap'>
-              Log out
+              Sign out
               <FiLogOut />
             </button> 
             :
-            <div>
+            <div className='flex'>
               <button onClick={() => {setIsNavOpen(false);
                 setToggle(false);
               const coinsText = document.querySelector("#nav-icon4")
               coinsText?.classList?.remove("open");
-              navigate("/auth/register");}} className="font-bold text-lg px-3 py-1 rounded-md bg-[#544BB9] text-white hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap list-none">
-                Get Started
+              navigate("/auth/signin");}} className="felx font-bold text-lg px-3 py-1 rounded-md bg-[#544BB9] text-white hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap list-none">
+                Sign in
               </button>
             </div>
             }
@@ -221,7 +238,7 @@ const NavbarNewA = () => {
                 Get Started
               </li>
             </Link>} */}
-              {token || tokenR || accessToken ?
+              {accessToken ?
             // <button 
             // onClick={() => {dispatch(setLogOutModal(true)); setIsNavOpen(false);
             //   const coinsText = document.querySelector("#nav-icon4")
@@ -232,7 +249,7 @@ const NavbarNewA = () => {
             //   Log out
             //   <FiLogOut />
             // </button> 
-            <div className="flex gap-[5%] justify-center items-center">
+            <div className="flex gap-4 justify-center items-center">
               <div className=''>
                  <div className="flex justify-end gap-1 ms:justify-between md:justify-end">
                    <div className="bg-[#544BB9] flex justify-end">
@@ -271,7 +288,7 @@ const NavbarNewA = () => {
                     <img
                     src={profileDetails?.profile_pic}
                     alt="Picture of an text"
-                    className="overflow-hidden w-14 h-10.5 rounded-full border-[1px] border-solid border-gray-500"
+                    className="overflow-hidden w-14 h-14 rounded-full border-[1px] border-solid border-gray-500"
                     />
                     : 
                     <CgProfile />
@@ -332,6 +349,29 @@ const NavbarNewA = () => {
                         )}
                       </Menu.Item>
                     </div>
+                    {/* <div className="px-1 py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button
+                          onClick={() => {setIsNavOpen(false);
+                            const coinsText = document.querySelector("#nav-icon4")
+                          coinsText?.classList?.remove("open");
+                          dispatch(setHasTitleTag([]));
+                            navigate("/how-it-works")}}
+                            className={`${
+                              active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                            } group flex gap-2.5 w-full items-center rounded-md px-2 py-2 text-sm`}
+                          >
+                            {active ? (
+                              <div><FiSettings /></div>
+                            ) : (
+                              <div><FiSettings /></div>
+                            )}
+                            <div>How it works</div>
+                          </button>
+                        )}
+                      </Menu.Item>
+                    </div> */}
                     <div className="px-1 py-1">
                       <Menu.Item>
                         {({ active }) => (
@@ -351,7 +391,7 @@ const NavbarNewA = () => {
                             ) : (
                               <div><FiLogOut /></div>
                             )}
-                            <div>Log out</div>
+                            <div>Sign out</div>
                           </button>
                         )}
                       </Menu.Item>
@@ -361,8 +401,17 @@ const NavbarNewA = () => {
               </Menu>
             </div>
             :
-            <div className='flex gap-[10%] w-full'>
-              <div className='flex items-center justify-center'>
+            <div className='flex gap-5 w-full h-full items-start justify-start'>
+              <div className='flex items-center justify-center w-full h-full'>
+              <button onClick={() => {setIsNavOpen(false);
+                setToggle(false);
+              const coinsText = document.querySelector("#nav-icon4")
+              coinsText?.classList?.remove("open");
+              navigate("/");}} className="font-bold text-lg text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap list-none">
+                How it works
+              </button>
+              </div>
+              <div className='flex items-center justify-center w-full h-full'>
               <a href="https://infynno.com/about-us/" target="_blank">
                 <li className="font-bold text-lg text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap">
                   About us
@@ -372,8 +421,8 @@ const NavbarNewA = () => {
               <button onClick={() => {setIsNavOpen(false);
               const coinsText = document.querySelector("#nav-icon4")
               coinsText?.classList?.remove("open");
-              navigate("/auth/register");}} className="font-bold text-lg px-2 py-1 rounded-md bg-white text-[#544BB9] hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap list-none">
-                Get Started
+              navigate("/auth/signin");}} className="font-bold text-lg px-2 py-1 rounded-md bg-white text-[#544BB9] hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap list-none">
+                Sign in
               </button>
               </div>
             }

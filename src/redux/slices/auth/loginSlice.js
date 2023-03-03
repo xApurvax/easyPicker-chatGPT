@@ -75,7 +75,7 @@ const loginSlice = createSlice({
     },
     [loginFetchAPi.rejected]: (state, action) => {
       state.isSuccess = false;
-      // toast.error(action?.payload);
+      toast.error(action?.payload);
     },
   },
 });

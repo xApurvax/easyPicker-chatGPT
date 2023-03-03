@@ -307,8 +307,76 @@ const CustomForm = ({tool,login,register}) => {
         </div>
     </div>
     {/* </form> */}
+    <div className="bg-[#544BB9] py-16 ms:py-8 sm:py-10 md:py-14 lg:py-16 h-full flex flex-col items-center justify-center w-full">
+          <div className="flex flex-col justify-center items-center gap-1 ms:gap-5 lg:gap-16 ">
+            <div className="flex justify-center items-center">
+              <p className="font-bold text-xl ms:text-xl sm:text-4xl md:text-4xl lg:text-4xl text-center text-white">
+              How Does AI Title Generator Work?
+              </p>
+            </div>
+            <div className='grid grid-cols-2 ms:grid-cols-1 md:grid-cols-2 gap-4 ms:gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full h-full max-w-6xl'>
+                <div className='relative z-[10] bg-white flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                  <p className='font-bold text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Enter your blog / article</p>
+                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Consider:</p>
+                  <div className='py-2'>
+                    <ul className='flex flex-col gap-2 font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333] list-disc px-4'>
+                        <li>A high-level topic relevant to your audience</li>
+                        <li>Your target keyword</li>
+                        <li>A question or skill you’re teaching your audience about</li>
+                    </ul>
+                  </div>
+                  <div className='absolute -top-1/4 -left-0 -z-[10]'>
+                      <p className='text-[230px] ms:text-[120px] md:text-[230px] text-[#ede0ff]'>1</p>
+                  </div>
+                </div>
+                <div className='relative z-[10] bg-white flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                  {/* <p className='font-bold text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Enter your idea</p> */}
+                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>AI Title Generator will automatically deliver creative title suggestions in a variety of formats, including:</p>
+                  <div className='py-2'>
+                    <ul className='flex flex-col gap-2 font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333] list-disc px-4'>
+                        <li>A high-level topic relevant to your audience</li>
+                        <li>Your target keyword</li>
+                        <li>A question or skill you’re teaching your audience about</li>
+                    </ul>
+                  </div>
+                  <div className='absolute -top-1/4 -left-0 -z-[10]'>
+                      <p className='text-[230px] ms:text-[120px] md:text-[230px] text-[#ede0ff]'>2</p>
+                  </div>
+                </div>
+                <div className='relative z-[10] bg-white flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                  {/* <p className='font-bold text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Enter your idea</p> */}
+                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Pick your favorite options to add to your content plan, copy or download them as a spreadsheet.</p>
+                  {/* <div className='py-2'>
+                    <ul className='flex flex-col gap-2 font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>
+                        <li>A high-level topic relevant to your audience</li>
+                        <li>Your target keyword</li>
+                        <li>A question or skill you’re teaching your audience about</li>
+                    </ul>
+                  </div> */}
+                  <div className='absolute -top-3/4 -left-0 -z-[10]'>
+                      <p className='text-[230px] ms:text-[120px] md:text-[230px] text-[#ede0ff]'>3</p>
+                  </div>
+                </div>
+                <div className='relative z-[10] bg-white flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                  {/* <p className='font-bold text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Enter your idea</p> */}
+                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Click on related ideas and generate new titles for each one.</p>
+                  {/* <div className='py-2'>
+                    <ul className='flex flex-col gap-2 font-normal text-lg ms:text-[8px] sm:text-base md:text-lg lg:text-2xl text-[#333333]'>
+                        <li>A high-level topic relevant to your audience</li>
+                        <li>Your target keyword</li>
+                        <li>A question or skill you’re teaching your audience about</li>
+                    </ul>
+                  </div> */}
+                  <div className='absolute -top-3/4 -left-0 -z-[10]'>
+                      <p className='text-[230px] ms:text-[120px] md:text-[230px] text-[#ede0ff]'>4</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
     </div>
   )
 }
 
 export default CustomForm
+

@@ -9,7 +9,7 @@ const AuthMiddleware = ({ children }) => {
   const navigate = useNavigate();
   useEffect(() => {
     if (token) {
-      navigate("/");
+      navigate("/generator");
       // navigate("/auth/login");
     }else {
       setUnauthorized(true);

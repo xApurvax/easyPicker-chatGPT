@@ -104,8 +104,8 @@ const LogIn = () => {
                     </form>)}
             </Formik>
                 <div className='flex gap-1'>
-                   <div className='font-bold text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#544BB9] cursor-pointer' onClick={() => {navigate('/auth/register')}}>Register</div>
-                   <p className='font-normal text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#4A5568]'>to sign up for an account </p>   
+                   <div className='font-bold text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#544BB9] cursor-pointer' onClick={() => {navigate('/auth/register')}}>Sign up</div>
+                   <p className='font-normal text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#4A5568]'>for an account </p>   
                 </div>
             </div>
             {/* <div className='hidden md:flex md:flex-col gap-10 justify-center items-center text-center px-4 w-full bg-[#544BB9] rounded-md'>

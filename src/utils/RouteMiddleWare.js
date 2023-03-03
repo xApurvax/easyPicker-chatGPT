@@ -10,7 +10,7 @@ const RouteMiddleWare = ({ children }) => {
   useEffect(() => {
     if (!token) {
     //   navigate("/");
-      navigate("/auth/signin");
+      navigate("/");
     }else {
       setUnauthorized(true);
     }

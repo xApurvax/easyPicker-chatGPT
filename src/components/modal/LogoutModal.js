@@ -52,7 +52,7 @@ export const LogoutModal = () => {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900 mt-2 ms:mt-2 sm:mt-2 md:mt-4 lg:mt-4 ms:text-xs sm:text-base md:text-xl lg:text-xl"
                 >
-                  Are you sure you want to log out ?
+                  Are you sure you want to Sign out ?
                 </Dialog.Title>
                 <div onClick={() => {
                         dispatch(setLogOutModal(false));
