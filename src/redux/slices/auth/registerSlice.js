@@ -54,7 +54,7 @@ const registerSlice = createSlice({
     },
     [registerFetchAPi.rejected]: (state, {payload}) => {
       state.isRegisterLoading = false;
-      // toast.error(payload);
+      toast.error(payload);
     },
   },
 });
