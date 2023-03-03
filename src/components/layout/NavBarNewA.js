@@ -288,10 +288,10 @@ const NavbarNewA = () => {
                     <img
                     src={profileDetails?.profile_pic}
                     alt="Picture of an text"
-                    className="overflow-hidden w-14 h-14 rounded-full border-[1px] border-solid border-gray-500"
+                    className="overflow-hidden w-14 h-14 lg:w-12 lg:h-12 rounded-full border-[1px] border-solid border-gray-500"
                     />
                     : 
-                    <CgProfile className='text-5xl' />
+                    <CgProfile className='h-14 w-14 lg:w-12 lg:h-12' />
                     }
                   </Menu.Button>
                 </div>
