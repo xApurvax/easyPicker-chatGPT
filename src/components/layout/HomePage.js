@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import RouteMiddleWare from '../../utils/RouteMiddleWare'
+import AuthMiddleware from '../../utils/AuthMiddleware'
 import FooterNew from './FooterNew'
 import NavbarNewA from './NavBarNewA'
 import { dynamicHeadline } from "../../utils/Data";
@@ -27,6 +27,7 @@ const HomePage = () => {
       }, [])
 
   return (
+    <AuthMiddleware>
     <div className='flex flex-col'>
       <div className='sticky top-0 w-full z-[20]'>  
       <NavbarNewA />
@@ -226,6 +227,7 @@ const HomePage = () => {
         <FooterNew />
       </div>
     </div>
+    </AuthMiddleware>
   )
 }
 
