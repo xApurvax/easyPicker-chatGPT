@@ -5,6 +5,8 @@ import FooterNew from './FooterNew'
 import NavbarNewA from './NavBarNewA'
 import { dynamicHeadline } from "../../utils/Data";
 import demo1 from "../../assets/Demo1-tagline-generator.png";
+import demo2 from "../../assets/Demo2-tagline-generator.png";
+import demo3 from "../../assets/Demo3-tagline-generator.png";
 import use1 from "../../assets/use-title-generator-1.svg";
 import use2 from "../../assets/use-title-generator-2.svg";
 import use3 from "../../assets/use-title-generator-3.svg";
@@ -102,11 +104,6 @@ const HomePage = () => {
                   <p
                     className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
                   >
-                    ⮩ Use AI to set your content up for success with creative, attention-grabbing blog post titles.
-                  </p>
-                  <p
-                    className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
-                  >
                     ⮩ If you like the produced titles and wish to save them for future use, simply click on save results. You may then examine prior results and copy them later.
                   </p>
                   <p
@@ -114,15 +111,20 @@ const HomePage = () => {
                   >
                     ⮩ If you want to produced titles with same input and and wish to regenerate again than we have that option too.
                   </p>
+                  <p
+                    className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
+                  >
+                    ⮩ To increase reach, use generated keywords as # hastags while posting it on social media.
+                  </p>
                 </div>
               </div>
               <div className='w-full h-full flex justify-center items-center'>
-                  <img src={demo1} alt="Demo-tagline-generator" className=' rounded-2xl' />
+                  <img src={demo2} alt="Demo-tagline-generator" className=' rounded-2xl' />
               </div>
           </div>
           <div className='py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex ms:flex-col md:flex-row bg-[#544BB9] max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl'>
               <div className='w-full h-full flex justify-center items-center'>
-                  <img src={demo1} alt="Demo-tagline-generator" className=' rounded-2xl' />
+                  <img src={demo3} alt="Demo-tagline-generator" className=' rounded-2xl' />
               </div>
               <div className='w-full h-full flex justify-center items-center'>
                 <div className="flex flex-col gap-[2%] justify-center items-center ms:items-start ms:justify-start md:items-center md:justify-center ms:gap-3 lg:gap-5 max-w-[80%] ms:max-w-[95%] lg:max-w-[80%]">
@@ -132,7 +134,17 @@ const HomePage = () => {
               <p
                 className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
               >
-               ⮩ Enter a topic you’d like to cover, and get suggestions for original articles that include How-To, Guides, Listicles, and more
+               ⮩ Use AI to set your content up for success with creative, attention-grabbing blog post titles.
+              </p>
+              <p
+                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
+              >
+               ⮩ Enter a topic you’d like to cover, and get suggestions for original blogs or articles.
+              </p>
+              <p
+                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
+              >
+               ⮩ Specified keywords will appear in the title, inventive terms might be used for optimum SEO techniques.
               </p>
                 </div>
               </div>
