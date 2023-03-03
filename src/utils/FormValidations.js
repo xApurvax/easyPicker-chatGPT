@@ -33,11 +33,11 @@ export const profileUpdateValidationSchema = Yup.object({
     name: Yup.string()
     .min(3, "Must be 3 char long.")
     .required("Name is required.").trim(),
-    email: Yup.string().email('Enter valid e-mail').required('E-mail is required.'),
+    email: Yup.string().email('Enter valid e-mail.').required('E-mail is required.'),
 });
 
 export const forgotPasswordValidationSchema = Yup.object({
-    email: Yup.string().email('Enter valid e-mail').required('E-mail is required.'),
+    email: Yup.string().email('Enter valid e-mail.').required('E-mail is required.'),
 });
 
 export const ResetPasswordValidationSchema = Yup.object({
