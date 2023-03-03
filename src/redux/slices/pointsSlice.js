@@ -65,6 +65,7 @@ const pointsSlice = createSlice({
     [BuyPointsFetchAPi.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.showBuyPointsModal = false;
+      toast.success(action?.payload?.data?.message);
     },
     [BuyPointsFetchAPi.rejected]: (state, action) => {
       state.isLoading = false;

@@ -212,6 +212,9 @@ const SavedRecords = () => {
         usePagination
       );
 
+      useEffect(() => {
+      }, [saveResultsData])
+
   return (
     <RouteMiddleWare>
     <div className="flex flex-col p-5 gap-5 rounded-xl bg-white w-full h-full">

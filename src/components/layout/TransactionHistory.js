@@ -79,7 +79,7 @@ const SavedRecords = () => {
           })
         );
       }, [currentPageLocal]);
-
+      
     // useEffect(() => {
     //     saveResultsData.results?.title?.split(",")?.length > 0 &&
     //     saveResultsData.results?.tag?.split(",")?.length  > 0  &&
@@ -200,6 +200,9 @@ const SavedRecords = () => {
         useGlobalFilter,
         usePagination
       );
+        
+      useEffect(() => {
+      }, [allTransactionHistory])
 
   return (
     <RouteMiddleWare>
@@ -370,7 +373,7 @@ const SavedRecords = () => {
               onPageChange={handlePageClick}
               pageRangeDisplayed={3}
               marginPagesDisplayed={1}
-              pageCount={Math.ceil(totalResults/4)}
+              pageCount={Math.ceil(totalResults/3)}
               previousLabel={
                 <button
                   className="disabled:opacity-60"

@@ -291,7 +291,7 @@ const NavbarNewA = () => {
                     className="overflow-hidden w-14 h-14 rounded-full border-[1px] border-solid border-gray-500"
                     />
                     : 
-                    <CgProfile />
+                    <CgProfile className='text-5xl' />
                     }
                   </Menu.Button>
                 </div>
