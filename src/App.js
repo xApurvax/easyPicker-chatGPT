@@ -16,6 +16,7 @@ import Profile from "./components/auth/Profile";
 import HeaderAfterAuth from "./components/layout/HeaderAfterAuth";
 import HomePage from "./components/layout/HomePage";
 import ResetPasswordMiddleware from "./utils/ResetPasswordMiddleware";
+import NotFound from "./components/layout/NotFound";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/history" element={<HeaderAfterAuth ><SavedRecords /></HeaderAfterAuth>}  />
           <Route path="/transaction-history" element={<HeaderAfterAuth ><TransactionHistory /></HeaderAfterAuth>}  />
           <Route path="/profile" element={<HeaderAfterAuth ><Profile /></HeaderAfterAuth>}  />
+          <Route path='*' element={<NotFound />}/>
         </Routes>
     </BrowserRouter>
     {/* <FooterNew /> */}
