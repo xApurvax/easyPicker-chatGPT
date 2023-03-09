@@ -47,7 +47,7 @@ const HomePage = () => {
 
   const handleGetInTouchSubmit = (values) => {
       //  dispatch(loginFetchAPi(values))
-      console.log(values)
+      // console.log(values)
   }
 
   // const regenerateCaptcha = () => {
