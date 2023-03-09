@@ -30,6 +30,15 @@ const NavbarNewA = () => {
     tokenR: state.registerSlice.allData?.token?.access,
     profileDetails: state.ProfileSlice.profileDetails,
   }));
+
+  const handleClickScroll = () => {
+    const element = document.getElementById('howitworks');
+    if (element) {
+      // 👇 Will scroll smoothly to the top of the next section
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
   const navigate = useNavigate()
   useEffect(() => {
   }, [token,tokenR])
@@ -51,7 +60,6 @@ const NavbarNewA = () => {
 
   useEffect(() => {
   }, [profileDetails?.profile_pic])
-  // console.log([profileDetails?.profile_pic],"navbar")
 
   
   const toggleClass = () => {
@@ -132,8 +140,8 @@ const NavbarNewA = () => {
                             const coinsText = document.querySelector("#nav-icon4")
                           coinsText?.classList?.remove("open");
                           dispatch(setHasTitleTag([]));
-                            navigate("/history")}} className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
-                    History
+                            navigate("/bookmarks")}} className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
+                    Bookmarks
                   </li>
                   {/* <li onClick={() => {setIsNavOpen(false);
                           setToggle(false);
@@ -145,7 +153,7 @@ const NavbarNewA = () => {
                             }} className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
                     How it works
                   </li> */}
-                  <li onClick={() => {setIsNavOpen(false);
+                  {/* <li onClick={() => {setIsNavOpen(false);
                           setToggle(false);
                             const coinsText = document.querySelector("#nav-icon4")
                           coinsText?.classList?.remove("open");
@@ -154,7 +162,7 @@ const NavbarNewA = () => {
                             dispatch(setLogOutModal(true)); 
                             }} className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
                     Buy Coins
-                  </li>
+                  </li> */}
                   </>
                   :
                   <>
@@ -259,23 +267,23 @@ const NavbarNewA = () => {
                           // size={35}
                           className={`${availableCoins && "origin-center hover:rotate-12 text-2xl ms:text-[16px] sm:text-[24px] md:text-lg lg:text-lg cursor-pointer"}`}
                         />
-                        <button onClick={() =>{ dispatch(setShowBuyPointsModal(true))}} className="flex items-center justify-center">
-                        <BiPlus className={`${"text-2xl ms:text-[16px] sm:text-[20px] md:text-xl lg:text-2xl cursor-pointer text-white md:px-0.5"}`}/>
-                        <p
+                         <p
                           id="coins-text"
-                          className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-base lg:text-base text-white`}
+                          className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-base lg:text-base text-white ml-2`}
                         >
                           {!availableCoins ? 0 : availableCoins}
                         </p>
+                        <button onClick={() =>{ dispatch(setShowBuyPointsModal(true))}} className="flex items-center justify-center">
+                        <BiPlus className={`${"text-2xl ms:text-[16px] sm:text-[20px] md:text-xl lg:text-2xl cursor-pointer text-white md:px-0.5"}`}/>
                         </button>
                       </div>
                     </div>
                     <div className="flex justify-end items-center">
-                        <button onClick={() => {navigate("/history");dispatch(setHasTitleTag([]));}} className="flex gap-6 bg-[#544BB9] px-2 py-1 h-full w-full">
+                        <button onClick={() => {navigate("/bookmarks");dispatch(setHasTitleTag([]));}} className="flex gap-6 bg-[#544BB9] px-2 py-1 h-full w-full">
                           <p
                             className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-base lg:text-base text-white whitespace-nowrap`}
                           >
-                            History
+                            Bookmarks
                           </p>
                         </button>
                     </div>
@@ -403,13 +411,16 @@ const NavbarNewA = () => {
             :
             <div className='flex gap-5 w-full h-full items-start justify-start'>
               <div className='flex items-center justify-center w-full h-full'>
+                {/* <a href="#howitworks"> */}
               <button onClick={() => {setIsNavOpen(false);
                 setToggle(false);
               const coinsText = document.querySelector("#nav-icon4")
               coinsText?.classList?.remove("open");
+              handleClickScroll()
               navigate("/");}} className="font-bold text-lg text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap list-none">
                 How it works
               </button>
+              {/* </a> */}
               </div>
               <div className='flex items-center justify-center w-full h-full'>
               <a href="https://infynno.com/about-us/" target="_blank">

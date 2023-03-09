@@ -5,7 +5,7 @@ import { useGlobalFilter } from "react-table/dist/react-table.development.js";
 import ReactPaginate from "react-paginate";  
 import { CgSmileNeutral } from "react-icons/cg";
 import { IoSearchOutline,IoCopyOutline } from "react-icons/io5";
-import { Oval,RevolvingDot } from  'react-loader-spinner'
+import { Oval } from  'react-loader-spinner'
 import { saveResultsDataFetchAPi } from '../../redux/slices/savedRecordSlice';
 import { toast } from 'react-hot-toast';
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
@@ -33,23 +33,9 @@ const SavedRecords = () => {
 
      const handleFilter = (e) => {
         e.preventDefault()
-        // if(e.target.value.trim().length > 0)
-        // {
-        // setShowInputIcon(false)}
         setSearchByHeading(e.target.value)
       }
-    // const [latestCopied, setLatestCopied] = useState({
-    // copiedId: null,
-    // });
 
-    // const [copyAllId, setCopyAllId] = useState({
-    //     id: saveResultsData.results?.title?.split(",")?.length + saveResultsData.results?.tag?.split(",")?.length + 1,
-    //   });
-
-    // useEffect(() => {
-    //     dispatch(saveResultsDataFetchAPi())
-    // }, [])
-    //   // console.log(Math.round(saveResultsData.length/3),"dddddddddddddddddd")
     useEffect(() => {
         if (currentPageLocal === 1) {
           dispatch(
@@ -70,14 +56,8 @@ const SavedRecords = () => {
         );
       }, [currentPageLocal]);
 
-    // useEffect(() => {
-    //     saveResultsData.results?.title?.split(",")?.length > 0 &&
-    //     saveResultsData.results?.tag?.split(",")?.length  > 0  &&
-    //       setCopyAllId({ id: saveResultsData.results?.title?.split(",")?.length + saveResultsData.results?.tag?.split(",")?.length + 1 });
-    //   }, [copyAllId, latestCopied]);
-
     useEffect(() => {
-      document.title = "Records | Tagline Generator"
+      document.title = "Bookmarks | Tagline Generator"
     }, [])
 
     const columns = React.useMemo(
@@ -243,7 +223,7 @@ const SavedRecords = () => {
             <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer'  onClick={(e) => {e.preventDefault();
                     history('/');
             }}  />
-            <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-lg'>/ History</p>
+            <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-lg'>/ Bookmarks</p>
             {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
         </div>
         </div>

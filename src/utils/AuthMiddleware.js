@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getAccessToken } from './helper'
 import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
 
 const AuthMiddleware = ({ children }) => {
   const [unauthorized, setUnauthorized] = useState(false);
@@ -10,7 +9,6 @@ const AuthMiddleware = ({ children }) => {
   useEffect(() => {
     if (token) {
       navigate("/generator");
-      // navigate("/auth/login");
     }else {
       setUnauthorized(true);
     }

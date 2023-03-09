@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import showEye from '../../assets/ShowEye.svg'
-import hideEye from '../../assets/HideEye.svg'
 import { useField } from 'formik';
 import classNames from 'classnames';
 import { BsEye,BsEyeSlash } from 'react-icons/bs';
@@ -20,7 +18,6 @@ const InputField = ({ inputstyle, placeholder, borderstyle, errorRight, iconAfte
                 {...field}
                 {...props}
                 placeholder={placeholder}
-                // className={meta.touched && meta.error ? borderstyle : inputstyle}
                 className={classNames({ "pl-[50px]": iconBefore }, { [inputstyle]: !meta.error }, { [borderstyle]: meta.error })}
                 autoComplete="off"
                 type={
@@ -36,10 +33,8 @@ const InputField = ({ inputstyle, placeholder, borderstyle, errorRight, iconAfte
                     onClick={() => setShowPassword(!showPassword)}
                 >
                     {(showPassword ? (
-                        // <img src={showEye} alt="" />
                         <BsEyeSlash size={20} />
                     ) : (
-                        // <img src={hideEye} alt="" />
                         <BsEye size={20} />
                     ))}
                 </div>

@@ -190,7 +190,6 @@ const generateHeadlineSlice = createSlice({
       state.saveTags = action.payload?.data?.result[0]["tags"];
       Cookies.set("coins", action.payload?.data?.result[0]["remaining_credit"]);
       state.hasTitleTag = action.payload?.data?.result;
-      // console.log(action?.payload?.data)
       toast.success(action?.payload?.data?.message)
       if(action.payload?.data?.result.length === 0){
         toast.error("Something went wrong!")

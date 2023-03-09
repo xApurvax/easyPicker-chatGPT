@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
 import { Formik } from 'formik'
-import logo from "../../assets/men-holding-phone.svg";
 import InputField from "../form/InputField";
 import CustomButton from "../form/CustomButton";
 import { registerValidationSchema } from '../../utils/FormValidations';
 import { useSelector, useDispatch } from "react-redux";
 import { registerFetchAPi } from '../../redux/slices/auth/registerSlice';
-import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import {  setSignInEffect } from '../../redux/slices/buttonEffectSlice';
 import AuthMiddleware from '../../utils/AuthMiddleware';
@@ -54,11 +52,11 @@ const SignIn = () => {
                                     placeholder='Username' />
                                     <InputField
                                     type='text'
-                                id='name'
-                                name='name'
-                                inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
-                                borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
-                                placeholder='Name' />
+                                    id='name'
+                                    name='name'
+                                    inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                                    borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                                    placeholder='Name' />
                                 </div>
                                 <InputField
                                 type='text'
@@ -67,7 +65,6 @@ const SignIn = () => {
                                 inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                 borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                 placeholder='Email' />
-
                                 <InputField
                                 type='password'
                                 id='password'
@@ -75,7 +72,6 @@ const SignIn = () => {
                                 inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                 borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                 placeholder='Password' />
-                               
                                 </div>
                                 <div className='py-3 ms:py-2 sm:py-2 md:py-3 lg:py-3 w-full'>
                                 <CustomButton

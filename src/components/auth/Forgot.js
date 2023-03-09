@@ -1,13 +1,10 @@
 import React,{useEffect, useState} from 'react'
 import { Formik } from 'formik'
-import logo from "../../assets/men-holding-phone.svg";
 import InputField from "../form/InputField";
 import CustomButton from "../form/CustomButton";
 import VerifyOtpModal from "../modal/VerifyOtpModal";
 import { forgotPasswordValidationSchema } from '../../utils/FormValidations';
 import { useSelector, useDispatch } from "react-redux";
-import { registerFetchAPi } from '../../redux/slices/auth/registerSlice';
-import toast, { Toaster } from 'react-hot-toast';
 import OtpInput from 'react-otp-input';
 import { forgotFetchAPi, forgotOtpVerifyApi } from '../../redux/slices/auth/forgotPasswordSlice';
 import { useNavigate } from 'react-router-dom';
@@ -18,30 +15,22 @@ const Forgot = () => {
     const [otp, setOtp] = useState("")
     const handleOtp = (otp) => setOtp(otp)
 
-    const { generateHeadlineEffect,isLoading,saveResult,reGenerate,allTitles,specialTags,hasTitleTag,copyAllSpecialTags,token,isVerify,forgotModal,isVerified } = useSelector((state) => ({
-        generateHeadlineEffect: state.buttonEffectSlice.generateHeadlineEffect,
-        saveResult: state.buttonEffectSlice.saveResult,
-        reGenerate: state.buttonEffectSlice.reGenerate,
+    const {isLoading,isVerify,forgotModal,isVerified } = useSelector((state) => ({       
         isLoading: state.generateHeadlineSlice.isLoading,
-        allTitles: state.generateHeadlineSlice.allTitles,
-        specialTags: state.generateHeadlineSlice.specialTags,
-        hasTitleTag: state.generateHeadlineSlice.hasTitleTag,
-        copyAllSpecialTags: state.generateHeadlineSlice.copyAllSpecialTags,
-        token: state.loginSlice.allData?.token?.access,
         isVerify: state.forgotPasswordSlice.isVerify,
         isVerified: state.forgotPasswordSlice.isVerified,
         forgotModal: state.forgotPasswordSlice.forgotModal,
       }));
     const navigate = useNavigate();
     const initialValues = { email: "" };
-  const handleLoginSubmit = (values) => {
-      dispatch(forgotFetchAPi(values));
-  }
-  const handleOtpVerify = (e) => {
-    e.preventDefault();
-    dispatch(forgotOtpVerifyApi({ email: forgotModal?.email, otp }));
-    setOtp('');
-}
+    const handleLoginSubmit = (values) => {
+        dispatch(forgotFetchAPi(values));
+    }
+    const handleOtpVerify = (e) => {
+        e.preventDefault();
+        dispatch(forgotOtpVerifyApi({ email: forgotModal?.email, otp }));
+        setOtp('');
+    }
 
     useEffect(() => {
         forgotModal.otpVerified && navigate('/reset-password');
@@ -106,10 +95,6 @@ const Forgot = () => {
                                                     Please check your email. We sent a OTP on your registered email
                                                     id.
                                                 </p>
-                                                {/* <div className='flex gap-2 justify-center items-center'>
-                                                <p className='font-semibold text-base text-[#4A5568] '>Didn't recive code ? </p>
-                                                <div className='font-bold text-base text-[#544BB9] cursor-pointer' onClick={() => dispatch(forgotOtpVerifyApi({ email: forgotModal?.email, otp }))}>Resend OTP</div>
-                                                </div> */}
                                             </div>
                                             <div className='flex flex-col gap-4'>
                                             <OtpInput
@@ -141,9 +126,6 @@ const Forgot = () => {
                 </VerifyOtpModal>
             </div>
         </div>
-        {/* <div className='hidden md:flex justify-center items-center text-center px-4 w-full'>
-                <p className='font-medium text-base text-[#4A5568]'>Log in/ Sign in first to access AI Headline Generator</p>
-        </div> */}
     </div>
     </AuthMiddleware>
   )

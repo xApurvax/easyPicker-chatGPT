@@ -1,49 +1,25 @@
 import React, { useEffect } from 'react'
 import { Formik } from 'formik'
-import logo from "../../assets/men-holding-phone.svg";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import InputField from "../form/InputField";
 import CustomButton from "../form/CustomButton";
-import { LoginValidationSchema } from '../../utils/FormValidations';
-import { useSelector, useDispatch } from "react-redux";
-import { registerFetchAPi } from '../../redux/slices/auth/registerSlice';
-import toast, { Toaster } from 'react-hot-toast';
 import { loginFetchAPi } from '../../redux/slices/auth/loginSlice';
-import { useNavigate } from 'react-router-dom';
 import { setLoginEffect } from '../../redux/slices/buttonEffectSlice';
+import { LoginValidationSchema } from '../../utils/FormValidations';
 import AuthMiddleware from '../../utils/AuthMiddleware';
-import ParallaxText from '../layout/AnimationLetter';
 
 const LogIn = () => {
     const dispatch = useDispatch();
 
-    const { generateHeadlineEffect,isLoading,saveResult,reGenerate,allTitles,specialTags,hasTitleTag,copyAllSpecialTags,token,isSuccess } = useSelector((state) => ({
-        generateHeadlineEffect: state.buttonEffectSlice.generateHeadlineEffect,
-        saveResult: state.buttonEffectSlice.saveResult,
-        reGenerate: state.buttonEffectSlice.reGenerate,
-        isLoading: state.generateHeadlineSlice.isLoading,
-        allTitles: state.generateHeadlineSlice.allTitles,
-        specialTags: state.generateHeadlineSlice.specialTags,
-        hasTitleTag: state.generateHeadlineSlice.hasTitleTag,
-        copyAllSpecialTags: state.generateHeadlineSlice.copyAllSpecialTags,
-        token: state.loginSlice.allData?.token?.access,
+    const { isSuccess } = useSelector((state) => ({
         isSuccess: state.loginSlice.isSuccess,
       }));
     const navigate = useNavigate();
     const initialValues = { username: "", password: "" };
     const handleLoginSubmit = (values) => {
          dispatch(loginFetchAPi(values))
-        //  .then(() => {
-        //     navigate('/');
-        //   });
     }
-    // const handleLoginSubmit = async (values) => {
-    //     try {
-    //         await dispatch(loginFetchAPi(values));
-    //         navigate('/');
-    //       } catch(error) {
-    //         // handle any rejections/errors
-    //       }
-    // }
     useEffect(() => {
         document.title = "Sign in | Tagline Generator"
       }, [])
@@ -108,11 +84,6 @@ const LogIn = () => {
                    <p className='font-normal text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#4A5568]'>for an account </p>   
                 </div>
             </div>
-            {/* <div className='hidden md:flex md:flex-col gap-10 justify-center items-center text-center px-4 w-full bg-[#544BB9] rounded-md'>
-                    <p className='font-medium text-base text-[#4A5568]'>Log in/ Sign in first to access AI Headline Generator</p>
-                    <ParallaxText baseVelocity={-5}>Log in/ Sign in first to access AI Headline Generator</ParallaxText>
-                    <ParallaxText baseVelocity={5}>Log in/ Sign in first to access AI Headline Generator</ParallaxText>
-            </div> */}
         </div>
     </AuthMiddleware>
   )

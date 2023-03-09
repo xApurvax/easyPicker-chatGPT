@@ -60,17 +60,6 @@ const Tool = () => {
       num_headers : count,
     }))
   };
-
-  // const copyToClipboard = (e) => {
-  //   // console.log(e,"wwwwwwwwwwwwwwwww")
-  //   copyRef.current.select();
-  //   document.execCommand('copy');
-  //   e.target.focus();
-  //   setCopySuccess('Copied!');
-  // }
-  // useEffect(() => {
-  //   // console.log(hasFocusedHeadline)
-  // }, [])
   
   return (
     <div>

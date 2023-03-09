@@ -6,14 +6,11 @@ import ReactPaginate from "react-paginate";
 import { CgSmileNeutral } from "react-icons/cg";
 import { GoHome } from "react-icons/go";
 import { IoIosArrowUp } from "react-icons/io";
-import { Oval,RevolvingDot } from  'react-loader-spinner'
-import { saveResultsDataFetchAPi } from '../../redux/slices/savedRecordSlice';
-import { toast } from 'react-hot-toast';
+import { Oval } from  'react-loader-spinner'
 import { MdArrowBackIosNew, MdArrowForwardIos,MdDateRange } from "react-icons/md";
-import {  RiArrowGoBackLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import { transactionHistoryFetchAPi } from '../../redux/slices/pointsSlice';
-import { GiTwoCoins ,GiCoins} from 'react-icons/gi';
+import { GiCoins} from 'react-icons/gi';
 import { RiCoinFill } from 'react-icons/ri';
 import { FaCoins } from 'react-icons/fa';
 import DatePicker from "react-datepicker";
@@ -39,25 +36,7 @@ const SavedRecords = () => {
         setCurrentPageLocal(event.selected + 1);
       };
       const [dateOrder,setDateOrder] = useState(true);
-    //  const handleFilter = (e) => {
-    //     e.preventDefault()
-    //     // if(e.target.value.trim().length > 0)
-    //     // {
-    //     // setShowInputIcon(false)}
-    //     setSearchByHeading(e.target.value)
-    //   }
-    // const [latestCopied, setLatestCopied] = useState({
-    // copiedId: null,
-    // });
 
-    // const [copyAllId, setCopyAllId] = useState({
-    //     id: saveResultsData.results?.title?.split(",")?.length + saveResultsData.results?.tag?.split(",")?.length + 1,
-    //   });
-
-    // useEffect(() => {
-    //     dispatch(saveResultsDataFetchAPi())
-    // }, [])
-    //   // console.log(Math.round(saveResultsData.length/3),"dddddddddddddddddd")
     useEffect(() => {
         if (currentPageLocal === 1) {
           dispatch(
@@ -79,14 +58,7 @@ const SavedRecords = () => {
           })
         );
       }, [currentPageLocal]);
-      
-    // useEffect(() => {
-    //     saveResultsData.results?.title?.split(",")?.length > 0 &&
-    //     saveResultsData.results?.tag?.split(",")?.length  > 0  &&
-    //       setCopyAllId({ id: saveResultsData.results?.title?.split(",")?.length + saveResultsData.results?.tag?.split(",")?.length + 1 });
-    //   }, [copyAllId, latestCopied]);
 
-    // // console.log(moment(startDate).format('YYYY-MM-DD'),"hhhhhhhhhhhhhhhhhhhh")
 
     useEffect(() => {
       document.title = "History | Tagline Generator"

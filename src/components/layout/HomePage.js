@@ -1,25 +1,61 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import AuthMiddleware from '../../utils/AuthMiddleware'
 import FooterNew from './FooterNew'
 import NavbarNewA from './NavBarNewA'
+import CustomButton from '../form/CustomButton'
+import InputField from '../form/InputField'
 import { dynamicHeadline } from "../../utils/Data";
+import { generateCaptcha } from "../../utils/helper";
+import captchaBG from "../../assets/captcha-bg.png";
 import demo1 from "../../assets/Demo1-tagline-generator.png";
 import demo2 from "../../assets/Demo2-tagline-generator.png";
 import demo3 from "../../assets/Demo3-tagline-generator.png";
 import use1 from "../../assets/use-title-generator-1.svg";
 import use2 from "../../assets/use-title-generator-2.svg";
 import use3 from "../../assets/use-title-generator-3.svg";
+import ReCAPTCHA from "react-google-recaptcha";
+import { IoLocation } from 'react-icons/io5';
+import { IoIosMail } from 'react-icons/io';
+import { FaGlobe, FaPhoneAlt, FaSkype } from 'react-icons/fa';
+import { Formik } from 'formik'
+import { contactUsValidationSchema, contactUsValidationWithoutCaptchaSchema } from '../../utils/FormValidations'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 let COUNT = 0;
 const HomePage = () => {
-  const [heading, setHeading] = useState(dynamicHeadline[0]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const [heading, setHeading] = useState(dynamicHeadline[0]);
+  const [getInTouch , setGetInTouch] = useState({
+    name: "",
+    email: "",
+    message: "",
+    isVarified: false,
+  })
+  const initialValues = { name: "", email: "" ,message: "", recaptcha: ""};
+
+  // const [captcha, setCaptcha] = useState(String(Math.floor(Math.random()*100000+1)))
+  const [captcha, setCaptcha] = useState(generateCaptcha(5))
   const handleHeading = () => {
     setHeading(dynamicHeadline[COUNT]);
     if (COUNT >= dynamicHeadline.length - 1) COUNT = 0;
     else COUNT++;
   };
+  const [validation, serValidation] = useState(contactUsValidationSchema)
+
+  const handleGetInTouchSubmit = (values) => {
+      //  dispatch(loginFetchAPi(values))
+      console.log(values)
+  }
+
+  // const regenerateCaptcha = () => {
+  //   // setCaptcha(String(Math.floor(Math.random()*100000+1)))
+  //   setCaptcha(generateCaptcha(5))
+  // }
+
+
   useEffect(() => {
     setInterval(handleHeading, 10000);
   }, []);
@@ -27,6 +63,8 @@ const HomePage = () => {
     useEffect(() => {
         document.title = "How it works | Tagline Generator"
       }, [])
+
+      // console.log(getInTouch)
 
   return (
     <AuthMiddleware>
@@ -67,8 +105,8 @@ const HomePage = () => {
           </div>
         </div>
         </div>
-        <div className='flex flex-col justify-center items-center w-full h-full gap-14 ms:gap-5 sm:gap-8 md:gap-10 lg:gap-14'>
-          <div className='py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex ms:flex-col md:flex-row bg-[#544BB9] max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl'>
+        <div className='flex flex-col justify-center items-center w-full h-full gap-14 ms:gap-5 sm:gap-8 md:gap-10 lg:gap-14' id='howitworks'>
+          <div className='py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex ms:flex-col md:flex-row bg-[#544BB9] max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl lg:mt-16'>
               <div className='w-full h-full flex justify-center items-center'>
                   <img src={demo1} alt="Demo-tagline-generator" className=' rounded-2xl' />
               </div>
@@ -231,6 +269,177 @@ const HomePage = () => {
                   <p className='font-bold text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>What Languages Are Supported?</p>
                   <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Currently, AI Title Generator is available in English.</p>
                 </div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-[#ede0ff] py-16 ms:py-8 sm:py-10 md:py-14 lg:py-16 h-full flex flex-col items-center justify-center w-full">
+          <div className="flex flex-col justify-center items-center gap-1 ms:gap-5 lg:gap-10 w-full max-w-[30%] ms:max-w-[90%] md:max-w-[90%] lg:max-w-6xl h-full">
+            <div className="flex justify-center items-center">
+              <p className="font-bold text-xl ms:text-xl sm:text-4xl md:text-4xl lg:text-4xl text-center text-black">
+                Contact Us
+              </p>
+            </div>
+            {/* <div className='w-full h-full flex flex-col justify-center items-center gap-8'>
+              <input type="text" name='name' value={getInTouch.name} 
+              onChange={(e) => setGetInTouch({...getInTouch,name: e.target.value})} 
+              placeholder="Name" autoComplete='off' className='w-full max-w-sm h-full p-3 border-[1px] rounded-md border-solid border-[#aab2b8] focus:outline-none'  />
+              <input type="text" name='email' value={getInTouch.email}
+              onChange={(e) => setGetInTouch({...getInTouch,email: e.target.value})}
+               placeholder="E-mail" autoComplete='off' className='w-full max-w-sm h-full p-3 border-[1px] rounded-md border-solid border-[#aab2b8] focus:outline-none'  />
+               {!(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i).test(getInTouch.email) && <p>Please enter valid e-mail</p>}
+              <textarea value={getInTouch.message}
+              onChange={(e) => setGetInTouch({...getInTouch,message: e.target.value})} 
+              className='w-full h-full min-h-[150px] max-w-sm p-3 border-[1px] rounded-md border-solid border-[#aab2b8] resize-none focus:outline-none' placeholder='Enter message ...'/>
+              <div className='flex gap-5 justify-center items-center'>
+                  <div className='relative z-0'>
+                      <img src={captchaBG} className=' h-8 ' />
+                      <p className='absolute top-1 left-[15%] z-10 font-bold tracking-widest'>{captcha}</p>
+                  </div>
+                  <img src={recycle} onClick={() => regenerateCaptcha()} className='relative h-5' />
+                  <div> 
+                  <input type="text" name='captcha'
+                    onChange={(e) => {
+                      captcha === e.target.value ? setGetInTouch({...getInTouch,isVarified: true}):
+                      setGetInTouch({...getInTouch,isVarified: false})
+                      console.log(captcha,e.target.value,captcha===e.target.value)
+                  }}
+                    placeholder="Enter captcha" autoComplete='off' className='w-full max-w-sm h-full p-3 border-[1px] rounded-md border-solid border-[#aab2b8] focus:outline-none'  />
+                  </div>
+              </div>
+               <ReCAPTCHA
+                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                  onChange={(e) => setGetInTouch({...getInTouch,isVarified: true})}
+              />
+              <button
+              disabled={(getInTouch.name.trim().length < 1 || getInTouch.email.trim().length < 1 || getInTouch.message.trim().length < 1) || !getInTouch.isVarified} 
+              className='px-5 py-1.5 bg-[#544BB9] rounded-md text-white font-bold disabled:cursor-not-allowed disabled:opacity-70'>Send</button>
+            </div> */}
+            <div className='flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-10 w-full h-full max-w-[95%]'>
+            <Formik
+                    initialValues={initialValues}
+                    validationSchema={validation}
+                    validateOnBlur={false}
+                    validateOnChange={false}
+                    onSubmit={handleGetInTouchSubmit}
+                >
+                    {({ handleSubmit,errors,touched,handleChange,setFieldValue,values}) =>
+                    (<form className='w-full max-w-md' onSubmit={handleSubmit} >
+                        <div className='w-full h-full flex flex-col gap-8 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-8 justify-center items-start'>
+                            <div className='flex flex-col gap-10 ms:gap-5 sm:gap-5 md:gap-10 lg:gap-8 items-start w-full'>
+                            <InputField
+                            type='text'
+                            id='name'
+                            name='name'
+                            inputstyle='w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-white border border-[#aab2b8] pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                            borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                            placeholder='Enter your name' />
+                            <InputField
+                            type='text'
+                            id='email'
+                            name='email'
+                            inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md border border-[#aab2b8] pl-5 2xl:pl-6 placeholder:text-[#737373] bg-white'
+                            borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                            placeholder='Enter your e-mail' />
+                            <div className='w-full h-full relative'>
+                            <textarea
+                              name="message"
+                              id="message"
+                              type="text"
+                              onChange={handleChange}
+                              // onChange={(e) => setGetInTouch({...getInTouch,message: e.target.value})} 
+                              className={`w-full h-full min-h-[150px] text-xs 2xl:text-xl p-5 border-[1px] rounded-xl border-solid  resize-none focus:outline-none placeholder:text-[#737373] text-[#737373] ${errors.message && touched.message ? "border-red-500" : "border-[#aab2b8]"}`} placeholder='Enter message ...'/>
+                              {errors.message && touched.message && (
+                                  <div className="absolute error lg:mt-[2px] left-0">
+                                      <p className="text-[11px] md:text-[12px] xl:text-sm 2xl:text-base  whitespace-nowrap text-red-500">{errors.message}</p>
+                                  </div>
+                              )}
+                              </div>
+                            </div>
+                            <div className='relative h-full w-full flex justify-center items-center'>
+                            <ReCAPTCHA
+                                name="recaptcha"
+                                id="recaptcha"
+                                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                                onChange={(value) => {setFieldValue("recaptcha",value)}}
+                                className="h-max w-full"
+                                onErrored={() => {
+                                  console.log("error");
+                                  serValidation(contactUsValidationWithoutCaptchaSchema)} }
+                            />
+                             {errors.recaptcha && touched.recaptcha && (
+                                  <div className="absolute error lg:mt-[2px] top-full left-0">
+                                      <p className="text-[11px] md:text-[12px] xl:text-sm 2xl:text-base  whitespace-nowrap text-red-500">{errors.recaptcha}</p>
+                                  </div>
+                              )}
+                            </div>
+                            <div className='py-3 ms:py-0 sm:py-0 md:py-3 lg:py-3 w-full flex justify-center items-center'>
+                            {values.name.trim().length < 1 || values.email.trim().length < 1 || values.message.trim().length < 1 || values.recaptcha.trim().length < 1 ? 
+                             <CustomButton
+                             type='submit'
+                             disabled={(values.name.trim().length < 1 || values.email.trim().length < 1 || values.message.trim().length < 1 || values.recaptcha.trim().length < 1) }
+                             onClick={(e) => {
+                             // dispatch(setLoginEffect(true));
+                             }}
+                             onAnimationEnd={() => {
+                             // dispatch(setLoginEffect(false));
+                             }}
+                             buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg max-w-[75%] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-[#544BB9]"
+                             loaderSize={20}
+                             >
+                             Send
+                            </CustomButton>
+                            :
+                            <CustomButton
+                                type='submit'
+                                disabled={(values.name.trim().length < 1 || values.email.trim().length < 1 || values.message.trim().length < 1 || values.recaptcha.trim().length < 1) }
+                                onClick={(e) => {
+                                // dispatch(setLoginEffect(true));
+                                }}
+                                onAnimationEnd={() => {
+                                // dispatch(setLoginEffect(false));
+                                }}
+                                buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg max-w-[75%] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-[#544BB9]"
+                                loaderSize={20}
+                                showLoader
+                                >
+                                Send
+                            </CustomButton>}
+                            </div>
+                        </div>
+                    </form>)}
+            </Formik>
+            <div className='h-full w-full flex flex-col justify-between items-center'>
+              <div className='aspect-w-8 aspect-h-4 w-full h-full border-[3px] border-solid border-[#544BB9]'>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29356.330097165468!2d72.541279!3d23.113883!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9ddd5e24dcd1%3A0xdf5c3d5463cdece5!2sInfynno%20Solutions%20%7C%20Expert%20in%20Laravel%2C%20React%20and%20Node%20Apps!5e0!3m2!1sen!2sin!4v1678188424977!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"/>  
+              </div>
+              <div className='flex flex-col gap-3 my-2'>
+                  <h1 className='font-600 text-xl font-bold'>Let's Get In Touch</h1>
+                  <div className='h-1 w-10 bg-[#544BB9]'></div>
+                  <p className='font-400 text-xs text-[#353535]'>We are offering something exclusive to our clients by using cutting-edge technologies. We provide top IT software development solutions across the globe.</p>
+                  <div className='flex flex-col gap-2'>
+                      <div className='flex items-center gap-2'> 
+                          <IoLocation className='text-[#544BB9] text-sm' />
+                          <p className='font-400 text-xs text-[#353535]'>1208 Ganesh Glory, Nr. BSNL Office, Jagatpur Chenpur Road, Gota, Sarkhej - Gandhinagar Highway, Ahmedabad - 382481 Gujarat, India</p>
+                      </div>
+                      <div className='flex items-center gap-2'> 
+                          <FaGlobe className='text-[#544BB9] text-xs' />
+                          <p className='font-400 text-xs text-[#353535]'>sales@infynno.com</p>
+                      </div>
+                      <div className='flex items-center gap-2'> 
+                          <IoIosMail className='text-[#544BB9] text-sm' />
+                          <p className='font-400 text-xs text-[#353535]'>hr@infynno.com</p>
+                      </div>
+                      <div className='flex items-center gap-2'> 
+                          <FaPhoneAlt className='text-[#544BB9] text-xs' />
+                          <p className='font-400 text-xs text-[#353535]'>+91 848-883-8308</p>
+                      </div>
+                      <div className='flex items-center gap-2'> 
+                          <FaSkype className='text-[#544BB9] text-xs' />
+                          <p className='font-400 text-xs text-[#353535]'>live.Infynno</p>
+                      </div>
+                  </div>
+              </div>
+            </div>
             </div>
           </div>
         </div>

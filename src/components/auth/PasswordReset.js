@@ -1,5 +1,5 @@
-import React,{useState,useEffect} from 'react'
-import { Formik, validateYupSchema } from 'formik'
+import React,{useEffect} from 'react'
+import { Formik } from 'formik'
 import InputField from "../form/InputField";
 import CustomButton from "../form/CustomButton";
 import { ResetPasswordValidationSchema } from '../../utils/FormValidations';
@@ -83,9 +83,6 @@ const PasswordReset = () => {
                     </form>)}
             </Formik>
         </div>
-        {/* <div className='hidden md:flex justify-center items-center text-center px-4 w-full'>
-                <p className='font-medium text-base text-[#4A5568]'>Log in/ Sign in first to access AI Headline Generator</p>
-        </div> */}
     </div>
     </AuthMiddleware>
     </ResetPasswordMiddleware>

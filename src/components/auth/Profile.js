@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Formik } from 'formik'
-import logo from "../../assets/men-holding-phone.svg";
 import InputField from "../form/InputField";
 import CustomButton from "../form/CustomButton";
 import { profileUpdateValidationSchema } from '../../utils/FormValidations';
 import { useSelector, useDispatch } from "react-redux";
-import { registerFetchAPi } from '../../redux/slices/auth/registerSlice';
-import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import {  setSignInEffect } from '../../redux/slices/buttonEffectSlice';
 import RouteMiddleWare from '../../utils/RouteMiddleWare';
@@ -14,7 +11,6 @@ import { profileDetailsFetchAPI, profileDetailsUpdateFetchAPI } from '../../redu
 import { GoHome } from "react-icons/go";
 import DropZone from '../layout/DropZone';
 import CropImageModal from '../modal/CropImageModal';
-import Cookies from "js-cookie";
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -26,38 +22,36 @@ const Profile = () => {
         profileDetails: state.ProfileSlice.profileDetails,
       }));
      
-        
-        useEffect(() => {
-        }, [profileDetails?.profile_pic])
-        // console.log(profileDetails?.profile_pic,"profile")
-        useEffect(() => {
-            dispatch(profileDetailsFetchAPI())
+    useEffect(() => {
+    }, [profileDetails?.profile_pic])
+    useEffect(() => {
+        dispatch(profileDetailsFetchAPI())
+    }, [])
+
+    useEffect(() => {
+        document.title = "Profile | Tagline Generator"
         }, [])
 
-        useEffect(() => {
-            document.title = "Profile | Tagline Generator"
-          }, [])
+    const initialValues = { username: profileDetails?.username || "", 
+                            name: profileDetails?.name || "", 
+                            email: profileDetails?.email || "" };
+    useEffect(() => {
+        setImage({url :profileDetails?.profile_pic})
+    }, [profileDetails])
 
-        const initialValues = { username: profileDetails?.username || "", 
-                                name: profileDetails?.name || "", 
-                                email: profileDetails?.email || "" };
-        useEffect(() => {
-            setImage({url :profileDetails?.profile_pic})
-        }, [profileDetails])
-
-        const handleProfileUpdateSubmit = (values) => {
-            const formData = {
-                ...values
-            }    
-            const fData = new FormData();
-            if(image.file){
-                fData.append("profile_pic", image?.file, image?.file?.name);
-            }
-            Object.entries(formData).map((field) => {
-                fData.append(field[0], field[1] || "");
-            })
-            dispatch(profileDetailsUpdateFetchAPI(fData));
+    const handleProfileUpdateSubmit = (values) => {
+        const formData = {
+            ...values
+        }    
+        const fData = new FormData();
+        if(image.file){
+            fData.append("profile_pic", image?.file, image?.file?.name);
         }
+        Object.entries(formData).map((field) => {
+            fData.append(field[0], field[1] || "");
+        })
+        dispatch(profileDetailsUpdateFetchAPI(fData));
+    }
 
   return (
     <RouteMiddleWare>
@@ -80,12 +74,6 @@ const Profile = () => {
                         {({ handleSubmit }) =>
                         (<form className='w-full max-w-md' onSubmit={handleSubmit} encType="multipart/form-data">
                             <div className='w-full h-full flex flex-col gap-8 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-6 justify-center items-start'>
-                                {/* <div className='flex gap-1 items-center'>
-                                    <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' onClick={(e) => {e.preventDefault();
-                                            navigate('/');
-                                    }} />
-                                    <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl'>/ Account Information</p>
-                                </div> */}
                                 <div className='w-full h-full'>
                                     <DropZone 
                                     imageAfterCrop={image && image?.url}
@@ -157,22 +145,7 @@ const Profile = () => {
                             </div>
                         </form>)}
                 </Formik>
-                {/* <div className='flex flex-col gap-1.5'>
-                    <div className='flex gap-1'>
-                            <p className='font-normal text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#4A5568]'>Already have an account ? </p>
-                            <div className='font-bold text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#544BB9] cursor-pointer' 
-                            onClick={() => { navigate('/auth/login')}}>Login</div>
-                    </div>
-                        <div className='flex gap-1'>
-                            <p className='font-normal text-sm text-[#4A5568]'>You can</p>
-                            <div className='font-bold text-sm text-[#544BB9] cursor-pointer' onClick={() => { navigate('/auth/login')}}>Login</div>
-                        </div>
-                    </div> */}
                 </div>
-                
-            {/* <div className='hidden md:flex justify-center items-center px-4 text-center w-full'>
-                    <p className='font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]'>Log in/ Sign in first to access AI Headline Generator</p>
-            </div> */}
       </div>
       </RouteMiddleWare>
   )

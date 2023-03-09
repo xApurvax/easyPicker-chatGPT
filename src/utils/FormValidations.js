@@ -36,6 +36,28 @@ export const profileUpdateValidationSchema = Yup.object({
     email: Yup.string().email('Enter valid e-mail.').required('E-mail is required.'),
 });
 
+export const contactUsValidationSchema = Yup.object({
+    message: Yup.string()
+        .min(3, "Must be 3 char long.")
+        .required("Message is required.").trim(),
+    name: Yup.string()
+    .min(3, "Must be 3 char long.")
+    .required("Name is required.").trim(),
+    email: Yup.string().email('Enter valid e-mail.').required('E-mail is required.'),
+    recaptcha: Yup.string().required('Please verify recaptcha.'),
+});
+
+export const contactUsValidationWithoutCaptchaSchema = Yup.object({
+    message: Yup.string()
+        .min(3, "Must be 3 char long.")
+        .required("Message is required.").trim(),
+    name: Yup.string()
+    .min(3, "Must be 3 char long.")
+    .required("Name is required.").trim(),
+    email: Yup.string().email('Enter valid e-mail.').required('E-mail is required.'),
+    recaptcha: Yup.string().required('Please verify recaptcha.'),
+});
+
 export const forgotPasswordValidationSchema = Yup.object({
     email: Yup.string().email('Enter valid e-mail.').required('E-mail is required.'),
 });

@@ -10,6 +10,7 @@ body ,* {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* scroll-behavior: smooth; */
 }
 
 code {
@@ -160,4 +161,12 @@ code {
 .parallax span {
   display: block;
   margin-right: 30px;
+}
+
+#recaptcha > div {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
