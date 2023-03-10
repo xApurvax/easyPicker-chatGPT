@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CustomForm from './CustomForm'
 import FooterNew from './FooterNew';
 import NavBarNewA from './NavBarNewA';
 import { BuyPointsModal } from '../modal/BuyPointsModal';
+import { useDispatch } from 'react-redux';
+import { profileDetailsFetchAPI } from "../../redux/slices/ProfileSlice";
 
 const HeaderAfterAuth = ({children}) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(profileDetailsFetchAPI())
+}, [])
   return (
     <div className='flex flex-col bg-[#544BB9] h-screen'>    
       <NavBarNewA />

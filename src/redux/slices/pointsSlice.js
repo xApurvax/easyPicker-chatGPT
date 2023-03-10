@@ -37,7 +37,7 @@ export const transactionHistoryFetchAPi = createAsyncThunk(
   async (data, {rejectWithValue} ) => {
     try {
       const response = await ApiMiddleware.get(
-        `/api/upgrade/points/?date=${data?.date || ""}&page=${data?.page || ""}&dsc=${data?.order || ""}`,
+        `/api/upgrade/points/?date=${data?.date || ""}&page=${data?.page || ""}&dsc=${data?.order || ""}&page_size=5`,
         {...data}
       );
       return response;

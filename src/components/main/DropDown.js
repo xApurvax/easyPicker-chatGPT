@@ -12,12 +12,18 @@ const DropDown = ({data,setFocused}) => {
   }));
   return (
     <div>
-        <div className='flex items-center' onClick={() => setDropDown(!dropDown)}><BiChevronDown className={` ${dropDown ?  "rotate-180 fill-[#000000] ": "rotate-0 " } transition-all ease-in-out duration-500`} color="#000000" size={25} />1 controversy text found</div>
+        <div className='flex items-center' onClick={() => setDropDown(!dropDown)}><BiChevronDown
+           className={classNames(
+            "transition-all ease-in-out duration-500",
+            dropDown ? "rotate-rotate-180 fill-[#000000] " : "rotate-0")}
+        color="#000000" size={25} />1 controversy text found</div>
         {dropDown && 
         <div className='bg-[#f7f8f8] p-3 rounded-md my-3'>
             <p className='font-normal text-[14px] text-[#252728]'>{data}</p>
-            <button className={`${
-                  addToFocusEffect && "animate-wiggle" } mt-2 flex bg-white rounded-md shadow-sm items-center justify-center text-[12px] px-2 py-1 border-[1px]  border-solid border-[#2e90fa] text-[#2E90FA]`}
+            <button 
+                  className={classNames(
+                    "mt-2 flex bg-white rounded-md shadow-sm items-center justify-center text-[12px] px-2 py-1 border-[1px]  border-solid border-[#2e90fa] text-[#2E90FA]",
+                    addToFocusEffect && "animate-wiggle")}
                   type="button"
                   onClick={(e) => {
                     dispatch(setAddToFocusEffect(true));

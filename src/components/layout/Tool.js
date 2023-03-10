@@ -21,6 +21,7 @@ import {
   setReGenerateData,
 } from "../../redux/slices/generateHeadlineSlice";
 import logo from "../../assets/recycle.svg";
+import fillOutLeft from "../../assets/fillout-left.png";
 import Cookies from "js-cookie";
 import { Formik } from "formik";
 import InputField from "../form/InputField";
@@ -33,9 +34,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { setShowBuyPointsModal } from "../../redux/slices/pointsSlice";
 import { BuyPointsModal } from "../modal/BuyPointsModal";
 import { profileDetailsFetchAPI } from "../../redux/slices/ProfileSlice";
+import classNames from "classnames";
 
 const Tool = () => {
   const dispatch = useDispatch();
+  const timerRef = useRef(null);
   const [count, setCount] = useState(3);
   const [hasArticle, setHasArticle] = useState("");
   const [hasSomethingTyped, setHasSomethingTyped] = useState("");
@@ -99,6 +102,7 @@ const Tool = () => {
   const handleChange = (e) => {
     setHasArticle(e.target.value);
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -163,27 +167,19 @@ const Tool = () => {
     <RouteMiddleWare>
     <div className="flex flex-col w-full justify-center items-center">
       <div className="flex justify-end gap-1 md:hidden w-full">
-      {/* <div className="flex justify-end">
-          <button onClick={() => {navigate("/saved-results");dispatch(setHasTitleTag([]));}} className="flex gap-6 border-l-[5px] border-t-[5px] ms:border-x-[1px] ms:border-t-[1px] md:border-t-[3px] md:border-l-[3px] md:border-r-[0px] lg:border-l-[5px] lg:border-t-[5px] lg:border-r-[0px] border-solid border-white bg-[#544BB9] rounded-t-xl px-5 py-1">
-            <p
-              className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-xl lg:text-2xl text-white`}
-            >
-              Saved Results
-            </p>
-          </button>
-      </div> */}
       <div className="bg-[#544BB9] flex justify-end items-end">
         <div className="flex gap-6 ms:gap-2 sm:gap-3 md:gap-4 bg-white rounded-t-xl px-5 py-1 justify-end items-end">
           <GiTwoCoins
             color="#FFD700"
             // size={35}
-            className={`${availableCoins && "origin-center hover:rotate-12 text-2xl ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-4xl cursor-pointer"}`}
+            className={classNames(
+              availableCoins && "origin-center hover:rotate-12 text-2xl ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-4xl cursor-pointer")}
           />
           <button onClick={() =>{ dispatch(setShowBuyPointsModal(true))}} className="flex items-center justify-center">
-          <AiOutlinePlus color="#000" className={`${"text-2xl ms:text-[16px] sm:text-[20px] md:text-[20px] lg:text-2xl cursor-pointer"}`}/>
+          <AiOutlinePlus color="#000" className="text-2xl ms:text-[16px] sm:text-[20px] md:text-[20px] lg:text-2xl cursor-pointer" />
           <p
             id="coins-text"
-            className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-xl lg:text-2xl text-[#544BB9]`}
+            className="font-semibold text-2xl ms:text-xs sm:text-base md:text-xl lg:text-2xl text-[#544BB9]"
           >
             {!availableCoins ? 0 : availableCoins}
           </p>
@@ -246,11 +242,9 @@ const Tool = () => {
                             setCount(data.countValue);
                             setCounterSelected({ selected: true, id: id });
                           }}
-                          className={`${
-                            counterSelected.id == id && data.countValue == count
-                              ? "bg-[#544BB9] text-white font-bold"
-                              : "bg-[#EDF2F7] text-[#000000]"
-                          } flex items-center justify-center w-11 h-11 ms:w-7 sm:w-8 md:w-10 lg:w-8 ms:h-7 sm:h-8 md:h-10 lg:h-8 rounded-md ms:rounded-sm md:rounded lg:rounded-md cursor-pointer disabled:cursor-not-allowed`}
+                          className={classNames(
+                            "flex items-center justify-center w-11 h-11 ms:w-7 sm:w-8 md:w-10 lg:w-8 ms:h-7 sm:h-8 md:h-10 lg:h-8 rounded-md ms:rounded-sm md:rounded lg:rounded-md cursor-pointer disabled:cursor-not-allowed",
+                            counterSelected.id == id && data.countValue == count ? "bg-[#544BB9] text-white font-bold" : "bg-[#EDF2F7] text-[#000000]")}
                         >
                           {data.countValue}
                         </button>
@@ -266,20 +260,19 @@ const Tool = () => {
                       hasSomethingTyped.trim().length > 0 ||
                       isLoading
                     }
-                    className={`${
-                      generateHeadlineEffect && "animate-wiggle"
-                    } flex items-center justify-center px-6 py-3 ms:px-2 sm:px-3 md:px-4 lg:px-5 
-                    ms:py-2 sm:py-1.5 md:py-2 lg:py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-base sm:text-lg md:text-xl lg:text-base disabled:bg-[#544BB9] disabled:opacity-[0.7] disabled:cursor-not-allowed whitespace-nowrap
-                    ${isLoading ? "disabled:px-20 ms:disabled:px-[55px] sm:disabled:px-[70px] md:disabled:px-20 lg:disabled:px-20 ": "disabled:px-5 ms:disabled:px-2 sm:disabled:px-3 md:disabled:px-4 md:disabled:py-2 lg:disabled:px-5 lg:disabled:py-2"}`}
-                    onClick={(e) => {
-                      dispatch(setGenerateHeadlineEffect(true));
-                      handleSubmit(e);
-                      // setHasArticle(hasArticle)
-                      // setEdit(false)
-                    }}
-                    onAnimationEnd={() => {
-                      dispatch(setGenerateHeadlineEffect(false));
-                    }}
+                    className={classNames(
+                      "flex items-center justify-center px-6 py-3 ms:px-2 sm:px-3 md:px-4 lg:px-5 ms:py-2 sm:py-1.5 md:py-2 lg:py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-base sm:text-lg md:text-xl lg:text-base disabled:bg-[#544BB9] disabled:opacity-[0.7] disabled:cursor-not-allowed whitespace-nowrap",
+                      isLoading ? "disabled:px-20 ms:disabled:px-[55px] sm:disabled:px-[70px] md:disabled:px-20 lg:disabled:px-20" : "disabled:px-5 ms:disabled:px-2 sm:disabled:px-3 md:disabled:px-4 md:disabled:py-2 lg:disabled:px-5 lg:disabled:py-2",
+                      generateHeadlineEffect && "animate-wiggle")}
+                      onClick={(e) => {
+                        dispatch(setGenerateHeadlineEffect(true));
+                        handleSubmit(e);
+                        // setHasArticle(hasArticle)
+                        // setEdit(false)
+                      }}
+                      onAnimationEnd={() => {
+                        dispatch(setGenerateHeadlineEffect(false));
+                      }}
                   >
                     {!isLoading ? (
                       "Generate Headlines"
@@ -341,15 +334,19 @@ const Tool = () => {
                                   setLatestCopied({ copiedId: id });
                                   setCopyAllId({
                                     id:
-                                      allTitles.length +
-                                      specialTags.length +
-                                      1,
+                                    allTitles.length +
+                                    specialTags.length +
+                                    1,
                                   });
+                                  setTimeout(function(){
+                                    setLatestCopied({ copiedId: null });
+                                    setCopyAllId({ id: null,});
+                                  },2000);
                                   toast.success("Title Copied!");
                                 }}
                                 type="button"
                               >
-                                {latestCopied.copiedId == id ? (
+                                {latestCopied.copiedId === id ? (
                                   <p className="flex gap-1 items-center px-2 py-2 ms:px-1 sm:px-1 md:px-1 lg:px-1 ms:py-1 sm:py-1 md:py-1 lg:py-1 bg-[#544BB9] rounded-md text-[14px] leading-[14px] ms:text-xs sm:text-sm md:text-base lg:text-sm text-white">
                                     <BsCheck2 />
                                     copied
@@ -379,15 +376,19 @@ const Tool = () => {
                         setLatestCopied({
                           copiedId: specialTags.length + allTitles.length + 1,
                         });
+                        setTimeout(function(){
+                          setLatestCopied({ copiedId: null });
+                          setCopyAllId({ id: null,});
+                        },2000);
                         toast.success("All Tags Copied!");
                       }}
                       type="button"
-                      className={`px-2 py-1.5 ms:px-1.5 sm:px-1.5 md:px-1.5 lg:px-1.5 ms:py-1 sm:py-1 md:py-1 lg:py-1 rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-sm ${
-                        latestCopied.copiedId == copyAllId.id
-                          ? "bg-[#544BB9] text-white"
-                          : "bg-[#EDF2F7] text-[#4A5568]"
-                      }`}
-                    >
+                      className={classNames(
+                        "px-2 py-1.5 ms:px-1.5 sm:px-1.5 md:px-1.5 lg:px-1.5 ms:py-1 sm:py-1 md:py-1 lg:py-1 rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-sm",
+                        latestCopied.copiedId === copyAllId.id ?
+                        "bg-violet-500 text-white" :
+                        "bg-[#EDF2F7] text-[#4A5568]")}
+                      >
                       Copy All
                     </button>
                   )}
@@ -406,14 +407,18 @@ const Tool = () => {
                               setCopyAllId({
                                 id: allTitles.length + specialTags.length + 1,
                               });
+                              setTimeout(function(){
+                                setLatestCopied({ copiedId: null });
+                                setCopyAllId({ id: null,});
+                              },2000);
                               toast.success("Tag Copied!");
                             }}
                             type="button"
-                            className={`${
-                              latestCopied.copiedId === id + allTitles.length
-                                ? "bg-[#544BB9] font-medium text-white"
-                                : "bg-[#EDF2F7]"
-                            } px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-2 ms:py-1 sm:py-1 md:py-2 lg:py-1 border-[1px] border-solid border-[#EDF2F7] rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]`}
+                            className={classNames(
+                              "px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-2 ms:py-1 sm:py-1 md:py-2 lg:py-1 border-[1px] border-solid border-[#EDF2F7] rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]",
+                              latestCopied.copiedId === copyAllId.id ?
+                              "bg-[#544BB9] font-medium text-white" :
+                              "bg-[#EDF2F7]")}
                           >
                             {tag.trim()}
                           </button>
@@ -427,9 +432,10 @@ const Tool = () => {
                 <div>
                   <button
                     type="button"
-                    className={`${
-                      saveResult && "animate-wiggle"
-                    } flex items-center gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-xs sm:text-sm md:text-base lg:text-sm disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap`}
+                    className={classNames(
+                      "flex items-center gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-xs sm:text-sm md:text-base lg:text-sm disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap",
+                      saveResult && 
+                      "animate-wiggle")}
                     onClick={(e) => {
                       dispatch(setSaveResult(true));
                       handleSaveResults(e)
@@ -447,12 +453,20 @@ const Tool = () => {
                   <button
                     type="button"
                     disabled={isRegenerate}
-                    className={`${
-                      reGenerate && "animate-wiggle"
-                    } flex gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-[7px] rounded-md border-[1px] border-solid border-[#544BB9] text-[#544BB9] hover:text-[#544BB9] font-medium text-lg disabled:cursor-not-allowed`}
+                    className={classNames(
+                      "flex gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-[7px] rounded-md border-[1px] border-solid border-[#544BB9] text-[#544BB9] hover:text-[#544BB9] font-medium text-lg disabled:cursor-not-allowed",
+                      reGenerate && "animate-wiggle")}
                     onClick={(e) => {
                       dispatch(setReGenerate(true));
                       dispatch(reGenerateHeadlineFetchAPi(reGenerateData));
+                      setCounterSelected({
+                        selected: false,
+                        id: 0,
+                      })
+                      setLatestCopied({copiedId: null})
+                      setCopyAllId({
+                        id: null,
+                      })
                     }}
                     onAnimationEnd={() => {
                       dispatch(setReGenerate(false));
@@ -483,11 +497,14 @@ const Tool = () => {
             </div>
           ) : (
             <div className="flex h-full justify-center items-center px-4 w-full">
-              <p className="font-medium text-base text-[#4A5568] hidden lg:flex">
-                Fill out the left form to generate titles
-              </p>
-              <p className="font-medium text-base text-[#4A5568] ms:text-xs sm:text-base md:text-lg lg:text-lg sm:flex lg:hidden">
-                Fill out the above form to generate titles
+              <div className="hidden lg:flex relative">
+                <img src={fillOutLeft} alt="generated data blur" className="h-full w-full rounded-md" />
+                <div className="absolute flex justify-center items-center h-full w-full pb-[20%]">
+                <p className="font-semibold text-base text-[#4A5568] whitespace-nowrap">Fill out the left form to generate titles.</p>
+                </div>
+              </div>
+              <p className="font-bold text-base text-[#4A5568] ms:text-xs sm:text-base md:text-lg lg:text-lg sm:flex lg:hidden">
+                Fill out the above form to generate titles.
               </p>
             </div>
           )

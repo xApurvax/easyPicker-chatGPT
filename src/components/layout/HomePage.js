@@ -14,9 +14,8 @@ import use1 from "../../assets/use-title-generator-1.svg";
 import use2 from "../../assets/use-title-generator-2.svg";
 import use3 from "../../assets/use-title-generator-3.svg";
 import ReCAPTCHA from "react-google-recaptcha";
-import { IoLocation } from 'react-icons/io5';
 import { IoIosMail } from 'react-icons/io';
-import { FaGlobe, FaPhoneAlt, FaSkype } from 'react-icons/fa';
+import { FaGlobe, FaPhoneAlt, FaSkype, FaMapMarkerAlt } from 'react-icons/fa';
 import { Formik } from 'formik'
 import { contactUsValidationSchema, contactUsValidationWithoutCaptchaSchema } from '../../utils/FormValidations'
 import { useNavigate } from 'react-router-dom'
@@ -64,12 +63,11 @@ const HomePage = () => {
         document.title = "How it works | Tagline Generator"
       }, [])
 
-      // console.log(getInTouch)
 
   return (
     <AuthMiddleware>
     <div className='flex flex-col'>
-      <div className='sticky top-0 w-full z-[20]'>  
+      <div className='sticky top-0 w-full h-full z-[20]'>  
       <NavbarNewA />
       </div>  
       <div className="flex flex-col justify-center items-center h-full w-full">
@@ -84,9 +82,8 @@ const HomePage = () => {
               </p>
             </div>
             <p
-              className="font-medium text-lg ms:text-xs sm:text-base md:text-lg text-white text-center max-w-[80%] ms:max-w-[80%] lg:max-w-[50%]"
+              className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-white text-center max-w-[80%] ms:max-w-[80%] lg:max-w-[50%]"
             >
-              {/* {heading} */}
               For your blog or post, do you need compelling headlines? To receive a tonne of useful suggestions for a successful content strategy, use this tool to generate innovative title ideas.
             </p>
           </div>
@@ -98,35 +95,35 @@ const HomePage = () => {
             What Can You Do with AI Title Generator?
             </p>
             <p
-              className="font-medium text-xs ms:text-xs sm:text-base md:text-lg text-black text-center"
+              className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-black text-center"
             >
               AI Title Generator is catchy title maker, developed by <b className='text-[#544BB9]'><a href='https://infynno.com/' target="_blank">Infynno</a></b>, to help you unleash your creativity.
             </p>
           </div>
         </div>
         </div>
-        <div className='flex flex-col justify-center items-center w-full h-full gap-14 ms:gap-5 sm:gap-8 md:gap-10 lg:gap-14' id='howitworks'>
-          <div className='py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex ms:flex-col md:flex-row bg-[#544BB9] max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl lg:mt-16'>
+        <div className='flex flex-col justify-center items-center w-full h-full gap-14 ms:gap-5 sm:gap-8 md:gap-10 lg:gap-14'>
+          <div className='py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex ms:flex-col md:flex-row bg-[#544BB9] max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl ' id='howitworks'>
               <div className='w-full h-full flex justify-center items-center'>
                   <img src={demo1} alt="Demo-tagline-generator" className=' rounded-2xl' />
               </div>
               <div className='w-full h-full flex justify-center items-center'>
-                <div className="flex flex-col gap-[2%] justify-center items-center ms:items-start ms:justify-start md:items-center md:justify-center ms:gap-3 lg:gap-5 max-w-[80%] ms:max-w-[95%] lg:max-w-[80%]">
-              <p className="font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-4xl text-white">
+                <div className="flex flex-col gap-[2%] justify-center items-center ms:items-start ms:justify-start md:items-center md:justify-center ms:gap-3 lg:gap-8 max-w-[80%] ms:max-w-[95%] lg:max-w-[80%]">
+              <p className="font-bold text-2xl ms:text-2xl sm:text-4xl md:text-4xl lg:text-4xl text-white">
               Create the Perfect Title for Your New Blog Post
               </p>
               <p
-                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
+                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-white"
               >
                 ⮩ Create a large number of pertinent title recommendations with only one click to acquire fresh blog post ideas.
               </p>
               <p
-                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
+                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-white"
               >
                 ⮩ In order to position your material for success, add certain words that will appear in your title.
               </p>
               <p
-                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
+                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-white"
               >
                 ⮩ Use generated titles for higher social media engagement.
               </p>
@@ -135,22 +132,22 @@ const HomePage = () => {
           </div>
           <div className='py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex ms:flex-col-reverse md:flex-row bg-[#ffe84d] max-w-7xl justify-start items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl'>
               <div className='w-full h-full flex justify-center items-center'>
-                <div className="flex flex-col gap-[2%] justify-center items-center ms:items-start ms:justify-start md:items-center md:justify-center ms:gap-3 lg:gap-5 max-w-[80%] ms:max-w-[95%] lg:max-w-[80%]">
+                <div className="flex flex-col gap-[2%] justify-center items-center ms:items-start ms:justify-start md:items-center md:justify-center ms:gap-3 lg:gap-8 max-w-[80%] ms:max-w-[95%] lg:max-w-[80%]">
                   <p className="font-bold text-6xl ms:text-2xl sm:text-3xl md:text-3xl lg:text-4xl text-white">
                   Elevate Your Content with Catchy, Diverse Headlines
                   </p>
                   <p
-                    className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
+                    className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-white"
                   >
                     ⮩ If you like the produced titles and wish to save them for future use, simply click on save results. You may then examine prior results and copy them later.
                   </p>
                   <p
-                    className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
+                    className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-white"
                   >
                     ⮩ If you want to produced titles with same input and and wish to regenerate again than we have that option too.
                   </p>
                   <p
-                    className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
+                    className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-white"
                   >
                     ⮩ To increase reach, use generated keywords as # hastags while posting it on social media.
                   </p>
@@ -165,22 +162,22 @@ const HomePage = () => {
                   <img src={demo3} alt="Demo-tagline-generator" className=' rounded-2xl' />
               </div>
               <div className='w-full h-full flex justify-center items-center'>
-                <div className="flex flex-col gap-[2%] justify-center items-center ms:items-start ms:justify-start md:items-center md:justify-center ms:gap-3 lg:gap-5 max-w-[80%] ms:max-w-[95%] lg:max-w-[80%]">
+                <div className="flex flex-col gap-[2%] justify-center items-center ms:items-start ms:justify-start md:items-center md:justify-center ms:gap-3 lg:gap-8 max-w-[80%] ms:max-w-[95%] lg:max-w-[80%]">
               <p className="font-bold text-6xl ms:text-2xl sm:text-3xl md:text-3xl lg:text-4xl text-white">
                 Generate New Ideas for Your Content Calendar
               </p>
               <p
-                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
+                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-white"
               >
                ⮩ Use AI to set your content up for success with creative, attention-grabbing blog post titles.
               </p>
               <p
-                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
+                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-white"
               >
                ⮩ Enter a topic you’d like to cover, and get suggestions for original blogs or articles.
               </p>
               <p
-                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-white"
+                className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-white"
               >
                ⮩ Specified keywords will appear in the title, inventive terms might be used for optimum SEO techniques.
               </p>
@@ -203,7 +200,7 @@ const HomePage = () => {
                 <div className='w-full h-full flex justify-center items-center'>
                   <div className="flex flex-col gap-[2%] justify-center items-center ms:gap-3 lg:gap-5 max-w-[80%]">
                     <p
-                      className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333] text-center"
+                      className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333] text-center"
                     >
                       Lead more eyes to your content with high-quality headlines.
                     </p>
@@ -217,7 +214,7 @@ const HomePage = () => {
                 <div className='w-full h-full flex justify-center items-center'>
                   <div className="flex flex-col gap-[2%] justify-center items-center ms:gap-1 lg:gap-5 max-w-[80%]">
                     <p
-                      className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333] text-center"
+                      className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333] text-center"
                     >
                       Come up with high-potential headlines with the best tone of voice for your audience.
                     </p>
@@ -231,7 +228,7 @@ const HomePage = () => {
                 <div className='w-full h-full flex justify-center items-center'>
                   <div className="flex flex-col gap-[2%] justify-center items-center ms:gap-1 lg:gap-5 max-w-[80%]">
                     <p
-                      className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333] text-center"
+                      className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333] text-center"
                     >
                      Design and enrich your content plan, with diverse blog titles and related content ideas.
                     </p>
@@ -251,23 +248,23 @@ const HomePage = () => {
             <div className='grid grid-cols-3 grid-flow-rows auto-rows-max ms:grid-cols-1 md:grid-cols-2 gap-4 ms:gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full h-full max-w-6xl'>
                 <div className='bg-white flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
                   <p className='font-bold text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>How Does AI Title Generator Work?</p>
-                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>AI Title Generator is powered by AI. It uses artificial intelligence to suggest catchy, relevant titles for your blog posts, articles, landing pages, or other content. It also suggests related topics you might want to target.</p>
+                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>AI Title Generator is powered by AI. It uses artificial intelligence to suggest catchy, relevant titles for your blog posts, articles, landing pages, or other content. It also suggests related topics you might want to target.</p>
                 </div>
                 <div className='bg-white flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
                   <p className='font-bold text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Why Should I Use AI Title Generator?</p>
-                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>AI Title Generator suggest dozens of original titles in just a click. Speed up your brainstorming process, generate new blog post ideas, or create the perfect headline for an existing project.</p>
+                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>AI Title Generator suggest dozens of original titles in just a click. Speed up your brainstorming process, generate new blog post ideas, or create the perfect headline for an existing project.</p>
                 </div>
                 <div className='bg-white col-span-full flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
                   <p className='font-bold text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>How Much Does AI Title Generator Cost?</p>
-                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>AI Title Generator is paid to use, but will get 100 coins as joining bonus on first sign up, then after you can buy it any time and generate as many titles as you want, and share them with your teammates and writers.</p>
+                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>AI Title Generator is paid to use, but will get 100 coins as joining bonus on first sign up, then after you can buy it any time and generate as many titles as you want, and share them with your teammates and writers.</p>
                 </div>
                 <div className='bg-white flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
                   <p className='font-bold text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Who Owns the Generated Text?</p>
-                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>You do! You’re free to use any title you generate in your own work.</p>
+                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>You do! You’re free to use any title you generate in your own work.</p>
                 </div>
                 <div className='bg-white flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
                   <p className='font-bold text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>What Languages Are Supported?</p>
-                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Currently, AI Title Generator is available in English.</p>
+                  <p className='font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>Currently, AI Title Generator is available in English.</p>
                 </div>
             </div>
           </div>
@@ -325,19 +322,21 @@ const HomePage = () => {
                     {({ handleSubmit,errors,touched,handleChange,setFieldValue,values}) =>
                     (<form className='w-full max-w-md' onSubmit={handleSubmit} >
                         <div className='w-full h-full flex flex-col gap-8 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-8 justify-center items-start'>
+                        <h1 className='font-600 text-xl font-bold'>Let's Get In Touch</h1>
+                        <div className='h-1 w-10 bg-[#544BB9]'></div>
                             <div className='flex flex-col gap-10 ms:gap-5 sm:gap-5 md:gap-10 lg:gap-8 items-start w-full'>
                             <InputField
                             type='text'
                             id='name'
                             name='name'
-                            inputstyle='w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-white border border-[#aab2b8] pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                            inputstyle='w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-white border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-[#737373]'
                             borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-[#737373]'
                             placeholder='Enter your name' />
                             <InputField
                             type='text'
                             id='email'
                             name='email'
-                            inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md border border-[#aab2b8] pl-5 2xl:pl-6 placeholder:text-[#737373] bg-white'
+                            inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-[#737373] bg-white'
                             borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-[#737373]'
                             placeholder='Enter your e-mail' />
                             <div className='w-full h-full relative'>
@@ -347,7 +346,8 @@ const HomePage = () => {
                               type="text"
                               onChange={handleChange}
                               // onChange={(e) => setGetInTouch({...getInTouch,message: e.target.value})} 
-                              className={`w-full h-full min-h-[150px] text-xs 2xl:text-xl p-5 border-[1px] rounded-xl border-solid  resize-none focus:outline-none placeholder:text-[#737373] text-[#737373] ${errors.message && touched.message ? "border-red-500" : "border-[#aab2b8]"}`} placeholder='Enter message ...'/>
+                              className={`w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid  resize-none focus:outline-none placeholder:text-[#737373] text-[#737373] ${errors.message && touched.message ? "border-red-500" : "border-[#aab2b8]"}`} 
+                              placeholder='Enter message ...'/>
                               {errors.message && touched.message && (
                                   <div className="absolute error lg:mt-[2px] left-0">
                                       <p className="text-[11px] md:text-[12px] xl:text-sm 2xl:text-base  whitespace-nowrap text-red-500">{errors.message}</p>
@@ -409,32 +409,32 @@ const HomePage = () => {
                     </form>)}
             </Formik>
             <div className='h-full w-full flex flex-col justify-between items-center'>
-              <div className='aspect-w-8 aspect-h-4 w-full h-full border-[3px] border-solid border-[#544BB9]'>
+              <div className='aspect-w-8 aspect-h-4 w-full h-full border-[3px] border-solid border-[#544BB9] rounded-md'>
               <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29356.330097165468!2d72.541279!3d23.113883!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9ddd5e24dcd1%3A0xdf5c3d5463cdece5!2sInfynno%20Solutions%20%7C%20Expert%20in%20Laravel%2C%20React%20and%20Node%20Apps!5e0!3m2!1sen!2sin!4v1678188424977!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"/>  
               </div>
-              <div className='flex flex-col gap-3 my-2'>
-                  <h1 className='font-600 text-xl font-bold'>Let's Get In Touch</h1>
-                  <div className='h-1 w-10 bg-[#544BB9]'></div>
-                  <p className='font-400 text-xs text-[#353535]'>We are offering something exclusive to our clients by using cutting-edge technologies. We provide top IT software development solutions across the globe.</p>
-                  <div className='flex flex-col gap-2'>
-                      <div className='flex items-center gap-2'> 
-                          <IoLocation className='text-[#544BB9] text-sm' />
+              <div className='flex flex-col gap-3 my-2 h-full w-full'>
+                  {/* <h1 className='font-600 text-xl font-bold'>Let's Get In Touch</h1>
+                  <div className='h-1 w-10 bg-[#544BB9]'></div> */}
+                  <p className='font-400 font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#353535]'>We are offering something exclusive to our clients by using cutting-edge technologies. We provide top IT software development solutions across the globe.</p>
+                  <div className='flex flex-col gap-2 h-full w-full'>
+                      <div className='flex items-center gap-2 h-full w-full'> 
+                          <FaMapMarkerAlt className='h-8 w-8 sm:h-6 sm:w-6 md:h-4 md:w-4 ' />
                           <p className='font-400 text-xs text-[#353535]'>1208 Ganesh Glory, Nr. BSNL Office, Jagatpur Chenpur Road, Gota, Sarkhej - Gandhinagar Highway, Ahmedabad - 382481 Gujarat, India</p>
                       </div>
-                      <div className='flex items-center gap-2'> 
-                          <FaGlobe className='text-[#544BB9] text-xs' />
+                      <div className='flex items-center gap-2 h-full w-full'> 
+                          <FaGlobe className='h-4 w-4 ' />
                           <p className='font-400 text-xs text-[#353535]'>sales@infynno.com</p>
                       </div>
-                      <div className='flex items-center gap-2'> 
-                          <IoIosMail className='text-[#544BB9] text-sm' />
+                      <div className='flex items-center gap-2 h-full w-full'> 
+                          <IoIosMail className='h-4 w-4 ' />
                           <p className='font-400 text-xs text-[#353535]'>hr@infynno.com</p>
                       </div>
-                      <div className='flex items-center gap-2'> 
-                          <FaPhoneAlt className='text-[#544BB9] text-xs' />
+                      <div className='flex items-center gap-2 h-full w-full'> 
+                          <FaPhoneAlt className='h-4 w-4 ' />
                           <p className='font-400 text-xs text-[#353535]'>+91 848-883-8308</p>
                       </div>
-                      <div className='flex items-center gap-2'> 
-                          <FaSkype className='text-[#544BB9] text-xs' />
+                      <div className='flex items-center gap-2 h-full w-full'> 
+                          <FaSkype className='h-4 w-4 ' />
                           <p className='font-400 text-xs text-[#353535]'>live.Infynno</p>
                       </div>
                   </div>

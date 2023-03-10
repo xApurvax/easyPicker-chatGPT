@@ -12,6 +12,7 @@ import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import {  GoHome } from "react-icons/go";
 import { useNavigate } from 'react-router-dom';
 import RouteMiddleWare from '../../utils/RouteMiddleWare';
+import classNames from "classnames";
 
 const SavedRecords = () => {
     const dispatch = useDispatch();
@@ -69,7 +70,7 @@ const SavedRecords = () => {
               return (
                 <div key={i} className='group'>
                 <div className="flex gap-30 max-w-[100px]">
-                    <p className="font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-black">
+                    <p className="font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] text-black">
                       {row?.heading_type}
                     </p>
                 </div>
@@ -83,8 +84,8 @@ const SavedRecords = () => {
             accessor: (row,i) => {
               return (
                 <div key={i} className=''>
-                <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
-                    <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-black ">
+                <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap max-h-[110px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
+                    <p className="font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] text-black ">
                       {row?.paragraph}
                     </p>
                 </div>
@@ -98,11 +99,11 @@ const SavedRecords = () => {
             accessor: (row,i) => {
               return (
                 <div key={i} className=''>
-                <div className="flex flex-col gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
+                <div className="flex flex-col gap-1.5 ms:gap-1.5 sm:gap-1.5 md:gap-3 lg:gap-3 w-full max-w-[300px] whitespace-pre-wrap max-h-[110px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
                       {row?.title.length > 0 && row?.title?.split(",")?.map((title,id) => (
                         title.trim().length >0 && 
                         <div key={id} className="flex gap-2">
-                             <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-black">
+                             <p className="font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] text-black">
                                 {title}
                              </p>
                                 <button
@@ -128,12 +129,12 @@ const SavedRecords = () => {
             accessor: (row,i) => {
               return (
                 <div key={i} className=''>
-                <div className="flex flex-col gap-5 ms:gap-2 sm:gap-2 md:gap-5 lg:gap-5 w-full max-w-[300px] whitespace-pre-wrap max-h-[120px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
+                <div className="flex flex-col gap-1.5 ms:gap-1.5 sm:gap-1.5 md:gap-3 lg:gap-3 w-full max-w-[300px] whitespace-pre-wrap max-h-[110px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
                 {row?.tag.length > 0 && row?.tag?.split(",")?.map((tag,id) => (
                   tag.replace(".","") && tag.trim().length > 0 ?
                   <div key={id} className="flex gap-1 justify-between items-center">
-                       <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-center text-black">
-                          {tag}
+                       <p className="font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] text-center text-black">
+                          {tag.trim()}
                        </p>
                        <button
                         onClick={(e) => {
@@ -147,7 +148,7 @@ const SavedRecords = () => {
                        </button>
                   </div>
                   :
-                  <p className='font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base whitespace-nowrap text-black'>No tags were generated</p>
+                  <p className='font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] whitespace-nowrap text-black'>No tags were generated</p>
                 ))}
                 </div>
                 </div>
@@ -212,7 +213,8 @@ const SavedRecords = () => {
             // onBlur={() => setShowInputIcon(true)}
             onChange={(e) => handleFilter(e)}
             autoComplete="off"
-            className={`pr-2 py-2 lg:py-1.5 text-lg ms:text-sm sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] ms:max-w-[155px] sm:max-w-[180px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6"}`}
+            className={classNames(
+              "pr-2 py-2 lg:py-1.5 text-lg ms:text-sm sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] ms:max-w-[155px] sm:max-w-[180px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9]",showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6")}
             />
             {showInputIcon && <IoSearchOutline color='#544bb9'
             //  size={25} 
@@ -227,18 +229,18 @@ const SavedRecords = () => {
             {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
         </div>
         </div>
-        <div className='min-h-[20vh] h-max overflow-x-auto max-w-[100vw] border-[1px] border-solid border-[#aab2b8] rounded-md'>
-        <table className="border-separate border-spacing-y-2 w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[404px]">
+        <div className='min-h-[440px] h-max overflow-x-auto max-w-[100vw]'>
+        <table className="w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[404px] rounded-md border border-solid border-black">
               <thead>
                 {headerGroups.map((headerGroup, i) => (
                   <tr
-                    className="rounded-sm shadow-lg hover:shadow-[#ab97d0] py-2 bg-[#544bb9]"
+                    className="shadow-lg hover:shadow-[#aab2b8] my-2 bg-[#e2eaf7]"
                     key={i}
                     {...headerGroup.getHeaderGroupProps()}
                   >
                     {headerGroup.headers.map((column, i) => (
                       <th
-                        className="border-b-1 border-solid text-left border-black text-white ms:text-[10px] sm:text-[10px] md:text-sm lg:text-xs text-sm font-bold whitespace-nowrap p-2"
+                        className="text-left border-b border-t first:border-l border-r border-solid border-black text-black ms:text-[10px] sm:text-[10px] md:text-sm lg:text-xs text-sm font-bold tracking-wider whitespace-nowrap p-2"
                         key={i}
                         {...column.getHeaderProps()}
                       >
@@ -256,7 +258,7 @@ const SavedRecords = () => {
                         prepareRow(row);
                         return (
                           <tr
-                            // className={`${row.length == 1 && "max-h-[150px]"}`}
+                            className="first:border-t border-solid border-black"
                             // rowSpan={1}
                             key={i}
                             {...row.getRowProps()}
@@ -266,7 +268,7 @@ const SavedRecords = () => {
                                 <td
                                   key={i}
                                   {...cell.getCellProps()}
-                                  className={`text-left border-black rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-md text-black text-sm p-5 ms:p-2 sm:p-3 md:p-5 lg:p-5 whitespace-nowrap group`}
+                                  className="text-left border-b first:border-l border-r border-solid border-black text-black text-sm p-5 ms:p-1 sm:p-2 md:p-3 lg:p-3 whitespace-nowrap group"
                                 >
                                   {cell.render("Cell")}
                                 </td>
@@ -330,7 +332,7 @@ const SavedRecords = () => {
               )}
         </table>
         </div>
-        {saveResultsData?.length > 0 && (
+        {saveResultsData?.length > 0 && Math.ceil(totalResults/3) > 1 && (
           <div className="flex justify-center items-center gap-12">
           <ReactPaginate
             breakLabel="..."

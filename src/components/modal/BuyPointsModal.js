@@ -9,6 +9,7 @@ import { BuyPointsFetchAPi, setShowBuyPointsModal } from "../../redux/slices/poi
 import { GiTwoCoins ,GiCoins} from 'react-icons/gi';
 import { RiCoinFill } from 'react-icons/ri';
 import { FaCoins } from 'react-icons/fa';
+import classNames from "classnames";
 
 export const BuyPointsModal = () => {
   const dispatch = useDispatch();
@@ -79,7 +80,7 @@ export const BuyPointsModal = () => {
                   <GiTwoCoins
                     color="#FFD700"
                     // size={35}
-                    className={`${"text-2xl cursor-pointer"}`}
+                    className="text-2xl cursor-pointer"
                 />
                 </Dialog.Title>
                 <div onClick={() => {
@@ -98,11 +99,11 @@ export const BuyPointsModal = () => {
                             setCount(data.countValue);
                             setCounterSelected({ selected: true, id: id });
                           }}
-                          className={`${
-                            counterSelected.id == id && data.countValue == count
-                              ? "bg-[#544BB9] text-white font-bold"
-                              : "bg-[#EDF2F7] text-[#000000]"
-                          } flex gap-2 w-full items-center justify-center px-6 py-3 ms:px-2 sm:px-3 md:px-4 lg:px-5 ms:py-1 sm:py-1.5 md:py-2 lg:py-2.5 rounded-md cursor-pointer disabled:cursor-not-allowed`}
+                          className={classNames(
+                            "flex gap-2 w-full items-center justify-center px-6 py-3 ms:px-2 sm:px-3 md:px-4 lg:px-5 ms:py-1 sm:py-1.5 md:py-2 lg:py-2.5 rounded-md cursor-pointer disabled:cursor-not-allowed",
+                            counterSelected.id == id && data.countValue == count ? 
+                            "bg-[#544BB9] text-white font-bold" : 
+                            "bg-[#EDF2F7] text-[#000000]")}
                         >
                           <p>Buy {data.countValue}</p>
                           <p className="text-[#FFD700] text-2xl ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-2xl">{data.coinIcon}</p>  

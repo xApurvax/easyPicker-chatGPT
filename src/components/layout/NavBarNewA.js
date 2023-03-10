@@ -12,6 +12,7 @@ import { Fragment, useRef } from 'react'
 import { BsPerson } from 'react-icons/bs';
 import { MdHistory } from 'react-icons/md';
 import Cookies from 'js-cookie';
+import classNames from "classnames";
 import { profileDetailsFetchAPI } from '../../redux/slices/ProfileSlice';
 import { GiTwoCoins } from "react-icons/gi";
 import { BiPlus } from "react-icons/bi";
@@ -35,7 +36,7 @@ const NavbarNewA = () => {
     const element = document.getElementById('howitworks');
     if (element) {
       // 👇 Will scroll smoothly to the top of the next section
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth',block: "center" });
     }
   };
   
@@ -69,9 +70,13 @@ const NavbarNewA = () => {
   }
 
   return (
-    <div className={`w-full z-50 flex justify-center items-center `}>
-    <nav className={`flex justify-center max-w-screen bg-[#544BB9] items-center w-full px-[5%]
-    ${toggle ? "fixed top-0" : ""}`}>
+    <div className="w-full z-50 flex justify-center items-center">
+    <nav 
+    className={classNames(
+      "flex justify-center max-w-screen bg-[#544BB9] items-center w-full px-[5%]",
+      toggle && "fixed top-0"
+    )}
+    >
       <div className="flex justify-between w-full py-3 max-w-6xl">
         <div className="flex gap-5 items-center justify-center">
         <a href="/generator">
@@ -89,18 +94,39 @@ const NavbarNewA = () => {
                 <span></span>
             </div>
           </div>
-          <div className={`md:invisible w-full h-full flex flex-wrap flex-col justify-center items-center fixed left-0 top-[33px] ${toggle ? "visible ms:visible sm:visible  z-[3]" : "invisible -z-10"}`}>
-            <div className={`md:invisible w-full h-full flex flex-wrap absolute left-0 top-0 ${toggle ? "visible ms:visible sm:visible z-[3]" : "invisible -z-10"}`}> 
-                <span className={`${toggle ? "-left-1/2 w-1/2  delay-[0s] skew-x-[45deg]" : "left-0 w-0  delay-[0.3s] skew-x-0"} absolute top-5 bg-black h-full transition before:content-[''] before:w-[150%] before:h-full before:bg-black before:absolute before:top-0 before:-left-[149%] -z-10`}></span> 
-                <span className={`${toggle ? "left-0 w-1/2  delay-[0s] skew-x-[45deg]" : "left-1/4 w-0  delay-[0.3s] skew-x-0"} absolute top-5 bg-black h-full transition -z-10`}></span> 
-                <span className={`${toggle ? "left-1/2 w-1/2  delay-[0s] skew-x-[45deg]" : "left-1/2 w-0  delay-[0.3s] skew-x-0"} absolute top-5 bg-black h-full transition -z-10`}></span> 
-                <span className={`${toggle ? "left-full w-1/2  delay-[0s] skew-x-[45deg]" : "left-3/4 w-0  delay-[0.3s] skew-x-0"} absolute top-5 bg-black h-full transition  before:content-[''] before:w-[150%] before:h-full before:bg-black before:absolute before:top-0 before:-right-[149%] -z-10`}></span> 
+          <div 
+          className={classNames(
+            "md:invisible w-full h-full flex flex-wrap flex-col justify-center items-center fixed left-0 top-[33px]",
+            toggle ? "visible ms:visible sm:visible z-[3]" : "invisible -z-10"
+          )}
+          >
+            <div className={classNames(
+              "md:invisible w-full h-full flex flex-wrap absolute left-0 top-0",
+              toggle ? "visible ms:visible sm:visible z-[3]" : "invisible -z-10"
+            )}
+             > 
+                <span className={classNames(
+                  "absolute top-5 bg-black h-full transition before:content-[''] before:w-[150%] before:h-full before:bg-black before:absolute before:top-0 before:-left-[149%] -z-10",
+                  toggle ? "-left-1/2 w-1/2  delay-[0s] skew-x-[45deg]" : "left-0 w-0  delay-[0.3s] skew-x-0")}></span> 
+                <span className={classNames(
+                  "absolute top-5 bg-black h-full transition -z-10",
+                  toggle ? "left-0 w-1/2  delay-[0s] skew-x-[45deg]" : "left-1/4 w-0  delay-[0.3s]skew-x-0" )}></span> 
+                <span className={classNames(
+                  "absolute top-5 bg-black h-full transition -z-10",
+                  toggle ? "left-1/2 w-1/2  delay-[0s] skew-x-[45deg]" : "left-1/2 w-0  delay-[0.3s] skew-x-0" )}></span> 
+                <span className={classNames(
+                  "absolute top-5 bg-black h-full transition  before:content-[''] before:w-[150%] before:h-full before:bg-black before:absolute before:top-0 before:-right-[149%] -z-10",
+                  toggle ? "left-full w-1/2  delay-[0s] skew-x-[45deg]" : "lleft-3/4 w-0  delay-[0.3s] skew-x-0" )}></span> 
             </div>
            <div data-tilt data-tilt-perspective="2000" 
            className="navbar_menu will-change-transform"
            >
-            <div className={`block min-h-[130px] transform transition ${toggle ? "opacity-100 -translate-y-1/3 delay-[0.45s]" : "opacity-0 -translate-y-0  delay-[0s]"}`}>
-                <ul className={`transition flex flex-col gap-5 my-5 items-start ${toggle ? "delay-[0.45s]" : "delay-[0s]"}` }>
+            <div className={classNames(
+              "block min-h-[130px] transform transition",
+              toggle ? "opacity-100 -translate-y-1/3 delay-[0.45s]" : "opacity-0 -translate-y-0 delay-[0s]")}>
+                <ul className={classNames(
+                  "transition flex flex-col gap-5 my-5 items-start",
+                  toggle ? "delay-[0.45s]" : "delay-[0s]" )}>
                 {/* <Link href="/">
                   <li className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
                     How it works?
@@ -265,23 +291,24 @@ const NavbarNewA = () => {
                         <GiTwoCoins
                           color="#FFD700"
                           // size={35}
-                          className={`${availableCoins && "origin-center hover:rotate-12 text-2xl ms:text-[16px] sm:text-[24px] md:text-lg lg:text-lg cursor-pointer"}`}
+                          className={classNames(
+                            availableCoins && "origin-center hover:rotate-12 text-2xl ms:text-[16px] sm:text-[24px] md:text-lg lg:text-lg cursor-pointer" )}
                         />
                          <p
                           id="coins-text"
-                          className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-base lg:text-base text-white ml-2`}
+                          className="font-semibold text-2xl ms:text-xs sm:text-base md:text-base lg:text-base text-white ml-2"
                         >
                           {!availableCoins ? 0 : availableCoins}
                         </p>
                         <button onClick={() =>{ dispatch(setShowBuyPointsModal(true))}} className="flex items-center justify-center">
-                        <BiPlus className={`${"text-2xl ms:text-[16px] sm:text-[20px] md:text-xl lg:text-2xl cursor-pointer text-white md:px-0.5"}`}/>
+                        <BiPlus className="text-2xl ms:text-[16px] sm:text-[20px] md:text-xl lg:text-2xl cursor-pointer text-white md:px-0.5"/>
                         </button>
                       </div>
                     </div>
                     <div className="flex justify-end items-center">
                         <button onClick={() => {navigate("/bookmarks");dispatch(setHasTitleTag([]));}} className="flex gap-6 bg-[#544BB9] px-2 py-1 h-full w-full">
                           <p
-                            className={`font-semibold text-2xl ms:text-xs sm:text-base md:text-base lg:text-base text-white whitespace-nowrap`}
+                            className="font-semibold text-2xl ms:text-xs sm:text-base md:text-base lg:text-base text-white whitespace-nowrap"
                           >
                             Bookmarks
                           </p>
@@ -322,9 +349,9 @@ const NavbarNewA = () => {
                               coinsText?.classList?.remove("open");
                               dispatch(setHasTitleTag([]));
                               navigate("/profile")}}
-                            className={`${
-                              active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                            } group flex gap-2.5 w-full items-center rounded-md px-2 py-2 text-sm`}
+                              className={classNames(
+                              "group flex gap-2.5 w-full items-center rounded-md px-2 py-2 text-sm",
+                              active ? "bg-violet-500 text-white" : "text-gray-900")}
                           >
                             {active ? (
                               <div><BsPerson/></div>
@@ -343,9 +370,9 @@ const NavbarNewA = () => {
                           coinsText?.classList?.remove("open");
                           dispatch(setHasTitleTag([]));
                             navigate("/transaction-history")}}
-                            className={`${
-                              active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                            } group flex gap-2.5 w-full items-center rounded-md px-2 py-2 text-sm`}
+                            className={classNames(
+                              "group flex gap-2.5 w-full items-center rounded-md px-2 py-2 text-sm",
+                              active ? "bg-violet-500 text-white" : "text-gray-900")}
                           >
                             {active ? (
                               <div><MdHistory /></div>
@@ -357,29 +384,6 @@ const NavbarNewA = () => {
                         )}
                       </Menu.Item>
                     </div>
-                    {/* <div className="px-1 py-1">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <button
-                          onClick={() => {setIsNavOpen(false);
-                            const coinsText = document.querySelector("#nav-icon4")
-                          coinsText?.classList?.remove("open");
-                          dispatch(setHasTitleTag([]));
-                            navigate("/how-it-works")}}
-                            className={`${
-                              active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                            } group flex gap-2.5 w-full items-center rounded-md px-2 py-2 text-sm`}
-                          >
-                            {active ? (
-                              <div><FiSettings /></div>
-                            ) : (
-                              <div><FiSettings /></div>
-                            )}
-                            <div>How it works</div>
-                          </button>
-                        )}
-                      </Menu.Item>
-                    </div> */}
                     <div className="px-1 py-1">
                       <Menu.Item>
                         {({ active }) => (
@@ -390,9 +394,9 @@ const NavbarNewA = () => {
                             dispatch(setHasTitleTag([]));
                             // Cookies.remove("userDetails");
                              }}
-                            className={`${
-                              active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                            } group flex gap-2.5 w-full items-center rounded-md px-2 py-2 text-sm`}
+                            className={classNames(
+                              "group flex gap-2.5 w-full items-center rounded-md px-2 py-2 text-sm",
+                              active ? "bg-violet-500 text-white" : "text-gray-900")}
                           >
                             {active ? (
                               <div><FiLogOut /></div>

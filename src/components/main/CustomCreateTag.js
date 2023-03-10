@@ -1,5 +1,6 @@
 import React from 'react'
 import { IoIosClose } from 'react-icons/io';
+import classNames from "classnames";
 
 const CustomCreateTag = ({tags,setTags,selectedTags,setHasSomethingTyped,...props}) => {
     const addTags = (event) => {
@@ -17,7 +18,11 @@ const CustomCreateTag = ({tags,setTags,selectedTags,setHasSomethingTyped,...prop
 
   return (
     <main className='w-full max-w-[700px]'>
-    <div className={`flex flex-col ${tags.length > 0 && "gap-3"}`}> 
+    <div 
+    className={classNames(
+        "flex flex-col",
+        tags.length > 0 &&  "gap-3")}
+    > 
         <ul className='flex gap-2 flex-wrap'>
         {tags.map((tag, index) => (
             <li key={index} className="flex items-center p-2 gap-2

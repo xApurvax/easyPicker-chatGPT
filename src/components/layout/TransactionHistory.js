@@ -17,6 +17,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
 import RouteMiddleWare from '../../utils/RouteMiddleWare';
+import classNames from "classnames";
 
 const SavedRecords = () => {
     const dispatch = useDispatch();
@@ -73,7 +74,7 @@ const SavedRecords = () => {
               return (
                 <div key={i} className='group'>
                 <div className="flex gap-30 max-w-[100px]">
-                    <p className="font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-black">
+                    <p className="font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] text-black">
                     {row?.purchased_at}
                     </p>
                 </div>
@@ -89,7 +90,7 @@ const SavedRecords = () => {
               return (
                 <div key={i} className='group'>
                 <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap">
-                    <p className="flex gap-2 items-center justify-center font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-black ">
+                    <p className="flex gap-2 items-center justify-center font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] text-black ">
                       {row?.points >= 1 && row?.points < 10 && <RiCoinFill color="#FFD700" />} 
                       {row?.points >= 10 && row?.points < 100 && <FaCoins color="#FFD700" />} 
                       {row?.points >= 100 && <GiCoins color="#FFD700" />} 
@@ -108,7 +109,7 @@ const SavedRecords = () => {
               return (
                 <div key={i} className='group'>
                 <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap">
-                    <p className="font-medium text-base ms:text-[10px] ms:leading-[10px] sm:text-[10px] sm:leading-[10px] md:text-base lg:text-base text-black ">
+                    <p className="font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] text-black ">
                     ₹ {row?.amount}
                     </p>
                 </div>
@@ -166,7 +167,7 @@ const SavedRecords = () => {
         {
           columns,
           data: allTransactionHistory,
-          initialState: { pageSize: 4 },
+          initialState: { pageSize: 5 },
         //   globalFilter: ourGlobalFilterFunction,
         },
         useGlobalFilter,
@@ -179,28 +180,18 @@ const SavedRecords = () => {
   return (
     <RouteMiddleWare>
     <div className="flex flex-col p-5 gap-5 rounded-xl bg-white w-full h-full group">
-        {/* <div className='flex items-center justify-center'>
-            <p className='font-semibold text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer'>Transaction history</p>
-        </div> */}
         <div className='flex flex-row-reverse justify-between items-center'>
         <div className='relative'>
-            {/* <input
-            type='text'
-            id='search'
-            name='search'
-            placeholder='Search by heading' 
-            // onFocus={() => setShowInputIcon(true)}
-            // onBlur={() => setShowInputIcon(true)}
-            onChange={(e) => handleFilter(e)}
-            autoComplete="off"
-            className={`pr-2 py-2 text-lg ms:text-sm sm:text-base md:text-lg lg:text-lg border-[1px] border-solid border-[#aab2b8] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6"}`}
-            /> */}
             <DatePicker 
             autoComplete="off" 
             selected={startDate} 
             onChange={(date) => setStartDate(date)}
             placeholderText="Select date"
-            className={`pr-2 py-2 lg:py-1.5 text-lg ms:text-sm sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] max-w-[130px] ms:max-w-[120px] sm:max-w-[150px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9] ${showInputIcon ? "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" : "px-6"}`}
+            className={classNames(
+              "pr-2 py-2 lg:py-1.5 text-lg ms:text-sm sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] max-w-[130px] ms:max-w-[120px] sm:max-w-[150px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9]",
+              showInputIcon ?
+              "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" :
+              "px-6")}
              />
             {showInputIcon && <MdDateRange color='#544bb9'
             //  size={25} 
@@ -215,25 +206,28 @@ const SavedRecords = () => {
             {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
         </div>
         </div>
-        <div className='min-h-[20vh] h-max overflow-x-auto max-w-[100vw] border-[1px] border-solid border-[#aab2b8] rounded-md'>
-        <table className="border-separate border-spacing-y-2 w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[480px] min-h-[320px]">
+        <div className='min-h-[150px] ms:min-h-[150px] sm:min-h-[200px] md:min-h-[230px] lg:min-h-[280px] h-max overflow-x-auto max-w-[100vw]'>
+        <table className="w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[480px] rounded-md border border-solid border-black">
               <thead>
                 {headerGroups.map((headerGroup, i) => (
                   <tr
-                    className="rounded-sm shadow-lg hover:shadow-[#ab97d0] py-2 bg-[#544bb9]"
+                    className="shadow-lg hover:shadow-[#aab2b8] my-2 bg-[#e2eaf7]"
                     key={i}
                     {...headerGroup.getHeaderGroupProps()}
                   >
                     {headerGroup.headers.map((column, i) => (
                       <th
-                        className="border-b-1 border-solid text-left border-black text-white ms:text-[10px] sm:text-[10px] md:text-sm lg:text-xs text-sm font-bold whitespace-nowrap p-2"
+                        className="text-left border-b border-t first:border-l border-r border-solid border-black text-black ms:text-[10px] sm:text-[10px] md:text-sm lg:text-xs text-sm font-bold tracking-wider whitespace-nowrap p-2"
                         key={i}
                         {...column.getHeaderProps()}
                       >
                         {column.sortable ? 
                         <div className='flex gap-2 items-center cursor-pointer' onClick={() => setDateOrder(!dateOrder)}>
                         {column.render("Header")}
-                        <IoIosArrowUp  className={`transform duration-200 ${dateOrder ? "rotate-0" : "rotate-180"}`}
+                        <IoIosArrowUp 
+                         className={classNames(
+                          "transform duration-200",
+                          dateOrder ? "rotate-0" : "rotate-180")}
                         />
                         </div>:
                          <div className='flex gap-2 items-center'>
@@ -252,8 +246,6 @@ const SavedRecords = () => {
                         prepareRow(row);
                         return (
                           <tr
-                            // className={`${row.length == 1 && "max-h-[150px]"}`}
-                            // rowSpan={1}
                             key={i}
                             {...row.getRowProps()}
                           >
@@ -262,7 +254,7 @@ const SavedRecords = () => {
                                 <td
                                   key={i}
                                   {...cell.getCellProps()}
-                                  className={`text-left border-black rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-md text-black text-sm p-5 ms:p-2 sm:p-3 md:p-5 lg:p-5 whitespace-nowrap h-full min-h-max w-max`}
+                                  className="text-left border-b border-t first:border-l border-r border-solid border-black text-sm p-5 ms:p-1 sm:p-2 md:p-3 lg:p-3 whitespace-nowrap h-full min-h-max w-max"
                                 >
                                   {cell.render("Cell")}
                                 </td>
@@ -276,7 +268,7 @@ const SavedRecords = () => {
                     <>
                       <tr>
                         <td colSpan={5}>
-                          <div className="flex justify-center items-center h-[320px]">
+                          <div className="flex justify-center items-center h-[150px] ms:h-[150px] sm:h-[200px] md:h-[210px] lg:h-[230px]">
                             <div className="flex flex-col gap-15">
                               <div className="flex justify-center items-center">
                                 <CgSmileNeutral size={50} fill="black" />
@@ -298,7 +290,7 @@ const SavedRecords = () => {
                 <tbody>
                   <tr className='h-full'>
                     <td colSpan={5}>
-                      <div className="flex justify-center items-center h-full min-h-[320px]">
+                      <div className="flex justify-center items-center h-full min-h-[250px] ms:min-h-[110px] sm:min-h-[170px] md:min-h-[215px] lg:min-h-[250px]">
                         <Oval
                           color="#544bb9"
                           height="50"
@@ -326,7 +318,7 @@ const SavedRecords = () => {
               )}
         </table>
         </div>
-        {allTransactionHistory?.length > 0 && (
+        {allTransactionHistory?.length > 0 &&  Math.ceil(totalResults/5) > 1 && (
           <div className="flex justify-center items-center gap-12">
             <ReactPaginate
               breakLabel="..."
@@ -345,7 +337,7 @@ const SavedRecords = () => {
               onPageChange={handlePageClick}
               pageRangeDisplayed={3}
               marginPagesDisplayed={1}
-              pageCount={Math.ceil(totalResults/3)}
+              pageCount={Math.ceil(totalResults/5)}
               previousLabel={
                 <button
                   className="disabled:opacity-60"
