@@ -58,8 +58,7 @@ const HomePage = () => {
     useEffect(() => {
         document.title = "How it works | Tagline Generator"
       }, [])
-
-
+      
   return (
     <AuthMiddleware>
     <div className='flex flex-col'>
