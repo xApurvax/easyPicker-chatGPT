@@ -37,9 +37,9 @@ const LogIn = () => {
                 >
                     {({ handleSubmit }) =>
                     (<form className='w-full max-w-md' onSubmit={handleSubmit} >
-                        <div className='w-full h-full flex flex-col gap-8 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-8 justify-center items-start'>
+                        <div className='w-full h-full flex flex-col gap-4 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-8 justify-center items-start'>
                             <div className='flex items-start'>
-                                <p className='font-medium text-3xl ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Sign in</p>
+                                <p className='font-medium text-lg ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Sign in</p>
                             </div>
                             <div className='flex flex-col gap-10 ms:gap-5 sm:gap-5 md:gap-10 lg:gap-10 items-start w-full'>
                             <InputField
@@ -49,7 +49,7 @@ const LogIn = () => {
                             inputstyle='w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
                             borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
                             placeholder='E-mail or username' />
-                            <div className='flex flex-col gap-4 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 items-start w-full'>
+                            <div className='flex flex-col gap-2 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 items-start w-full'>
                                 <InputField
                                 type='password'
                                 id='password'
@@ -57,10 +57,10 @@ const LogIn = () => {
                                 inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                 borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                 placeholder='Password' />
-                                <div className='flex items-center justify-end w-full font-semibold text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#544BB9] cursor-pointer' onClick={() => {{navigate('/auth/forgot')}}}>Forgot password?</div>
+                                <div className='flex items-center justify-end w-full font-semibold text-xs ms:text-xs sm:text-sm md:text-base lg:text-base text-[#544BB9] cursor-pointer' onClick={() => {{navigate('/auth/forgot')}}}>Forgot password?</div>
                             </div>
                             </div>
-                            <div className='py-3 ms:py-0 sm:py-0 md:py-3 lg:py-3 w-full'>
+                            <div className='py-0 ms:py-0 sm:py-0 md:py-3 lg:py-3 w-full'>
                             <CustomButton
                                 type='submit'
                                 disabled={isSuccess}
@@ -80,8 +80,8 @@ const LogIn = () => {
                     </form>)}
             </Formik>
                 <div className='flex gap-1'>
-                   <div className='font-bold text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#544BB9] cursor-pointer' onClick={() => {navigate('/auth/register')}}>Sign up</div>
-                   <p className='font-normal text-sm ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#4A5568]'>for an account </p>   
+                   <div className='font-bold text-xs ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#544BB9] cursor-pointer' onClick={() => {navigate('/auth/register')}}>Sign up</div>
+                   <p className='font-normal text-xs ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#4A5568]'>for an account </p>   
                 </div>
             </div>
         </div>

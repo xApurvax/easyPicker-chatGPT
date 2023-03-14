@@ -17,7 +17,7 @@ export const profileDetailsFetchAPI = createAsyncThunk(
   async (data, {rejectWithValue} ) => {
     try {
       const response = await ApiMiddleware.get(
-        `/api/auth/register/`,
+        `/api/auth/profile/`,
         {...data}
       );
       return response;

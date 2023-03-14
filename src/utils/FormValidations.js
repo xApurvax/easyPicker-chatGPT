@@ -44,7 +44,7 @@ export const contactUsValidationSchema = Yup.object({
     .min(3, "Must be 3 char long.")
     .required("Name is required.").trim(),
     email: Yup.string().email('Enter valid e-mail.').required('E-mail is required.'),
-    recaptcha: Yup.string().required('Please verify recaptcha.'),
+    captcha_verified: Yup.string().required('Please verify recaptcha.'),
 });
 
 export const contactUsValidationWithoutCaptchaSchema = Yup.object({
@@ -55,7 +55,7 @@ export const contactUsValidationWithoutCaptchaSchema = Yup.object({
     .min(3, "Must be 3 char long.")
     .required("Name is required.").trim(),
     email: Yup.string().email('Enter valid e-mail.').required('E-mail is required.'),
-    recaptcha: Yup.string().required('Please verify recaptcha.'),
+    captcha_verified: Yup.string(),
 });
 
 export const forgotPasswordValidationSchema = Yup.object({
@@ -67,8 +67,7 @@ export const ResetPasswordValidationSchema = Yup.object({
         .trim()
         .oneOf([Yup.ref("password"), null])
         .min(8, "Must be 8 char long.")
-        .required("Password is required.")
-    ,
+        .required("Password is required."),
     confirmPassword: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match.')
         .trim()

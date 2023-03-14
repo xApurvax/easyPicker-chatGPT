@@ -31,12 +31,12 @@ const HeaderNew = ({ children }) => {
       <div className="">
         <header className="bg-[#544BB9] py-0 relative after:content-[''] after:h-[30%] after:w-full after:absolute after:top-full after:bg-[#EDF2F7] after:-translate-y-full after:z-0 h-full min-h-[80vh] flex flex-col items-center ms:justify-center md:justify-start w-full">
           <div className="flex flex-col justify-center items-center ms:gap-1">
-            <p className="font-bold text-6xl ms:text-2xl sm:text-3xl md:text-3xl lg:text-3xl text-white">
+            <p className="font-bold text-2xl ms:text-2xl sm:text-3xl md:text-3xl lg:text-3xl text-white">
               AI Title Generator
             </p>
             <p
               id="dynamicText"
-              className="font-medium text-lg ms:text-[8px] sm:text-base md:text-lg text-white"
+              className="font-medium text-[8px] ms:text-[8px] sm:text-base md:text-lg text-white"
             >
               {heading}
             </p>

@@ -38,7 +38,7 @@ const DropZone = ({ image, setImage, imageAfterCrop, imageAtEdit }) => {
             ></button>
             {imageAfterCrop || imageAtEdit ? (
               <>
-                <div className="w-full h-full ms:h-12 ms:w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-16 lg:w-16 flex justify-center items-center relative">
+                <div className="h-12 w-12 ms:h-12 ms:w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-16 lg:w-16 flex justify-center items-center relative">
                   <img
                     src={imageAfterCrop || imageAtEdit}
                     alt="Picture of an text"

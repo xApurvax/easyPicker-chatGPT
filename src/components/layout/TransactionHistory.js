@@ -188,9 +188,9 @@ const SavedRecords = () => {
             onChange={(date) => setStartDate(date)}
             placeholderText="Select date"
             className={classNames(
-              "pr-2 py-2 lg:py-1.5 text-lg ms:text-sm sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] max-w-[130px] ms:max-w-[120px] sm:max-w-[150px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9]",
+              "pr-2 py-1.5 lg:py-1.5 text-sm ms:text-sm sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] max-w-[120px] ms:max-w-[120px] sm:max-w-[150px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9]",
               showInputIcon ?
-              "pl-10 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" :
+              "pl-7 pr-2 ms:pl-7 sm:pl-8 md:pl-10 lg:pl-10" :
               "px-6")}
              />
             {showInputIcon && <MdDateRange color='#544bb9'
@@ -199,15 +199,15 @@ const SavedRecords = () => {
         </div>
         <div className='flex gap-1 items-center'>
             {/* <p className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer whitespace-nowrap text-[#544bb9] underline'>back to home</p> */}
-            <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' onClick={(e) => {e.preventDefault();
+            <GoHome className='text-xs ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' onClick={(e) => {e.preventDefault();
                     history('/');
             }} />
-            <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-lg'>/ Transactions History</p>
+            <p className='font-semibold text-xs ms:text-xs sm:text-lg md:text-2xl lg:text-lg'>/ Transactions History</p>
             {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
         </div>
         </div>
-        <div className='min-h-[150px] ms:min-h-[150px] sm:min-h-[200px] md:min-h-[230px] lg:min-h-[280px] h-max overflow-x-auto max-w-[100vw]'>
-        <table className="w-full h-full px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[480px] rounded-md border border-solid border-black">
+        <div className='min-h-[150px] ms:min-h-[150px] sm:min-h-[200px] md:min-h-[230px] lg:min-h-[260px] h-max overflow-x-auto max-w-[100vw] border border-solid border-black rounded-md'>
+        <table className="w-full h-full border-collapse border-spacing-0 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[480px] border border-solid border-black rounded-md">
               <thead>
                 {headerGroups.map((headerGroup, i) => (
                   <tr
@@ -217,7 +217,7 @@ const SavedRecords = () => {
                   >
                     {headerGroup.headers.map((column, i) => (
                       <th
-                        className="text-left border-b border-t first:border-l border-r border-solid border-black text-black ms:text-[10px] sm:text-[10px] md:text-sm lg:text-xs text-sm font-bold tracking-wider whitespace-nowrap p-2"
+                        className="text-left border-b-2 border-t first:border-l border-r border-solid border-black text-black ms:text-[10px] sm:text-[10px] md:text-sm lg:text-xs text-sm font-bold tracking-wider whitespace-nowrap p-2"
                         key={i}
                         {...column.getHeaderProps()}
                       >
@@ -350,27 +350,27 @@ const SavedRecords = () => {
                 </button>
               }
               renderOnZeroPageCount={1}
-              containerClassName={"flex py-2 justify-center gap-x-[24px] ms:gap-x-[10px] sm:gap-x-[15px] md:gap-x-[20px] lg:gap-x-[24px]"}
+              containerClassName={"flex py-2 justify-center gap-x-[10px] ms:gap-x-[10px] sm:gap-x-[15px] md:gap-x-[20px] lg:gap-x-[24px]"}
               pageClassName={
-                "flex items-center justify-center w-[36px] rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[36px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] ms:text-xs sm:text-xs md:text-sm lg:text-sm"
+                "flex items-center justify-center w-[20px] rounded-[2px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[20px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] ms:text-xs sm:text-xs md:text-sm lg:text-sm"
               }
               previousClassName={
-                "prev-btn flex items-center justify-center w-[36px] rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[36px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] ms:text-xs sm:text-xs md:text-sm lg:text-sm"
+                "prev-btn flex items-center justify-center w-[20px] rounded-[2px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[20px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] text-xs ms:text-xs sm:text-xs md:text-sm lg:text-sm"
               }
               nextClassName={
-                "next-btn flex items-center justify-center w-[36px] rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[36px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] ms:text-xs sm:text-xs md:text-sm lg:text-sm"
+                "next-btn flex items-center justify-center w-[20px] rounded-[2px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[20px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] ms:text-xs sm:text-xs md:text-sm lg:text-sm"
               }
               pageLinkClassName={
                 "flex items-center justify-center h-full w-full"
               }
               previousLinkClassName={
-                "flex items-center justify-center h-full w-full rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] border-1 border-solid border-[#E4E4EB] disabled:bg-gray"
+                "flex items-center justify-center h-full w-full rounded-[2px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] border-1 border-solid border-[#E4E4EB] disabled:bg-gray"
               }
               nextLinkClassName={
-                "flex items-center justify-center h-full w-full rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] border-1 border-solid border-[#E4E4EB] disabled:bg-gray"
+                "flex items-center justify-center h-full w-full rounded-[2px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] border-1 border-solid border-[#E4E4EB] disabled:bg-gray"
               }
               breakClassName={
-                "flex items-center justify-center w-[36px] bg-[#FFFFFF] rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[36px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] ms:text-xs sm:text-xs md:text-sm lg:text-sm"
+                "flex items-center justify-center w-[20px] bg-[#FFFFFF] rounded-[2px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[20px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] ms:text-xs sm:text-xs md:text-sm lg:text-sm"
               }
               activeLinkClassName={"text-blue"}
               activeClassName={

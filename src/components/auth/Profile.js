@@ -55,14 +55,14 @@ const Profile = () => {
 
   return (
     <RouteMiddleWare>
-      <div className='flex flex-col p-10 ms:p-5 sm:p-5 md:p-10 lg:p-5 gap-2 rounded-xl bg-white w-full h-full ms:max-w-[90%]'>
+      <div className='flex flex-col p-5 ms:p-5 sm:p-5 md:p-10 lg:p-5 gap-2 rounded-xl bg-white w-full h-full ms:max-w-[90%]'>
             <div className='flex gap-1 items-center'>
-                <GoHome className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' onClick={(e) => {e.preventDefault();
+                <GoHome className='text-xs ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' onClick={(e) => {e.preventDefault();
                         navigate('/');
                 }} />
-                <p className='font-semibold text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-lg'>/ Account Information</p>
+                <p className='font-semibold text-xs ms:text-xs sm:text-lg md:text-2xl lg:text-lg'>/ Account Information</p>
             </div>
-             <div className='flex flex-col gap-4 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-2 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-5'>
+             <div className='flex flex-col gap-2 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-2 h-full w-full justify-center items-center py-0 ms:py-0 lg:py-5'>
                 <Formik
                         initialValues={initialValues}
                         validationSchema={profileUpdateValidationSchema}
@@ -73,7 +73,7 @@ const Profile = () => {
                     >
                         {({ handleSubmit }) =>
                         (<form className='w-full max-w-md' onSubmit={handleSubmit} encType="multipart/form-data">
-                            <div className='w-full h-full flex flex-col gap-8 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-6 justify-center items-start'>
+                            <div className='w-full h-full flex flex-col gap-4 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-6 justify-center items-start'>
                                 <div className='w-full h-full'>
                                     <DropZone 
                                     imageAfterCrop={image && image?.url}
@@ -126,7 +126,7 @@ const Profile = () => {
                                     onAnimationEnd={() => {
                                     dispatch(setSignInEffect(false));
                                     }}
-                                    buttonStyle="w-full py-[12px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg"
+                                    buttonStyle="w-full py-[12px] 2xl:py-[13px] text-sm sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg"
                                     loaderSize={20}
                                     showLoader>
                                     Update

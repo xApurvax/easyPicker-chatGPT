@@ -48,6 +48,7 @@ const registerSlice = createSlice({
       if(payload?.data?.status_code === 200) {
         // toast.success(payload?.data?.message);
         state.allData = payload?.data?.result[0];
+        Cookies.set("coins", 1000);
         Cookies.set("access_token", payload?.data?.result[0]?.token?.access);
         Cookies.set("refresh_token", payload?.data?.result[0]?.token?.refresh);
       }

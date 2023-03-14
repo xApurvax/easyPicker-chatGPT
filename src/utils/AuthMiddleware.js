@@ -6,6 +6,7 @@ const AuthMiddleware = ({ children }) => {
   const [unauthorized, setUnauthorized] = useState(false);
   const token = getAccessToken();
   const navigate = useNavigate();
+  
   useEffect(() => {
     if (token) {
       navigate("/generator");

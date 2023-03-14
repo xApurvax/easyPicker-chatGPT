@@ -6,6 +6,7 @@ import pointsSlice from "../slices/pointsSlice";
 import ProfileSlice from "../slices/ProfileSlice";
 import savedRecordSlice from "../slices/savedRecordSlice";
 import counterSlice from "../slices/counterSlice";
+import contactusSlice from "../slices/auth/contactusSlice";
 import loginSlice from "../../redux/slices/auth/loginSlice";
 import registerSlice from "../../redux/slices/auth/registerSlice";
 import forgotPasswordSlice from "../../redux/slices/auth/forgotPasswordSlice";
@@ -21,6 +22,7 @@ const store = configureStore({
              savedRecordSlice,
              pointsSlice,
              ProfileSlice,
+             contactusSlice,
              },
   middleware: (getDefaultMiddlerWare) =>
     getDefaultMiddlerWare({

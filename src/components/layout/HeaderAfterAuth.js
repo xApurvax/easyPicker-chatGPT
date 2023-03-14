@@ -8,9 +8,11 @@ import { profileDetailsFetchAPI } from "../../redux/slices/ProfileSlice";
 
 const HeaderAfterAuth = ({children}) => {
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(profileDetailsFetchAPI())
-}, [])
+  }, [])
+
   return (
     <div className='flex flex-col bg-[#544BB9] h-screen'>    
       <NavBarNewA />

@@ -38,8 +38,8 @@ const PasswordReset = () => {
   return (
     <ResetPasswordMiddleware>
     <AuthMiddleware>
-    <div className='flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-10 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[90%]'>
-        <div className='flex flex-col gap-4 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-10'>
+    <div className='flex p-5 ms:p-5 sm:p-5 md:p-10 lg:p-10 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[90%]'>
+        <div className='flex flex-col gap-2 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-0 ms:py-0 lg:py-10'>
             <Formik
                     initialValues={initialValues}
                     validationSchema={ResetPasswordValidationSchema}
@@ -49,11 +49,11 @@ const PasswordReset = () => {
                 >
                     {({ handleSubmit }) =>
                     (<form className='w-full max-w-md' onSubmit={handleSubmit} >
-                        <div className='w-full h-full flex flex-col gap-8 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-8 justify-center items-start'>
+                        <div className='w-full h-full flex flex-col gap-4 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-8 justify-center items-start'>
                             <div className='flex items-start w-full'>
-                                <p className='font-medium text-3xl ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Reset password</p>
+                                <p className='font-medium text-lg ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Reset password</p>
                             </div>
-                            <div className='flex flex-col gap-10 ms:gap-5 sm:gap-5 md:gap-10 lg:gap-10 items-start w-full'>
+                            <div className='flex flex-col gap-5 ms:gap-5 sm:gap-5 md:gap-10 lg:gap-10 items-start w-full'>
                             <InputField
                             type='password'
                             id='password'
@@ -69,7 +69,7 @@ const PasswordReset = () => {
                             borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
                             placeholder='Confirm new password' />
                             </div> 
-                            <div className='py-3 ms:py-2 sm:py-2 md:py-3 lg:py-3 w-full'>
+                            <div className='py-2 ms:py-2 sm:py-2 md:py-3 lg:py-3 w-full'>
                             <CustomButton
                                 type='submit'
                                 disabled={isPasswordChange}

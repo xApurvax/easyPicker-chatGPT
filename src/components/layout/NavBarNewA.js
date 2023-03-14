@@ -79,15 +79,18 @@ const NavbarNewA = () => {
     >
       <div className="flex justify-between w-full py-3 max-w-6xl">
         <div className="flex gap-5 items-center justify-center">
-        <a href="/generator">
+        {accessToken? <a href="/generator">
           <img src={logo} alt="logo" className="w-14 cursor-pointer" />
-        </a>
+        </a>:
+        <a href="/">
+          <img src={logo} alt="logo" className="w-14 cursor-pointer" />
+        </a>}
         {/* <a href="/">
           <p className="font-bold text-black text-xl text-transparent bg-clip-text bg-gradient-to-t from-purple-400 to-blue-600 transition duration-[0.4s]">TAGLINE GENERATOR</p>
         </a> */}
         </div>
         <div className="">
-          <div className='hidden ms:flex md:hidden w-full h-full'>
+          <div className='flex ms:flex md:hidden w-full h-full'>
             <div id="nav-icon4" onClick={() => {toggleClass(); setToggle(!toggle);} }>
                 <span></span>
                 <span></span>
@@ -214,7 +217,7 @@ const NavbarNewA = () => {
             onClick={() => {dispatch(setLogOutModal(true)); 
               setIsNavOpen(false);
               setToggle(false);
-              dispatch(setHasTitleTag([]));
+              // dispatch(setHasTitleTag([]));
               const coinsText = document.querySelector("#nav-icon4")
             coinsText?.classList?.remove("open");
             // Cookies.remove("userDetails");
@@ -237,7 +240,7 @@ const NavbarNewA = () => {
             </div>
             </div>
           </div>
-          <ul className="flex items-center justify-center gap-5 w-full h-full cursor-pointer ms:hidden md:flex">
+          <ul className="hidden items-center justify-center gap-5 w-full h-full cursor-pointer ms:hidden md:flex">
             {/* <div className='flex items-center justify-center gap-5 w-full h-full cursor-pointer'>
               <Link href="/">
                 <li className="font-bold text-lg text-[#e5e5e5] hover:text-[#141414] transition duration-[0.4s]">
@@ -391,7 +394,7 @@ const NavbarNewA = () => {
                           onClick={() => {dispatch(setLogOutModal(true)); setIsNavOpen(false);
                               const coinsText = document.querySelector("#nav-icon4")
                             coinsText?.classList?.remove("open");
-                            dispatch(setHasTitleTag([]));
+                            // dispatch(setHasTitleTag([]));
                             // Cookies.remove("userDetails");
                              }}
                             className={classNames(
