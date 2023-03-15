@@ -42,9 +42,7 @@ export const forgotFetchAPi = createAsyncThunk(
 
 export const forgotOtpVerifyApi = createAsyncThunk("/auth/otp-verify", async (values, { rejectWithValue }) => {
   try {
-      const response = await ApiMiddleware.post("/api/auth/password/reset/otp/", {
-          ...values,
-      });
+      const response = await ApiMiddleware.post("/api/auth/password/reset/otp/", values);
       // toast.success(response.data.message)
       return response.data;
   } catch (error) {

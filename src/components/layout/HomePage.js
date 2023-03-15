@@ -56,7 +56,7 @@ const HomePage = () => {
   // }
 
     useEffect(() => {
-        document.title = "How it works | Tagline Generator"
+        document.title = "How it works | Title Generator"
       }, [])
       
   return (
@@ -79,7 +79,7 @@ const HomePage = () => {
             <p
               className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-white text-center max-w-[80%] ms:max-w-[80%] lg:max-w-[50%]"
             >
-              For your blog or post, do you need compelling headlines? To receive a tonne of useful suggestions for a successful content strategy, use this tool to generate innovative title ideas.
+              For your blog or post, do you need compelling titles? To receive a tonne of useful suggestions for a successful content strategy, use this tool to generate innovative title ideas.
             </p>
           </div>
         </div>
@@ -129,7 +129,7 @@ const HomePage = () => {
               <div className='w-full h-full flex justify-center items-center'>
                 <div className="flex flex-col gap-[2%] justify-center items-center ms:items-start ms:justify-start md:items-center md:justify-center ms:gap-3 lg:gap-8 max-w-[90%] ms:max-w-[95%] lg:max-w-[80%]">
                   <p className="font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-4xl text-white">
-                  Elevate Your Content with Catchy, Diverse Headlines
+                  Elevate Your Content with Catchy, Diverse titles
                   </p>
                   <p
                     className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-white"
@@ -197,7 +197,7 @@ const HomePage = () => {
                     <p
                       className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333] text-center"
                     >
-                      Lead more eyes to your content with high-quality headlines.
+                      Lead more eyes to your content with high-quality titles.
                     </p>
                   </div>
               </div>
@@ -211,7 +211,7 @@ const HomePage = () => {
                     <p
                       className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333] text-center"
                     >
-                      Come up with high-potential headlines with the best tone of voice for your audience.
+                      Come up with high-potential titles with the best tone of voice for your audience.
                     </p>
                   </div>
               </div>
@@ -358,7 +358,7 @@ const HomePage = () => {
                                 sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
                                 onChange={(value) => {setFieldValue("captcha_verified",value)}}
                                 ref={captchaRef}
-                                className="h-max w-full"
+                                className="h-max w-full flex justify-center items-center"
                                 onErrored={(err) => {
                                   // console.log("error",err);
                                   setError(true)

@@ -21,7 +21,7 @@ const SignIn = () => {
     }
 
     useEffect(() => {
-        document.title = "Sign up | Tagline Generator"
+        document.title = "Sign up | Title Generator"
       }, [])
 
   return (

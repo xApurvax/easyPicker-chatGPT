@@ -1,4 +1,13 @@
 import Cookies from "js-cookie";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { setMinute, setSecond } from "../redux/slices/otpTimerSlice";
+
+
+// const {minute,second } = useSelector((state) => ({       
+//   minute: state.generateHeadlineSlice.minute,
+//   second: state.forgotPasswordSlice.second,
+// }));
 
 // export const getAccessToken = () => {
 //     const token = process.browser
@@ -20,3 +29,5 @@ import Cookies from "js-cookie";
         result += chars[Math.round(Math.random() * (chars.length - 1))]
     return result
 }
+
+export const twoDigits = (num) => String(num).padStart(2,'0')

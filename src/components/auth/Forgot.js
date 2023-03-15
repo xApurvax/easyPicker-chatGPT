@@ -9,24 +9,48 @@ import OtpInput from 'react-otp-input';
 import { forgotFetchAPi, forgotOtpVerifyApi } from '../../redux/slices/auth/forgotPasswordSlice';
 import { useNavigate } from 'react-router-dom';
 import AuthMiddleware from '../../utils/AuthMiddleware';
+import { useRef } from 'react';
+import { twoDigits } from '../../utils/helper';
 
+const INITIAL_COUNT = 59;
+const STATUS = {
+    STARTED: 'Started',
+    STOPPED: 'Stopped',
+  }
 const Forgot = () => {
     const dispatch = useDispatch();
     const [otp, setOtp] = useState("")
     const handleOtp = (otp) => setOtp(otp)
 
-    const {isLoading,isVerify,forgotModal,isVerified } = useSelector((state) => ({       
+    const[secondsRemaining, setSecondsRemaining] = useState(INITIAL_COUNT)
+    const[status, setStatus] = useState(STATUS.STOPPED)
+    const secondsToDisplay = secondsRemaining % 60;
+    const minutesRemaining= (secondsRemaining - secondsToDisplay) % 60;
+    const minutesToDisplay = minutesRemaining % 60;
+    const hoursToDisplay = (minutesRemaining - minutesToDisplay) % 60;
+
+    const handleTimerStart = async() =>{
+        setStatus(STATUS.STARTED);
+        setSecondsRemaining(INITIAL_COUNT)
+    }
+
+    const {isLoading,isVerify,forgotModal,isVerified,minute,second } = useSelector((state) => ({       
         isLoading: state.generateHeadlineSlice.isLoading,
         isVerify: state.forgotPasswordSlice.isVerify,
         isVerified: state.forgotPasswordSlice.isVerified,
         forgotModal: state.forgotPasswordSlice.forgotModal,
+        minute: state.generateHeadlineSlice.minute,
+        second: state.forgotPasswordSlice.second,
       }));
     const navigate = useNavigate();
     const initialValues = { email: "" };
     const handleLoginSubmit = (values) => {
         dispatch(forgotFetchAPi(values));
+        handleTimerStart()
     }
+
     const handleOtpVerify = (e) => {
+        console.log(otp)
         e.preventDefault();
         dispatch(forgotOtpVerifyApi({ email: forgotModal?.email, otp }));
         setOtp('');
@@ -36,8 +60,39 @@ const Forgot = () => {
         forgotModal.otpVerified && navigate('/reset-password');
     }, [forgotModal.otpVerified, navigate]);
 
+    useInterval(
+        () => {
+          if (secondsRemaining > 0) {
+            setSecondsRemaining(secondsRemaining - 1)
+          } else {
+            setStatus(STATUS.STOPPED)
+          }
+        },
+        status === STATUS.STARTED ? 1000 : null,
+      )
+
+    function useInterval(callback, delay) {
+    const savedCallback = useRef()
+    
+    // Remember the latest callback.
     useEffect(() => {
-        document.title = "Forgot password | Tagline Generator"
+        savedCallback.current = callback
+    }, [callback])
+    
+    // Set up the interval.
+    useEffect(() => {
+        function tick() {
+        savedCallback.current()
+        }
+        if (delay !== null) {
+        let id = setInterval(tick, delay)
+        return () => clearInterval(id)
+        }
+    }, [delay])
+    }
+
+    useEffect(() => {
+        document.title = "Forgot password | Title Generator"
       }, [])
   return (
     <AuthMiddleware>
@@ -106,9 +161,15 @@ const Forgot = () => {
                                                 separator={<span>&nbsp; &nbsp;</span>}
                                             />
                                             <div className='flex gap-2 justify-center items-center'>
+                                                {(twoDigits(minutesToDisplay) === "00") && (twoDigits(secondsToDisplay) === "00") ? <>
                                                 <p className='font-semibold text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568] '>Didn't receive OTP ? </p>
                                                 <div className='font-bold text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#544BB9] cursor-pointer' 
-                                                onClick={() => dispatch(forgotFetchAPi({ email: forgotModal?.email }))}>resend OTP</div>
+                                                onClick={() => {dispatch(forgotFetchAPi({ email: forgotModal?.email })); handleTimerStart()}
+                                                }>resend OTP</div>
+                                                </> 
+                                                :
+                                                <p className='font-normal text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]'>Resend OTP in <span className='font-semibold text-[#544BB9]'>{twoDigits(minutesToDisplay)}:
+                                                           {twoDigits(secondsToDisplay)}</span></p>}
                                             </div>
                                             </div>
                                             <CustomButton
@@ -118,8 +179,7 @@ const Forgot = () => {
                                                 disabled={otp.length < 6 || isLoading}
                                                 buttonStyle="w-[90px] mt-[20px] ms:mt-[5px] sm:mt-[10px] md:mt-[20px] lg:mt-[20px] h-[40px] text-sm font-bold rounded-md text-white bg-[#544BB9]">
                                                 Submit
-                                            </CustomButton >
-                                            
+                                            </CustomButton>    
                                         </div>
                                     </form>
                                 </div>

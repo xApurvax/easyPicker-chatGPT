@@ -205,7 +205,7 @@ const Tool = () => {
             </div>
             <div className="mt-2">
               <p className="font-bold text-base ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]">
-                Keywords to Include in Headline
+                Keywords to Include in Title
               </p>
               <div className="my-2">
                 <CustomCreateTag
@@ -219,7 +219,7 @@ const Tool = () => {
             </div>
             <div className="mt-4">
               <p className="font-bold text-base ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]">
-                No of Headlines
+                No of Titles
               </p>
               {/* <div className="flex lg:flex-row justify-between items-center ms:items-start ms:gap-5 sm:flex-col"> */}
               <div className="flex flex-col sm:flex-row gap-4 justify-between sm:items-center ms:flex-col ms:items-start">
@@ -254,7 +254,7 @@ const Tool = () => {
                     }
                     className={classNames(
                       "flex items-center justify-center px-2 py-2 ms:px-2 sm:px-3 md:px-4 lg:px-5 ms:py-2 sm:py-1.5 md:py-2 lg:py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-base ms:text-base sm:text-lg md:text-xl lg:text-base disabled:bg-[#544BB9] disabled:opacity-[0.7] disabled:cursor-not-allowed whitespace-nowrap",
-                      isLoading ? "disabled:px-20 ms:disabled:px-[55px] sm:disabled:px-[70px] md:disabled:px-20 lg:disabled:px-20" : "disabled:px-5 ms:disabled:px-2 sm:disabled:px-3 md:disabled:px-4 md:disabled:py-2 lg:disabled:px-5 lg:disabled:py-2",
+                      isLoading ? "disabled:px-20 ms:disabled:px-[55px] sm:disabled:px-[70px] md:disabled:px-20 lg:disabled:px-20" : "disabled:px-5 ms:disabled:px-2 sm:disabled:px-3 md:disabled:px-4 md:disabled:py-2 lg:disabled:px-6 lg:disabled:py-2",
                       generateHeadlineEffect && "animate-wiggle")}
                       onClick={(e) => {
                         dispatch(setGenerateHeadlineEffect(true));
@@ -267,7 +267,7 @@ const Tool = () => {
                       }}
                   >
                     {!isLoading ? (
-                      "Generate Headlines"
+                      "Generate Titles"
                     ) : (
                       <ThreeDots
                         height="25"
@@ -306,10 +306,10 @@ const Tool = () => {
               {allTitles?.length > 0 && allTitles.filter((data) => { return data.trim().length > 0 && data !== "."}).length > 0 && (
                 <div className="flex flex-col gap-1 w-full group">
                   <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-base text-[#4A5568]">
-                    Headlines
+                  {allTitles?.length} {allTitles?.length === 0 ? "Title" : "Titles"} Generated
                   </p>
                   {allTitles?.length > 0 && (
-                    <div className="max-h-[200px] scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
+                    <div className="max-h-[200px] scrollbar-thumb-[#c3c3c3] scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
                       <div className="flex flex-col gap-2">
                         {allTitles &&
                           allTitles.filter((data) => { return data.trim().length > 0}).map((title, id) => (
@@ -438,7 +438,7 @@ const Tool = () => {
                   >
                     <FaBookmark 
                     // size={20}
-                     /> Save Results
+                     /> Add Bookmark
                   </button>
                 </div>
                 <div>

@@ -7,7 +7,7 @@ import { GoHome } from "react-icons/go";
 const PrivacyPolicy = () => {
   const history = useNavigate();
   useEffect(() => {
-    document.title = "Privacy policy | Tagline Generator"
+    document.title = "Privacy policy | Title Generator"
   }, [])
 
   return (

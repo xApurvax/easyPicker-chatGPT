@@ -79,6 +79,9 @@ const pointsSlice = createSlice({
       state.allTransactionHistory = action?.payload?.data?.results;
       // state.totalResults = action?.payload?.data?.result[0]?.history?.length;
       state.totalResults = action?.payload?.data?.count;
+      if(action?.payload?.data?.count === 0){
+        toast.error("No records found try changing filter")
+      }
       // }
     },
     [transactionHistoryFetchAPi.rejected]: (state, action) => {

@@ -15,6 +15,7 @@ import Cookies from 'js-cookie';
 import classNames from "classnames";
 import { profileDetailsFetchAPI } from '../../redux/slices/ProfileSlice';
 import { GiTwoCoins } from "react-icons/gi";
+import { GoHome } from "react-icons/go";
 import { BiPlus } from "react-icons/bi";
 import { setShowBuyPointsModal } from "../../redux/slices/pointsSlice";
 
@@ -148,6 +149,14 @@ const NavbarNewA = () => {
                 {/* <Link href="/"> */}
                   {accessToken ? 
                   <>
+                <li onClick={() => {setIsNavOpen(false);
+                          setToggle(false);
+                            const coinsText = document.querySelector("#nav-icon4")
+                          coinsText?.classList?.remove("open");
+                          // dispatch(setHasTitleTag([]));
+                            navigate("/generator")}} className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]">
+                    Home
+                  </li>
                 <li onClick={() => {setIsNavOpen(false);
                           setToggle(false);
                             const coinsText = document.querySelector("#nav-icon4")
@@ -343,6 +352,29 @@ const NavbarNewA = () => {
                   leaveTo="transform opacity-0 scale-95"
                 >
                   <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div className="px-1 py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button
+                            onClick={() => {setIsNavOpen(false);
+                              const coinsText = document.querySelector("#nav-icon4")
+                              coinsText?.classList?.remove("open");
+                              // dispatch(setHasTitleTag([]));
+                              navigate("/generator")}}
+                              className={classNames(
+                              "group flex gap-2.5 w-full items-center rounded-md px-2 py-2 text-sm",
+                              active ? "bg-violet-500 text-white" : "text-gray-900")}
+                          >
+                            {active ? (
+                              <div><GoHome/></div>
+                            ) : (
+                              <div><GoHome /></div>
+                            )}
+                            <div>Home</div>
+                          </button>
+                        )}
+                      </Menu.Item>
+                    </div>
                     <div className="px-1 py-1">
                       <Menu.Item>
                         {({ active }) => (

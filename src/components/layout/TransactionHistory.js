@@ -62,7 +62,7 @@ const SavedRecords = () => {
 
 
     useEffect(() => {
-      document.title = "History | Tagline Generator"
+      document.title = "History | Title Generator"
     }, [])
     const columns = React.useMemo(
         () => [

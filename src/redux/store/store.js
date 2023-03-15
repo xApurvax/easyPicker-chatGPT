@@ -4,6 +4,7 @@ import RangeSliderSlice from "../slices/RangeSliderSlice";
 import generateHeadlineSlice from "../slices/generateHeadlineSlice";
 import pointsSlice from "../slices/pointsSlice";
 import ProfileSlice from "../slices/ProfileSlice";
+import otpTimerSlice from "../slices/otpTimerSlice";
 import savedRecordSlice from "../slices/savedRecordSlice";
 import counterSlice from "../slices/counterSlice";
 import contactusSlice from "../slices/auth/contactusSlice";
@@ -23,6 +24,7 @@ const store = configureStore({
              pointsSlice,
              ProfileSlice,
              contactusSlice,
+             otpTimerSlice,
              },
   middleware: (getDefaultMiddlerWare) =>
     getDefaultMiddlerWare({

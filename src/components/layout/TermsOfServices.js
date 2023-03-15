@@ -7,7 +7,7 @@ import { GoHome } from "react-icons/go";
 const TermsOfServices = () => {
   const history = useNavigate();
   useEffect(() => {
-    document.title = "Terms of use | Tagline Generator"
+    document.title = "Terms of use | Title Generator"
   }, [])
   return (
     <div className='flex flex-col justify-center items-center'>

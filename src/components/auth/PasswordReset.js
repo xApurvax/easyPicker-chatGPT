@@ -32,7 +32,7 @@ const PasswordReset = () => {
     }, [resetPasswordStatus])
     
     useEffect(() => {
-        document.title = "Reset Password | Tagline Generator"
+        document.title = "Reset Password | Title Generator"
       }, [])
 
   return (

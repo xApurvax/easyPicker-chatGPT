@@ -21,7 +21,7 @@ const LogIn = () => {
          dispatch(loginFetchAPi(values))
     }
     useEffect(() => {
-        document.title = "Sign in | Tagline Generator"
+        document.title = "Sign in | Title Generator"
       }, [])
 
   return (

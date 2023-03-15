@@ -29,7 +29,7 @@ const Profile = () => {
     }, [])
 
     useEffect(() => {
-        document.title = "Profile | Tagline Generator"
+        document.title = "Profile | Title Generator"
         }, [])
 
     const initialValues = { username: profileDetails?.username || "", 
