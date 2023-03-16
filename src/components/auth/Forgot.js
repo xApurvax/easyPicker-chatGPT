@@ -50,7 +50,7 @@ const Forgot = () => {
     }
 
     const handleOtpVerify = (e) => {
-        console.log(otp)
+        // console.log(otp)
         e.preventDefault();
         dispatch(forgotOtpVerifyApi({ email: forgotModal?.email, otp }));
         setOtp('');
