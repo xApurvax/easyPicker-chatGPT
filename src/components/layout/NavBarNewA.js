@@ -306,13 +306,13 @@ const NavbarNewA = () => {
                           className={classNames(
                             availableCoins && "origin-center hover:rotate-12 text-2xl ms:text-[16px] sm:text-[24px] md:text-lg lg:text-lg cursor-pointer" )}
                         />
+                        <button onClick={() =>{ dispatch(setShowBuyPointsModal(true))}} className="flex items-center justify-center">
                          <p
                           id="coins-text"
                           className="font-semibold text-2xl ms:text-xs sm:text-base md:text-base lg:text-base text-white ml-2"
                         >
                           {!availableCoins ? 0 : availableCoins}
                         </p>
-                        <button onClick={() =>{ dispatch(setShowBuyPointsModal(true))}} className="flex items-center justify-center">
                         <BiPlus className="text-2xl ms:text-[16px] sm:text-[20px] md:text-xl lg:text-2xl cursor-pointer text-white md:px-0.5"/>
                         </button>
                       </div>

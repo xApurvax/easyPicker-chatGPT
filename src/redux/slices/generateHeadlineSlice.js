@@ -78,7 +78,11 @@ export const saveResultsFetchAPi = createAsyncThunk(
         '/api/save/results/',
         {...data}
       );
-      toast.success(paragraphDetails.data.message)
+      if(paragraphDetails.data.message === "Added to Bookmarks successfully"){
+        toast.success("Added to bookmarks successfully")
+      }else{
+        toast.success(paragraphDetails.data.message)
+      }
       return paragraphDetails;
     } catch (error) {
       if(error.response.data.message !== "You dont have any credit points"){

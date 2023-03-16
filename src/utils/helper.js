@@ -31,3 +31,13 @@ import { setMinute, setSecond } from "../redux/slices/otpTimerSlice";
 }
 
 export const twoDigits = (num) => String(num).padStart(2,'0')
+
+export const dateFormatter = (date) =>{
+  let objectDate  = new Date(date)
+
+  const formattedDate = String(objectDate .getDate()).padStart(2,'0') 
+                        + "/" + String(objectDate.getMonth() + 1).padStart(2,'0') 
+                        + "/" + String(objectDate.getFullYear());
+
+  return formattedDate
+}

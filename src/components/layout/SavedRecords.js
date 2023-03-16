@@ -231,7 +231,7 @@ const SavedRecords = () => {
               onChange={debouncedResults}
               autoComplete="off"
               className={classNames(
-                "pr-2 py-2 lg:py-1.5 text-sm ms:text-sm sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] max-w-[155px] ms:max-w-[155px] sm:max-w-[180px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9]",
+                "pr-2 py-2 lg:py-1.5 text-sm ms:text-[14px] ms:leading-4 sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] max-w-[155px] ms:max-w-[155px] sm:max-w-[180px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9]",
                 showInputIcon
                   ? "pl-7 pr-2 ms:pl-6 sm:pl-8 md:pl-8 lg:pl-10"
                   : "px-6"
@@ -260,7 +260,7 @@ const SavedRecords = () => {
             {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
           </div>
         </div>
-        <div className="h-max overflow-x-auto max-w-[100vw] border border-solid border-black rounded-md">
+        <div className="h-max min-h-max ms:min-h-[396px] sm:min-h-[420px] md:min-h-[444px] lg:min-h-[440px] overflow-x-auto max-w-[100vw] border border-solid border-black rounded-md">
           <table className="w-full h-full px-2 py-1 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[404px] !rounded-md border border-solid border-black">
             <thead>
               {headerGroups.map((headerGroup, i) => (
@@ -363,7 +363,7 @@ const SavedRecords = () => {
             )}
           </table>
         </div>
-        {saveResultsData?.length > 0 && Math.ceil(totalResults / 3) > 1 && (
+        {saveResultsData?.length > 0 && (
           <div className="flex justify-center items-center gap-12">
             <ReactPaginate
               breakLabel="..."

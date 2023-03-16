@@ -142,9 +142,9 @@ const Tool = () => {
 
   useEffect(() => {}, [hasSomethingTyped]);
 
-  // useEffect(() => {
-  //   setAvailableCoins(Cookies.get("coins"));
-  // }, [availableCoins])
+  useEffect(() => {
+    setAvailableCoins(Cookies.get("coins"));
+  }, [availableCoins])
 
 
 //   useEffect(() => {
@@ -167,13 +167,13 @@ const Tool = () => {
             className={classNames(
               availableCoins && "origin-center hover:rotate-12 text-[16px] ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-4xl cursor-pointer")}
           />
+          <button onClick={() =>{ dispatch(setShowBuyPointsModal(true))}} className="flex items-center justify-center">
           <p
             id="coins-text"
             className="font-semibold text-xs ms:text-xs sm:text-base md:text-xl lg:text-2xl text-[#544BB9]"
           >
             {!availableCoins ? 0 : availableCoins}
           </p>
-          <button onClick={() =>{ dispatch(setShowBuyPointsModal(true))}} className="flex items-center justify-center">
           <AiOutlinePlus color="#000" className="text-[16px] ms:text-[16px] sm:text-[20px] md:text-[20px] lg:text-2xl cursor-pointer" />
           </button>
         </div>

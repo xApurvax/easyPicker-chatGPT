@@ -25,6 +25,12 @@ function App() {
       <Toaster
         position="top-right"
         reverseOrder={false}
+        toastOptions={{
+          style: {
+              wordBreak: 'break-all',
+              width: 'max-content',
+          }
+      }}
     />
     <BrowserRouter>
         <Routes>

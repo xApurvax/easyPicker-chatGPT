@@ -69,7 +69,7 @@ const Forgot = () => {
           }
         },
         status === STATUS.STARTED ? 1000 : null,
-      )
+    )
 
     function useInterval(callback, delay) {
     const savedCallback = useRef()

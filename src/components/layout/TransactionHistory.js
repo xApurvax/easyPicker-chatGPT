@@ -18,6 +18,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
 import RouteMiddleWare from '../../utils/RouteMiddleWare';
 import classNames from "classnames";
+import { dateFormatter } from '../../utils/helper';
 
 const SavedRecords = () => {
     const dispatch = useDispatch();
@@ -75,7 +76,7 @@ const SavedRecords = () => {
                 <div key={i} className='group'>
                 <div className="flex gap-30 max-w-[100px]">
                     <p className="font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] text-black">
-                    {row?.purchased_at}
+                    {dateFormatter(row?.purchased_at)}
                     </p>
                 </div>
                 </div>
@@ -187,6 +188,7 @@ const SavedRecords = () => {
             selected={startDate} 
             onChange={(date) => setStartDate(date)}
             placeholderText="Select date"
+            dateFormat="dd/MM/yyyy"
             className={classNames(
               "pr-2 py-1.5 lg:py-1.5 text-sm ms:text-sm sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] max-w-[120px] ms:max-w-[120px] sm:max-w-[150px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9]",
               showInputIcon ?
@@ -206,7 +208,7 @@ const SavedRecords = () => {
             {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
         </div>
         </div>
-        <div className='h-max overflow-x-auto max-w-[100vw] border border-solid border-black rounded-md'>
+        <div className='h-max min-h-max ms:min-h-[149px] sm:min-h-[204px] md:min-h-[254px] lg:min-h-[265px] overflow-x-auto max-w-[100vw] border border-solid border-black rounded-md'>
         <table className="w-full h-full border-collapse border-spacing-0 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[480px] border border-solid border-black rounded-md">
               <thead>
                 {headerGroups.map((headerGroup, i) => (
@@ -318,7 +320,7 @@ const SavedRecords = () => {
               )}
         </table>
         </div>
-        {allTransactionHistory?.length > 0 &&  Math.ceil(totalResults/5) > 1 && (
+        {allTransactionHistory?.length > 0 &&  (
           <div className="flex justify-center items-center gap-12">
             <ReactPaginate
               breakLabel="..."
