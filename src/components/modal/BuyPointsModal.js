@@ -10,6 +10,7 @@ import { GiTwoCoins ,GiCoins} from 'react-icons/gi';
 import { RiCoinFill } from 'react-icons/ri';
 import { FaCoins } from 'react-icons/fa';
 import classNames from "classnames";
+import Cookies from "js-cookie";
 
 export const BuyPointsModal = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,8 @@ export const BuyPointsModal = () => {
     selected: false,
     id: null,
   });
+  // const [availableCoins, setAvailableCoins] = useState();
+
     const {
         showBuyPointsModal,
         isLoading,
@@ -38,6 +41,12 @@ export const BuyPointsModal = () => {
         }))
         setCount(0);
     }
+
+  // useEffect(() => {
+  //     if(Cookies.get("coins") === String(0)){
+  //       dispatch(setShowBuyPointsModal(true))
+  //     }
+  // }, [Cookies.get("coins")]);
 
   return (
     <Transition appear show={showBuyPointsModal} as={Fragment}>

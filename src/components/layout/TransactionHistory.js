@@ -206,7 +206,7 @@ const SavedRecords = () => {
             {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
         </div>
         </div>
-        <div className='min-h-[150px] ms:min-h-[150px] sm:min-h-[200px] md:min-h-[230px] lg:min-h-[260px] h-max overflow-x-auto max-w-[100vw] border border-solid border-black rounded-md'>
+        <div className='h-max overflow-x-auto max-w-[100vw] border border-solid border-black rounded-md'>
         <table className="w-full h-full border-collapse border-spacing-0 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 max-h-[480px] border border-solid border-black rounded-md">
               <thead>
                 {headerGroups.map((headerGroup, i) => (
