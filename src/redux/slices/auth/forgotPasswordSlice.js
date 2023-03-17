@@ -129,7 +129,15 @@ const forgotPasswordSlice = createSlice({
         state.isPasswordChange = false;
         if(payload?.status_code === 200) {
         state.forgotModal = { ...state.forgotModal, isVisible: false, otpVerified: false };
-        toast.success(payload?.message);
+        if(payload?.message === "Password has been changed successfully"){
+          toast.success(payload?.message ,{
+            style: {
+              maxWidth: 500
+            }
+          });
+        }else{
+          toast.success(payload?.message);
+        }
         state.resetPasswordStatus = payload?.status_code;
         Cookies.remove('user_mail')
         }

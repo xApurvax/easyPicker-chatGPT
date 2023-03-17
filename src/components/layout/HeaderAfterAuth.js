@@ -17,7 +17,9 @@ const HeaderAfterAuth = ({children}) => {
     <div className='flex flex-col bg-[#544BB9] h-screen'>    
       <NavBarNewA />
       <div className=''>
-        <header className="bg-[#544BB9] relative after:content-[''] after:h-[40%] after:w-full after:absolute after:top-full after:bg-[#EDF2F7] after:-translate-y-full after:z-0 h-full min-h-[75vh] flex flex-col items-center ms:justify-center md:justify-start w-full">
+        {/* <header className="bg-[#544BB9] relative after:content-[''] after:h-[40%] after:w-full after:absolute after:top-full after:bg-[#EDF2F7] after:-translate-y-full after:z-0 h-full min-h-[75vh] flex flex-col items-center ms:justify-center md:justify-start w-full"> */}
+        <header className="bg-[#544BB9] relative h-full min-h-[75vh] flex flex-col items-center ms:justify-center md:justify-start w-full">
+          <div className='absolute bottom-0 h-[50%] w-full z-[10] bg-[#EDF2F7]' />
             <div className='mt-0 w-full'>
               <CustomForm >
                 {children}

@@ -27,7 +27,9 @@ function App() {
         reverseOrder={false}
         toastOptions={{
           style: {
-              wordBreak: 'break-all',
+              // wordBreak: 'break-all',
+              wordBreak: 'break-word',
+              // whiteSpace: "nowrap",
               width: 'max-content',
           }
       }}

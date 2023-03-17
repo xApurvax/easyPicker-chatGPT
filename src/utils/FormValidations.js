@@ -2,12 +2,10 @@ import * as Yup from "yup";
 
 export const LoginValidationSchema = Yup.object({
     username: Yup.string()
-        .min(3, "Must be 3 char long.")
         .required("E-mail or username is required.").trim(),
     password: Yup.string()
         .trim()
         .oneOf([Yup.ref("password"), null])
-        .min(8, "Must be 8 char long.")
         .required("Password is required."),
 });
 

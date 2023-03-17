@@ -21,6 +21,7 @@ import { contactUsValidationSchema, contactUsValidationWithoutCaptchaSchema } fr
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ContactUsFetchAPi } from '../../redux/slices/auth/contactusSlice'
+import { motion } from "framer-motion";
 
 let COUNT = 0;
 const HomePage = () => {
@@ -61,7 +62,7 @@ const HomePage = () => {
       
   return (
     <AuthMiddleware>
-    <div className='flex flex-col'>
+    <div className='flex flex-col w-full max-w-[100vw] overflow-x-hidden'>
       <div className='sticky top-0 w-full h-full z-[20]'>  
       <NavbarNewA />
       </div>  
@@ -233,38 +234,114 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <div className="bg-[#ede0ff] py-8 ms:py-8 sm:py-10 md:py-14 lg:py-16 h-full flex flex-col items-center justify-center w-full">
+        <div className="py-8 ms:py-8 sm:py-10 md:py-14 lg:py-16 h-full flex flex-col items-center justify-center w-full">
           <div className="flex flex-col justify-center items-center gap-1 ms:gap-5 lg:gap-16 ">
             <div className="flex justify-center items-center">
               <p className="font-bold text-xl ms:text-xl sm:text-4xl md:text-4xl lg:text-4xl text-center text-black">
                   FAQ
               </p>
             </div>
-            <div className='grid grid-cols-1 grid-flow-rows auto-rows-max ms:grid-cols-1 md:grid-cols-2 gap-4 ms:gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full h-full max-w-6xl'>
-                <div className='bg-white flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+            {/* <div className='grid grid-cols-1 grid-flow-rows auto-rows-max ms:grid-cols-1 md:grid-cols-2 gap-4 ms:gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full h-full max-w-6xl'>
+                <div className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
                   <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>How Does AI Title Generator Work?</p>
                   <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>AI Title Generator is powered by AI. It uses artificial intelligence to suggest catchy, relevant titles for your blog posts, articles, landing pages, or other content. It also suggests related topics you might want to target.</p>
                 </div>
-                <div className='bg-white flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                <div className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
                   <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Why Should I Use AI Title Generator?</p>
                   <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>AI Title Generator suggest dozens of original titles in just a click. Speed up your brainstorming process, generate new blog post ideas, or create the perfect headline for an existing project.</p>
                 </div>
-                <div className='bg-white col-span-full flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                <div className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] col-span-full flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
                   <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>How Much Does AI Title Generator Cost?</p>
                   <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>AI Title Generator is paid to use, but will get 1000 coins as joining bonus on first sign up, then after you can buy it any time and generate as many titles as you want, and share them with your teammates and writers.</p>
                 </div>
-                <div className='bg-white flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                <div className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
                   <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Who Owns the Generated Text?</p>
                   <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>You do! You’re free to use any title you generate in your own work.</p>
                 </div>
-                <div className='bg-white flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                <div className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
                   <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>What Languages Are Supported?</p>
                   <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>Currently, AI Title Generator is available in English.</p>
                 </div>
+            </div> */}
+            <div className='grid grid-cols-1 grid-flow-rows auto-rows-max ms:grid-cols-1 md:grid-cols-2 gap-4 ms:gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full h-full max-w-6xl'>
+                <motion.div 
+                 initial={{ x: -300 }}
+                 whileInView={{ x : 0 }}
+                 whileHover={{
+                  scale: 1.1,
+                }}
+                 transition={{
+                   duration: 0.2,
+                   ease: [0, 0.50, 0.1,0.59]
+                 }}
+                 viewport={{ once: true }}
+                className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                  <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>How Does AI Title Generator Work?</p>
+                  <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>AI Title Generator is powered by AI. It uses artificial intelligence to suggest catchy, relevant titles for your blog posts, articles, landing pages, or other content. It also suggests related topics you might want to target.</p>
+                </motion.div>
+                <motion.div 
+                 initial={{ x: 300 }}
+                 whileInView={{ x : 0 }}
+                 whileHover={{
+                  scale: 1.1,
+                }}
+                 transition={{
+                   duration: 0.2,
+                   ease: [0, 0.50, 0.1,0.59]
+                 }}
+                 viewport={{ once: true }} 
+                 className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                  <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Why Should I Use AI Title Generator?</p>
+                  <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>AI Title Generator suggest dozens of original titles in just a click. Speed up your brainstorming process, generate new blog post ideas, or create the perfect headline for an existing project.</p>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{
+                    scale: 1.1,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                    ease: [0, 0.50, 0.1,0.59]
+                  }}
+                  viewport={{ once: true }}
+                  className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] col-span-full flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                  <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>How Much Does AI Title Generator Cost?</p>
+                  <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>AI Title Generator is paid to use, but will get 1000 coins as joining bonus on first sign up, then after you can buy it any time and generate as many titles as you want, and share them with your teammates and writers.</p>
+                </motion.div>
+                <motion.div 
+                 initial={{ x: -300 }}
+                 whileInView={{ x : 0 }}
+                 whileHover={{
+                  scale: 1.1,
+                }}
+                 transition={{
+                   duration: 0.2,
+                   ease: [0, 0.50, 0.1,0.59]
+                 }}
+                 viewport={{ once: true }} className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                  <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Who Owns the Generated Text?</p>
+                  <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>You do! You’re free to use any title you generate in your own work.</p>
+                </motion.div>
+                <motion.div 
+                 initial={{ x: 300 }}
+                 whileInView={{ x : 0 }}
+                 whileHover={{
+                  scale: 1.1,
+                }}
+                 transition={{
+                   duration: 0.2,
+                   ease: [0, 0.50, 0.1,0.59]
+                 }}
+                 viewport={{ once: true }} 
+                 className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
+                  <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>What Languages Are Supported?</p>
+                  <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>Currently, AI Title Generator is available in English.</p>
+                </motion.div>
             </div>
           </div>
         </div>
-        <div className="bg-[#ede0ff] py-8 ms:py-8 sm:py-10 md:py-14 lg:py-16 h-full flex flex-col items-center justify-center w-full">
+        <div className="py-8 ms:py-8 sm:py-10 md:py-14 lg:py-16 h-full flex flex-col items-center justify-center w-full">
           <div className="flex flex-col justify-center items-center gap-1 ms:gap-5 lg:gap-10 w-full max-w-[90%] ms:max-w-[90%] md:max-w-[90%] lg:max-w-6xl h-full">
             <div className="flex justify-center items-center">
               <p className="font-bold text-xl ms:text-xl sm:text-4xl md:text-4xl lg:text-4xl text-center text-black">
@@ -324,15 +401,15 @@ const HomePage = () => {
                             type='text'
                             id='name'
                             name='name'
-                            inputstyle='w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-white border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-[#737373]'
-                            borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                            inputstyle='w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-white border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-[#737373] focus:border-[#544BB9]'
+                            borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]'
                             placeholder='Enter your name' />
                             <InputField
                             type='text'
                             id='email'
                             name='email'
-                            inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-[#737373] bg-white'
-                            borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                            inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-[#737373] bg-white focus:border-[#544BB9]'
+                            borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]'
                             placeholder='Enter your e-mail' />
                             <div className='w-full h-full relative'>
                             <textarea
@@ -341,7 +418,7 @@ const HomePage = () => {
                               type="text"
                               onChange={(e) => {setFieldValue("message",e?.target?.value)}}
                               // onChange={(e) => setGetInTouch({...getInTouch,message: e.target.value})} 
-                              className={`w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid  resize-none focus:outline-none placeholder:text-[#737373] text-[#737373] ${errors.message && touched.message ? "border-red-500" : "border-[#aab2b8]"}`} 
+                              className={`w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid  resize-none focus:outline-none placeholder:text-[#737373] focus:border-[#544BB9] text-[#737373] ${errors.message && touched.message ? "border-red-500" : "border-[#aab2b8]"}`} 
                               placeholder='Enter message ...'/>
                               {errors.message && touched.message && (
                                   <div className="absolute error lg:mt-[2px] left-0">
@@ -383,7 +460,7 @@ const HomePage = () => {
                              onAnimationEnd={() => {
                              // dispatch(setLoginEffect(false));
                              }}
-                             buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg max-w-[75%] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-[#544BB9]"
+                             buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-[#544BB9]"
                              loaderSize={20}
                              >
                              Send
@@ -398,7 +475,7 @@ const HomePage = () => {
                                 onAnimationEnd={() => {
                                 // dispatch(setLoginEffect(false));
                                 }}
-                                buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg max-w-[75%] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-[#544BB9]"
+                                buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-[#544BB9]"
                                 loaderSize={20}
                                 showLoader
                                 >
