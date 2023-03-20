@@ -152,7 +152,7 @@ const Tool = () => {
 // }, [])
 
   useEffect(() => {
-    document.title = "Tagline Generator"
+    document.title = "Title Generator"
   }, [])
 
   return (
@@ -306,7 +306,7 @@ const Tool = () => {
               {allTitles?.length > 0 && allTitles.filter((data) => { return data.trim().length > 0 && data !== "."}).length > 0 && (
                 <div className="flex flex-col gap-1 w-full group">
                   <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-base text-[#4A5568]">
-                  {allTitles?.length} {allTitles?.length === 0 ? "Title" : "Titles"} Generated
+                  {allTitles?.length > 0 && allTitles.filter((data) => { return data.trim().length > 0 && data !== "."}).length} {allTitles?.length === 1 ? "Title" : "Titles"} Generated
                   </p>
                   {allTitles?.length > 0 && (
                     <div className="max-h-[200px] scrollbar-thumb-[#c3c3c3] scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
@@ -357,7 +357,7 @@ const Tool = () => {
                   )}
                 </div>
               )}
-              {specialTags?.length > 0 && specialTags.filter((data) => { return data.trim().length > 0 && data !== "."}).length > 0 &&
+              {specialTags?.length > 0 && specialTags.filter((data) => { return data.trim().length > 0 && data !== "." && !(/\s/g.test(data)) >= 0}).length > 0 &&
               <div className="flex flex-col gap-1 w-full">
                 <div className="flex items-center gap-3">
                   <p className="font-bold text-lg ms:text-base sm:text-lg md:text-xl lg:text-base text-[#4A5568]">Keywords</p>
@@ -461,20 +461,20 @@ const Tool = () => {
                     }}
                   >
                     {isRegenerate ? (
-                      <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm">
+                      <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5 animate-spin">
                         <img
                           src={logo}
-                          alt="logo"
-                          className="w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5 animate-spin"
+                          alt="regenerating"
+                          className="w-full h-auto"
                         />
                         Regenerating
                       </div>
                     ) : (
-                      <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm">
+                      <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5 animate-spin">
                         <img
                           src={logo}
-                          alt="logo"
-                          className="w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5 cursor-pointer"
+                          alt="regenerate"
+                          className="w-full h-auto"
                         />
                         Regenerate
                       </div>
@@ -486,7 +486,9 @@ const Tool = () => {
           ) : (
             <div className="flex h-full justify-center items-center px-4 w-full">
               <div className="hidden lg:flex relative">
-                <img src={fillOutLeft} alt="generated data blur" className="h-full w-full rounded-md select-none" />
+                <div className="h-full w-full rounded-md select-none">
+                <img src={fillOutLeft} alt="generated data blur" className="h-auto w-full" />
+                </div>
                 <div className="absolute flex justify-center items-center h-full w-full pb-[20%]">
                 <p className="font-semibold text-base text-[#4A5568] whitespace-nowrap">Fill out the left form to generate titles.</p>
                 </div>

@@ -22,7 +22,9 @@ const FooterNew = () => {
         </motion.div>
         <p className='text-[#e5e5e5] hover:text-white transition duration-[0.4s]'>by</p>
         <a href="https://infynno.com/" target="_blank">
-          <img src={logo} alt="logo" className="w-12 ms:w-[25px] sm:w-[30px] md:w-[36px] lg:w-[42px] cursor-pointer" />
+        <div className="w-12 ms:w-[25px] sm:w-[30px] md:w-[36px] lg:w-[42px] cursor-pointer">
+          <img src={logo} alt="company logo at footer" className="w-full h-auto" />
+        </div>
         </a>
         </div>
       </div>

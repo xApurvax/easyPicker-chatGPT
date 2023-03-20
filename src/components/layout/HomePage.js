@@ -70,12 +70,12 @@ const HomePage = () => {
         <div className="bg-[#544BB9] py-8 ms:py-8 sm:py-10 md:py-14 lg:py-20 h-full flex flex-col items-center justify-center w-full">
           <div className="flex flex-col justify-center items-center gap-1 ms:gap-3 lg:gap-5 ">
             <div  className="flex flex-col justify-center items-center ms:gap-1 max-w-[90%] ms:max-w-[60%] lg:max-w-[40%]">
-              <p className="font-bold text-2xl ms:text-2xl sm:text-4xl md:text-4xl lg:text-4xl text-[#ffe84d]">
+              <h1 className="font-bold text-2xl ms:text-2xl sm:text-4xl md:text-4xl lg:text-4xl text-[#ffe84d]">
                 Title Generator
-              </p>
-              <p className="font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-3xl text-white">
+              </h1>
+              <h2 className="font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-3xl text-white">
                 Powered by AI
-              </p>
+              </h2>
             </div>
             <p
               className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-white text-center max-w-[80%] ms:max-w-[80%] lg:max-w-[50%]"
@@ -87,9 +87,9 @@ const HomePage = () => {
         <div className='h-full w-full'>
         <div className="bg-white py-8 ms:py-8 sm:py-10 md:py-14 lg:py-20 h-full flex flex-col items-center justify-center w-full">
           <div className="flex flex-col gap-3 justify-center items-center ms:gap-3 lg:gap-5">
-            <p className="font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-4xl text-center text-black max-w-[80%] ms:max-w-[80%] lg:max-w-[60%]">
+            <h1 className="font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-4xl text-center text-black max-w-[80%] ms:max-w-[80%] lg:max-w-[60%]">
             What Can You Do with AI Title Generator?
-            </p>
+            </h1>
             <p
               className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-black text-center"
             >
@@ -99,9 +99,9 @@ const HomePage = () => {
         </div>
         </div>
         <div className='flex flex-col justify-center items-center w-full h-full gap-5 ms:gap-5 sm:gap-8 md:gap-10 lg:gap-14'>
-          <div className='py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex flex-col ms:flex-col md:flex-row bg-[#544BB9] max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl ' id='howitworks'>
+          <div className='py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex flex-col ms:flex-col md:flex-row bg-[#544BB9] max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl' id='howitworks'>
               <div className='w-full h-full flex justify-center items-center'>
-                  <img src={demo1} alt="Demo-tagline-generator" className=' rounded-2xl' />
+                  <img src={demo1} alt="Demo-tagline-generator1" className='rounded-2xl' />
               </div>
               <div className='w-full h-full flex justify-center items-center'>
                 <div className="flex flex-col gap-[2%] justify-center items-center ms:items-start ms:justify-start md:items-center md:justify-center ms:gap-3 lg:gap-8 max-w-[90%] ms:max-w-[95%] lg:max-w-[80%]">
@@ -150,12 +150,12 @@ const HomePage = () => {
                 </div>
               </div>
               <div className='w-full h-full flex justify-center items-center'>
-                  <img src={demo2} alt="Demo-tagline-generator" className=' rounded-2xl' />
+                  <img src={demo2} alt="Demo-tagline-generator2" className='rounded-2xl' />
               </div>
           </div>
           <div className='py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex flex-col ms:flex-col md:flex-row bg-[#544BB9] max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl'>
               <div className='w-full h-full flex justify-center items-center'>
-                  <img src={demo3} alt="Demo-tagline-generator" className=' rounded-2xl' />
+                  <img src={demo3} alt="Demo-tagline-generator3" className='rounded-2xl' />
               </div>
               <div className='w-full h-full flex justify-center items-center'>
                 <div className="flex flex-col gap-[2%] justify-center items-center ms:items-start ms:justify-start md:items-center md:justify-center ms:gap-3 lg:gap-8 max-w-[90%] ms:max-w-[95%] lg:max-w-[80%]">
@@ -184,14 +184,14 @@ const HomePage = () => {
         <div className='w-full h-full mt-6 ms:mt-6 sm:mt-10 md:mt-12 lg:mt-14 bg-[#ffe84d]'>
           <div className='flex flex-col py-12 ms:py-4 sm:py-6 md:py-8 lg:py-12 justify-center items-center'>
             <div className="flex justify-center items-center">
-              <p className="font-bold text-2xl ms:text-2xl sm:text-3xl md:text-3xl lg:text-4xl text-center text-black max-w-[80%]">
-              What Can You Do with AI Title Generator?
-              </p>
+              <h1 className="font-bold text-2xl ms:text-2xl sm:text-3xl md:text-3xl lg:text-4xl text-center text-black max-w-[80%]">
+               Why Use AI Title Generator by Infynno?
+              </h1>
             </div>
             <div className='flex flex-col ms:flex-col md:flex-row ms:gap-5 md:gap-0 max-w-7xl py-10 ms:py-4 sm:py-6 md:py-8 lg:py-10'>
               <div className='flex flex-col justify-between items-center h-full w-full gap-8'>
                 <div className='w-full h-full flex justify-center items-center'>
-                    <img src={use1} alt="Demo-tagline-generator" className=' rounded-2xl' />
+                    <img src={use1} alt="Use-tagline-generator1" className='rounded-2xl' />
                 </div>
                 <div className='w-full h-full flex justify-center items-center'>
                   <div className="flex flex-col gap-[2%] justify-center items-center ms:gap-3 lg:gap-5 max-w-[80%]">
@@ -205,7 +205,7 @@ const HomePage = () => {
               </div>
               <div className='flex flex-col justify-between items-center h-full w-full gap-8'>
                 <div className='w-full h-full flex justify-center items-center'>
-                    <img src={use2} alt="Demo-tagline-generator" className=' rounded-2xl' />
+                    <img src={use2} alt="Use-tagline-generator2" className='rounded-2xl' />
                 </div>
                 <div className='w-full h-full flex justify-center items-center'>
                   <div className="flex flex-col gap-[2%] justify-center items-center ms:gap-1 lg:gap-5 max-w-[80%]">
@@ -219,7 +219,7 @@ const HomePage = () => {
               </div>
               <div className='flex flex-col justify-between items-center h-full w-full gap-8'>
                 <div className='w-full h-full flex justify-center items-center'>
-                    <img src={use3} alt="Demo-tagline-generator" className=' rounded-2xl' />
+                    <img src={use3} alt="Use-tagline-generator3" className='rounded-2xl' />
                 </div>
                 <div className='w-full h-full flex justify-center items-center'>
                   <div className="flex flex-col gap-[2%] justify-center items-center ms:gap-1 lg:gap-5 max-w-[80%]">
@@ -237,9 +237,9 @@ const HomePage = () => {
         <div className="py-8 ms:py-8 sm:py-10 md:py-14 lg:py-16 h-full flex flex-col items-center justify-center w-full">
           <div className="flex flex-col justify-center items-center gap-1 ms:gap-5 lg:gap-16 ">
             <div className="flex justify-center items-center">
-              <p className="font-bold text-xl ms:text-xl sm:text-4xl md:text-4xl lg:text-4xl text-center text-black">
+              <h1 className="font-bold text-xl ms:text-xl sm:text-4xl md:text-4xl lg:text-4xl text-center text-black">
                   FAQ
-              </p>
+              </h1>
             </div>
             {/* <div className='grid grid-cols-1 grid-flow-rows auto-rows-max ms:grid-cols-1 md:grid-cols-2 gap-4 ms:gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full h-full max-w-6xl'>
                 <div className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
@@ -344,9 +344,9 @@ const HomePage = () => {
         <div className="py-8 ms:py-8 sm:py-10 md:py-14 lg:py-16 h-full flex flex-col items-center justify-center w-full">
           <div className="flex flex-col justify-center items-center gap-1 ms:gap-5 lg:gap-10 w-full max-w-[90%] ms:max-w-[90%] md:max-w-[90%] lg:max-w-6xl h-full">
             <div className="flex justify-center items-center">
-              <p className="font-bold text-xl ms:text-xl sm:text-4xl md:text-4xl lg:text-4xl text-center text-black">
+              <h1 className="font-bold text-xl ms:text-xl sm:text-4xl md:text-4xl lg:text-4xl text-center text-black">
                 Contact Us
-              </p>
+              </h1>
             </div>
             {/* <div className='w-full h-full flex flex-col justify-center items-center gap-8'>
               <input type="text" name='name' value={getInTouch.name} 

@@ -80,11 +80,16 @@ const NavbarNewA = () => {
     >
       <div className="flex justify-between w-full py-3 max-w-6xl">
         <div className="flex gap-5 items-center justify-center">
-        {accessToken? <a href="/generator">
-          <img src={logo} alt="logo" className="w-14 cursor-pointer" />
+        {accessToken? 
+        <a href="/generator">
+          <div className='w-14 cursor-pointer'>
+            <img src={logo} alt="company logo after auth" className="w-full h-auto" />
+          </div>
         </a>:
         <a href="/">
-          <img src={logo} alt="logo" className="w-14 cursor-pointer" />
+          <div className='w-14 cursor-pointer'>
+            <img src={logo} alt="company logo before auth" className="w-full h-auto" />
+          </div>
         </a>}
         {/* <a href="/">
           <p className="font-bold text-black text-xl text-transparent bg-clip-text bg-gradient-to-t from-purple-400 to-blue-600 transition duration-[0.4s]">TAGLINE GENERATOR</p>
@@ -332,11 +337,13 @@ const NavbarNewA = () => {
                 <div>
                   <Menu.Button className="inline-flex w-full justify-center rounded-md bg-transparent bg-opacity-20 text-4xl font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                     {profileDetails?.profile_pic ?
-                    <img
-                    src={profileDetails?.profile_pic}
-                    alt="Picture of an text"
-                    className="overflow-hidden w-14 h-14 lg:w-12 lg:h-12 rounded-full border-[1px] border-solid border-gray-500"
-                    />
+                    <div className='overflow-hidden w-14 h-14 lg:w-12 lg:h-12 rounded-full border-[1px] border-solid border-gray-500'>
+                      <img
+                      src={profileDetails?.profile_pic}
+                      alt="Picture of user"
+                      className="w-full h-auto"
+                      />
+                    </div>
                     : 
                     <CgProfile className='h-14 w-14 lg:w-12 lg:h-12' />
                     }

@@ -404,7 +404,7 @@ const Tool = () => {
                         <div className="flex items-center gap-2">
                           <img
                             src={logo}
-                            alt="logo"
+                            alt="regenerating"
                             className="w-6 animate-spin"
                           />
                           Regenerating
@@ -413,7 +413,7 @@ const Tool = () => {
                         <div className="flex items-center gap-2">
                           <img
                             src={logo}
-                            alt="logo"
+                            alt="regenerate"
                             className="w-6 cursor-pointer"
                           />
                           Regenerate

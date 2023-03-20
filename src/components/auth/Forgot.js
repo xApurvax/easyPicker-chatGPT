@@ -109,7 +109,7 @@ const Forgot = () => {
                     (<form className='w-full max-w-md sm:max-w-sm ms:max-w-xs' onSubmit={handleSubmit} >
                         <div className='w-full h-full flex flex-col gap-4 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-4 justify-center items-start'>
                             <div className='flex items-start'>
-                                <p className='font-medium text-lg ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Forgot password</p>
+                                <h2 className='font-medium text-lg ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Forgot password</h2>
                             </div>
                             <div className='flex flex-col gap-5 ms:gap-5 sm:gap-5 md:gap-10 lg:gap-8 items-start w-full'>
                             <p className='font-medium text-xs ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]'>Enter the email address associated with your account and we will send you instructions to reset your password.</p>
@@ -145,7 +145,7 @@ const Forgot = () => {
                                     >
                                         <div className='flex flex-col items-center gap-3 ms:gap-3 sm:gap-3 md:gap-6 lg:gap-6'>
                                             <div className='flex flex-col gap-3'>
-                                                <p className='text-center text-black text-lg ms:text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-[21px] tracking-wide'>OTP Verification</p>
+                                                <h2 className='text-center text-black text-lg ms:text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-[21px] tracking-wide'>OTP Verification</h2>
                                                 <p className="text-center text-black text-xl sm:text-xl font-normal leading-[21px] tracking-wide">
                                                     Please check your email. We sent a OTP on your registered email
                                                     id.

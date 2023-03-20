@@ -5,8 +5,8 @@ const Header = () => {
     <div>
       <nav className="flex justify-center w-full max-w-screen bg-white border-b-[1px] border-solid border-[#ebebeb] items-center">
         <div className="flex justify-between w-full py-3 max-w-6xl">
-          <div className="">
-            <img src={logo} alt="logo" className="w-14 cursor-pointer" />
+          <div className="w-14 cursor-pointer">
+            <img src={logo} alt="company logo at header" className="w-full h-auto" />
           </div>
           <div className="">
             <ul className="flex items-center justify-center gap-5 w-full h-full cursor-pointer">

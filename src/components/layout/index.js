@@ -3,7 +3,7 @@ import SavedRecords from "./SavedRecords";
 import HeaderAfterAuth from "./HeaderAfterAuth";
 import TransactionHistory from "./TransactionHistory";
 import HomePage from "./HomePage";
-import NotFound from "./NotFound";
+import NotFound from "./404";
 import HeaderNew from "./HeaderNew";
 import NavBarNewA from "./NavBarNewA";
 import FooterNew from "./FooterNew";
