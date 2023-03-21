@@ -76,7 +76,7 @@ const SavedRecords = () => {
         id: "headingType",
         accessor: function (row, i) {
           return (
-            <div key={i} className="group">
+            <div key={row.id} className="group">
               <div className="flex gap-30 max-w-[100px]">
                 <p className="font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] text-black whitespace-normal">
                   {row?.heading_type.length > 0
@@ -93,7 +93,7 @@ const SavedRecords = () => {
         id: "Paragraph",
         accessor: (row, i) => {
           return (
-            <div key={i} className="">
+            <div key={row.id} className="">
               <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap max-h-[110px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
                 <p className="font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] text-black ">
                   {row?.paragraph}
@@ -108,7 +108,7 @@ const SavedRecords = () => {
         id: "Titles",
         accessor: (row, i) => {
           return (
-            <div key={i} className="">
+            <div  key={row.id} className="">
               <div className="flex flex-col gap-1.5 ms:gap-1.5 sm:gap-1.5 md:gap-3 lg:gap-3 w-full max-w-[300px] whitespace-pre-wrap max-h-[110px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
                 {row?.title.length > 0 ? (
                   row?.title?.split(",")?.map(
@@ -149,10 +149,10 @@ const SavedRecords = () => {
             <div key={i} className="">
               <div className="flex flex-col gap-1.5 ms:gap-1.5 sm:gap-1.5 md:gap-3 lg:gap-3 w-full max-w-[300px] whitespace-pre-wrap max-h-[110px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
                 {row?.tag.length > 0 && row?.tag ? (
-                  row?.tag?.split(",")?.map((tag, id) =>
-                    tag.replace(".", "") && tag.trim().length > 0 ? (
+                  row?.tag?.split(",")?.map((tag, id) => 
+                  <React.Fragment key={id}>
+                   {tag.replace(".", "") && tag.trim().length > 0 ? (
                       <div
-                        key={id}
                         className="flex gap-1 justify-between items-center"
                       >
                         <p className="font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] text-center text-black">
@@ -169,11 +169,13 @@ const SavedRecords = () => {
                           <IoCopyOutline size={15} color="#544bb9" />
                         </button>
                       </div>
-                    ) : (
+                    )
+                     : (
                       <p className="font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] whitespace-nowrap text-black">
                         No tags were generated
                       </p>
-                    )
+                    )}
+                    </React.Fragment>
                   )
                   ) : (
                     <p className="font-medium text-[10px] leading-[10px] ms:text-[10px] ms:leading-[13px] sm:text-[10px] sm:leading-[16px] md:text-[12px] md:leading-[18px] lg:text-[14px] lg:leading-[21px] whitespace-nowrap text-black">
@@ -265,15 +267,15 @@ const SavedRecords = () => {
             <thead>
               {headerGroups.map((headerGroup, i) => (
                 <tr
-                  className="shadow-lg hover:shadow-[#aab2b8] my-2 bg-[#e2eaf7]"
-                  key={i}
-                  {...headerGroup.getHeaderGroupProps()}
+                {...headerGroup.getHeaderGroupProps()}
+                className="shadow-lg hover:shadow-[#aab2b8] my-2 bg-[#e2eaf7]"
+                key={i}
                 >
-                  {headerGroup.headers.map((column, i) => (
+                  {headerGroup.headers.map((column, id) => (
                     <th
-                      className="text-left border-b-2 border-t first:border-l border-r border-solid border-black text-black text-[10px] ms:text-[10px] sm:text-[10px] md:text-sm lg:text-xs text-sm font-bold tracking-wider whitespace-nowrap p-2"
-                      key={i}
-                      {...column.getHeaderProps()}
+                    {...column.getHeaderProps()}
+                    className="text-left border-b-2 border-t first:border-l border-r border-solid border-black text-black text-[10px] ms:text-[10px] sm:text-[10px] md:text-sm lg:text-xs text-sm font-bold tracking-wider whitespace-nowrap p-2"
+                    key={id}
                     >
                       {column.render("Header")}
                     </th>
@@ -289,18 +291,18 @@ const SavedRecords = () => {
                       prepareRow(row);
                       return (
                         <tr
+                        {...row.getRowProps()}
                           className="first:border-t border-solid border-black"
                           // rowSpan={1}
                           key={i}
-                          {...row.getRowProps()}
                         >
-                          {row.cells.map((cell) => {
+                          {row.cells.map((cell,id) => {
                             return (
                               <td
-                                key={i}
-                                {...cell.getCellProps()}
+                              {...cell.getCellProps()}
+                                key={id}
                                 className="text-left border-b first:border-l border-r border-solid border-black text-black text-sm p-1 ms:p-1 sm:p-2 md:p-3 lg:p-3 whitespace-nowrap group"
-                              >
+                                >
                                 {cell.render("Cell")}
                               </td>
                             );
@@ -382,7 +384,7 @@ const SavedRecords = () => {
               onPageChange={handlePageClick}
               pageRangeDisplayed={3}
               marginPagesDisplayed={1}
-              pageCount={Math.ceil(totalResults / 3)}
+              pageCount={totalResults && Math.ceil(totalResults / 3)}
               previousLabel={
                 <button
                   className="disabled:opacity-60"

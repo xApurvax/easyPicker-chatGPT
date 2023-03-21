@@ -60,7 +60,7 @@ const Profile = () => {
                 <GoHome className='text-xs ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' onClick={(e) => {e.preventDefault();
                         navigate('/');
                 }} />
-                <h2 className='font-semibold text-xs ms:text-xs sm:text-lg md:text-2xl lg:text-lg'>/ Account Information</h2>
+                <h1 className='font-semibold text-xs ms:text-xs sm:text-lg md:text-2xl lg:text-lg'>/ Account Information</h1>
             </div>
              <div className='flex flex-col gap-2 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-2 h-full w-full justify-center items-center py-0 ms:py-0 lg:py-5'>
                 <Formik

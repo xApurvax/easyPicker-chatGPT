@@ -23,7 +23,7 @@ const FooterNew = () => {
         <p className='text-[#e5e5e5] hover:text-white transition duration-[0.4s]'>by</p>
         <a href="https://infynno.com/" target="_blank">
         <div className="w-12 ms:w-[25px] sm:w-[30px] md:w-[36px] lg:w-[42px] cursor-pointer">
-          <img src={logo} alt="company logo at footer" className="w-full h-auto" />
+          <img src={logo} alt="company logo at footer" className="" height="auto" width="auto"  />
         </div>
         </a>
         </div>

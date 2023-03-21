@@ -1,8 +1,9 @@
 import React, { useEffect,useState } from 'react'
+import {ReactRouter as Router, Switch, Route, Link} from "react-router-dom";
 import logo from "../../assets/logo-infynno-white.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut, setLogOutModal } from '../../redux/slices/auth/loginSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FiLogOut, FiSettings} from 'react-icons/fi';
 import { CgProfile } from 'react-icons/cg';
 import { setHasTitleTag } from '../../redux/slices/generateHeadlineSlice';
@@ -81,16 +82,16 @@ const NavbarNewA = () => {
       <div className="flex justify-between w-full py-3 max-w-6xl">
         <div className="flex gap-5 items-center justify-center">
         {accessToken? 
-        <a href="/generator">
+        <Link to="/generator">
           <div className='w-14 cursor-pointer'>
             <img src={logo} alt="company logo after auth" className="w-full h-auto" />
           </div>
-        </a>:
-        <a href="/">
+        </Link>:
+        <Link to="/">
           <div className='w-14 cursor-pointer'>
             <img src={logo} alt="company logo before auth" className="w-full h-auto" />
           </div>
-        </a>}
+        </Link>}
         {/* <a href="/">
           <p className="font-bold text-black text-xl text-transparent bg-clip-text bg-gradient-to-t from-purple-400 to-blue-600 transition duration-[0.4s]">TAGLINE GENERATOR</p>
         </a> */}

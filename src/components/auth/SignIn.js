@@ -39,7 +39,7 @@ const SignIn = () => {
                         (<form className='w-full max-w-md' onSubmit={handleSubmit} >
                             <div className='w-full h-full flex flex-col gap-4 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-4 justify-center items-start'>
                                 <div className='flex items-start'>
-                                    <h2 className='font-medium text-lg ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Sign up</h2>
+                                    <h1 className='font-medium text-lg ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Sign up</h1>
                                 </div>
                                 <div className='flex flex-col gap-5 ms:gap-5 sm:gap-5 md:gap-10 lg:gap-7 items-start w-full'>
                                 <div className='flex gap-3 w-full'>

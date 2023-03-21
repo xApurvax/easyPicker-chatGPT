@@ -1,10 +1,12 @@
 export const createImage = (url) =>
   new Promise((resolve, reject) => {
     const image = new Image();
+    if(image){
     image.addEventListener("load", () => resolve(image));
     image.addEventListener("error", (error) => reject(error));
     image.setAttribute("crossOrigin", "anonymous");
     image.src = url;
+    }
   });
 
 export function getRadianAngle(degreeValue) {

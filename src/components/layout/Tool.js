@@ -34,7 +34,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { setShowBuyPointsModal } from "../../redux/slices/pointsSlice";
 import { BuyPointsModal } from "../modal/BuyPointsModal";
 import { profileDetailsFetchAPI } from "../../redux/slices/ProfileSlice";
+import demo1 from "../../assets/Demo1-tagline-generator.png";
 import classNames from "classnames";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const Tool = () => {
   const dispatch = useDispatch();
@@ -156,7 +158,14 @@ const Tool = () => {
   }, [])
 
   return (
+    <HelmetProvider>
     <RouteMiddleWare>
+      <Helmet>
+        <title>AI Title Generator | Infynno</title>
+        <meta name="description" content="Powerful Title Ideas to Elevate Your Blog and Captivate Your Readers 💡📝✨ - Get Inspired with Eye-Catching Article and Blog Post Title Ideas! 💡✍️ - Captivating Titles for Your Next Blog Post or Article 💻🔥" />
+        <meta name="keywords" content="Generate Titles, Blogs, Posts ,Articles, AI, chatGPT" />
+        <meta name="image" content={demo1} />
+      </Helmet>
     <div className="flex flex-col w-full justify-center items-center">
       <div className="flex justify-end gap-1 md:hidden w-full">
       <div className="bg-[#544BB9] flex justify-end items-end">
@@ -461,20 +470,20 @@ const Tool = () => {
                     }}
                   >
                     {isRegenerate ? (
-                      <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5 animate-spin">
+                      <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm ">
                         <img
                           src={logo}
                           alt="regenerating"
-                          className="w-full h-auto"
+                          className="w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5 animate-spin"
                         />
                         Regenerating
                       </div>
                     ) : (
-                      <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5 animate-spin">
+                      <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm ">
                         <img
                           src={logo}
                           alt="regenerate"
-                          className="w-full h-auto"
+                          className="w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5"
                         />
                         Regenerate
                       </div>
@@ -504,6 +513,7 @@ const Tool = () => {
     </div>
     {/* // <BuyPointsModal /> */}
     </RouteMiddleWare>
+    </HelmetProvider>
   );
 };
 

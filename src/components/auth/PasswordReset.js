@@ -51,7 +51,7 @@ const PasswordReset = () => {
                     (<form className='w-full max-w-md' onSubmit={handleSubmit} >
                         <div className='w-full h-full flex flex-col gap-4 ms:gap-4 sm:gap-4 md:gap-8 lg:gap-8 justify-center items-start'>
                             <div className='flex items-start w-full'>
-                                <h2 className='font-medium text-lg ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Reset password</h2>
+                                <h1 className='font-medium text-lg ms:text-lg sm:text-xl md:text-2xl lg:text-3xl'>Reset password</h1>
                             </div>
                             <div className='flex flex-col gap-5 ms:gap-5 sm:gap-5 md:gap-10 lg:gap-10 items-start w-full'>
                             <InputField
