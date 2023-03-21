@@ -487,7 +487,7 @@ const HomePage = () => {
             </Formik>
             <div className='h-full w-full flex flex-col justify-between items-center'>
               <div className='aspect-w-8 aspect-h-4 w-full h-full border-[3px] border-solid border-[#544BB9] rounded-md'>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29356.330097165468!2d72.541279!3d23.113883!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9ddd5e24dcd1%3A0xdf5c3d5463cdece5!2sInfynno%20Solutions%20%7C%20Expert%20in%20Laravel%2C%20React%20and%20Node%20Apps!5e0!3m2!1sen!2sin!4v1678188424977!5m2!1sen!2sin" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"/>  
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.541138621801!2d72.53909061505688!3d23.113887518709067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9ddd5e24dcd1%3A0xdf5c3d5463cdece5!2sInfynno%20Solutions%20%7C%20Expert%20in%20Laravel%2C%20React%20and%20Node%20Apps!5e0!3m2!1sen!2sin!4v1679390031546!5m2!1sen!2sin" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>  
               </div>
               <div className='flex flex-col gap-3 my-2 h-full w-full'>
                   {/* <h1 className='font-600 text-xl font-bold'>Let's Get In Touch</h1>
