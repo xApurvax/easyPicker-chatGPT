@@ -42,7 +42,7 @@ export const contactUsValidationSchema = Yup.object({
     .min(3, "Must be 3 char long.")
     .required("Name is required.").trim(),
     email: Yup.string().email('Enter valid e-mail.').required('E-mail is required.'),
-    captcha_verified: Yup.string().required('Please verify recaptcha.'),
+    captcha: Yup.string().required('Please verify recaptcha.'),
 });
 
 export const contactUsValidationWithoutCaptchaSchema = Yup.object({
@@ -53,7 +53,7 @@ export const contactUsValidationWithoutCaptchaSchema = Yup.object({
     .min(3, "Must be 3 char long.")
     .required("Name is required.").trim(),
     email: Yup.string().email('Enter valid e-mail.').required('E-mail is required.'),
-    captcha_verified: Yup.string(),
+    captcha: Yup.string(),
 });
 
 export const forgotPasswordValidationSchema = Yup.object({

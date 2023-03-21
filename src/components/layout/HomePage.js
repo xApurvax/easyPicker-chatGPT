@@ -38,7 +38,7 @@ const HomePage = () => {
     message: "",
     isVarified: false,
   })
-  const initialValues = { name: "", email: "" ,message: "", captcha_verified: ""};
+  const initialValues = { name: "", email: "" ,message: "", captcha: ""};
 
   // const [captcha, setCaptcha] = useState(String(Math.floor(Math.random()*100000+1)))
   const [captcha, setCaptcha] = useState(generateCaptcha(5))
@@ -430,10 +430,10 @@ const HomePage = () => {
                             {/* {!error &&  */}
                             <div className='relative h-full w-full flex justify-center items-center'>
                             <ReCAPTCHA
-                                name="captcha_verified"
-                                id="captcha_verified"
+                                name="captcha"
+                                id="captcha"
                                 sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-                                onChange={(value) => {setFieldValue("captcha_verified",value)}}
+                                onChange={(value) => {setFieldValue("captcha",value)}}
                                 ref={captchaRef}
                                 className="h-max w-full flex justify-center items-center"
                                 onErrored={(err) => {
@@ -442,18 +442,18 @@ const HomePage = () => {
                                   // setFieldValue("captcha_verified",true)
                                   setValidation(contactUsValidationWithoutCaptchaSchema)} }
                             />
-                             {errors.captcha_verified && touched.captcha_verified && (
+                             {errors.captcha && touched.captcha && (
                                   <div className="absolute error lg:mt-[2px] top-full left-0">
-                                      <p className="text-[11px] md:text-[12px] xl:text-sm 2xl:text-base  whitespace-nowrap text-red-500">{errors.captcha_verified}</p>
+                                      <p className="text-[11px] md:text-[12px] xl:text-sm 2xl:text-base  whitespace-nowrap text-red-500">{errors.captcha}</p>
                                   </div>
                               )}
                             </div>
                             {/* } */}
                             <div className='py-3 ms:py-0 sm:py-0 md:py-3 lg:py-3 w-full flex justify-center items-center'>
-                            {values.name.trim().length < 1 || values.email.trim().length < 1 || values.message.trim().length < 1 || (!error && values.captcha_verified.trim().length < 1) ? 
+                            {values.name.trim().length < 1 || values.email.trim().length < 1 || values.message.trim().length < 1 || (!error && values.captcha.trim().length < 1) ? 
                              <CustomButton
                              type='submit'
-                             disabled={(values.name.trim().length < 1 || values.email.trim().length < 1 || values.message.trim().length < 1 || (!error && values.captcha_verified.trim().length < 1) ) }
+                             disabled={(values.name.trim().length < 1 || values.email.trim().length < 1 || values.message.trim().length < 1 || (!error && values.captcha.trim().length < 1) ) }
                              onClick={(e) => {
                              // dispatch(setLoginEffect(true));
                              }}
@@ -468,7 +468,7 @@ const HomePage = () => {
                             :
                             <CustomButton
                                 type='submit'
-                                disabled={(values.name.trim().length < 1 || values.email.trim().length < 1 || values.message.trim().length < 1 || (!error && values.captcha_verified.trim().length < 1)) || isLoading }
+                                disabled={(values.name.trim().length < 1 || values.email.trim().length < 1 || values.message.trim().length < 1 || (!error && values.captcha.trim().length < 1)) || isLoading }
                                 onClick={(e) => {
                                 // dispatch(setLoginEffect(true));
                                 }}
