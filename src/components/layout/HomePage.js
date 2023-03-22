@@ -16,12 +16,13 @@ import use3 from "../../assets/use-title-generator-3.svg";
 import ReCAPTCHA from "react-google-recaptcha";
 import { IoIosMail } from 'react-icons/io';
 import { FaGlobe, FaPhoneAlt, FaSkype, FaMapMarkerAlt } from 'react-icons/fa';
-import { Formik } from 'formik'
+import { Field, Formik, useField } from 'formik'
 import { contactUsValidationSchema, contactUsValidationWithoutCaptchaSchema } from '../../utils/FormValidations'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ContactUsFetchAPi } from '../../redux/slices/auth/contactusSlice'
 import { motion } from "framer-motion";
+import CustomTextArea from '../form/CustomTextArea'
 
 let COUNT = 0;
 const HomePage = () => {
@@ -39,15 +40,16 @@ const HomePage = () => {
     isVarified: false,
   })
   const initialValues = { name: "", email: "" ,message: "", captcha: ""};
-
+  // const [field, meta] = useField("message");
   // const [captcha, setCaptcha] = useState(String(Math.floor(Math.random()*100000+1)))
   const [captcha, setCaptcha] = useState(generateCaptcha(5))
   const [validation, setValidation] = useState(contactUsValidationSchema);
   const [error, setError] = useState(false);
 
-  const handleGetInTouchSubmit = (values) => {
+  const handleGetInTouchSubmit = (values ,{resetForm}) => {
        dispatch(ContactUsFetchAPi(values))
        captchaRef.current.reset();
+       resetForm({ values: '' });
       // console.log(values)
   }
 
@@ -390,6 +392,7 @@ const HomePage = () => {
                     validateOnBlur={false}
                     validateOnChange={false}
                     onSubmit={handleGetInTouchSubmit}
+                    enableReinitialize={true}
                 >
                     {({ handleSubmit,errors,touched,handleChange,setFieldValue,values}) =>
                     (<form className='w-full max-w-md' onSubmit={handleSubmit} >
@@ -411,21 +414,14 @@ const HomePage = () => {
                             inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-[#737373] bg-white focus:border-[#544BB9]'
                             borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]'
                             placeholder='Enter your e-mail' />
-                            <div className='w-full h-full relative'>
-                            <textarea
-                              name="message"
-                              id="message"
-                              type="text"
-                              onChange={(e) => {setFieldValue("message",e?.target?.value)}}
-                              // onChange={(e) => setGetInTouch({...getInTouch,message: e.target.value})} 
-                              className={`w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid  resize-none focus:outline-none placeholder:text-[#737373] focus:border-[#544BB9] text-[#737373] ${errors.message && touched.message ? "border-red-500" : "border-[#aab2b8]"}`} 
-                              placeholder='Enter message ...'/>
-                              {errors.message && touched.message && (
-                                  <div className="absolute error lg:mt-[2px] left-0">
-                                      <p className="text-[11px] md:text-[12px] xl:text-sm 2xl:text-base  whitespace-nowrap text-red-500">{errors.message}</p>
-                                  </div>
-                              )}
-                              </div>
+                            <CustomTextArea 
+                            type='text'
+                            id='message'
+                            name='message'
+                            inputstyle='w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid border-[#aab2b8] resize-none focus:outline-none placeholder:text-[#737373] focus:border-[#544BB9] text-[#737373]'
+                            borderstyle='w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid border-[#aab2b8] resize-none focus:outline-none placeholder:text-[#737373] focus:border-[#544BB9] text-[#737373]'
+                            placeholder='Enter message ...' 
+                            />
                             </div>
                             {/* {!error &&  */}
                             <div className='relative h-full w-full flex justify-center items-center'>
@@ -434,6 +430,7 @@ const HomePage = () => {
                                 id="captcha"
                                 sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
                                 onChange={(value) => {setFieldValue("captcha",value)}}
+                                onEmptied={() => {setFieldValue("captcha","")}}
                                 ref={captchaRef}
                                 className="h-max w-full flex justify-center items-center"
                                 onErrored={(err) => {
@@ -456,6 +453,7 @@ const HomePage = () => {
                              disabled={(values.name.trim().length < 1 || values.email.trim().length < 1 || values.message.trim().length < 1 || (!error && values.captcha.trim().length < 1) ) }
                              onClick={(e) => {
                              // dispatch(setLoginEffect(true));
+                            //  setFieldValue("captcha","")
                              }}
                              onAnimationEnd={() => {
                              // dispatch(setLoginEffect(false));
@@ -470,6 +468,7 @@ const HomePage = () => {
                                 type='submit'
                                 disabled={(values.name.trim().length < 1 || values.email.trim().length < 1 || values.message.trim().length < 1 || (!error && values.captcha.trim().length < 1)) || isLoading }
                                 onClick={(e) => {
+                                // setFieldValue("captcha","")
                                 // dispatch(setLoginEffect(true));
                                 }}
                                 onAnimationEnd={() => {
