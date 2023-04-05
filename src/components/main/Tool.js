@@ -60,17 +60,6 @@ const Tool = () => {
       num_headers : count,
     }))
   };
-
-  // const copyToClipboard = (e) => {
-  //   console.log(e,"wwwwwwwwwwwwwwwww")
-  //   copyRef.current.select();
-  //   document.execCommand('copy');
-  //   e.target.focus();
-  //   setCopySuccess('Copied!');
-  // }
-  // useEffect(() => {
-  //   console.log(hasFocusedHeadline)
-  // }, [])
   
   return (
     <div>
@@ -100,9 +89,9 @@ const Tool = () => {
               <button
                 disabled={hasArticle.trim() === ""}
                 type="button"
-                className={`${
-                  scanEffect && "animate-wiggle"
-                } flex gap-1 px-2 py-2 bg-[#2E90FA] h-9 rounded-md cursor-pointer shadow-lg disabled:cursor-not-allowed disabled:bg-[#a8d1df]`}
+                className={classNames(
+                  "flex gap-1 px-2 py-2 bg-[#2E90FA] h-9 rounded-md cursor-pointer shadow-lg disabled:cursor-not-allowed disabled:bg-[#a8d1df]",
+                  scanEffect && "animate-wiggle")}
                 onClick={(e) => {
                   dispatch(setScanEffect(true));
                   setHasArticle(hasArticle)
@@ -179,11 +168,18 @@ const Tool = () => {
                         Include specific words on headline
                       </p>
                     </div>
-                    <button className={` ${expIncHeadline ?  "rotate-45 fill-[#48535B] ": "rotate-0 " } transition-all ease-in-out duration-500`}>
+                    <button 
+                    className={classNames(
+                      "transition-all ease-in-out duration-500",
+                      expIncHeadline ? "rotate-45 fill-[#48535B]" : "rotate-0")}>
                       <BiPlus size={20} fill="#48535B" />
                     </button>
                   </div>
-                  <section className={` ${expIncHeadline ? "max-h-[100px] ": "max-h-[0px] " } overflow-hidden transition-all ease-in-out duration-500 my-2`}>
+                  <section 
+                  className={classNames(
+                    "overflow-hidden transition-all ease-in-out duration-500 my-2",
+                    expIncHeadline ? "max-h-[100px] ": "max-h-[0px]")}
+                  >
                     <CustomCreateTag tags={includeTag} setTags={setIncludeTag} />
                   </section>
                 </div>
@@ -194,11 +190,18 @@ const Tool = () => {
                         Exclude specific words on headline
                       </p>
                     </div>
-                    <button className={` ${expExcHeadline ?  "rotate-45 fill-[#48535B] ": "rotate-0 " } transition-all ease-in-out duration-500`}>
+                    <button
+                     className={classNames(
+                      "transition-all ease-in-out duration-500",
+                      expIncHeadline ? "rotate-45 fill-[#48535B]" : "rotate-0")}
+                     >
                       <BiPlus size={20} fill="#48535B" />
                     </button>
                   </div>
-                  <section className={` ${expExcHeadline ? " max-h-[130px] ": "max-h-[0px] " } overflow-hidden transition-all ease-in-out duration-500 `}>
+                  <section
+                   className={classNames(
+                    "overflow-hidden transition-all ease-in-out duration-500",
+                    expIncHeadline ?  " max-h-[130px]": "max-h-[0px]" )}>
                     <CustomCreateTag tags={excludeTag} setTags={setExcludeTag} />
                     <div className="flex gap-2 mt-2">
                     <ToggleSwitch toggle={isFindUseSynonyms} setToggle={setIsFindUseSynonyms} /> 
@@ -271,9 +274,9 @@ const Tool = () => {
                   </div>
                   <button disabled={!hasFocusedHeadline || isLoading}
                   type="submit"
-                  className={`${
-                    generateHeadlineEffect && "animate-wiggle"
-                  } flex items-center justify-center w-full gap-1 px-2 py-2 bg-[#2E90FA] h-9 rounded-md cursor-pointer shadow-lg disabled:cursor-not-allowed disabled:bg-[#a8d1df] text-white text-[12px] font-semibold`}
+                  className={classNames(
+                    "flex items-center justify-center w-full gap-1 px-2 py-2 bg-[#2E90FA] h-9 rounded-md cursor-pointer shadow-lg disabled:cursor-not-allowed disabled:bg-[#a8d1df] text-white text-[12px] font-semibold",
+                    generateHeadlineEffect && "animate-wiggle")}
                   onClick={() => {
                     dispatch(setGenerateHeadlineEffect(true));
                   }}

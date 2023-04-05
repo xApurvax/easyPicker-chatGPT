@@ -1,20 +1,55 @@
-import Header from "./components/layout/Header";
-import Tool from "./components/main/Tool";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from 'react-hot-toast';
+import {
+  Tool,
+  SavedRecords,
+  HeaderAfterAuth,
+  TransactionHistory,
+  HomePage,
+  NotFound,
+  HeaderNew,
+  PrivacyPolicy,
+  TermsOfServices,
+} from "./components/layout";
+import {
+  LogIn,
+  SignIn,
+  Forgot,
+  PasswordReset,
+  Profile,
+} from "./components/auth";
 
 function App() {
   return (
     <div className="">
-      <main className="">
-      {/* <main className="flex w-full justify-center items-center h-[500px]"> */}
-        <Header />
-        <Tool />
-      {/* <span className="group relative">
-          <span className="pointer-events-none absolute -top-1 left-8 translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-white opacity-0 transition before:absolute before:-left-2 before:top-12 before:-translate-y-10 before:rotate-90 before:border-4 before:border-transparent before:border-t-black before:content-[''] group-hover:opacity-100">
-            hello
-          </span>
-        button
-      </span> */}
-      </main>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        toastOptions={{
+          style: {
+              // wordBreak: 'break-all',
+              wordBreak: 'break-word',
+              // whiteSpace: "nowrap",
+              width: 'max-content',
+          }
+      }}
+    />
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/generator" element={<HeaderAfterAuth ><Tool /></HeaderAfterAuth>} />
+          <Route path="/auth/signin" element={<HeaderNew ><LogIn /></HeaderNew>}   />
+          <Route path="/auth/register" element={<HeaderNew ><SignIn /></HeaderNew>}  />
+          <Route path="/auth/forgot" element={<HeaderNew ><Forgot /></HeaderNew>}  />
+            <Route path="/reset-password" element={<HeaderNew ><PasswordReset /></HeaderNew>}  />
+          <Route path="/bookmarks" element={<HeaderAfterAuth ><SavedRecords /></HeaderAfterAuth>}  />
+          <Route path="/transaction-history" element={<HeaderAfterAuth ><TransactionHistory /></HeaderAfterAuth>}  />
+          <Route path="/profile" element={<HeaderAfterAuth ><Profile /></HeaderAfterAuth>}  />
+          <Route path='/terms-of-use' element={<TermsOfServices />}/>
+          <Route path='/privacy-policy' element={<PrivacyPolicy />}/>
+          <Route path='*' element={<NotFound />}/>
+        </Routes>
+    </BrowserRouter>
     </div>
   );
 }
