@@ -1,10 +1,9 @@
-import Cookies from "js-cookie";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { setMinute, setSecond } from "../redux/slices/otpTimerSlice";
+import Cookies from 'js-cookie'
+// import { useEffect } from "react";
+// import { useSelector } from "react-redux";
+// import { setMinute, setSecond } from "../redux/slices/otpTimerSlice";
 
-
-// const {minute,second } = useSelector((state) => ({       
+// const {minute,second } = useSelector((state) => ({
 //   minute: state.generateHeadlineSlice.minute,
 //   second: state.forgotPasswordSlice.second,
 // }));
@@ -18,26 +17,29 @@ import { setMinute, setSecond } from "../redux/slices/otpTimerSlice";
 //     return token;
 //   };
 
-  export const getAccessToken = () => {
-    return Cookies.get("access_token");
-  }
-
-  export const generateCaptcha = (length) => {
-    var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        result=""
-    for (var i = length; i > 0; --i)
-        result += chars[Math.round(Math.random() * (chars.length - 1))]
-    return result
+export const getAccessToken = () => {
+  return Cookies.get('access_token')
 }
 
-export const twoDigits = (num) => String(num).padStart(2,'0')
+export const generateCaptcha = (length) => {
+  var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    result = ''
+  for (var i = length; i > 0; --i)
+    result += chars[Math.round(Math.random() * (chars.length - 1))]
+  return result
+}
 
-export const dateFormatter = (date) =>{
-  let objectDate  = new Date(date)
+export const twoDigits = (num) => String(num).padStart(2, '0')
 
-  const formattedDate = String(objectDate .getDate()).padStart(2,'0') 
-                        + "/" + String(objectDate.getMonth() + 1).padStart(2,'0') 
-                        + "/" + String(objectDate.getFullYear());
+export const dateFormatter = (date) => {
+  let objectDate = new Date(date)
+
+  const formattedDate =
+    String(objectDate.getDate()).padStart(2, '0') +
+    '/' +
+    String(objectDate.getMonth() + 1).padStart(2, '0') +
+    '/' +
+    String(objectDate.getFullYear())
 
   return formattedDate
 }

@@ -15,6 +15,7 @@
     "copy-to-clipboard": "^3.3.3",
     "formik": "^2.2.9",
     "framer-motion": "^8.4.6",
+    "husky": "^8.0.3",
     "js-cookie": "^3.0.1",
     "lodash.debounce": "^4.0.8",
     "moment": "^2.29.4",
@@ -47,7 +48,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "prettier --check .",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -71,6 +74,8 @@
     "@kamona/tailwindcss-perspective": "^0.1.1",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
-    "tailwindcss": "^3.2.4"
+    "prettier": "^2.8.7",
+    "tailwindcss": "^3.2.4",
+    "husky": "^8.0.0"
   }
 }

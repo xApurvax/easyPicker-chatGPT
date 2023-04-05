@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getAccessToken } from './helper'
 import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
 
 const RouteMiddleWare = ({ children }) => {
   const [unauthorized, setUnauthorized] = useState(false);
@@ -14,6 +13,7 @@ const RouteMiddleWare = ({ children }) => {
     }else {
       setUnauthorized(true);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
   
   return <>{unauthorized && children}</>;

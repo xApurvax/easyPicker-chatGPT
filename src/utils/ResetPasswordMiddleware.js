@@ -16,6 +16,7 @@ const ResetPasswordMiddleware = ({ children }) => {
       }else {
         setUnauthorized(true);
       }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Cookies.get('user_mail') || forgotModal?.email])
     return <>{unauthorized && children}</>;
 }
