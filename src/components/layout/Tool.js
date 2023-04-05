@@ -192,7 +192,7 @@ const Tool = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col lg:flex-row p-4 ms:p-4 sm:p-6 md:p-8 lg:p-5 gap-8 md:rounded-xl lg:rounded-xl bg-white w-full ms:flex-col lg:max-w-[95%]">
+          <div className="flex flex-col lg:flex-row p-4 ms:p-4 sm:p-6 md:p-8 lg:p-5 gap-8 md:rounded-xl lg:rounded-xl bg-white w-full ms:flex-col lg:max-w-[95%] mb-6">
             <div className="flex flex-col gap-3 w-full">
               <div className="flex flex-col">
                 <div className="">
