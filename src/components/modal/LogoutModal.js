@@ -1,27 +1,24 @@
-import React from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { logOut, setLogOutModal } from "../../redux/slices/auth/loginSlice";
-import { IoClose } from 'react-icons/io5';
-import { useNavigate } from "react-router-dom";
+import React from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { logOut, setLogOutModal } from '../../redux/slices/auth/loginSlice'
+import { IoClose } from 'react-icons/io5'
+import { useNavigate } from 'react-router-dom'
 
 export const LogoutModal = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-    const {
-        logOutModal,
-      } = useSelector((state) => ({
-        logOutModal: state.loginSlice.logOutModal,
-      }));
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { logOutModal } = useSelector((state) => ({
+    logOutModal: state.loginSlice.logOutModal,
+  }))
   return (
     <Transition appear show={logOutModal} as={Fragment}>
       <Dialog
         as="div"
         className="relative z-50"
         onClose={() => {
-          dispatch(setLogOutModal(false));
+          dispatch(setLogOutModal(false))
         }}
       >
         <Transition.Child
@@ -54,10 +51,13 @@ export const LogoutModal = () => {
                 >
                   Are you sure you want to Sign out ?
                 </Dialog.Title>
-                <div onClick={() => {
-                        dispatch(setLogOutModal(false));
-                    }} className="absolute top-3 right-3 text-[#544BB9] text-2xl ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer">
-                    <IoClose />
+                <div
+                  onClick={() => {
+                    dispatch(setLogOutModal(false))
+                  }}
+                  className="absolute top-3 right-3 text-[#544BB9] text-2xl ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer"
+                >
+                  <IoClose />
                 </div>
                 <div className="mt-5 ms:mt-5 sm:mt-6 md:mt-8 lg:mt-10 flex gap-5 justify-end">
                   <button
@@ -65,8 +65,8 @@ export const LogoutModal = () => {
                     className="inline-flex justify-center rounded-md border border-transparent bg-[#544BB9] disabled:opacity-3 px-5 py-2 ms:px-2 sm:px-3 md:px-5 lg:px-5 
                     ms:py-1 sm:py-1 md:py-2 lg:py-2 text-sm font-medium text-white hover:bg-[#966FD6] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 tracking-widest"
                     onClick={() => {
-                        dispatch(logOut());
-                        navigate("/auth/signin");
+                      dispatch(logOut())
+                      navigate('/auth/signin')
                     }}
                   >
                     Yes
@@ -75,7 +75,7 @@ export const LogoutModal = () => {
                     type="button"
                     className="inline-flex justify-center rounded-md border-1 px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-3 ms:py-1 sm:py-1 md:py-2 lg:py-2 text-sm font-medium text-[#544BB9] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 border-[1px] border-solid border-[#544BB9]"
                     onClick={() => {
-                        dispatch(setLogOutModal(false));
+                      dispatch(setLogOutModal(false))
                     }}
                   >
                     Cancel
@@ -87,5 +87,5 @@ export const LogoutModal = () => {
         </div>
       </Dialog>
     </Transition>
-  );
-};
+  )
+}

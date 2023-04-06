@@ -1,21 +1,23 @@
 import React from 'react'
-import Slider, { Range } from 'rc-slider';
-import 'rc-slider/assets/index.css';
+import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css'
 
-const StepDotsRange = ({defaultValue ,min ,max ,step,setRange}) => {
+const StepDotsRange = ({ defaultValue, min, max, step, setRange }) => {
   return (
     <div>
-    <Slider
-    color="blue"
-    inverted={false}
-    min={min} max={max} step={step}
-    dots={true}
-    allowCross={false}
-    onChange={(e) => {}}
-    tooltip={false}
-    // onAfterChange={() => dispatch(fetchPage())}
-    defaultValue={defaultValue}
-    />
+      <Slider
+        color="blue"
+        inverted={false}
+        min={min}
+        max={max}
+        step={step}
+        dots={true}
+        allowCross={false}
+        onChange={(e) => {}}
+        tooltip={false}
+        // onAfterChange={() => dispatch(fetchPage())}
+        defaultValue={defaultValue}
+      />
     </div>
   )
 }
