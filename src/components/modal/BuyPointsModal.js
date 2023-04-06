@@ -1,46 +1,47 @@
-import React from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { logOut, setLogOutModal } from "../../redux/slices/auth/loginSlice";
-import { IoClose } from 'react-icons/io5';
-import { BuyPointsFetchAPi, setShowBuyPointsModal } from "../../redux/slices/pointsSlice";
-import { GiTwoCoins ,GiCoins} from 'react-icons/gi';
-import { RiCoinFill } from 'react-icons/ri';
-import { FaCoins } from 'react-icons/fa';
-import classNames from "classnames";
-import Cookies from "js-cookie";
+import React from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setLogOutModal } from '../../redux/slices/auth/loginSlice'
+import { IoClose } from 'react-icons/io5'
+import {
+  BuyPointsFetchAPi,
+  setShowBuyPointsModal,
+} from '../../redux/slices/pointsSlice'
+import { GiTwoCoins, GiCoins } from 'react-icons/gi'
+import { RiCoinFill } from 'react-icons/ri'
+import { FaCoins } from 'react-icons/fa'
+import classNames from 'classnames'
 
 export const BuyPointsModal = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
+  // eslint-disable-next-line no-unused-vars
   const [counter, setCounter] = useState([
-    { countValue: 10, price:1, coinIcon:<RiCoinFill /> ,id: 1 },
-    { countValue: 100,price:10,coinIcon:<FaCoins /> ,id: 2 },
-    { countValue: 1000,price:100,coinIcon:<GiCoins />, id: 3 },
-  ]);
-  const [count, setCount] = useState(0);
+    { countValue: 10, price: 1, coinIcon: <RiCoinFill />, id: 1 },
+    { countValue: 100, price: 10, coinIcon: <FaCoins />, id: 2 },
+    { countValue: 1000, price: 100, coinIcon: <GiCoins />, id: 3 },
+  ])
+  const [count, setCount] = useState(0)
   const [counterSelected, setCounterSelected] = useState({
     selected: false,
     id: null,
-  });
+  })
   // const [availableCoins, setAvailableCoins] = useState();
 
-    const {
-        showBuyPointsModal,
-        isLoading,
-      } = useSelector((state) => ({
-        showBuyPointsModal: state.pointsSlice.showBuyPointsModal,
-        isLoading: state.pointsSlice.isLoading,
-      }));
+  const { showBuyPointsModal, isLoading } = useSelector((state) => ({
+    showBuyPointsModal: state.pointsSlice.showBuyPointsModal,
+    isLoading: state.pointsSlice.isLoading,
+  }))
 
-    const handleBuyPoints = (e) => {
-        e.preventDefault();
-        dispatch(BuyPointsFetchAPi({
-            points:count
-        }))
-        setCount(0);
-    }
+  const handleBuyPoints = (e) => {
+    e.preventDefault()
+    dispatch(
+      BuyPointsFetchAPi({
+        points: count,
+      })
+    )
+    setCount(0)
+  }
 
   // useEffect(() => {
   //     if(Cookies.get("coins") === String(0)){
@@ -54,7 +55,7 @@ export const BuyPointsModal = () => {
         as="div"
         className="relative z-50"
         onClose={() => {
-          dispatch(setLogOutModal(false));
+          dispatch(setLogOutModal(false))
         }}
       >
         <Transition.Child
@@ -85,37 +86,45 @@ export const BuyPointsModal = () => {
                   as="h3"
                   className="flex gap-1 items-center justify-center text-lg font-medium leading-6 text-gray-900 mt-2 ms:mt-2 sm:mt-2 md:mt-4 lg:mt-4"
                 >
-                  Buy Coins 
+                  Buy Coins
                   <GiTwoCoins
                     color="#FFD700"
                     // size={35}
                     className="text-2xl cursor-pointer"
-                />
+                  />
                 </Dialog.Title>
-                <div onClick={() => {
-                        dispatch(setShowBuyPointsModal(false));setCount(0);
-                    }} className="absolute top-3 right-3 text-[#544BB9] text-2xl ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer">
-                    <IoClose />
+                <div
+                  onClick={() => {
+                    dispatch(setShowBuyPointsModal(false))
+                    setCount(0)
+                  }}
+                  className="absolute top-3 right-3 text-[#544BB9] text-2xl ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer"
+                >
+                  <IoClose />
                 </div>
                 <div className="flex flex-col gap-4 mt-2">
-                {counter &&
+                  {counter &&
                     counter.map((data, id) => (
                       <div key={id}>
                         <button
                           disabled={isLoading}
                           onClick={(e) => {
-                            e.preventDefault();
-                            setCount(data.countValue);
-                            setCounterSelected({ selected: true, id: id });
+                            e.preventDefault()
+                            setCount(data.countValue)
+                            setCounterSelected({ selected: true, id: id })
                           }}
                           className={classNames(
-                            "flex gap-2 w-full items-center justify-center px-6 py-3 ms:px-2 sm:px-3 md:px-4 lg:px-5 ms:py-1 sm:py-1.5 md:py-2 lg:py-2.5 rounded-md cursor-pointer disabled:cursor-not-allowed",
-                            counterSelected.id == id && data.countValue == count ? 
-                            "bg-[#544BB9] text-white font-bold" : 
-                            "bg-[#EDF2F7] text-[#000000]")}
+                            'flex gap-2 w-full items-center justify-center px-6 py-3 ms:px-2 sm:px-3 md:px-4 lg:px-5 ms:py-1 sm:py-1.5 md:py-2 lg:py-2.5 rounded-md cursor-pointer disabled:cursor-not-allowed',
+                            counterSelected.id === id &&
+                              data.countValue === count
+                              ? 'bg-[#544BB9] text-white font-bold'
+                              : 'bg-[#EDF2F7] text-[#000000]'
+                          )}
                         >
                           <p>Buy {data.countValue}</p>
-                          <p className="text-[#FFD700] text-2xl ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-2xl">{data.coinIcon}</p>  
+                          <p className="text-[#FFD700] text-2xl ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-2xl">
+                            {data.coinIcon}
+                          </p>
                           <p>Coins In ₹{data.price}</p>
                         </button>
                       </div>
@@ -128,7 +137,7 @@ export const BuyPointsModal = () => {
                     className="inline-flex justify-center rounded-md border border-transparent bg-[#544BB9] disabled:opacity-3 px-5 py-2 ms:px-2 sm:px-3 md:px-5 lg:px-5 
                     ms:py-1 sm:py-1 md:py-2 lg:py-2 text-sm font-medium text-white disabled:bg-[#966FD6] disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 tracking-widest"
                     onClick={(e) => {
-                        handleBuyPoints(e)
+                      handleBuyPoints(e)
                     }}
                   >
                     Buy
@@ -138,7 +147,8 @@ export const BuyPointsModal = () => {
                     disabled={isLoading}
                     className="inline-flex justify-center rounded-md border-1 px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-3 ms:py-1 sm:py-1 md:py-2 lg:py-2 text-sm font-medium text-[#544BB9] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed border-[1px] border-solid border-[#544BB9]"
                     onClick={() => {
-                        dispatch(setShowBuyPointsModal(false));setCount(0);
+                      dispatch(setShowBuyPointsModal(false))
+                      setCount(0)
                     }}
                   >
                     Cancel
@@ -150,5 +160,5 @@ export const BuyPointsModal = () => {
         </div>
       </Dialog>
     </Transition>
-  );
-};
+  )
+}

@@ -1,45 +1,43 @@
-import { Dialog, Transition } from "@headlessui/react";
-import { Field, useField, useFormikContext } from "formik";
-import Slider, { Range } from "rc-slider";
-import "rc-slider/assets/index.css";
-import { Fragment, useState } from "react";
-import Cropper from "react-easy-crop";
-import getCroppedImg from "../crop/CropImage";
+import { Dialog, Transition } from '@headlessui/react'
+import { Field } from 'formik'
+import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css'
+import { Fragment, useState } from 'react'
+import Cropper from 'react-easy-crop'
+import getCroppedImg from '../crop/CropImage'
 
 const CropImageModal = ({ photoURL, setImage, ...props }) => {
-  const [isOpen, setIsOpen] = useState(true);
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-  const [rotation, setRotation] = useState(0);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [field, meta, helpers] = useField(props);
-  const { setFieldValue } = useFormikContext();
+  const [isOpen, setIsOpen] = useState(true)
+  const [crop, setCrop] = useState({ x: 0, y: 0 })
+  const [zoom, setZoom] = useState(1)
+  const [rotation, setRotation] = useState(0)
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
 
   const cropComplete = (croppedArea, croppedAreaPixels) => {
-    setCroppedAreaPixels(croppedAreaPixels);
-  };
-  
+    setCroppedAreaPixels(croppedAreaPixels)
+  }
+
   const zoomPercentage = (value) => {
-    return `${Math.round(value - 1)}%`;
-  };
-  
+    return `${Math.round(value - 1)}%`
+  }
+
   const saveCropImage = async () => {
     const croppedImage = await getCroppedImg(
       photoURL.data_url,
       croppedAreaPixels,
       rotation
-      );
-      setImage(croppedImage);
-    };
-    
-  function closeModal() {
-    setIsOpen(false);
-    setImage([]);
+    )
+    setImage(croppedImage)
   }
 
-  function openModal() {
-    setIsOpen(true);
+  function closeModal() {
+    setIsOpen(false)
+    setImage([])
   }
+
+  // function openModal() {
+  //   setIsOpen(true)
+  // }
   return (
     <div>
       <Field name={props.name}>
@@ -135,11 +133,11 @@ const CropImageModal = ({ photoURL, setImage, ...props }) => {
                 </div>
               </Dialog>
             </Transition>
-          );
+          )
         }}
       </Field>
     </div>
-  );
-};
+  )
+}
 
-export default CropImageModal;
+export default CropImageModal

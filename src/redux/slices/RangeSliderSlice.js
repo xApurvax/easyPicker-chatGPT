@@ -1,23 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    headlineLength: [50,100],
-    headlineType: 20
-};
+  headlineLength: [50, 100],
+  headlineType: 20,
+}
 
 const RangeSliderSlice = createSlice({
-  name: "RangeSlider",
+  name: 'RangeSlider',
   initialState,
   reducers: {
     setHeadlineLength: (state, action) => {
-      state.headlineLength = action.payload;
+      state.headlineLength = action.payload
     },
     setHeadlineType: (state, action) => {
-      state.headlineType = action.payload;
+      state.headlineType = action.payload
     },
   },
   extraReducers: {},
-});
+})
 
-export const { setHeadlineLength,setHeadlineType } = RangeSliderSlice.actions;
-export default RangeSliderSlice.reducer;
+export const { setHeadlineLength, setHeadlineType } = RangeSliderSlice.actions
+export default RangeSliderSlice.reducer

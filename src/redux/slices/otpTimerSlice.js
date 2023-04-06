@@ -1,23 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  minute : 1,
-  second : 30,
-};
+  minute: 1,
+  second: 30,
+}
 
 const otpTimerSlice = createSlice({
-  name: "counter",
+  name: 'counter',
   initialState,
   reducers: {
     setMinute: (state, action) => {
-      state.minute = action.payload;
+      state.minute = action.payload
     },
     setSecond: (state, action) => {
-      state.second = action.payload;
+      state.second = action.payload
     },
   },
   extraReducers: {},
-});
+})
 
-export const { setMinute,setSecond } = otpTimerSlice.actions;
-export default otpTimerSlice.reducer;
+export const { setMinute, setSecond } = otpTimerSlice.actions
+export default otpTimerSlice.reducer

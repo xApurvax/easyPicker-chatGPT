@@ -1,5 +1,5 @@
-import React from "react";
-import { HiClipboardDocument } from "react-icons/hi2";
+import React from 'react'
+import { HiClipboardDocument } from 'react-icons/hi2'
 
 const Tool = () => {
   return (
@@ -45,7 +45,7 @@ const Tool = () => {
         </div>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default Tool;
+export default Tool

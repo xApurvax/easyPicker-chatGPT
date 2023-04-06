@@ -1,9 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 import ApiMiddleware from "../../utils/ApiMiddleware";
-import { GiTwoCoins } from 'react-icons/gi';
-import coins from "../../sound/coins.mp3"
-import Cookies from "js-cookie";
 
 const initialState = {
   isLoading: false,

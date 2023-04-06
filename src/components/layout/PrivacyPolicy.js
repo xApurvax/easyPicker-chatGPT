@@ -20,7 +20,7 @@ const PrivacyPolicy = () => {
       <GoHome className='cursor-pointer' onClick={(e) => {e.preventDefault();
                     history('/');
             }} /> / Privacy Policy</h1>
-         <p className="text-xs md:text-base text-[#353535]"> <a href='/' className='text-[#544BB9] font-semibold'>AI Title Generator</a> website is owned by  <a href='https://infynno.com/' target="_blank" className='text-[#544BB9] font-semibold'>Infynno</a>, which is a data controller of your personal data.</p>
+         <p className="text-xs md:text-base text-[#353535]"> <a href='/' className='text-[#544BB9] font-semibold'>AI Title Generator</a> website is owned by  <a href='https://infynno.com/' target="_blank" className='text-[#544BB9] font-semibold' rel="noreferrer">Infynno</a>, which is a data controller of your personal data.</p>
 
          <p className="text-xs md:text-base text-[#353535]">We have adopted this Privacy Policy, which determines how we are processing the information collected by  <a href='/' className='text-[#544BB9] font-semibold'>AI Title Generator</a>, which also provides the reasons why we must collect certain personal data about you. Therefore, you must read this Privacy Policy before using <a href='/' className='text-[#544BB9] font-semibold max-w-[90%] break-all'>https://tagline.djsc7c8h3ryev.amplifyapp.com/</a> website.</p>
 
@@ -37,7 +37,7 @@ const PrivacyPolicy = () => {
          <p className="text-xs md:text-base text-[#353535]">Our top priority is customer data security, and, as such, we may process only minimal user data, only as much as it is absolutely necessary to maintain the website. Information collected automatically is used only to identify potential cases of abuse and establish statistical information regarding website usage. This statistical information is not otherwise aggregated in such a way that it would identify any particular user of the system.</p>
         </div>
         
-         <p className="text-xs md:text-base text-[#353535]">You can visit the website without telling us who you are or revealing any information, by which someone could identify you as a specific, identifiable individual. If, however, you wish to use some of the website’s features, or you wish to receive our newsletter or provide other details by filling a form, you may provide personal data to us, such as your email, first name, last name, city of residence, organization, telephone number. You can choose not to provide us with your personal data, but then you may not be able to take advantage of some of the website’s features. For example, you won’t be able to receive our Newsletter or contact us directly from the website. Users who are uncertain about what information is mandatory are welcome to <a href='https://infynno.com/get-a-quote/' target="_blank" className='text-[#544BB9] font-semibold'>contact us</a></p>
+         <p className="text-xs md:text-base text-[#353535]">You can visit the website without telling us who you are or revealing any information, by which someone could identify you as a specific, identifiable individual. If, however, you wish to use some of the website’s features, or you wish to receive our newsletter or provide other details by filling a form, you may provide personal data to us, such as your email, first name, last name, city of residence, organization, telephone number. You can choose not to provide us with your personal data, but then you may not be able to take advantage of some of the website’s features. For example, you won’t be able to receive our Newsletter or contact us directly from the website. Users who are uncertain about what information is mandatory are welcome to <a href='https://infynno.com/get-a-quote/' target="_blank" className='text-[#544BB9] font-semibold' rel="noreferrer">contact us</a></p>
 
         <div className='flex flex-col gap-3'>
           <div className='flex flex-col'>
@@ -76,7 +76,7 @@ const PrivacyPolicy = () => {
 
         <div className='flex flex-col gap-3'>
           <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">Contact information:</h2>
-           <p className="text-xs md:text-base text-[#353535]">If you would like to contact us to understand more about this Policy or wish to contact us concerning any matter relating to individual rights and your Personal Information, you may <a href='https://infynno.com/get-a-quote/' target="_blank" className='text-[#544BB9] font-semibold'>contact us</a>.</p>
+           <p className="text-xs md:text-base text-[#353535]">If you would like to contact us to understand more about this Policy or wish to contact us concerning any matter relating to individual rights and your Personal Information, you may <a href='https://infynno.com/get-a-quote/' target="_blank" className='text-[#544BB9] font-semibold' rel="noreferrer">contact us</a>.</p>
         </div>
     </div>
     <div className='relative z-[10] w-full'>
