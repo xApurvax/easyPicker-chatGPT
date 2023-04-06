@@ -6,7 +6,6 @@ import { profileUpdateValidationSchema } from '../../utils/FormValidations'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setSignInEffect } from '../../redux/slices/buttonEffectSlice'
-import RouteMiddleWare from '../../utils/RouteMiddleWare'
 import {
   profileDetailsFetchAPI,
   profileDetailsUpdateFetchAPI,
@@ -60,7 +59,7 @@ const Profile = () => {
   }
 
   return (
-    <RouteMiddleWare>
+    <>
       <div className="flex flex-col p-5 ms:p-5 sm:p-5 md:p-10 lg:p-5 gap-2 rounded-xl bg-white w-full h-full ms:max-w-[90%]">
         <div className="flex gap-1 items-center">
           <GoHome
@@ -174,7 +173,7 @@ const Profile = () => {
           </Formik>
         </div>
       </div>
-    </RouteMiddleWare>
+    </>
   )
 }
 

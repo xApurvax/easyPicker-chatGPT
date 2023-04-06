@@ -12,12 +12,10 @@ import { toast } from 'react-hot-toast'
 import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md'
 import { GoHome } from 'react-icons/go'
 import { useNavigate } from 'react-router-dom'
-import RouteMiddleWare from '../../utils/RouteMiddleWare'
 import classNames from 'classnames'
 import debounce from 'lodash.debounce'
 
 const SavedRecords = () => {
-  console.log('reached here')
   const dispatch = useDispatch()
   const history = useNavigate()
   const { isLoading, saveResultsData, totalResults } = useSelector((state) => ({
@@ -26,14 +24,6 @@ const SavedRecords = () => {
     totalResults: state.savedRecordSlice.totalResults,
   }))
 
-  console.log(
-    isLoading,
-    'loading',
-    saveResultsData,
-    'saveREsultData',
-    totalResults,
-    'total'
-  )
   // eslint-disable-next-line no-unused-vars
   const [showInputIcon, setShowInputIcon] = useState(true)
   const [currentPageLocal, setCurrentPageLocal] = useState(1)
@@ -53,9 +43,7 @@ const SavedRecords = () => {
           page: currentPageLocal,
         })
       )
-    }
-    else
-    setCurrentPageLocal(1)
+    } else setCurrentPageLocal(1)
   }, [])
 
   useEffect(() => {
@@ -214,7 +202,7 @@ const SavedRecords = () => {
   )
 
   return (
-    <RouteMiddleWare>
+    <>
       <div className="flex flex-col p-5 gap-5 rounded-xl bg-white w-full h-full">
         {/* <div className='flex items-center justify-center'>
             <p className='font-semibold text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer'>Saved Records</p>
@@ -423,7 +411,7 @@ const SavedRecords = () => {
           </div>
         )}
       </div>
-    </RouteMiddleWare>
+    </>
   )
 }
 

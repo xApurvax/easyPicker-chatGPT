@@ -22,7 +22,6 @@ import {
 import logo from '../../assets/recycle.svg'
 import fillOutLeft from '../../assets/fillout-left.png'
 import Cookies from 'js-cookie'
-import RouteMiddleWare from '../../utils/RouteMiddleWare'
 import { setShowBuyPointsModal } from '../../redux/slices/pointsSlice'
 import demo1 from '../../assets/Demo1-tagline-generator.png'
 import classNames from 'classnames'
@@ -147,7 +146,6 @@ const Tool = () => {
 
   return (
     <HelmetProvider>
-      <RouteMiddleWare>
         <Helmet>
           <title>AI Title Generator | Infynno</title>
           <meta
@@ -568,7 +566,6 @@ const Tool = () => {
           </div>
         </div>
         {/* // <BuyPointsModal /> */}
-      </RouteMiddleWare>
     </HelmetProvider>
   )
 }

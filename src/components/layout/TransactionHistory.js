@@ -20,7 +20,6 @@ import { FaCoins } from 'react-icons/fa'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
-import RouteMiddleWare from '../../utils/RouteMiddleWare'
 import classNames from 'classnames'
 import { dateFormatter } from '../../utils/helper'
 
@@ -183,7 +182,7 @@ const SavedRecords = () => {
   useEffect(() => {}, [allTransactionHistory])
 
   return (
-    <RouteMiddleWare>
+    <>
       <div className="flex flex-col p-5 gap-5 rounded-xl bg-white w-full h-full group">
         <div className="flex flex-row-reverse justify-between items-center">
           <div className="relative">
@@ -400,7 +399,7 @@ const SavedRecords = () => {
           </div>
         )}
       </div>
-    </RouteMiddleWare>
+    </>
   )
 }
 

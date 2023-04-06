@@ -18,6 +18,7 @@ import {
   PasswordReset,
   Profile,
 } from './components/auth'
+import RouteMiddleWare from './utils/RouteMiddleWare'
 
 function App() {
   return (
@@ -27,9 +28,7 @@ function App() {
         reverseOrder={false}
         toastOptions={{
           style: {
-            // wordBreak: 'break-all',
             wordBreak: 'break-word',
-            // whiteSpace: "nowrap",
             width: 'max-content',
           },
         }}
@@ -40,9 +39,11 @@ function App() {
           <Route
             path="/generator"
             element={
-              <HeaderAfterAuth>
-                <Tool />
-              </HeaderAfterAuth>
+              <RouteMiddleWare>
+                <HeaderAfterAuth>
+                  <Tool />
+                </HeaderAfterAuth>
+              </RouteMiddleWare>
             }
           />
           <Route
@@ -80,25 +81,31 @@ function App() {
           <Route
             path="/bookmarks"
             element={
-              <HeaderAfterAuth>
-                <SavedRecords />
-              </HeaderAfterAuth>
+              <RouteMiddleWare>
+                <HeaderAfterAuth>
+                  <SavedRecords />
+                </HeaderAfterAuth>
+              </RouteMiddleWare>
             }
           />
           <Route
             path="/transaction-history"
             element={
-              <HeaderAfterAuth>
-                <TransactionHistory />
-              </HeaderAfterAuth>
+              <RouteMiddleWare>
+                <HeaderAfterAuth>
+                  <TransactionHistory />
+                </HeaderAfterAuth>
+              </RouteMiddleWare>
             }
           />
           <Route
             path="/profile"
             element={
-              <HeaderAfterAuth>
-                <Profile />
-              </HeaderAfterAuth>
+              <RouteMiddleWare>
+                <HeaderAfterAuth>
+                  <Profile />
+                </HeaderAfterAuth>
+              </RouteMiddleWare>
             }
           />
           <Route path="/terms-of-use" element={<TermsOfServices />} />

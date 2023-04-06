@@ -8,12 +8,10 @@ const AuthMiddleware = ({ children }) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (token) {
-      navigate('/generator')
-    } else {
-      setUnauthorized(true)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (token) navigate('/generator')
+    else setUnauthorized(true)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
   return <>{unauthorized && children}</>
 }

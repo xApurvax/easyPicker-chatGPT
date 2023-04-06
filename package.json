@@ -52,7 +52,6 @@
     "eject": "react-scripts eject",
     "lint": "npx eslint src/**/**/*.js src/**/*.js",
     "prepare": "husky install"
-
   },
   "eslintConfig": {
     "extends": [
