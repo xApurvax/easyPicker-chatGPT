@@ -1,32 +1,28 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 import ApiMiddleware from "../../utils/ApiMiddleware";
-import { GiTwoCoins } from 'react-icons/gi';
-import coins from "../../sound/coins.mp3"
+
 import Cookies from "js-cookie";
 
 const initialState = {
   isLoading: false,
-  isUpdating:false,
-  message:"",
+  isUpdating: false,
+  message: "",
   profileDetails: [],
 };
 
 export const profileDetailsFetchAPI = createAsyncThunk(
-  'profileDetailsFetch/fetch',
-  async (data, {rejectWithValue} ) => {
+  "profileDetailsFetch/fetch",
+  async (_, { rejectWithValue }) => {
     try {
-      const response = await ApiMiddleware.get(
-        `/api/auth/profile/`,
-        {...data}
-      );
+      const response = await ApiMiddleware.get(`/api/auth/profile/`);
       return response;
     } catch (error) {
-      if(error.response.data.message !== "You dont have any credit points"){
-        toast.error(error.response.data.message)
+      if (error.response.data.message !== "You dont have any credit points") {
+        toast.error(error.response.data.message);
       }
       if (!error.response) {
-        throw rejectWithValue(error);
+        throw rejectWithValue(error?.message || "Something went wrong");
       }
       throw rejectWithValue(error.response.data.message);
     }
@@ -34,26 +30,22 @@ export const profileDetailsFetchAPI = createAsyncThunk(
 );
 
 export const profileDetailsUpdateFetchAPI = createAsyncThunk(
-  'profileDetailsUpdateFetch/fetch',
-  async (data, {rejectWithValue} ) => {
+  "profileDetailsUpdateFetch/fetch",
+  async (data, { rejectWithValue }) => {
     try {
-      const response = await ApiMiddleware.put(
-        `/api/auth/register/`,
-        data
-      );
+      const response = await ApiMiddleware.put(`/api/auth/register/`, data);
       return response;
     } catch (error) {
-      if(error.response.data.message !== "You dont have any credit points"){
-        toast.error(error.response.data.message)
+      if (error.response.data.message !== "You dont have any credit points") {
+        toast.error(error.response.data.message);
       }
       if (!error.response) {
-        throw rejectWithValue(error);
+        throw rejectWithValue(error?.message || "Something went wrong");
       }
       throw rejectWithValue(error.response.data.message);
     }
   }
 );
-
 
 const ProfileSlice = createSlice({
   name: "profileDetailsSlice",
@@ -81,8 +73,11 @@ const ProfileSlice = createSlice({
     },
     [profileDetailsFetchAPI.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.profileDetails = action.payload?.data?.result[0]?.user[0];
-      Cookies.set("userDetails", JSON.stringify(action.payload?.data?.result[0]?.user[0]));
+      state.profileDetails = action?.payload?.data?.result[0]?.user[0];
+      Cookies.set(
+        "userDetails",
+        JSON.stringify(action?.payload?.data?.result[0]?.user[0])
+      );
     },
     [profileDetailsFetchAPI.rejected]: (state, action) => {
       state.isLoading = false;
@@ -92,12 +87,12 @@ const ProfileSlice = createSlice({
     },
     [profileDetailsUpdateFetchAPI.fulfilled]: (state, action) => {
       state.isUpdating = false;
-      toast.success(action.payload?.data?.message)
+      toast.success(action.payload?.data?.message);
       state.profileDetails = action.payload?.data?.result[0]?.profile;
     },
     [profileDetailsUpdateFetchAPI.rejected]: (state, action) => {
       state.isUpdating = false;
-    }
+    },
   },
 });
 

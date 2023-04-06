@@ -13,13 +13,12 @@ const ApiMiddleware = axios.create({
 ApiMiddleware.interceptors.request.use(
   function (config) {
     const token = getAccessToken();
-    if(token) {
+    if (token) {
       config.headers = {
         Accept: "application/json",
         Authorization: `Bearer ${token}`,
       };
     }
-    // axios.defaults.timeout = 35000;
     return config;
   },
   function (error) {
@@ -29,16 +28,16 @@ ApiMiddleware.interceptors.request.use(
 ApiMiddleware.interceptors.response.use(
   function (response) {
     if (response?.code === 401) {
-      Cookies.remove('access_token')
-      Cookies.remove('refresh_token')
+      Cookies.remove("access_token");
+      Cookies.remove("refresh_token");
     }
     return response;
   },
   function (error) {
-    if(error?.response?.status === 401) {
-      Cookies.remove('access_token')
-      Cookies.remove('refresh_token')
-  }
+    if (error?.response?.status === 401) {
+      Cookies.remove("access_token");
+      Cookies.remove("refresh_token");
+    }
     return Promise.reject(error);
   }
 );
