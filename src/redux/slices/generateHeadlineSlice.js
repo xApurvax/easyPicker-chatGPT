@@ -42,7 +42,7 @@ export const generateHeadlineFetchAPi = createAsyncThunk(
         toast.error(error.response.data.message)
       }
       if (!error.response) {
-        throw rejectWithValue(error)
+        throw rejectWithValue(error?.message || 'Something went wrong')
       }
       throw rejectWithValue(error.response.data.message)
     }
@@ -63,7 +63,7 @@ export const reGenerateHeadlineFetchAPi = createAsyncThunk(
         toast.error(error.response.data.message)
       }
       if (!error.response) {
-        throw rejectWithValue(error)
+        throw rejectWithValue(error?.message || 'Something went wrong')
       }
       throw rejectWithValue(error.response.data.message)
     }
@@ -88,7 +88,7 @@ export const saveResultsFetchAPi = createAsyncThunk(
         toast.error(error.response.data.message)
       }
       if (!error.response) {
-        throw rejectWithValue(error)
+        throw rejectWithValue(error?.message || 'Something went wrong')
       }
       throw rejectWithValue(error.response.data.message)
     }
@@ -124,7 +124,6 @@ const generateHeadlineSlice = createSlice({
     },
     [generateHeadlineFetchAPi.fulfilled]: (state, action) => {
       state.isLoading = false
-      // if(action?.payload?.data?.status_code === 200) {
       state.goBackToSettings = false
       state.allTitles = action.payload?.data?.result[0]['title']
       state.saveTitles = action.payload?.data?.result[0]['title'].join()
@@ -138,7 +137,6 @@ const generateHeadlineSlice = createSlice({
       if (action.payload?.data?.result.length === 0) {
         toast.error('Something went wrong!')
       }
-      // }
     },
     [generateHeadlineFetchAPi.rejected]: (state, action) => {
       if (action.payload === 'You dont have any credit points') {
@@ -158,7 +156,6 @@ const generateHeadlineSlice = createSlice({
     },
     [reGenerateHeadlineFetchAPi.fulfilled]: (state, action) => {
       state.isRegenerate = false
-      // if(action?.payload?.data?.status_code === 200) {
       state.goBackToSettings = false
       state.allTitles = action.payload?.data?.result[0]['title']
       state.specialTags = action.payload?.data?.result[0]['tags']?.split(',')
@@ -167,10 +164,8 @@ const generateHeadlineSlice = createSlice({
       state.saveTags = action.payload?.data?.result[0]['tags']
       Cookies.set('coins', action.payload?.data?.result[0]['remaining_credit'])
       state.hasTitleTag = action.payload?.data?.result
-      if (action.payload?.data?.result.length === 0) {
+      if (action.payload?.data?.result.length === 0)
         toast.error('Something went wrong!')
-      }
-      // }
     },
     [reGenerateHeadlineFetchAPi.rejected]: (state, action) => {
       state.isRegenerate = false

@@ -17,9 +17,8 @@ const LogIn = () => {
   }))
   const navigate = useNavigate()
   const initialValues = { username: '', password: '' }
-  const handleLoginSubmit = (values) => {
-    dispatch(loginFetchAPi(values))
-  }
+  const handleLoginSubmit = (values) => dispatch(loginFetchAPi(values))
+
   useEffect(() => {
     document.title = 'Sign in | Title Generator'
   }, [])
@@ -48,8 +47,8 @@ const LogIn = () => {
                       type="text"
                       id="username"
                       name="username"
-                      inputstyle="w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]"
-                      borderstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]"
+                      inputstyle="w-full  text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                      borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                       placeholder="E-mail or username"
                     />
                     <div className="flex flex-col gap-2 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 items-start w-full">
@@ -57,12 +56,12 @@ const LogIn = () => {
                         type="password"
                         id="password"
                         name="password"
-                        inputstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]"
-                        borderstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]"
+                        inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                        borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                         placeholder="Password"
                       />
                       <div
-                        className="flex items-center justify-end w-full font-semibold text-xs ms:text-xs sm:text-sm md:text-base lg:text-base text-[#544BB9] cursor-pointer"
+                        className="flex items-center justify-end w-full font-semibold text-xs ms:text-xs sm:text-sm md:text-base lg:text-base text-primary cursor-pointer"
                         onClick={() => {
                           navigate('/auth/forgot')
                         }}
@@ -81,7 +80,7 @@ const LogIn = () => {
                       onAnimationEnd={() => {
                         dispatch(setLoginEffect(false))
                       }}
-                      buttonStyle="w-full py-[12px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg"
+                      buttonStyle="w-full py-[12px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg"
                       loaderSize={20}
                       showLoader
                     >
@@ -94,7 +93,7 @@ const LogIn = () => {
           </Formik>
           <div className="flex gap-1">
             <div
-              className="font-bold text-xs ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#544BB9] cursor-pointer"
+              className="font-bold text-xs ms:text-xs sm:text-xs md:text-sm lg:text-sm text-primary cursor-pointer"
               onClick={() => {
                 navigate('/auth/register')
               }}

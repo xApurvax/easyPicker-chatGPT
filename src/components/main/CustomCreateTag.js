@@ -59,7 +59,7 @@ const CustomCreateTag = ({
               maxLength="15"
               placeholder="Type word and hit Enter ↵ to add"
               className="placeholder:text-[10px] ms:text-[10px] sm:text-base md:text-base lg:text-base
-            placeholder:ms:text-[10px] placeholder:sm:text-base placeholder:md:text-base placeholder:lg:text-xs lg:max-w-[200px] p-2 lg:py-1.5 border-[1px] rounded-md bg-[#EDF2F7] border-solid border-[#aab2b8] text-[16px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544BB9] focus:rounded-md w-full max-w-[170px] sm:max-w-[260px] disabled:cursor-not-allowed "
+            placeholder:ms:text-[10px] placeholder:sm:text-base placeholder:md:text-base placeholder:lg:text-xs lg:max-w-[200px] p-2 lg:py-1.5 border-[1px] rounded-md bg-[#EDF2F7] border-solid border-[#aab2b8] text-[16px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-primary focus:rounded-md w-full max-w-[170px] sm:max-w-[260px] disabled:cursor-not-allowed "
             />
           )}
         </div>

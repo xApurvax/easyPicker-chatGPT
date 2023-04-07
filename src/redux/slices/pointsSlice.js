@@ -23,7 +23,7 @@ export const BuyPointsFetchAPi = createAsyncThunk(
       return response
     } catch (error) {
       if (!error.response) {
-        throw rejectWithValue(error)
+        throw rejectWithValue(error?.message || 'Something went wrong')
       }
       throw rejectWithValue(error.response.data.message)
     }
@@ -43,7 +43,7 @@ export const transactionHistoryFetchAPi = createAsyncThunk(
       return response
     } catch (error) {
       if (!error.response) {
-        throw rejectWithValue(error)
+        throw rejectWithValue(error?.message || 'Something went wrong')
       }
       throw rejectWithValue(error.response.data.message)
     }
@@ -75,14 +75,8 @@ const pointsSlice = createSlice({
     },
     [transactionHistoryFetchAPi.fulfilled]: (state, action) => {
       state.isLoadingTransactionHistory = false
-      // state.allTransactionHistory = action?.payload?.data?.result[0]?.history;
       state.allTransactionHistory = action?.payload?.data?.results
-      // state.totalResults = action?.payload?.data?.result[0]?.history?.length;
       state.totalResults = action?.payload?.data?.count
-      // if(action?.payload?.data?.count === 0){
-      //   toast.error("No records found try changing filter")
-      // }
-      // }
     },
     [transactionHistoryFetchAPi.rejected]: (state, action) => {
       state.isLoadingTransactionHistory = false

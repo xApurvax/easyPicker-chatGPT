@@ -38,9 +38,7 @@ const PasswordReset = () => {
   }
 
   useEffect(() => {
-    if (resetPasswordStatus === 200) {
-      navigate('/auth/signin')
-    }
+    if (resetPasswordStatus === 200) navigate('/auth/signin')
     dispatch(setResetPasswordStatus(0))
   }, [dispatch, navigate, resetPasswordStatus])
 
@@ -73,16 +71,16 @@ const PasswordReset = () => {
                         type="password"
                         id="password"
                         name="password"
-                        inputstyle="w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]"
-                        borderstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]"
+                        inputstyle="w-full  text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                        borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                         placeholder="Enter new password"
                       />
                       <InputField
                         type="password"
                         id="confirmPassword"
                         name="confirmPassword"
-                        inputstyle="w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]"
-                        borderstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]"
+                        inputstyle="w-full  text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                        borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                         placeholder="Confirm new password"
                       />
                     </div>
@@ -90,7 +88,7 @@ const PasswordReset = () => {
                       <CustomButton
                         type="submit"
                         disabled={isPasswordChange}
-                        buttonStyle="w-full py-[12px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg  disabled:cursor-not-allowed"
+                        buttonStyle="w-full py-[12px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg  disabled:cursor-not-allowed"
                         loaderSize={20}
                         showLoader
                       >

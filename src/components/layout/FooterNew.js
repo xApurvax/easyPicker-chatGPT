@@ -7,7 +7,7 @@ const FooterNew = () => {
   // const { scrollYProgress } = useScroll()
   return (
     <div className="w-full h-full z-20 my-auto relative">
-      <footer className="flex flex-col justify-center w-full h-full bg-[#544BB9] items-center py-5 ms:py-1 sm:py-2 md:py-2 lg:py-1.5">
+      <footer className="flex flex-col justify-center w-full h-full bg-primary items-center py-5 ms:py-1 sm:py-2 md:py-2 lg:py-1.5">
         <div className="flex justify-between w-full py-3 ms:py-0.5 sm:py-1 md:py-1.5 lg:py-3">
           <div className="flex gap-3 items-center justify-center w-full font-medium text-sm ms:text-sm sm:text-base md:text-lg lg:text-xl">
             <p className="text-[#e5e5e5] hover:text-white transition duration-[0.4s]">

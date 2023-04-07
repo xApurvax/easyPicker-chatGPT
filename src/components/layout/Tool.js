@@ -160,7 +160,7 @@ const Tool = () => {
         </Helmet>
         <div className="flex flex-col w-full justify-center items-center">
           <div className="flex justify-end gap-1 md:hidden w-full">
-            <div className="bg-[#544BB9] flex justify-end items-end">
+            <div className="bg-primary flex justify-end items-end">
               <div className="flex gap-2 ms:gap-2 sm:gap-3 md:gap-4 bg-white rounded-t-xl px-5 py-1 justify-end items-center">
                 <GiTwoCoins
                   color="#FFD700"
@@ -178,7 +178,7 @@ const Tool = () => {
                 >
                   <p
                     id="coins-text"
-                    className="font-semibold text-xs ms:text-xs sm:text-base md:text-xl lg:text-2xl text-[#544BB9]"
+                    className="font-semibold text-xs ms:text-xs sm:text-base md:text-xl lg:text-2xl text-primary"
                   >
                     {!availableCoins ? 0 : availableCoins}
                   </p>
@@ -200,7 +200,7 @@ const Tool = () => {
                   </p>
                   <div className="w-full">
                     <textarea
-                      className="resize-none ms:resize-y p-3 my-2 lg:my-1 bg-[#EDF2F7] border-[1px] rounded-md border-solid border-[#aab2b8] text-xs ms:text-xs sm:text-base md:text-lg lg:text-xs min-h-[180px] w-full focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544BB9] focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed "
+                      className="resize-none ms:resize-y p-3 my-2 lg:my-1 bg-[#EDF2F7] border-[1px] rounded-md border-solid border-[#aab2b8] text-xs ms:text-xs sm:text-base md:text-lg lg:text-xs min-h-[180px] w-full focus:outline-none focus:border-[1px] focus:border-solid focus:border-primary focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed "
                       rows={10}
                       cols={75}
                       disabled={isLoading}
@@ -250,7 +250,7 @@ const Tool = () => {
                                 'flex items-center justify-center w-7 h-7 ms:w-7 sm:w-8 md:w-10 lg:w-8 ms:h-7 sm:h-8 md:h-10 lg:h-8 rounded-md ms:rounded-sm md:rounded lg:rounded-md cursor-pointer disabled:cursor-not-allowed',
                                 counterSelected.id === id &&
                                   data.countValue === count
-                                  ? 'bg-[#544BB9] text-white font-bold'
+                                  ? 'bg-primary text-white font-bold'
                                   : 'bg-[#EDF2F7] text-[#000000]'
                               )}
                             >
@@ -269,7 +269,7 @@ const Tool = () => {
                           isLoading
                         }
                         className={classNames(
-                          'flex items-center justify-center px-2 py-2 ms:px-2 sm:px-3 md:px-4 lg:px-5 ms:py-2 sm:py-1.5 md:py-2 lg:py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-base ms:text-base sm:text-lg md:text-xl lg:text-base disabled:bg-[#544BB9] disabled:opacity-[0.7] disabled:cursor-not-allowed whitespace-nowrap',
+                          'flex items-center justify-center px-2 py-2 ms:px-2 sm:px-3 md:px-4 lg:px-5 ms:py-2 sm:py-1.5 md:py-2 lg:py-2 rounded-md bg-primary text-[#E3E3E3] hover:text-white font-medium text-base ms:text-base sm:text-lg md:text-xl lg:text-base disabled:bg-primary disabled:opacity-[0.7] disabled:cursor-not-allowed whitespace-nowrap',
                           isLoading
                             ? 'disabled:px-20 ms:disabled:px-[55px] sm:disabled:px-[70px] md:disabled:px-20 lg:disabled:px-20'
                             : 'disabled:px-5 ms:disabled:px-2 sm:disabled:px-3 md:disabled:px-4 md:disabled:py-2 lg:disabled:px-6 lg:disabled:py-2',
@@ -371,7 +371,7 @@ const Tool = () => {
                                         type="button"
                                       >
                                         {latestCopied.copiedId === id ? (
-                                          <p className="flex gap-1 items-center px-2 py-2 ms:px-1 sm:px-1 md:px-1 lg:px-1 ms:py-1 sm:py-1 md:py-1 lg:py-1 bg-[#544BB9] rounded-md text-[14px] leading-[14px] ms:text-xs sm:text-sm md:text-base lg:text-sm text-white">
+                                          <p className="flex gap-1 items-center px-2 py-2 ms:px-1 sm:px-1 md:px-1 lg:px-1 ms:py-1 sm:py-1 md:py-1 lg:py-1 bg-primary rounded-md text-[14px] leading-[14px] ms:text-xs sm:text-sm md:text-base lg:text-sm text-white">
                                             <BsCheck2 />
                                             copied
                                           </p>
@@ -464,7 +464,7 @@ const Tool = () => {
                                         'px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-2 ms:py-1 sm:py-1 md:py-2 lg:py-1 border-[1px] border-solid border-[#EDF2F7] rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]',
                                         latestCopied.copiedId ===
                                           id + allTitles.length
-                                          ? 'bg-[#544BB9] font-medium text-white'
+                                          ? 'bg-primary font-medium text-white'
                                           : 'bg-[#EDF2F7]'
                                       )}
                                     >
@@ -481,7 +481,7 @@ const Tool = () => {
                       <button
                         type="button"
                         className={classNames(
-                          'flex items-center gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-xs sm:text-sm md:text-base lg:text-sm disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap',
+                          'flex items-center gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 rounded-md bg-primary text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-xs sm:text-sm md:text-base lg:text-sm disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap',
                           saveResult && 'animate-wiggle'
                         )}
                         onClick={(e) => {
@@ -503,7 +503,7 @@ const Tool = () => {
                         type="button"
                         disabled={isRegenerate}
                         className={classNames(
-                          'flex gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-[7px] rounded-md border-[1px] border-solid border-[#544BB9] text-[#544BB9] hover:text-[#544BB9] font-medium text-lg disabled:cursor-not-allowed',
+                          'flex gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-[7px] rounded-md border-[1px] border-solid border-primary text-primary hover:text-primary font-medium text-lg disabled:cursor-not-allowed',
                           reGenerate && 'animate-wiggle'
                         )}
                         onClick={(e) => {

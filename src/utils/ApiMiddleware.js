@@ -19,7 +19,6 @@ ApiMiddleware.interceptors.request.use(
         Authorization: `Bearer ${token}`,
       }
     }
-    // axios.defaults.timeout = 35000;
     return config
   },
   function (error) {
@@ -29,8 +28,8 @@ ApiMiddleware.interceptors.request.use(
 ApiMiddleware.interceptors.response.use(
   function (response) {
     if (response?.code === 401) {
-      Cookies.remove("access_token");
-      Cookies.remove("refresh_token");
+      Cookies.remove('access_token')
+      Cookies.remove('refresh_token')
     }
     return response
   },

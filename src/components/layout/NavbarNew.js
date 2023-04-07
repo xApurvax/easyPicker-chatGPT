@@ -47,7 +47,7 @@ const NavbarNewA = () => {
 
   return (
     <div className="fixed w-full z-50">
-      <nav className="flex justify-center w-full max-w-screen bg-[#544BB9] items-center px-4">
+      <nav className="flex justify-center w-full max-w-screen bg-primary items-center px-4">
         <div className="flex justify-between w-full py-3 max-w-6xl">
           <div className="flex gap-5 items-center justify-center">
             <a href="/">
@@ -222,7 +222,7 @@ const NavbarNewA = () => {
                         coinsText?.classList?.remove('open')
                         navigate('/auth/register')
                       }}
-                      className="font-bold text-lg px-3 py-1 rounded-md bg-[#544BB9] text-white hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap list-none"
+                      className="font-bold text-lg px-3 py-1 rounded-md bg-primary text-white hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap list-none"
                     >
                       Get Started
                     </button>
@@ -250,7 +250,7 @@ const NavbarNewA = () => {
                     coinsText?.classList?.remove('open')
                     navigate('/auth/register')
                   }}
-                  className="font-bold text-lg px-2 py-1 rounded-md bg-white text-[#544BB9] hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap list-none"
+                  className="font-bold text-lg px-2 py-1 rounded-md bg-white text-primary hover:text-[#7f8389] transition duration-[0.4s] whitespace-nowrap list-none"
                 >
                   Get Started
                 </button>

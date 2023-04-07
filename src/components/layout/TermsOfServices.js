@@ -31,7 +31,7 @@ const TermsOfServices = () => {
           <a
             href="https://infynno.com/"
             target="_blank"
-            className="text-[#544BB9] font-semibold whitespace-pre-wrap" rel="noreferrer"
+            className="text-primary font-semibold whitespace-pre-wrap" rel="noreferrer"
           >
             Infynno
           </a>
@@ -111,7 +111,7 @@ const TermsOfServices = () => {
             When you visit the{' '}
             <a
               href="/"
-              className="text-[#544BB9] font-semibold max-w-[90%] break-all"
+              className="text-primary font-semibold max-w-[90%] break-all"
             >
               https://tagline.djsc7c8h3ryev.amplifyapp.com
             </a>{' '}
@@ -122,7 +122,7 @@ const TermsOfServices = () => {
             <a
               href="https://infynno.com/"
               target="_blank"
-              className="text-[#544BB9] font-semibold" rel="noreferrer"
+              className="text-primary font-semibold" rel="noreferrer"
             >
               Infynno
             </a>{' '}
@@ -215,7 +215,7 @@ const TermsOfServices = () => {
             <a
               href="https://tagline.djsc7c8h3ryev.amplifyapp.com/privacy-policy/"
               target="_blank"
-              className="text-[#544BB9] font-semibold max-w-[90%] break-all" rel="noreferrer"
+              className="text-primary font-semibold max-w-[90%] break-all" rel="noreferrer"
             >
               https://tagline.djsc7c8h3ryev.amplifyapp.com/privacy-policy/
             </a>
@@ -326,7 +326,7 @@ const TermsOfServices = () => {
             <a
               href="https://tagline.djsc7c8h3ryev.amplifyapp.com/privacy-policy/"
               target="_blank"
-              className="text-[#544BB9] font-semibold max-w-[90%] break-all" rel="noreferrer"
+              className="text-primary font-semibold max-w-[90%] break-all" rel="noreferrer"
             >
               https://tagline.djsc7c8h3ryev.amplifyapp.com/privacy-policy/
             </a>{' '}
@@ -424,7 +424,7 @@ const TermsOfServices = () => {
             <a
               href="https://tagline.djsc7c8h3ryev.amplifyapp.com/privacy-policy/"
               target="_blank"
-              className="text-[#544BB9] font-semibold max-w-[90%] break-all" rel="noreferrer"
+              className="text-primary font-semibold max-w-[90%] break-all" rel="noreferrer"
             >
               https://tagline.djsc7c8h3ryev.amplifyapp.com/terms-of-use/
             </a>{' '}

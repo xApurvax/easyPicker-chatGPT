@@ -130,7 +130,7 @@ const Tool = () => {
   return (
     <RouteMiddleWare>
       <div className="flex flex-col w-full">
-        <div className="bg-[#544BB9] flex justify-end">
+        <div className="bg-primary flex justify-end">
           <div className="flex gap-6 bg-white rounded-t-xl px-5 py-1">
             <GiTwoCoins
               color="#FFD700"
@@ -141,7 +141,7 @@ const Tool = () => {
             />
             <p
               id="coins-text"
-              className={`font-semibold text-2xl text-[#544BB9]`}
+              className={`font-semibold text-2xl text-primary`}
             >
               {availableCoins === 'undefined' ? 0 : availableCoins}
             </p>
@@ -202,7 +202,7 @@ const Tool = () => {
                             className={`${
                               counterSelected.id === id &&
                               data.countValue === count
-                                ? 'bg-[#544BB9] text-white font-bold'
+                                ? 'bg-primary text-white font-bold'
                                 : 'bg-[#EDF2F7] text-[#000000]'
                             } flex items-center justify-center w-11 h-11  rounded-md cursor-pointer disabled:cursor-not-allowed`}
                           >
@@ -222,7 +222,7 @@ const Tool = () => {
                       }
                       className={`${
                         generateHeadlineEffect && 'animate-wiggle'
-                      } flex items-center justify-center px-6 py-3 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap
+                      } flex items-center justify-center px-6 py-3 rounded-md bg-primary text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap
                     ${isLoading ? 'disabled:px-20' : 'disabled:px-5'}`}
                       onClick={(e) => {
                         dispatch(setGenerateHeadlineEffect(true))
@@ -292,7 +292,7 @@ const Tool = () => {
                                     type="button"
                                   >
                                     {latestCopied.copiedId === id ? (
-                                      <p className="flex gap-1 items-center px-2 py-2 bg-[#544BB9] rounded-md text-[14px] leading-[14px] text-white">
+                                      <p className="flex gap-1 items-center px-2 py-2 bg-primary rounded-md text-[14px] leading-[14px] text-white">
                                         <BsCheck2 />
                                         copied
                                       </p>
@@ -329,7 +329,7 @@ const Tool = () => {
                           type="button"
                           className={`px-2 py-1.5  rounded-md text-base  ${
                             latestCopied.copiedId === copyAllId.id
-                              ? 'bg-[#544BB9] text-white'
+                              ? 'bg-primary text-white'
                               : 'bg-[#EDF2F7] text-[#4A5568]'
                           }`}
                         >
@@ -358,7 +358,7 @@ const Tool = () => {
                                 className={`${
                                   latestCopied.copiedId ===
                                   id + allTitles.length
-                                    ? 'bg-[#544BB9] font-medium text-white'
+                                    ? 'bg-primary font-medium text-white'
                                     : 'bg-[#EDF2F7]'
                                 } px-3 py-2 border-[1px] border-solid border-[#EDF2F7] rounded-md text-base text-[#4A5568]`}
                               >
@@ -376,7 +376,7 @@ const Tool = () => {
                         type="button"
                         className={`${
                           saveResult && 'animate-wiggle'
-                        } flex items-center gap-2 px-4 py-2 rounded-md bg-[#544BB9] text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed`}
+                        } flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed`}
                         onClick={(e) => {
                           dispatch(setSaveResult(true))
                         }}

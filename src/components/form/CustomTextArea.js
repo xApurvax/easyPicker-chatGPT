@@ -36,24 +36,7 @@ const CustomTextArea = ({
             : props.type || 'text'
         }
       />
-      {/* {props.type === "password" ?
-                <div className='absolute top-4 2xl:top-[24px] right-5 cursor-pointer select-none text-[#737373]'
 
-                    onClick={() => setShowPassword(!showPassword)}
-                >
-                    {(showPassword ? (
-                        <BsEyeSlash size={20} />
-                    ) : (
-                        <BsEye size={20} />
-                    ))}
-                </div>
-                :
-                iconAfter ?
-                    <div className='absolute cursor-pointer top-1/2 h-max -translate-y-1/2 right-5 text-white'>
-                        <>{iconAfter} </>
-                    </div>
-                    : null
-            } */}
       {meta.touched && meta.error && (
         <div
           className={classNames('absolute error lg:mt-[2px]', {

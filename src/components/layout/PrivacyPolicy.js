@@ -28,14 +28,14 @@ const PrivacyPolicy = () => {
         </h1>
         <p className="text-xs md:text-base text-[#353535]">
           {' '}
-          <a href="/" className="text-[#544BB9] font-semibold">
+          <a href="/" className="text-primary font-semibold">
             AI Title Generator
           </a>{' '}
           website is owned by{' '}
           <a
             href="https://infynno.com/"
             target="_blank"
-            className="text-[#544BB9] font-semibold"
+            className="text-primary font-semibold"
             rel="noreferrer"
           >
             Infynno
@@ -46,7 +46,7 @@ const PrivacyPolicy = () => {
         <p className="text-xs md:text-base text-[#353535]">
           We have adopted this Privacy Policy, which determines how we are
           processing the information collected by{' '}
-          <a href="/" className="text-[#544BB9] font-semibold">
+          <a href="/" className="text-primary font-semibold">
             AI Title Generator
           </a>
           , which also provides the reasons why we must collect certain personal
@@ -54,7 +54,7 @@ const PrivacyPolicy = () => {
           using{' '}
           <a
             href="/"
-            className="text-[#544BB9] font-semibold max-w-[90%] break-all"
+            className="text-primary font-semibold max-w-[90%] break-all"
           >
             https://tagline.djsc7c8h3ryev.amplifyapp.com/
           </a>{' '}
@@ -74,7 +74,7 @@ const PrivacyPolicy = () => {
             When you visit the{' '}
             <a
               href="/"
-              className="text-[#544BB9] font-semibold max-w-[90%] break-all"
+              className="text-primary font-semibold max-w-[90%] break-all"
             >
               https://tagline.djsc7c8h3ryev.amplifyapp.com
             </a>{' '}
@@ -123,7 +123,7 @@ const PrivacyPolicy = () => {
           <a
             href="https://infynno.com/get-a-quote/"
             target="_blank"
-            className="text-[#544BB9] font-semibold"
+            className="text-primary font-semibold"
             rel="noreferrer"
           >
             contact us
@@ -234,7 +234,7 @@ const PrivacyPolicy = () => {
             <a
               href="https://infynno.com/get-a-quote/"
               target="_blank"
-              className="text-[#544BB9] font-semibold"
+              className="text-primary font-semibold"
               rel="noreferrer"
             >
               contact us

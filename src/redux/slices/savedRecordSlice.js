@@ -1,9 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-hot-toast'
 import ApiMiddleware from '../../utils/ApiMiddleware'
-// import { GiTwoCoins } from 'react-icons/gi'
-// import coins from '../../sound/coins.mp3'
-// import Cookies from 'js-cookie'
 
 const initialState = {
   isLoading: false,
@@ -17,7 +14,6 @@ export const saveResultsDataFetchAPi = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await ApiMiddleware.get(
-        // `/search/?page=2`,
         `/api/search/heading/?search=${data?.search || ''}&page=${
           data?.page || '1'
         }`,
@@ -29,7 +25,7 @@ export const saveResultsDataFetchAPi = createAsyncThunk(
         toast.error(error.response.data.message)
       }
       if (!error.response) {
-        throw rejectWithValue(error)
+        throw rejectWithValue(error?.message || 'Something went wrong')
       }
       throw rejectWithValue(error.response.data.message)
     }
@@ -39,23 +35,7 @@ export const saveResultsDataFetchAPi = createAsyncThunk(
 const savedRecordSlice = createSlice({
   name: 'saveRecordSlice',
   initialState,
-  reducers: {
-    // setIsFindUseSynonyms: (state, action) => {
-    //   state.isFindUseSynonyms = action.payload;
-    // },
-    // setIsIncPowerWords: (state, action) => {
-    //   state.isIncPowerWords = action.payload;
-    // },
-    // setIsMakeQuestion: (state, action) => {
-    //   state.isMakeQuestion = action.payload;
-    // },
-    // setGoBackToHeadlineSettings: (state, action) => {
-    //   state.goBackToSettings = action.payload;
-    // },
-    // setReGenerateData: (state, action) => {
-    //   state.reGenerateData = action.payload;
-    // },
-  },
+  reducers: {},
   extraReducers: {
     [saveResultsDataFetchAPi.pending]: (state, action) => {
       state.isLoading = true
@@ -64,9 +44,6 @@ const savedRecordSlice = createSlice({
       state.isLoading = false
       state.saveResultsData = action?.payload?.data?.results
       state.totalResults = action?.payload?.data?.count
-      // if(action?.payload?.data?.count === 0){
-      //   toast.error("No records found try changing filter")
-      // }
     },
     [saveResultsDataFetchAPi.rejected]: (state, action) => {
       state.isLoading = false
@@ -74,5 +51,4 @@ const savedRecordSlice = createSlice({
   },
 })
 
-// export const { setIsFindUseSynonyms,setIsIncPowerWords,setIsMakeQuestion,setGoBackToHeadlineSettings,setReGenerateData } = generateHeadlineSlice.actions;
 export default savedRecordSlice.reducer

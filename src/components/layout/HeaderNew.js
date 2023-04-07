@@ -33,11 +33,10 @@ const HeaderNew = ({ children }) => {
     }
   }, [])
   return (
-    <div ref={domRef} className="flex flex-col bg-[#544BB9] h-screen">
+    <div ref={domRef} className="flex flex-col bg-primary h-screen">
       <NavBarNewA />
       <div className="">
-        <header className="bg-[#544BB9] py-0 relative h-full min-h-[80vh] flex flex-col items-center ms:justify-center md:justify-start w-full">
-          {/* <header className="bg-[#544BB9] py-0 relative after:content-[''] after:h-[30%] after:w-full after:absolute after:top-full after:bg-[#EDF2F7] after:-translate-y-full after:z-0 h-full min-h-[80vh] flex flex-col items-center ms:justify-center md:justify-start w-full"> */}
+        <header className="bg-primary py-0 relative h-full min-h-[80vh] flex flex-col items-center ms:justify-center md:justify-start w-full">
           <div
             id="headerBaHRP"
             className="flex flex-col justify-center items-center ms:gap-1"

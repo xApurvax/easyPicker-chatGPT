@@ -11,17 +11,17 @@ const initialState = {
 }
 
 export const profileDetailsFetchAPI = createAsyncThunk(
-  "profileDetailsFetch/fetch",
+  'profileDetailsFetch/fetch',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await ApiMiddleware.get(`/api/auth/profile/`);
-      return response;
+      const response = await ApiMiddleware.get(`/api/auth/profile/`)
+      return response
     } catch (error) {
-      if (error.response.data.message !== "You dont have any credit points") {
-        toast.error(error.response.data.message);
+      if (error.response.data.message !== 'You dont have any credit points') {
+        toast.error(error.response.data.message)
       }
       if (!error.response) {
-        throw rejectWithValue(error?.message || "Something went wrong");
+        throw rejectWithValue(error?.message || 'Something went wrong')
       }
       throw rejectWithValue(error.response.data.message)
     }
@@ -49,23 +49,7 @@ export const profileDetailsUpdateFetchAPI = createAsyncThunk(
 const ProfileSlice = createSlice({
   name: 'profileDetailsSlice',
   initialState,
-  reducers: {
-    // setIsFindUseSynonyms: (state, action) => {
-    //   state.isFindUseSynonyms = action.payload;
-    // },
-    // setIsIncPowerWords: (state, action) => {
-    //   state.isIncPowerWords = action.payload;
-    // },
-    // setIsMakeQuestion: (state, action) => {
-    //   state.isMakeQuestion = action.payload;
-    // },
-    // setGoBackToHeadlineSettings: (state, action) => {
-    //   state.goBackToSettings = action.payload;
-    // },
-    // setReGenerateData: (state, action) => {
-    //   state.reGenerateData = action.payload;
-    // },
-  },
+  reducers: {},
   extraReducers: {
     [profileDetailsFetchAPI.pending]: (state, action) => {
       state.isLoading = true
@@ -95,5 +79,4 @@ const ProfileSlice = createSlice({
   },
 })
 
-// export const { setIsFindUseSynonyms,setIsIncPowerWords,setIsMakeQuestion,setGoBackToHeadlineSettings,setReGenerateData } = ProfileSlice.actions;
 export default ProfileSlice.reducer

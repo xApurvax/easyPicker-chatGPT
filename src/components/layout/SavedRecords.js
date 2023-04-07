@@ -217,7 +217,7 @@ const SavedRecords = () => {
               onChange={debouncedResults}
               autoComplete="off"
               className={classNames(
-                'pr-2 py-2 lg:py-1.5 text-sm ms:text-[14px] ms:leading-4 sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] max-w-[155px] ms:max-w-[155px] sm:max-w-[180px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#544bb9]',
+                'pr-2 py-2 lg:py-1.5 text-sm ms:text-[14px] ms:leading-4 sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] max-w-[155px] ms:max-w-[155px] sm:max-w-[180px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-primary',
                 showInputIcon
                   ? 'pl-7 pr-2 ms:pl-6 sm:pl-8 md:pl-8 lg:pl-10'
                   : 'px-6'
@@ -232,7 +232,7 @@ const SavedRecords = () => {
             )}
           </div>
           <div className="flex gap-1 items-center">
-            {/* <p className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer whitespace-nowrap text-[#544bb9] underline'>back to home</p> */}
+            {/* <p className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer whitespace-nowrap text-primary underline'>back to home</p> */}
             <GoHome
               className="text-xs ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer"
               onClick={(e) => {
@@ -406,7 +406,7 @@ const SavedRecords = () => {
                 'flex items-center justify-center w-[36px] bg-[#FFFFFF] rounded-[6px] ms:rounded-[2px] sm:rounded-[4px] md:rounded-[6px] h-[36px] ms:h-[20px] ms:w-[20px] sm:h-[25px] sm:w-[25px] md:h-[30px] md:w-[30px] lg:h-[36px] lg:w-[36px] border-[1px] border-solid border-[#E4E4EB] ms:text-xs sm:text-xs md:text-sm lg:text-sm'
               }
               activeLinkClassName={'text-blue'}
-              activeClassName={'bg-[#544bb9] text-white'}
+              activeClassName={'bg-primary text-white'}
             />
           </div>
         )}

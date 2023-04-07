@@ -32,17 +32,9 @@ const HomePage = () => {
   const { isLoading } = useSelector((state) => ({
     isLoading: state.contactusSlice.isLoading,
   }))
-  // const [heading, setHeading] = useState(dynamicHeadline[0])
-  // const [getInTouch, setGetInTouch] = useState({
-  //   name: '',
-  //   email: '',
-  //   message: '',
-  //   isVarified: false,
-  // })
+
   const initialValues = { name: '', email: '', message: '', captcha: '' }
-  // const [field, meta] = useField("message");
-  // const [captcha, setCaptcha] = useState(String(Math.floor(Math.random()*100000+1)))
-  // const [captcha, setCaptcha] = useState(generateCaptcha(5))
+
   const [validation, setValidation] = useState(contactUsValidationSchema)
   const [error, setError] = useState(false)
 
@@ -50,13 +42,7 @@ const HomePage = () => {
     dispatch(ContactUsFetchAPi(values))
     captchaRef.current.reset()
     resetForm({ values: '' })
-    // console.log(values)
   }
-
-  // const regenerateCaptcha = () => {
-  //   // setCaptcha(String(Math.floor(Math.random()*100000+1)))
-  //   setCaptcha(generateCaptcha(5))
-  // }
 
   useEffect(() => {
     document.title = 'How it works | Title Generator'
@@ -69,7 +55,9 @@ const HomePage = () => {
           <NavbarNewA />
         </div>
         <div className="flex flex-col justify-center items-center h-full w-full">
-          <div className="bg-[#544BB9] py-8 ms:py-8 sm:py-10 md:py-14 lg:py-20 h-full flex flex-col items-center justify-center w-full">
+          {/* INTRODUCTION HEADER  */}
+
+          <div className="bg-primary py-8 ms:py-8 sm:py-10 md:py-14 lg:py-20 h-full flex flex-col items-center justify-center w-full">
             <div className="flex flex-col justify-center items-center gap-1 ms:gap-3 lg:gap-5 ">
               <div className="flex flex-col justify-center items-center ms:gap-1 max-w-[90%] ms:max-w-[60%] lg:max-w-[40%]">
                 <h1 className="font-bold text-2xl ms:text-2xl sm:text-4xl md:text-4xl lg:text-4xl text-[#ffe84d]">
@@ -87,6 +75,9 @@ const HomePage = () => {
               </p>
             </div>
           </div>
+
+          {/* WHAT CAN YOU DO WITH IT  */}
+
           <div className="h-full w-full">
             <div className="bg-white py-8 ms:py-8 sm:py-10 md:py-14 lg:py-20 h-full flex flex-col items-center justify-center w-full">
               <div className="flex flex-col gap-3 justify-center items-center ms:gap-3 lg:gap-5">
@@ -95,7 +86,7 @@ const HomePage = () => {
                 </h1>
                 <p className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-black text-center">
                   AI Title Generator is catchy title maker, developed by{' '}
-                  <b className="text-[#544BB9]">
+                  <b className="text-primary">
                     <a
                       href="https://infynno.com/"
                       target="_blank"
@@ -109,9 +100,12 @@ const HomePage = () => {
               </div>
             </div>
           </div>
+
           <div className="flex flex-col justify-center items-center w-full h-full gap-5 ms:gap-5 sm:gap-8 md:gap-10 lg:gap-14">
+            {/* INTRO TEMPLATE 1 */}
+
             <div
-              className="py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex flex-col ms:flex-col md:flex-row bg-[#544BB9] max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl"
+              className="py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex flex-col ms:flex-col md:flex-row bg-primary max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl"
               id="howitworks"
             >
               <div className="w-full h-full flex justify-center items-center">
@@ -127,22 +121,25 @@ const HomePage = () => {
                     Create the Perfect Title for Your New Blog Post
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-white">
-                    ⮩ Create a large number of pertinent title recommendations
+                    👉 Create a large number of pertinent title recommendations
                     with only one click to acquire fresh blog post ideas.
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-white">
-                    ⮩ To ensure your content's success, include strategic
+                    👉 To ensure your content's success, include strategic
                     keywords in your titles. Our tool can help you identify and
                     add these words for optimal positioning..
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-white">
-                    ⮩ Increase your social media engagement with our generated
+                    👉 Increase your social media engagement with our generated
                     titles! Use them to captivate your audience and drive more
                     traffic to your content.".
                   </p>
                 </div>
               </div>
             </div>
+
+            {/* INTRO TEMPLATE 2 */}
+
             <div className="py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex flex-col-reverse ms:flex-col-reverse md:flex-row bg-[#ffe84d] max-w-7xl justify-start items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl">
               <div className="w-full h-full flex justify-center items-center">
                 <div className="flex flex-col gap-[2%] justify-center items-center ms:items-start ms:justify-start md:items-center md:justify-center ms:gap-3 lg:gap-8 max-w-[90%] ms:max-w-[95%] lg:max-w-[80%]">
@@ -150,16 +147,16 @@ const HomePage = () => {
                     Elevate Your Content with Catchy, Diverse titles
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-black">
-                    ⮩ Love the titles our tool generated? Save generated titles
+                    👉 Love the titles our tool generated? Save generated titles
                     for future use with one click. Access and copy past results
                     anytime.
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-black">
-                    ⮩ If you want to generate titles with the same input and
+                    👉 If you want to generate titles with the same input and
                     regenerate them again, we have that option available too.
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-black">
-                    ⮩ To increase reach, use generated keywords as # hastags
+                    👉 To increase reach, use generated keywords as # hastags
                     while posting it on social media.
                   </p>
                 </div>
@@ -172,7 +169,10 @@ const HomePage = () => {
                 />
               </div>
             </div>
-            <div className="py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex flex-col ms:flex-col md:flex-row bg-[#544BB9] max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl">
+
+            {/* INTRO TEMPLATE 3 */}
+
+            <div className="py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex flex-col ms:flex-col md:flex-row bg-primary max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl">
               <div className="w-full h-full flex justify-center items-center">
                 <img
                   src={demo3}
@@ -186,22 +186,25 @@ const HomePage = () => {
                     Generate New Ideas for Your Content Calendar
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-white">
-                    ⮩ Boost your content's success with attention-grabbing blog
+                    👉 Boost your content's success with attention-grabbing blog
                     post titles generated by AI technology. Set yourself up for
                     success today!
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-white">
-                    ⮩ Enter a topic you&apos;d like to cover, and get
+                    👉 Enter a topic you&apos;d like to cover, and get
                     suggestions for original blogs or articles.
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-white">
-                    ⮩ Specified keywords will appear in the title, inventive
+                    👉 Specified keywords will appear in the title, inventive
                     terms might be used for optimum SEO techniques.
                   </p>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* WHY USE AI TITLE GENERATOR */}
+
           <div className="w-full h-full mt-6 ms:mt-6 sm:mt-10 md:mt-12 lg:mt-14 bg-[#ffe84d]">
             <div className="flex flex-col py-12 ms:py-4 sm:py-6 md:py-8 lg:py-12 justify-center items-center">
               <div className="flex justify-center items-center">
@@ -263,6 +266,9 @@ const HomePage = () => {
               </div>
             </div>
           </div>
+
+          {/* FAQ  */}
+
           <div className="py-8 ms:py-8 sm:py-10 md:py-14 lg:py-16 h-full flex flex-col items-center justify-center w-full">
             <div className="flex flex-col justify-center items-center gap-1 ms:gap-5 lg:gap-16 ">
               <div className="flex justify-center items-center">
@@ -270,28 +276,7 @@ const HomePage = () => {
                   FAQ
                 </h1>
               </div>
-              {/* <div className='grid grid-cols-1 grid-flow-rows auto-rows-max ms:grid-cols-1 md:grid-cols-2 gap-4 ms:gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full h-full max-w-6xl'>
-                <div className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
-                  <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>How Does AI Title Generator Work?</p>
-                  <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>AI Title Generator is powered by AI. It uses artificial intelligence to suggest catchy, relevant titles for your blog posts, articles, landing pages, or other content. It also suggests related topics you might want to target.</p>
-                </div>
-                <div className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
-                  <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Why Should I Use AI Title Generator?</p>
-                  <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>AI Title Generator suggest dozens of original titles in just a click. Speed up your brainstorming process, generate new blog post ideas, or create the perfect headline for an existing project.</p>
-                </div>
-                <div className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] col-span-full flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
-                  <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>How Much Does AI Title Generator Cost?</p>
-                  <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>AI Title Generator is paid to use, but will get 1000 coins as joining bonus on first sign up, then after you can buy it any time and generate as many titles as you want, and share them with your teammates and writers.</p>
-                </div>
-                <div className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
-                  <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>Who Owns the Generated Text?</p>
-                  <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>You do! You’re free to use any title you generate in your own work.</p>
-                </div>
-                <div className='bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden'>
-                  <p className='font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]'>What Languages Are Supported?</p>
-                  <p className='font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]'>Currently, AI Title Generator is available in English.</p>
-                </div>
-            </div> */}
+
               <div className="grid grid-cols-1 grid-flow-rows auto-rows-max ms:grid-cols-1 md:grid-cols-2 gap-4 ms:gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full h-full max-w-6xl">
                 <motion.div
                   initial={{ x: -300 }}
@@ -304,7 +289,7 @@ const HomePage = () => {
                     ease: [0, 0.5, 0.1, 0.59],
                   }}
                   viewport={{ once: true }}
-                  className="bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden"
+                  className="bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-primary flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden"
                 >
                   <p className="font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]">
                     How Does AI Title Generator Work?
@@ -328,7 +313,7 @@ const HomePage = () => {
                     ease: [0, 0.5, 0.1, 0.59],
                   }}
                   viewport={{ once: true }}
-                  className="bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden"
+                  className="bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-primary flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden"
                 >
                   <p className="font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]">
                     Why Should I Use AI Title Generator?
@@ -351,7 +336,7 @@ const HomePage = () => {
                     ease: [0, 0.5, 0.1, 0.59],
                   }}
                   viewport={{ once: true }}
-                  className="bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] col-span-full flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden"
+                  className="bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-primary col-span-full flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden"
                 >
                   <p className="font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]">
                     How Much Does AI Title Generator Cost?
@@ -375,7 +360,7 @@ const HomePage = () => {
                     ease: [0, 0.5, 0.1, 0.59],
                   }}
                   viewport={{ once: true }}
-                  className="bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden"
+                  className="bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-primary flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden"
                 >
                   <p className="font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]">
                     Who Owns the Generated Text?
@@ -396,7 +381,7 @@ const HomePage = () => {
                     ease: [0, 0.5, 0.1, 0.59],
                   }}
                   viewport={{ once: true }}
-                  className="bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-[#544BB9] flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden"
+                  className="bg-white hover:scale-105 hover:shadow-xl transition-all ease-in-out duration-500 border-2 border-solid border-primary flex flex-col gap-3 rounded-2xl p-2 ms:p-5 sm:p-5 md:p-5 lg:p-6 overflow-hidden"
                 >
                   <p className="font-bold text-xs ms:text-xs sm:text-base md:text-lg lg:text-2xl text-[#333333]">
                     What Languages Are Supported?
@@ -408,6 +393,9 @@ const HomePage = () => {
               </div>
             </div>
           </div>
+
+          {/* CONTACT US */}
+
           <div className="py-8 ms:py-8 sm:py-10 md:py-14 lg:py-16 h-full flex flex-col items-center justify-center w-full">
             <div className="flex flex-col justify-center items-center gap-1 ms:gap-5 lg:gap-10 w-full max-w-[90%] ms:max-w-[90%] md:max-w-[90%] lg:max-w-6xl h-full">
               <div className="flex justify-center items-center">
@@ -415,41 +403,7 @@ const HomePage = () => {
                   Contact Us
                 </h1>
               </div>
-              {/* <div className='w-full h-full flex flex-col justify-center items-center gap-8'>
-              <input type="text" name='name' value={getInTouch.name} 
-              onChange={(e) => setGetInTouch({...getInTouch,name: e.target.value})} 
-              placeholder="Name" autoComplete='off' className='w-full max-w-sm h-full p-3 border-[1px] rounded-md border-solid border-[#aab2b8] focus:outline-none'  />
-              <input type="text" name='email' value={getInTouch.email}
-              onChange={(e) => setGetInTouch({...getInTouch,email: e.target.value})}
-               placeholder="E-mail" autoComplete='off' className='w-full max-w-sm h-full p-3 border-[1px] rounded-md border-solid border-[#aab2b8] focus:outline-none'  />
-               {!(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i).test(getInTouch.email) && <p>Please enter valid e-mail</p>}
-              <textarea value={getInTouch.message}
-              onChange={(e) => setGetInTouch({...getInTouch,message: e.target.value})} 
-              className='w-full h-full min-h-[150px] max-w-sm p-3 border-[1px] rounded-md border-solid border-[#aab2b8] resize-none focus:outline-none' placeholder='Enter message ...'/>
-              <div className='flex gap-5 justify-center items-center'>
-                  <div className='relative z-0'>
-                      <img src={captchaBG} className=' h-8 ' />
-                      <p className='absolute top-1 left-[15%] z-10 font-bold tracking-widest'>{captcha}</p>
-                  </div>
-                  <img src={recycle} onClick={() => regenerateCaptcha()} className='relative h-5' />
-                  <div> 
-                  <input type="text" name='captcha'
-                    onChange={(e) => {
-                      captcha === e.target.value ? setGetInTouch({...getInTouch,isVarified: true}):
-                      setGetInTouch({...getInTouch,isVarified: false})
-                      console.log(captcha,e.target.value,captcha===e.target.value)
-                  }}
-                    placeholder="Enter captcha" autoComplete='off' className='w-full max-w-sm h-full p-3 border-[1px] rounded-md border-solid border-[#aab2b8] focus:outline-none'  />
-                  </div>
-              </div>
-               <ReCAPTCHA
-                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                  onChange={(e) => setGetInTouch({...getInTouch,isVarified: true})}
-              />
-              <button
-              disabled={(getInTouch.name.trim().length < 1 || getInTouch.email.trim().length < 1 || getInTouch.message.trim().length < 1) || !getInTouch.isVarified} 
-              className='px-5 py-1.5 bg-[#544BB9] rounded-md text-white font-bold disabled:cursor-not-allowed disabled:opacity-70'>Send</button>
-            </div> */}
+
               <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-10 w-full h-full sm:max-w-[95%]">
                 <Formik
                   initialValues={initialValues}
@@ -472,31 +426,31 @@ const HomePage = () => {
                         <h1 className="font-600 text-xl font-bold">
                           Let's Get In Touch
                         </h1>
-                        <div className="h-1 w-10 bg-[#544BB9]"></div>
+                        <div className="h-1 w-10 bg-primary"></div>
                         <div className="flex flex-col gap-10 ms:gap-5 sm:gap-5 md:gap-10 lg:gap-8 items-start w-full">
                           <InputField
                             type="text"
                             id="name"
                             name="name"
-                            inputstyle="w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-white border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-[#737373] focus:border-[#544BB9]"
-                            borderstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]"
-                            placeholder="Enter your name"
+                            inputstyle="w-full  text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-white border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-textGray focus:border-primary"
+                            borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                            placeholder="What's your name, stranger?"
                           />
                           <InputField
                             type="text"
                             id="email"
                             name="email"
-                            inputstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-[#737373] bg-white focus:border-[#544BB9]"
-                            borderstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]"
-                            placeholder="Enter your e-mail"
+                            inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-textGray bg-white focus:border-primary"
+                            borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                            placeholder="Share your email address with us!"
                           />
                           <CustomTextArea
                             type="text"
                             id="message"
                             name="message"
-                            inputstyle="w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid border-[#aab2b8] resize-none focus:outline-none placeholder:text-[#737373] focus:border-[#544BB9] text-[#737373]"
-                            borderstyle="w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid border-[#aab2b8] resize-none focus:outline-none placeholder:text-[#737373] focus:border-[#544BB9] text-[#737373]"
-                            placeholder="Enter message ..."
+                            inputstyle="w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid border-[#aab2b8] resize-none focus:outline-none placeholder:text-textGray focus:border-primary text-textGray"
+                            borderstyle="w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid border-[#aab2b8] resize-none focus:outline-none placeholder:text-textGray focus:border-primary text-textGray"
+                            placeholder="What's on your mind?"
                           />
                         </div>
                         {/* {!error &&  */}
@@ -551,7 +505,7 @@ const HomePage = () => {
                               onAnimationEnd={() => {
                                 // dispatch(setLoginEffect(false));
                               }}
-                              buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-[#544BB9]"
+                              buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary"
                               loaderSize={20}
                             >
                               Send
@@ -573,7 +527,7 @@ const HomePage = () => {
                               onAnimationEnd={() => {
                                 // dispatch(setLoginEffect(false));
                               }}
-                              buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-[#544BB9]"
+                              buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary"
                               loaderSize={20}
                               showLoader
                             >
@@ -586,7 +540,7 @@ const HomePage = () => {
                   )}
                 </Formik>
                 <div className="h-full w-full flex flex-col justify-between items-center">
-                  <div className="aspect-w-8 aspect-h-4 w-full h-full border-[3px] border-solid border-[#544BB9] rounded-md">
+                  <div className="aspect-w-8 aspect-h-4 w-full h-full border-[3px] border-solid border-primary rounded-md">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.541138621801!2d72.53909061505688!3d23.113887518709067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9ddd5e24dcd1%3A0xdf5c3d5463cdece5!2sInfynno%20Solutions%20%7C%20Expert%20in%20Laravel%2C%20React%20and%20Node%20Apps!5e0!3m2!1sen!2sin!4v1679390031546!5m2!1sen!2sin"
                       allowFullScreen=""
@@ -596,12 +550,10 @@ const HomePage = () => {
                     />
                   </div>
                   <div className="flex flex-col gap-3 my-2 h-full w-full">
-                    {/* <h1 className='font-600 text-xl font-bold'>Let's Get In Touch</h1>
-                  <div className='h-1 w-10 bg-[#544BB9]'></div> */}
-                    <p className="font-400 font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#353535]">
-                      We are offering something exclusive to our clients by
-                      using cutting-edge technologies. We provide top IT
-                      software development solutions across the globe.
+                    <p className="font-400 font-normal my-1 text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#353535]">
+                      Unlock exclusive technology-driven solutions with us. Our
+                      top-tier IT software development services are tailored to
+                      meet your needs, no matter where you are in the world.
                     </p>
                     <div className="flex flex-col gap-2 h-full w-full">
                       <div className="flex items-center gap-2 h-full w-full">

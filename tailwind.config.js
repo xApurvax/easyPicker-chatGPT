@@ -3,6 +3,10 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      colors: {
+        primary: '#544bb9',
+        textGray: '#737373',
+      },
       keyframes: {
         wiggle: {
           '0%, 100%': { transform: 'translateY(2px)' },

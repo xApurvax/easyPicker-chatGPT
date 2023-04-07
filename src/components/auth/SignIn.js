@@ -16,9 +16,7 @@ const SignIn = () => {
     isRegisterLoading: state.registerSlice.isRegisterLoading,
   }))
   const initialValues = { username: '', password: '', name: '', email: '' }
-  const handleSignInSubmit = (values) => {
-    dispatch(registerFetchAPi(values))
-  }
+  const handleSignInSubmit = (values) => dispatch(registerFetchAPi(values))
 
   useEffect(() => {
     document.title = 'Sign up | Title Generator'
@@ -49,16 +47,16 @@ const SignIn = () => {
                         type="text"
                         id="username"
                         name="username"
-                        inputstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]"
-                        borderstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]"
+                        inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                        borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                         placeholder="Username"
                       />
                       <InputField
                         type="text"
                         id="name"
                         name="name"
-                        inputstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]"
-                        borderstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]"
+                        inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                        borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                         placeholder="Name"
                       />
                     </div>
@@ -66,16 +64,16 @@ const SignIn = () => {
                       type="text"
                       id="email"
                       name="email"
-                      inputstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]"
-                      borderstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]"
+                      inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                      borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                       placeholder="Email"
                     />
                     <InputField
                       type="password"
                       id="password"
                       name="password"
-                      inputstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373] focus:border-[#544BB9]"
-                      borderstyle="w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]"
+                      inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                      borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                       placeholder="Password"
                     />
                   </div>
@@ -89,7 +87,7 @@ const SignIn = () => {
                       onAnimationEnd={() => {
                         dispatch(setSignInEffect(false))
                       }}
-                      buttonStyle="w-full py-[12px] 2xl:py-[13px] text-sm sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-[#544BB9] shadow-lg"
+                      buttonStyle="w-full py-[12px] 2xl:py-[13px] text-sm sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg"
                       loaderSize={20}
                       showLoader
                     >
@@ -106,7 +104,7 @@ const SignIn = () => {
                 Already have an account ?{' '}
               </p>
               <div
-                className="font-bold text-xs ms:text-xs sm:text-xs md:text-sm lg:text-sm text-[#544BB9] cursor-pointer"
+                className="font-bold text-xs ms:text-xs sm:text-xs md:text-sm lg:text-sm text-primary cursor-pointer"
                 onClick={() => {
                   navigate('/auth/signin')
                 }}
@@ -114,15 +112,8 @@ const SignIn = () => {
                 Sign in
               </div>
             </div>
-            {/* <div className='flex gap-1'>
-                            <p className='font-normal text-sm text-[#4A5568]'>You can</p>
-                            <div className='font-bold text-sm text-[#544BB9] cursor-pointer' onClick={() => { navigate('/auth/login')}}>Login</div>
-                        </div> */}
           </div>
         </div>
-        {/* <div className='hidden md:flex justify-center items-center px-4 text-center w-full'>
-                    <p className='font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]'>Log in/ Sign in first to access AI Headline Generator</p>
-            </div> */}
       </div>
     </AuthMiddleware>
   )

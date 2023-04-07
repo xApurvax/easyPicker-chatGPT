@@ -12,7 +12,6 @@ const CustomButton = ({
 }) => {
   return (
     <button
-      // onClick={}
       {...props}
       disabled={disabled || false}
       className={classNames(

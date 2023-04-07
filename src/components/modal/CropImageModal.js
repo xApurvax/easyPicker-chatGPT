@@ -115,14 +115,14 @@ const CropImageModal = ({ photoURL, setImage, ...props }) => {
                       <div className="mt-4 flex gap-[5%] justify-end">
                         <button
                           type="button"
-                          className="inline-flex justify-center rounded-md border-1 border-solid border-light-blue px-3 py-2 text-sm font-medium bg-[#544BB9] text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          className="inline-flex justify-center rounded-md border-1 border-solid border-light-blue px-3 py-2 text-sm font-medium bg-primary text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                           onClick={saveCropImage}
                         >
                           Save
                         </button>
                         <button
                           type="button"
-                          className="inline-flex justify-center rounded-md b border-[1px] border-solid border-[#544BB9] px-3 py-2 text-sm font-medium text-[#544BB9]focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          className="inline-flex justify-center rounded-md b border-[1px] border-solid border-primary px-3 py-2 text-sm font-medium text-primaryfocus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                           onClick={closeModal}
                         >
                           Cancel

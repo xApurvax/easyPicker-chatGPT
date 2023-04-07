@@ -3,7 +3,6 @@ import ApiMiddleware from '../../../utils/ApiMiddleware'
 import Cookies from 'js-cookie'
 import toast from 'react-hot-toast'
 import cookies from 'js-cookie'
-// import { Navigate } from 'react-router-dom'
 
 const initialState = {
   isSuccess: false,
