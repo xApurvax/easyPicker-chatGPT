@@ -4,6 +4,10 @@ import ApiMiddleware from '../../utils/ApiMiddleware'
 import { GiTwoCoins } from 'react-icons/gi'
 import coins from '../../sound/coins.mp3'
 import Cookies from 'js-cookie'
+import {
+  LIMIT_EXCEEDS_MESSAGE,
+  NO_CREDIT_POINTS_MESSAGE,
+} from '../../utils/constant'
 
 const initialState = {
   isLoading: false,
@@ -26,6 +30,7 @@ const initialState = {
     num_headers: null,
     language: null,
   },
+  limitExceeds: false,
 }
 
 export const generateHeadlineFetchAPi = createAsyncThunk(
@@ -38,7 +43,7 @@ export const generateHeadlineFetchAPi = createAsyncThunk(
       )
       return paragraphDetails
     } catch (error) {
-      if (error.response.data.message !== 'You dont have any credit points') {
+      if (error.response.data.message !== NO_CREDIT_POINTS_MESSAGE) {
         toast.error(error.response.data.message)
       }
       if (!error.response) {
@@ -59,7 +64,7 @@ export const reGenerateHeadlineFetchAPi = createAsyncThunk(
       )
       return paragraphDetails
     } catch (error) {
-      if (error.response.data.message !== 'You dont have any credit points') {
+      if (error.response.data.message !== NO_CREDIT_POINTS_MESSAGE) {
         toast.error(error.response.data.message)
       }
       if (!error.response) {
@@ -84,7 +89,7 @@ export const saveResultsFetchAPi = createAsyncThunk(
       }
       return paragraphDetails
     } catch (error) {
-      if (error.response.data.message !== 'You dont have any credit points') {
+      if (error.response.data.message !== NO_CREDIT_POINTS_MESSAGE) {
         toast.error(error.response.data.message)
       }
       if (!error.response) {
@@ -139,7 +144,7 @@ const generateHeadlineSlice = createSlice({
       }
     },
     [generateHeadlineFetchAPi.rejected]: (state, action) => {
-      if (action.payload === 'You dont have any credit points') {
+      if (action.payload === NO_CREDIT_POINTS_MESSAGE) {
         state.message = action.payload
         toast(action?.payload, {
           icon: (
@@ -149,6 +154,10 @@ const generateHeadlineSlice = createSlice({
         const audio = new Audio(coins)
         audio.play()
       }
+      if (action.payload === LIMIT_EXCEEDS_MESSAGE) {
+        state.limitExceeds = true
+      }
+
       state.isLoading = false
     },
     [reGenerateHeadlineFetchAPi.pending]: (state, action) => {
@@ -169,7 +178,7 @@ const generateHeadlineSlice = createSlice({
     },
     [reGenerateHeadlineFetchAPi.rejected]: (state, action) => {
       state.isRegenerate = false
-      if (action.payload === 'You dont have any credit points') {
+      if (action.payload === NO_CREDIT_POINTS_MESSAGE) {
         state.message = action.payload
         toast(action?.payload, {
           icon: (
@@ -183,26 +192,27 @@ const generateHeadlineSlice = createSlice({
     [saveResultsFetchAPi.pending]: (state, action) => {
       state.isSaved = true
     },
-    [saveResultsFetchAPi.fulfilled]: (state, action) => {
+    [saveResultsFetchAPi.fulfilled]: (state, { payload }) => {
+      const { data } = payload || {}
       state.isSaved = false
       // if(action?.payload?.data?.status_code === 200) {
       state.goBackToSettings = false
-      state.allTitles = action.payload?.data?.result[0]['title']
-      state.saveTitles = action.payload?.data?.result[0]['title'].join()
-      state.specialTags = action.payload?.data?.result[0]['tags']?.split(',')
-      state.copyAllSpecialTags = action.payload?.data?.result[0]['tags']
-      state.saveTags = action.payload?.data?.result[0]['tags']
-      Cookies.set('coins', action.payload?.data?.result[0]['remaining_credit'])
-      state.hasTitleTag = action.payload?.data?.result
-      toast.success(action?.payload?.data?.message)
-      if (action.payload?.data?.result.length === 0) {
+      state.allTitles = data?.result[0]['title']
+      state.saveTitles = data?.result[0]['title'].join()
+      state.specialTags = data?.result[0]['tags']?.split(',')
+      state.copyAllSpecialTags = data?.result[0]['tags']
+      state.saveTags = data?.result[0]['tags']
+      Cookies.set('coins', data?.result[0]['remaining_credit'])
+      state.hasTitleTag = data?.result
+      toast.success(data?.message)
+      if (data?.result.length === 0) {
         toast.error('Something went wrong!')
       }
       // }
     },
     [saveResultsFetchAPi.rejected]: (state, action) => {
       state.isSaved = false
-      if (action.payload === 'You dont have any credit points') {
+      if (action.payload === NO_CREDIT_POINTS_MESSAGE) {
         state.message = action.payload
         toast(action?.payload, {
           icon: (

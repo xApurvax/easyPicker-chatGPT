@@ -38,23 +38,8 @@ const SavedRecords = () => {
   const [currentPageLocal, setCurrentPageLocal] = useState(1)
   // const [searchByHeading, setSearchByHeading] = useState()
   const [startDate, setStartDate] = useState()
-  const handlePageClick = (event) => {
-    setCurrentPageLocal(event.selected + 1)
-  }
+  const handlePageClick = (event) => setCurrentPageLocal(event.selected + 1)
   const [dateOrder, setDateOrder] = useState(true)
-
-  useEffect(() => {
-    if (currentPageLocal === 1) {
-      dispatch(
-        transactionHistoryFetchAPi({
-          date: startDate && moment(startDate).format('YYYY-MM-DD'),
-          page: currentPageLocal,
-          order: dateOrder ? '' : 'descending',
-        })
-      )
-    } else setCurrentPageLocal(1)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [startDate, dateOrder])
 
   useEffect(() => {
     dispatch(
@@ -65,7 +50,7 @@ const SavedRecords = () => {
       })
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPageLocal])
+  }, [currentPageLocal, startDate, dateOrder])
 
   useEffect(() => {
     document.title = 'History | Title Generator'
@@ -173,7 +158,6 @@ const SavedRecords = () => {
       columns,
       data: allTransactionHistory,
       initialState: { pageSize: 5 },
-      //   globalFilter: ourGlobalFilterFunction,
     },
     useGlobalFilter,
     usePagination
@@ -208,7 +192,6 @@ const SavedRecords = () => {
             )}
           </div>
           <div className="flex gap-1 items-center">
-            {/* <p className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer whitespace-nowrap text-primary underline'>back to home</p> */}
             <GoHome
               className="text-xs ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer"
               onClick={(e) => {
@@ -219,7 +202,6 @@ const SavedRecords = () => {
             <p className="font-semibold text-xs ms:text-xs sm:text-lg md:text-2xl lg:text-lg">
               / Transactions History
             </p>
-            {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
           </div>
         </div>
         <div className="h-max min-h-max ms:min-h-[149px] sm:min-h-[204px] md:min-h-[254px] lg:min-h-[265px] overflow-x-auto max-w-[100vw] border border-solid border-black rounded-md">
@@ -319,17 +301,6 @@ const SavedRecords = () => {
                         strokeWidth={5}
                         strokeWidthSecondary={5}
                       />
-                      {/* <RevolvingDot
-                            height="100"
-                            width="100"
-                            radius="25"
-                            color="#544bb9"
-                            secondaryColor=''
-                            ariaLabel="revolving-dot-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={true}
-                            /> */}
                     </div>
                   </td>
                 </tr>

@@ -36,24 +36,13 @@ const SavedRecords = () => {
   const debouncedResults = useMemo(() => debounce(handleFilter, 800), [])
 
   useEffect(() => {
-    if (currentPageLocal === 1) {
-      dispatch(
-        saveResultsDataFetchAPi({
-          search: searchByHeading,
-          page: currentPageLocal,
-        })
-      )
-    } else setCurrentPageLocal(1)
-  }, [])
-
-  useEffect(() => {
     dispatch(
       saveResultsDataFetchAPi({
         search: searchByHeading,
         page: currentPageLocal,
       })
     )
-  }, [])
+  }, [currentPageLocal])
 
   useEffect(() => {
     return () => debouncedResults.cancel()
@@ -232,7 +221,6 @@ const SavedRecords = () => {
             )}
           </div>
           <div className="flex gap-1 items-center">
-            {/* <p className='text-lg ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer whitespace-nowrap text-primary underline'>back to home</p> */}
             <GoHome
               className="text-xs ms:text-xs sm:text-lg md:text-2xl lg:text-2xl cursor-pointer"
               onClick={(e) => {
@@ -243,7 +231,6 @@ const SavedRecords = () => {
             <p className="font-semibold text-xs ms:text-xs sm:text-lg md:text-2xl lg:text-lg">
               / Bookmarks
             </p>
-            {/* <RiArrowGoBackLine className='text-lg ms:text-lg sm:text-lg md:text-2xl lg:text-2xl cursor-pointer' /> */}
           </div>
         </div>
         <div className="h-max min-h-max ms:min-h-[396px] sm:min-h-[420px] md:min-h-[444px] lg:min-h-[440px] overflow-x-auto max-w-[100vw] border border-solid border-black rounded-md">
@@ -331,17 +318,6 @@ const SavedRecords = () => {
                         strokeWidth={5}
                         strokeWidthSecondary={5}
                       />
-                      {/* <RevolvingDot
-                            height="100"
-                            width="100"
-                            radius="25"
-                            color="#544bb9"
-                            secondaryColor=''
-                            ariaLabel="revolving-dot-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={true}
-                            /> */}
                     </div>
                   </td>
                 </tr>

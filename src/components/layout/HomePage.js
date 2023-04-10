@@ -19,18 +19,22 @@ import {
   contactUsValidationSchema,
   contactUsValidationWithoutCaptchaSchema,
 } from '../../utils/FormValidations'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ContactUsFetchAPi } from '../../redux/slices/auth/contactusSlice'
 import { motion } from 'framer-motion'
 import CustomTextArea from '../form/CustomTextArea'
+import Tool from './Tool'
+import classNames from 'classnames'
 
 // let COUNT = 0
 const HomePage = () => {
   const dispatch = useDispatch()
   const captchaRef = useRef()
-  const { isLoading } = useSelector((state) => ({
+  const navigate = useNavigate()
+  const { isLoading, limitExceeds } = useSelector((state) => ({
     isLoading: state.contactusSlice.isLoading,
+    limitExceeds: state.generateHeadlineSlice.limitExceeds,
   }))
 
   const initialValues = { name: '', email: '', message: '', captcha: '' }
@@ -57,10 +61,10 @@ const HomePage = () => {
         <div className="flex flex-col justify-center items-center h-full w-full">
           {/* INTRODUCTION HEADER  */}
 
-          <div className="bg-primary py-8 ms:py-8 sm:py-10 md:py-14 lg:py-20 h-full flex flex-col items-center justify-center w-full">
+          <div className="bg-primary py-8 ms:py-8 sm:py-10 md:py-14 lg:py-20 h-screen/2 flex flex-col items-center justify-center w-full">
             <div className="flex flex-col justify-center items-center gap-1 ms:gap-3 lg:gap-5 ">
               <div className="flex flex-col justify-center items-center ms:gap-1 max-w-[90%] ms:max-w-[60%] lg:max-w-[40%]">
-                <h1 className="font-bold text-2xl ms:text-2xl sm:text-4xl md:text-4xl lg:text-4xl text-[#ffe84d]">
+                <h1 className="font-bold text-2xl ms:text-2xl sm:text-4xl md:text-4xl lg:text-4xl text-secondaryYellow">
                   Title Generator
                 </h1>
                 <h2 className="font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-3xl text-white">
@@ -75,6 +79,46 @@ const HomePage = () => {
               </p>
             </div>
           </div>
+
+          <>
+            <div className="bg-white py-8 ms:py-8 sm:py-10 md:py-14 h-screen/2 lg:py-20 flex flex-col gap-3 justify-center items-center ms:gap-3 lg:gap-5 ">
+              <h1 className="font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-4xl text-center text-black max-w-[80%] ms:max-w-[80%] lg:max-w-[60%]">
+                Why wait? Give it a try now and see for yourself!
+              </h1>
+              <p className="font-normal text-lg ms:text-xs sm:text-base md:text-lg lg:text-xl text-black text-center">
+                Take the plunge and try it out now. You never know what you
+                might discover.
+              </p>
+            </div>
+            <div className="py-4 ms:p-4 md:py-12 md:px-10 lg:py-14 lg:px-0 flex flex-col ms:flex-col md:flex-col bg-gradient-to-r from-primary to-secondaryYellow justify-center items-center gap-3 ms:gap-3 md:gap-3 w-full mt-10">
+              <div className=" relative">
+                <div
+                  className={classNames(
+                    limitExceeds && 'pointer-events-none cursor-not-allowed'
+                  )}
+                >
+                  <Tool homepageTrial={true} />
+                </div>
+                {limitExceeds && (
+                  <div className="absolute top-0 backdrop-blur-md back  w-full h-full flex flex-col items-center justify-center gap-10 font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-3xl text-center text-black ms:max-w-full lg:max-w-full">
+                    <p className="w-[90%] select-none ">
+                      Oops! Looks like you've hit the limit of free attempts.
+                      Please login or sign up to continue.
+                    </p>
+                    <CustomButton
+                      type="submit"
+                      onClick={() => navigate('/auth/signin')}
+                      buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary shadow-lg"
+                      loaderSize={20}
+                      showLoader
+                    >
+                      Click here to Get Started 👆
+                    </CustomButton>
+                  </div>
+                )}
+              </div>
+            </div>
+          </>
 
           {/* WHAT CAN YOU DO WITH IT  */}
 
@@ -140,7 +184,7 @@ const HomePage = () => {
 
             {/* INTRO TEMPLATE 2 */}
 
-            <div className="py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex flex-col-reverse ms:flex-col-reverse md:flex-row bg-[#ffe84d] max-w-7xl justify-start items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl">
+            <div className="py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex flex-col-reverse ms:flex-col-reverse md:flex-row bg-secondaryYellow max-w-7xl justify-start items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl">
               <div className="w-full h-full flex justify-center items-center">
                 <div className="flex flex-col gap-[2%] justify-center items-center ms:items-start ms:justify-start md:items-center md:justify-center ms:gap-3 lg:gap-8 max-w-[90%] ms:max-w-[95%] lg:max-w-[80%]">
                   <p className="font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-4xl text-black">
@@ -205,7 +249,7 @@ const HomePage = () => {
 
           {/* WHY USE AI TITLE GENERATOR */}
 
-          <div className="w-full h-full mt-6 ms:mt-6 sm:mt-10 md:mt-12 lg:mt-14 bg-[#ffe84d]">
+          <div className="w-full h-full mt-6 ms:mt-6 sm:mt-10 md:mt-12 lg:mt-14 bg-secondaryYellow">
             <div className="flex flex-col py-12 ms:py-4 sm:py-6 md:py-8 lg:py-12 justify-center items-center">
               <div className="flex justify-center items-center">
                 <h1 className="font-bold text-2xl ms:text-2xl sm:text-3xl md:text-3xl lg:text-4xl text-center text-black max-w-[80%]">
@@ -468,9 +512,7 @@ const HomePage = () => {
                             ref={captchaRef}
                             className="h-max w-full flex justify-center items-center"
                             onErrored={(err) => {
-                              // console.log("error",err);
                               setError(true)
-                              // setFieldValue("captcha_verified",true)
                               setValidation(
                                 contactUsValidationWithoutCaptchaSchema
                               )

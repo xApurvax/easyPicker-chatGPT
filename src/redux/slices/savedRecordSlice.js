@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-hot-toast'
 import ApiMiddleware from '../../utils/ApiMiddleware'
+import { NO_CREDIT_POINTS_MESSAGE } from '../../utils/constant'
 
 const initialState = {
   isLoading: false,
@@ -21,7 +22,7 @@ export const saveResultsDataFetchAPi = createAsyncThunk(
       )
       return response
     } catch (error) {
-      if (error.response.data.message !== 'You dont have any credit points') {
+      if (error.response.data.message !== NO_CREDIT_POINTS_MESSAGE) {
         toast.error(error.response.data.message)
       }
       if (!error.response) {
