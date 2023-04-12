@@ -1,21 +1,31 @@
-export const createImage = (url) =>
-  new Promise((resolve, reject) => {
-    const image = new Image()
-    if (image) {
-      image.addEventListener('load', () => resolve(image))
-      image.addEventListener('error', (error) => reject(error))
-      image.setAttribute('crossOrigin', 'anonymous')
-      image.src = url
-    }
-  })
+type PixelCropProps = {
+  height?: number;
+  width?: number;
+  x?: number;
+  y?: number;
+}
 
-export function getRadianAngle(degreeValue) {
+export const createImage = (url : string) =>
+new Promise((resolve, reject) => {
+  const image = new Image()
+  if (image) {
+    image.addEventListener('load', () => resolve(image))
+    image.addEventListener('error', (error) => reject(error))
+    image.setAttribute('crossOrigin', 'anonymous')
+    image.src = url
+  }
+})
+
+export function getRadianAngle(degreeValue : number) {
   return (degreeValue * Math.PI) / 180
 }
 
-export function rotateSize(width, height, rotation) {
-  const rotRad = getRadianAngle(rotation)
+type RotateSize = {width : number, height: number, rotation: number}
 
+export function rotateSize(image: RotateSize) {
+  const {width , height , rotation} = image
+  const rotRad = getRadianAngle(rotation)
+  
   return {
     width:
       Math.abs(Math.cos(rotRad) * width) + Math.abs(Math.sin(rotRad) * height),
@@ -25,25 +35,27 @@ export function rotateSize(width, height, rotation) {
 }
 
 export default async function getCroppedImg(
-  imageSrc,
-  pixelCrop,
+  imageSrc: string,
+  pixelCrop: PixelCropProps,
   rotation = 0,
   flip = { horizontal: false, vertical: false }
 ) {
-  const image = await createImage(imageSrc)
+
+  const image:any = await createImage(imageSrc)
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
-
+  console.log(typeof image)
   if (!ctx) {
     return null
   }
 
   const rotRad = getRadianAngle(rotation)
-  const { width: bBoxWidth, height: bBoxHeight } = rotateSize(
-    image.width,
-    image.height,
-    rotation
-  )
+  // const snedImage = {width: image.width,height:image.height, rotation :rotation}
+  const { width: bBoxWidth, height: bBoxHeight } = rotateSize({
+    width: image.width,
+    height: image.height,
+    rotation: rotation,
+  })
 
   canvas.width = bBoxWidth
   canvas.height = bBoxHeight

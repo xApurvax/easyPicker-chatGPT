@@ -8,7 +8,14 @@ import { registerFetchAPi } from '../../redux/slices/auth/registerSlice'
 import { useNavigate } from 'react-router-dom'
 import { setSignInEffect } from '../../redux/slices/buttonEffectSlice'
 import AuthMiddleware from '../../utils/AuthMiddleware'
-import { SignupProps, fixMeLater } from '../../utils/types'
+import { fixMeLater } from '../../utils/types'
+
+type SignupProps = {
+  username: string
+  password: string
+  name: string
+  email: string
+}
 
 const SignIn = () => {
   const dispatch = useDispatch()

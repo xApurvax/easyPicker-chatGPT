@@ -12,7 +12,12 @@ import { useNavigate } from 'react-router-dom'
 import AuthMiddleware from '../../utils/AuthMiddleware'
 import Cookies from 'js-cookie'
 import ResetPasswordMiddleware from '../../utils/ResetPasswordMiddleware'
-import { PasswordResetProps, fixMeLater } from '../../utils/types'
+import { fixMeLater } from '../../utils/types'
+
+export type PasswordResetProps = {
+  confirmPassword: string
+  password: string
+}
 
 const PasswordReset = () => {
   const dispatch = useDispatch()
@@ -26,17 +31,17 @@ const PasswordReset = () => {
   )
   const initialValues = { password: '', confirmPassword: '' }
 
-  // const handleResetPassword = (values : fixMeLater) => {
-  //   dispatch(
-  //     resetPasswordApi({
-  //       email:
-  //         forgotModal?.email === null
-  //           ? Cookies.get('user_mail')
-  //           : forgotModal?.email,
-  //       password: values.password,
-  //     })
-  //   )
-  // }
+  const handleResetPassword = (values:PasswordResetProps) => {
+    dispatch(
+      resetPasswordApi({
+        email:
+          forgotModal?.email === null
+            ? Cookies.get('user_mail')
+            : forgotModal?.email,
+        password: values.password,
+      })
+    )
+  }
 
   useEffect(() => {
     if (resetPasswordStatus === 200) navigate('/auth/signin')
@@ -57,17 +62,7 @@ const PasswordReset = () => {
               validationSchema={ResetPasswordValidationSchema}
               validateOnBlur={false}
               validateOnChange={false}
-              onSubmit={(values) => {
-                dispatch(
-                  resetPasswordApi({
-                    email:
-                      forgotModal?.email === null
-                        ? Cookies.get('user_mail')
-                        : forgotModal?.email,
-                    password: values.password,
-                  })
-                )
-              }}
+              onSubmit={(values)=>handleResetPassword(values)}
             >
               {({ handleSubmit }) => (
                 <form className="w-full max-w-md" onSubmit={handleSubmit}>

@@ -5,38 +5,10 @@ import { FieldHookConfig } from "formik"
 
 export type fixMeLater = any
 
-export type LoginProps = {
-    username: string
-    password: string
-}
-
-export type SignupProps = {
-    username: string
-    password: string
-    name: string
-    email: string
-}
-
-export type UserProfileProps = {
-    username: string
-    name: string
-    email: string
-}
-
 export type UserPictureProps = {
     file?: File
     url?: string
 }
-
-export type ForgotProps = {
-    email: string
-}
-
-export type PasswordResetProps = {
-    confirmPassword: string
-    password: string
-}
-
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     buttonStyle?: string;
     children?: ReactNode;

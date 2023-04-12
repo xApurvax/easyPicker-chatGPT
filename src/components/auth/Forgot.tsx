@@ -7,7 +7,11 @@ import CustomButton from '../form/CustomButton'
 import { forgotPasswordValidationSchema } from '../../utils/FormValidations'
 import { forgotFetchAPi } from '../../redux/slices/auth/forgotPasswordSlice'
 import AuthMiddleware from '../../utils/AuthMiddleware'
-import { fixMeLater, ForgotProps } from '../../utils/types'
+import { fixMeLater } from '../../utils/types'
+
+export type ForgotProps = {
+  email: string
+}
 
 const INITIAL_COUNT = 59
 const STATUS = {
@@ -25,7 +29,7 @@ const Forgot = () => {
     setSecondsRemaining(INITIAL_COUNT)
   }
 
-  const { isVerify, forgotModal } = useSelector((state : fixMeLater) => ({
+  const { isVerify, forgotModal } = useSelector((state: fixMeLater) => ({
     isVerify: state.forgotPasswordSlice.isVerify,
     forgotModal: state.forgotPasswordSlice.forgotModal,
   }))
@@ -36,34 +40,6 @@ const Forgot = () => {
   useEffect(() => {
     forgotModal.otpVerified && navigate('/reset-password')
   }, [forgotModal.otpVerified, navigate])
-
-  useInterval(
-    () => {
-      if (secondsRemaining > 0) setSecondsRemaining(secondsRemaining - 1)
-      else setStatus(STATUS.STOPPED)
-    },
-    status === STATUS.STARTED ? 1000 : null
-  )
-
-  function useInterval(callback :fixMeLater, delay :fixMeLater) {
-    const savedCallback = useRef()
-
-    // Remember the latest callback.
-    useEffect(() => {
-      savedCallback.current = callback
-    }, [callback])
-
-    // Set up the interval.
-    useEffect(() => {
-      function tick() {
-        savedCallback.current()
-      }
-      if (delay !== null) {
-        let id = setInterval(tick, delay)
-        return () => clearInterval(id)
-      }
-    }, [delay])
-  }
 
   useEffect(() => {
     document.title = 'Forgot password | Title Generator'

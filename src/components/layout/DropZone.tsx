@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import ImageUploading from 'react-images-uploading'
 import { MdOutlineCancel } from 'react-icons/md'
 import dummy_user from '../../assets/dummy_user.png'
 import classNames from 'classnames'
-import { fixMeLater } from '../../utils/types'
+import { UserPictureProps } from '../../utils/types'
 
-const DropZone = ({ image, setImage, imageAfterCrop, imageAtEdit } : fixMeLater) => {
+type DropZonePropsTypes = {
+  image? : UserPictureProps,
+  setImage?: (e : []) => void,
+  imageAfterCrop?:string,
+  imageAtEdit?:string 
+}
+
+const DropZone = ({ image, setImage, imageAfterCrop, imageAtEdit } : DropZonePropsTypes ) => {
+
   const [images, setImages] = React.useState([])
   const maxNumber = 69
-  const onChange = (imageList : fixMeLater, addUpdateIndex : fixMeLater) => {
+  const onChange = (imageList : []) => {
     setImages(imageList)
-    setImage(imageList)
+    setImage!(imageList)
   }
   return (
     <div className="w-full h-full flex items-center justify-center">

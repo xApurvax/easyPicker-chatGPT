@@ -13,7 +13,13 @@ import {
 import { GoHome } from 'react-icons/go'
 import DropZone from '../layout/DropZone'
 import CropImageModal from '../modal/CropImageModal'
-import { UserPictureProps, UserProfileProps, fixMeLater } from '../../utils/types'
+import { UserPictureProps, fixMeLater } from '../../utils/types'
+
+export type UserProfileProps = {
+  username: string
+  name: string
+  email: string
+}
 
 const Profile = () => {
   const dispatch = useDispatch()
