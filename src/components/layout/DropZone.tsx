@@ -3,11 +3,12 @@ import ImageUploading from 'react-images-uploading'
 import { MdOutlineCancel } from 'react-icons/md'
 import dummy_user from '../../assets/dummy_user.png'
 import classNames from 'classnames'
+import { fixMeLater } from '../../utils/types'
 
-const DropZone = ({ image, setImage, imageAfterCrop, imageAtEdit }) => {
+const DropZone = ({ image, setImage, imageAfterCrop, imageAtEdit } : fixMeLater) => {
   const [images, setImages] = React.useState([])
   const maxNumber = 69
-  const onChange = (imageList, addUpdateIndex) => {
+  const onChange = (imageList : fixMeLater, addUpdateIndex : fixMeLater) => {
     setImages(imageList)
     setImage(imageList)
   }

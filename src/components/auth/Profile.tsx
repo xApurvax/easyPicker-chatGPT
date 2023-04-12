@@ -13,12 +13,13 @@ import {
 import { GoHome } from 'react-icons/go'
 import DropZone from '../layout/DropZone'
 import CropImageModal from '../modal/CropImageModal'
+import { UserPictureProps, UserProfileProps, fixMeLater } from '../../utils/types'
 
 const Profile = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [image, setImage] = useState({})
-  const { isLoading, isUpdating, profileDetails } = useSelector((state) => ({
+  const [image, setImage] = useState<UserPictureProps>()
+  const { isLoading, isUpdating, profileDetails } = useSelector((state : fixMeLater) => ({
     isLoading: state.ProfileSlice.isLoading,
     isUpdating: state.ProfileSlice.isUpdating,
     profileDetails: state.ProfileSlice.profileDetails,
@@ -43,18 +44,18 @@ const Profile = () => {
     setImage({ url: profileDetails?.profile_pic })
   }, [profileDetails])
 
-  const handleProfileUpdateSubmit = (values) => {
-    const formData = {
-      ...values,
-    }
-    const fData = new FormData()
-    if (image.file) fData.append('profile_pic', image?.file, image?.file?.name)
-    // eslint-disable-next-line array-callback-return
-    Object.entries(formData).map((field) => {
-      fData.append(field[0], field[1] || '')
-    })
-    dispatch(profileDetailsUpdateFetchAPI(fData))
-  }
+  // const handleProfileUpdateSubmit = (values) => {
+  //   const formData = {
+  //     ...values,
+  //   }
+  //   const fData = new FormData()
+  //   if (image.file) fData.append('profile_pic', image?.file, image?.file?.name)
+  //   // eslint-disable-next-line array-callback-return
+  //   Object.entries(formData).map((field) => {
+  //     fData.append(field[0], field[1] || '')
+  //   })
+  //   dispatch(profileDetailsUpdateFetchAPI(fData))
+  // }
 
   return (
     <>
@@ -72,12 +73,24 @@ const Profile = () => {
           </h1>
         </div>
         <div className="flex flex-col gap-2 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-2 h-full w-full justify-center items-center py-0 ms:py-0 lg:py-5">
-          <Formik
+          <Formik<UserProfileProps>
             initialValues={initialValues}
             validationSchema={profileUpdateValidationSchema}
             validateOnBlur={false}
             validateOnChange={false}
-            onSubmit={handleProfileUpdateSubmit}
+            onSubmit={(values) => {
+              const formData = {
+                ...values,
+              }
+              const fData = new FormData()
+              if (image?.file)
+                fData.append('profile_pic', image?.file, image?.file?.name)
+              // eslint-disable-next-line array-callback-return
+              Object.entries(formData).map((field) => {
+                fData.append(field[0], field[1] || '')
+              })
+              dispatch(profileDetailsUpdateFetchAPI(fData))
+            }}
             enableReinitialize
           >
             {({ handleSubmit }) => (
@@ -142,7 +155,7 @@ const Profile = () => {
                     <CustomButton
                       type="submit"
                       disabled={isLoading || isUpdating}
-                      onClick={(e) => {
+                      onClick={(e: React.FormEvent<HTMLButtonElement>) => {
                         dispatch(setSignInEffect(true))
                       }}
                       onAnimationEnd={() => {

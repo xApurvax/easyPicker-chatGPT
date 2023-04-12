@@ -12,12 +12,13 @@ import { useNavigate } from 'react-router-dom'
 import AuthMiddleware from '../../utils/AuthMiddleware'
 import Cookies from 'js-cookie'
 import ResetPasswordMiddleware from '../../utils/ResetPasswordMiddleware'
+import { PasswordResetProps, fixMeLater } from '../../utils/types'
 
 const PasswordReset = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { isPasswordChange, forgotModal, resetPasswordStatus } = useSelector(
-    (state) => ({
+    (state : fixMeLater) => ({
       isPasswordChange: state.forgotPasswordSlice.isPasswordChange,
       forgotModal: state.forgotPasswordSlice.forgotModal,
       resetPasswordStatus: state.forgotPasswordSlice.resetPasswordStatus,
@@ -25,17 +26,17 @@ const PasswordReset = () => {
   )
   const initialValues = { password: '', confirmPassword: '' }
 
-  const handleResetPassword = (values) => {
-    dispatch(
-      resetPasswordApi({
-        email:
-          forgotModal?.email === null
-            ? Cookies.get('user_mail')
-            : forgotModal?.email,
-        password: values.password,
-      })
-    )
-  }
+  // const handleResetPassword = (values : fixMeLater) => {
+  //   dispatch(
+  //     resetPasswordApi({
+  //       email:
+  //         forgotModal?.email === null
+  //           ? Cookies.get('user_mail')
+  //           : forgotModal?.email,
+  //       password: values.password,
+  //     })
+  //   )
+  // }
 
   useEffect(() => {
     if (resetPasswordStatus === 200) navigate('/auth/signin')
@@ -51,12 +52,22 @@ const PasswordReset = () => {
       <AuthMiddleware>
         <div className="flex p-5 ms:p-5 sm:p-5 md:p-10 lg:p-10 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[90%]">
           <div className="flex flex-col gap-2 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-0 ms:py-0 lg:py-10">
-            <Formik
+            <Formik<PasswordResetProps>
               initialValues={initialValues}
               validationSchema={ResetPasswordValidationSchema}
               validateOnBlur={false}
               validateOnChange={false}
-              onSubmit={handleResetPassword}
+              onSubmit={(values) => {
+                dispatch(
+                  resetPasswordApi({
+                    email:
+                      forgotModal?.email === null
+                        ? Cookies.get('user_mail')
+                        : forgotModal?.email,
+                    password: values.password,
+                  })
+                )
+              }}
             >
               {({ handleSubmit }) => (
                 <form className="w-full max-w-md" onSubmit={handleSubmit}>

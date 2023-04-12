@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Formik } from 'formik'
+import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import InputField from '../form/InputField'
 import CustomButton from '../form/CustomButton'
 import { forgotPasswordValidationSchema } from '../../utils/FormValidations'
-import { useSelector, useDispatch } from 'react-redux'
 import { forgotFetchAPi } from '../../redux/slices/auth/forgotPasswordSlice'
-import { useNavigate } from 'react-router-dom'
 import AuthMiddleware from '../../utils/AuthMiddleware'
-import { useRef } from 'react'
+import { fixMeLater, ForgotProps } from '../../utils/types'
 
 const INITIAL_COUNT = 59
 const STATUS = {
@@ -25,17 +25,13 @@ const Forgot = () => {
     setSecondsRemaining(INITIAL_COUNT)
   }
 
-  const { isVerify, forgotModal } = useSelector((state) => ({
+  const { isVerify, forgotModal } = useSelector((state : fixMeLater) => ({
     isVerify: state.forgotPasswordSlice.isVerify,
     forgotModal: state.forgotPasswordSlice.forgotModal,
   }))
 
   const navigate = useNavigate()
   const initialValues = { email: '' }
-  const handleLoginSubmit = (values) => {
-    dispatch(forgotFetchAPi(values))
-    handleTimerStart()
-  }
 
   useEffect(() => {
     forgotModal.otpVerified && navigate('/reset-password')
@@ -49,7 +45,7 @@ const Forgot = () => {
     status === STATUS.STARTED ? 1000 : null
   )
 
-  function useInterval(callback, delay) {
+  function useInterval(callback :fixMeLater, delay :fixMeLater) {
     const savedCallback = useRef()
 
     // Remember the latest callback.
@@ -77,12 +73,15 @@ const Forgot = () => {
     <AuthMiddleware>
       <div className="flex p-5 ms:p-5 sm:p-5 md:p-10 lg:p-8 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[90%]">
         <div className="flex flex-col gap-2 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-3">
-          <Formik
+          <Formik<ForgotProps>
             initialValues={initialValues}
             validationSchema={forgotPasswordValidationSchema}
             validateOnBlur={false}
             validateOnChange={false}
-            onSubmit={handleLoginSubmit}
+            onSubmit={(values) => {
+              dispatch(forgotFetchAPi(values))
+              handleTimerStart()
+            }}
           >
             {({ handleSubmit }) => (
               <form

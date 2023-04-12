@@ -8,15 +8,16 @@ import { registerFetchAPi } from '../../redux/slices/auth/registerSlice'
 import { useNavigate } from 'react-router-dom'
 import { setSignInEffect } from '../../redux/slices/buttonEffectSlice'
 import AuthMiddleware from '../../utils/AuthMiddleware'
+import { SignupProps, fixMeLater } from '../../utils/types'
 
 const SignIn = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { isRegisterLoading } = useSelector((state) => ({
+  const { isRegisterLoading } = useSelector((state : fixMeLater) => ({
     isRegisterLoading: state.registerSlice.isRegisterLoading,
   }))
   const initialValues = { username: '', password: '', name: '', email: '' }
-  const handleSignInSubmit = (values) => dispatch(registerFetchAPi(values))
+  // const handleSignInSubmit = (values) => dispatch(registerFetchAPi(values))
 
   useEffect(() => {
     document.title = 'Sign up | Title Generator'
@@ -26,12 +27,12 @@ const SignIn = () => {
     <AuthMiddleware>
       <div className="flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-8 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[90%]">
         <div className="flex flex-col gap-4 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-0">
-          <Formik
+          <Formik<SignupProps>
             initialValues={initialValues}
             validationSchema={registerValidationSchema}
             validateOnBlur={false}
             validateOnChange={false}
-            onSubmit={handleSignInSubmit}
+            onSubmit={ (values) => dispatch(registerFetchAPi(values))}
           >
             {({ handleSubmit }) => (
               <form className="w-full max-w-md" onSubmit={handleSubmit}>
@@ -81,7 +82,7 @@ const SignIn = () => {
                     <CustomButton
                       type="submit"
                       disabled={isRegisterLoading}
-                      onClick={(e) => {
+                      onClick={(e : React.FormEvent<HTMLButtonElement>) => {
                         dispatch(setSignInEffect(true))
                       }}
                       onAnimationEnd={() => {

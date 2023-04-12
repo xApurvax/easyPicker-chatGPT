@@ -3,8 +3,23 @@ import ApiMiddleware from '../../../utils/ApiMiddleware'
 import Cookies from 'js-cookie'
 import toast from 'react-hot-toast'
 import cookies from 'js-cookie'
+import {
+  AddUserType,
+  ApiResponseType,
+  EditUserType,
+  ForgotPasswordDataType,
+  LoginDataType,
+  LoginResponseDataType,
+  ParamsType,
+  ReduxOptions,
+  ResendOtpDataType,
+  ResetPasswordDataType,
+  User,
+  VerifyDataType,
+  AuthState
+} from 'types'
 
-const initialState = {
+const initialState : AuthState = {
   isSuccess: false,
   allData: {
     token: {
@@ -20,9 +35,7 @@ export const loginFetchAPi = createAsyncThunk(
   'login/fetch',
   async (data, { rejectWithValue }) => {
     try {
-      const loginCredentials = await ApiMiddleware.post('/api/auth/login/', {
-        ...data,
-      })
+      const loginCredentials = await ApiMiddleware.post('/api/auth/login/', data)
       toast.success(loginCredentials.data.message)
       return loginCredentials
     } catch (error) {

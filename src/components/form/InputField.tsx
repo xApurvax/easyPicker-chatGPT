@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { useField } from 'formik'
 import classNames from 'classnames'
+import { BsEye, BsEyeSlash } from 'react-icons/bs'
+import { InputProps } from '../../utils/types'
 
-const CustomTextArea = ({
+const InputField = ({
   inputstyle,
   placeholder,
   borderstyle,
@@ -10,15 +12,21 @@ const CustomTextArea = ({
   iconAfter,
   iconBefore,
   lable,
+  name,
   ...props
-}) => {
-  // eslint-disable-next-line no-unused-vars
-  const [showPassword, setShowPassword] = useState(true)
-  const [field, meta] = useField(props)
+} :InputProps) => {
+  const [showPassword, setShowPassword] = useState<boolean>(true)
+  const [field, meta] = useField(name)
+
 
   return (
     <div className="relative w-full">
-      <textarea
+      {iconBefore ? (
+        <div className="absolute cursor-pointer top-1/2 h-max -translate-y-1/2 left-5 text-white">
+          <>{iconBefore} </>
+        </div>
+      ) : null}
+      <input
         {...field}
         {...props}
         placeholder={placeholder}
@@ -36,7 +44,18 @@ const CustomTextArea = ({
             : props.type || 'text'
         }
       />
-
+      {props.type === 'password' ? (
+        <div
+          className="absolute top-4 2xl:top-[24px] right-5 cursor-pointer select-none text-textGray"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <BsEyeSlash size={20} /> : <BsEye size={20} />}
+        </div>
+      ) : iconAfter ? (
+        <div className="absolute cursor-pointer top-1/2 h-max -translate-y-1/2 right-5 text-white">
+          <>{iconAfter} </>
+        </div>
+      ) : null}
       {meta.touched && meta.error && (
         <div
           className={classNames('absolute error lg:mt-[2px]', {
@@ -52,4 +71,4 @@ const CustomTextArea = ({
   )
 }
 
-export default CustomTextArea
+export default InputField
