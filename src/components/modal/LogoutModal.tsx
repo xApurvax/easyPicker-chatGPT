@@ -5,11 +5,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { logOut, setLogOutModal } from '../../redux/slices/auth/loginSlice'
 import { IoClose } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
+import { fixMeLater } from '../../utils/types'
 
 export const LogoutModal = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { logOutModal } = useSelector((state) => ({
+  const { logOutModal } = useSelector((state: fixMeLater) => ({
     logOutModal: state.loginSlice.logOutModal,
   }))
   return (

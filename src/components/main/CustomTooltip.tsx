@@ -1,15 +1,21 @@
-import React, { useRef } from 'react'
+import React, { useRef, MouseEvent } from 'react'
 
-const CustomTooltip = ({ children, tooltip }) => {
-  const tooltipRef = useRef()
-  const containerRef = useRef()
+interface CustomTooltipProps {
+  children: React.ReactNode
+  tooltip: string
+}
+
+const CustomTooltip: React.FC<CustomTooltipProps> = ({ children, tooltip }) => {
+  const tooltipRef = useRef<HTMLSpanElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+
   return (
     <div
       ref={containerRef}
-      onMouseEnter={(clientX) => {
+      onMouseEnter={(event: MouseEvent<HTMLDivElement>) => {
         if (!tooltipRef.current || !containerRef.current) return
         const { left } = containerRef.current.getBoundingClientRect()
-        tooltipRef.current.style.left = clientX - left + 'px'
+        tooltipRef.current.style.left = event.clientX - left + 'px'
       }}
       className="group relative inline-block"
     >

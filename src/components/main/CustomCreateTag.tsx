@@ -2,39 +2,43 @@ import React from 'react'
 import { IoIosClose } from 'react-icons/io'
 import classNames from 'classnames'
 
-const CustomCreateTag = ({
+interface CustomCreateTagProps {
+  tags: string[]
+  setTags: React.Dispatch<React.SetStateAction<string[] | []>>
+  setHasSomethingTyped?: React.Dispatch<React.SetStateAction<string>>
+}
+
+const CustomCreateTag: React.FC<CustomCreateTagProps> = ({
   tags,
   setTags,
-  selectedTags,
   setHasSomethingTyped,
   ...props
 }) => {
-  const addTags = (event) => {
+  const addTags = (event: React.KeyboardEvent<HTMLInputElement>) => {
     event.preventDefault()
+    const eventTarget = event.target as HTMLInputElement
     if (
       event.key === 'Enter' &&
-      event.target.value !== '' &&
-      event.target.value.trim() !== ''
+      eventTarget.value !== '' &&
+      eventTarget.value.trim() !== ''
     ) {
       setTags([
         ...tags,
-        event.target.value.charAt(0).toUpperCase() +
-          event.target.value.slice(1),
+        eventTarget.value.charAt(0).toUpperCase() + eventTarget.value.slice(1),
       ])
-      // selectedTags([...tags, event.target.value]);
-      event.target.value = ''
-      setHasSomethingTyped('')
+      eventTarget.value = ''
+      setHasSomethingTyped && setHasSomethingTyped('')
     }
   }
-  const removeTags = (index) => {
-    setTags([...tags.filter((tag) => tags.indexOf(tag) !== index)])
+  const removeTags = (index: number) => {
+    setTags([...tags.filter((tag: string) => tags?.indexOf(tag) !== index)])
   }
 
   return (
     <main className="w-full max-w-[700px]">
       <div className={classNames('flex flex-col', tags.length > 0 && 'gap-3')}>
         <ul className="flex gap-2 flex-wrap">
-          {tags.map((tag, index) => (
+          {tags.map((tag: string, index: number) => (
             <li
               key={index}
               className="flex items-center p-2 gap-2
@@ -53,10 +57,8 @@ const CustomCreateTag = ({
             <input
               {...props}
               type="text"
-              onKeyUp={(event) => {
-                addTags(event)
-              }}
-              maxLength="15"
+              onKeyUp={(event) => addTags(event)}
+              maxLength={15}
               placeholder="Type word and hit Enter ↵ to add"
               className="placeholder:text-[10px] ms:text-[10px] sm:text-base md:text-base lg:text-base
             placeholder:ms:text-[10px] placeholder:sm:text-base placeholder:md:text-base placeholder:lg:text-xs lg:max-w-[200px] p-2 lg:py-1.5 border-[1px] rounded-md bg-[#EDF2F7] border-solid border-[#aab2b8] text-[16px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-primary focus:rounded-md w-full max-w-[170px] sm:max-w-[260px] disabled:cursor-not-allowed "

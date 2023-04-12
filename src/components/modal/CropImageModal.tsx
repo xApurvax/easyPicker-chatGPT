@@ -1,25 +1,41 @@
+/* eslint-disable no-empty-pattern */
 import { Dialog, Transition } from '@headlessui/react'
 import { Field } from 'formik'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import { Fragment, useState } from 'react'
-import Cropper from 'react-easy-crop'
+import Cropper, { Area } from 'react-easy-crop'
 import getCroppedImg from '../crop/CropImage'
+import React from 'react'
+import { Nullable } from '../../utils/types'
 
-const CropImageModal = ({ photoURL, setImage, ...props }) => {
-  const [isOpen, setIsOpen] = useState(true)
+interface ImageType {
+  file: { name: string; size: number; type: string }
+  url?: string
+}
+
+interface CropImageModalProps {
+  photoURL: { data_url: string }
+  setImage: React.Dispatch<React.SetStateAction<ImageType | {}>>
+  name?: string
+}
+
+const CropImageModal: React.FC<CropImageModalProps> = ({
+  photoURL,
+  setImage,
+  ...props
+}) => {
+  const [isOpen, setIsOpen] = useState<boolean>(true)
   const [crop, setCrop] = useState({ x: 0, y: 0 })
-  const [zoom, setZoom] = useState(1)
-  const [rotation, setRotation] = useState(0)
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
+  const [zoom, setZoom] = useState<number | undefined>(1)
+  const [rotation, setRotation] = useState<number | undefined>(0)
+  const [croppedAreaPixels, setCroppedAreaPixels] =
+    useState<Nullable<Area>>(null)
 
-  const cropComplete = (croppedArea, croppedAreaPixels) => {
+  const cropComplete = (croppedAreaPixels: Area) =>
     setCroppedAreaPixels(croppedAreaPixels)
-  }
 
-  const zoomPercentage = (value) => {
-    return `${Math.round(value - 1)}%`
-  }
+  const zoomPercentage = (value: number) => `${Math.round(value - 1)}%`
 
   const saveCropImage = async () => {
     const croppedImage = await getCroppedImg(
@@ -32,16 +48,13 @@ const CropImageModal = ({ photoURL, setImage, ...props }) => {
 
   function closeModal() {
     setIsOpen(false)
-    setImage([])
+    setImage({})
   }
 
-  // function openModal() {
-  //   setIsOpen(true)
-  // }
   return (
     <div>
       <Field name={props.name}>
-        {({ field, meta }) => {
+        {({}) => {
           return (
             <Transition appear show={isOpen} as={Fragment}>
               <Dialog
@@ -94,7 +107,7 @@ const CropImageModal = ({ photoURL, setImage, ...props }) => {
                             max={5}
                             step={1}
                             value={zoom}
-                            onChange={(zoom) => setZoom(zoom)}
+                            onChange={(zoom) => setZoom(zoom as number)}
                             ariaValueTextFormatterForHandle={zoomPercentage}
                           />
                         </div>
@@ -107,7 +120,9 @@ const CropImageModal = ({ photoURL, setImage, ...props }) => {
                             max={360}
                             step={1}
                             value={rotation}
-                            onChange={(rotation) => setRotation(rotation)}
+                            onChange={(rotation) =>
+                              setRotation(rotation as number)
+                            }
                             ariaValueTextFormatterForHandle={zoomPercentage}
                           />
                         </div>

@@ -8,9 +8,9 @@ import otpTimerSlice from '../slices/otpTimerSlice'
 import savedRecordSlice from '../slices/savedRecordSlice'
 import counterSlice from '../slices/counterSlice'
 import contactusSlice from '../slices/auth/contactusSlice'
-import loginSlice from '../../redux/slices/auth/loginSlice'
-import registerSlice from '../../redux/slices/auth/registerSlice'
-import forgotPasswordSlice from '../../redux/slices/auth/forgotPasswordSlice'
+import loginSlice from '../slices/auth/loginSlice'
+import registerSlice from '../slices/auth/registerSlice'
+import forgotPasswordSlice from '../slices/auth/forgotPasswordSlice'
 
 const store = configureStore({
   reducer: {

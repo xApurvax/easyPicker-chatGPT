@@ -2,20 +2,22 @@ import React from 'react'
 import { Switch } from '@headlessui/react'
 import { useDispatch } from 'react-redux'
 import classNames from 'classnames'
+import { fixMeLater } from '../../utils/types'
 
-const ToggleSwitch = ({ toggle, setToggle }) => {
+interface ToggleSwitchProps {
+  toggle: boolean
+  setToggle: fixMeLater
+}
+
+const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ toggle, setToggle }) => {
   const dispatch = useDispatch()
-  // const [enabled, setEnabled] = useState(false)
-  const handleToggle = () => {
-    dispatch(setToggle(!toggle))
-  }
+  const handleToggle = () => dispatch(setToggle(!toggle))
+
   return (
     <div>
       <Switch
         checked={toggle}
-        onChange={() => {
-          handleToggle()
-        }}
+        onChange={() => handleToggle()}
         className={classNames(
           'relative inline-flex h-[18px] w-[30px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75',
           toggle ? 'bg-[#2e90fa]' : 'bg-[#f0f2f3]'

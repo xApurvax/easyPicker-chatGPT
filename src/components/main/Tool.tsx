@@ -8,10 +8,7 @@ import {
   setScanEffect,
   setGenerateHeadlineEffect,
 } from '../../redux/slices/buttonEffectSlice'
-import {
-  setHeadlineLength,
-  setHeadlineType,
-} from '../../redux/slices/RangeSliderSlice'
+import { setHeadlineLength } from '../../redux/slices/RangeSliderSlice'
 import {
   generateHeadlineFetchAPi,
   setIsFindUseSynonyms,
@@ -31,6 +28,7 @@ import { FaRegCopy } from 'react-icons/fa'
 import { BsCheck2 } from 'react-icons/bs'
 import toast, { Toaster } from 'react-hot-toast'
 import classNames from 'classnames'
+import { Nullable, fixMeLater } from '../../utils/types'
 
 const Tool = () => {
   const dispatch = useDispatch()
@@ -46,7 +44,7 @@ const Tool = () => {
     allTitles,
     isLoading,
     goBackToSettings,
-  } = useSelector((state) => ({
+  } = useSelector((state: fixMeLater) => ({
     scanEffect: state.buttonEffectSlice.scanEffect,
     generateHeadlineEffect: state.buttonEffectSlice.generateHeadlineEffect,
     headlineLength: state.RangeSliderSlice.headlineLength,
@@ -64,19 +62,21 @@ const Tool = () => {
   const [edit, setEdit] = useState(true)
   const [expIncHeadline, setExpIncHeadline] = useState(false)
   const [expExcHeadline, setExpExcHeadline] = useState(false)
-  const [includeTag, setIncludeTag] = useState([])
-  const [excludeTag, setExcludeTag] = useState([])
-  const [copySuccess, setCopySuccess] = useState({
+  const [includeTag, setIncludeTag] = useState<string[] | []>([])
+  const [excludeTag, setExcludeTag] = useState<string[]>([])
+  const [copySuccess, setCopySuccess] = useState<{
+    copied: boolean
+    id: Nullable<number>
+  }>({
     copied: false,
     id: null,
   })
   // const [goBackToSettings, setGoBackToHeadlineSettings] = useState(true)
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
     setHasArticle(e.target.value)
-  }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     dispatch(
       generateHeadlineFetchAPi({
@@ -141,12 +141,9 @@ const Tool = () => {
                     rows={18}
                     id="paragraph"
                     name="paragraph"
-                    type="text"
                     value={hasArticle}
                     placeholder="Type in or copy and paste your text/articale"
-                    onChange={(e) => {
-                      handleChange(e)
-                    }}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               ) : (
@@ -356,7 +353,7 @@ const Tool = () => {
                         <div className="w-[180px]">
                           <StepDotsRange
                             defaultValue={headlineType}
-                            setRange={setHeadlineType}
+                            // setRange={setHeadlineType}
                             min={0}
                             max={40}
                             step={10}
@@ -400,7 +397,7 @@ const Tool = () => {
                           color="#fafafa"
                           ariaLabel="three-dots-loading"
                           wrapperStyle={{}}
-                          wrapperClassName=""
+                          // wrapperClassName=""
                           visible={true}
                         />
                       )}
@@ -433,7 +430,7 @@ const Tool = () => {
                       Generated
                     </p>
                     <div className="flex flex-col gap-3 py-2">
-                      {allTitles.map((title, id) => (
+                      {allTitles.map((title: string, id: number) => (
                         <div
                           key={id}
                           className="p-2 shadow-lg bg-white rounded-md flex justify-between"
