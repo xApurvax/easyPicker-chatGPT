@@ -5,7 +5,8 @@ type PixelCropProps = {
   y?: number;
 }
 
-export const createImage = (url : string) =>
+
+export const createImage = (url : string): Promise<HTMLImageElement> =>
 new Promise((resolve, reject) => {
   const image = new Image()
   if (image) {
@@ -44,13 +45,11 @@ export default async function getCroppedImg(
   const image:any = await createImage(imageSrc)
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
-  console.log(typeof image)
   if (!ctx) {
     return null
   }
 
   const rotRad = getRadianAngle(rotation)
-  // const snedImage = {width: image.width,height:image.height, rotation :rotation}
   const { width: bBoxWidth, height: bBoxHeight } = rotateSize({
     width: image.width,
     height: image.height,
@@ -78,6 +77,7 @@ export default async function getCroppedImg(
   ctx.putImageData(data, 0, 0)
 
   return new Promise((resolve, reject) => {
+    
     canvas.toBlob((file) => {
       file.name = 'cropped.jpeg'
       resolve({ file: file, url: URL.createObjectURL(file) })
