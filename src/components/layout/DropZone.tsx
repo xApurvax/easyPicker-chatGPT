@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import ImageUploading from 'react-images-uploading'
+import ImageUploading, { ImageListType } from 'react-images-uploading'
 import { MdOutlineCancel } from 'react-icons/md'
 import dummy_user from '../../assets/dummy_user.png'
 import classNames from 'classnames'
@@ -7,17 +7,18 @@ import { UserPictureProps } from '../../utils/types'
 
 type DropZonePropsTypes = {
   image? : UserPictureProps,
-  setImage?: (e : []) => void,
+  setImage?: Dispatch<SetStateAction<UserPictureProps | undefined>>
   imageAfterCrop?:string,
   imageAtEdit?:string 
 }
 
 const DropZone = ({ image, setImage, imageAfterCrop, imageAtEdit } : DropZonePropsTypes ) => {
-
+  // console.log(image);
+  
   const [images, setImages] = React.useState([])
   const maxNumber = 69
-  const onChange = (imageList : []) => {
-    setImages(imageList)
+  const onChange = (imageList : ImageListType) => {
+    setImages(imageList as never[])
     setImage!(imageList)
   }
   return (
@@ -92,20 +93,6 @@ const DropZone = ({ image, setImage, imageAfterCrop, imageAtEdit } : DropZonePro
                   </div>
                 </div>
               </div>
-              //   <div className="">
-              //        <div className="w-full h-full ms:h-12 ms:w-12 flex justify-center items-center">
-              //     <img
-              //         src={dummy_user}
-              //         alt="Picture of an text"
-              //         className="rounded-full"
-              //       />
-              //   <div className="image-item__btn-wrapper absolute bottom-0 right-0 rotate-45 flex justify-center items-center">
-              //         <button type="button" onClick={() => onImageRemove()}>
-              //           <MdOutlineCancel size={20} fill="#544BB9" />
-              //         </button>
-              //       </div>
-              //   </div>
-              // </div>
             )}
           </div>
         )}

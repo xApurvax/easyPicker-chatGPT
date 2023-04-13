@@ -24,7 +24,7 @@ export type UserProfileProps = {
 const Profile = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [image, setImage] = useState<UserPictureProps>()
+  const [image, setImage] = useState<UserPictureProps | undefined>()
   const { isLoading, isUpdating, profileDetails } = useSelector((state : fixMeLater) => ({
     isLoading: state.ProfileSlice.isLoading,
     isUpdating: state.ProfileSlice.isUpdating,
@@ -50,19 +50,21 @@ const Profile = () => {
     setImage({ url: profileDetails?.profile_pic })
   }, [profileDetails])
 
-  // const handleProfileUpdateSubmit = (values) => {
-  //   const formData = {
-  //     ...values,
-  //   }
-  //   const fData = new FormData()
-  //   if (image.file) fData.append('profile_pic', image?.file, image?.file?.name)
-  //   // eslint-disable-next-line array-callback-return
-  //   Object.entries(formData).map((field) => {
-  //     fData.append(field[0], field[1] || '')
-  //   })
-  //   dispatch(profileDetailsUpdateFetchAPI(fData))
-  // }
+  const handleProfileUpdateSubmit = (values : UserProfileProps) => {
+    const formData = {
+      ...values,
+    }
+    const fData = new FormData()
+    if (image!.file) fData.append('profile_pic', image!.file, image?.file?.name)
+    // eslint-disable-next-line array-callback-return
+    Object.entries(formData).map((field) => {
+      fData.append(field[0], field[1] || '')
+    })
+    dispatch(profileDetailsUpdateFetchAPI(fData))
+  }
 
+   console.log(image,"sw");
+   
   return (
     <>
       <div className="flex flex-col p-5 ms:p-5 sm:p-5 md:p-10 lg:p-5 gap-2 rounded-xl bg-white w-full h-full ms:max-w-[90%]">
@@ -84,19 +86,7 @@ const Profile = () => {
             validationSchema={profileUpdateValidationSchema}
             validateOnBlur={false}
             validateOnChange={false}
-            onSubmit={(values) => {
-              const formData = {
-                ...values,
-              }
-              const fData = new FormData()
-              if (image?.file)
-                fData.append('profile_pic', image?.file, image?.file?.name)
-              // eslint-disable-next-line array-callback-return
-              Object.entries(formData).map((field) => {
-                fData.append(field[0], field[1] || '')
-              })
-              dispatch(profileDetailsUpdateFetchAPI(fData))
-            }}
+            onSubmit={(values) => handleProfileUpdateSubmit(values)}
             enableReinitialize
           >
             {({ handleSubmit }) => (
