@@ -8,16 +8,21 @@ import { loginFetchAPi } from '../../redux/slices/auth/loginSlice'
 import { setLoginEffect } from '../../redux/slices/buttonEffectSlice'
 import { LoginValidationSchema } from '../../utils/FormValidations'
 import AuthMiddleware from '../../utils/AuthMiddleware'
+import { AppDispatch, RootState } from '../../redux/store/store'
 
+export type LoginProps = {
+  username: string
+  password: string
+}
 const LogIn = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
-  const { isSuccess } = useSelector((state) => ({
-    isSuccess: state.loginSlice.isSuccess,
+  const { isSuccess } = useSelector((state: RootState) => ({
+    isSuccess: state.LoginSlice.isSuccess,
   }))
   const navigate = useNavigate()
   const initialValues = { username: '', password: '' }
-  const handleLoginSubmit = (values) => dispatch(loginFetchAPi(values))
+  // const handleLoginSubmit = (values : LoginProps ) => dispatch(loginFetchAPi(values))
 
   useEffect(() => {
     document.title = 'Sign in | Title Generator'
@@ -27,12 +32,12 @@ const LogIn = () => {
     <AuthMiddleware>
       <div className="flex p-10 ms:p-5 sm:p-5 md:p-10 lg:p-5 gap-8 rounded-xl bg-white w-full h-full  ms:max-w-[90%]">
         <div className="flex flex-col gap-4 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-2">
-          <Formik
+          <Formik<LoginProps>
             initialValues={initialValues}
             validationSchema={LoginValidationSchema}
             validateOnBlur={false}
             validateOnChange={false}
-            onSubmit={handleLoginSubmit}
+            onSubmit={(values) => dispatch(loginFetchAPi(values))}
           >
             {({ handleSubmit }) => (
               <form className="w-full max-w-md" onSubmit={handleSubmit}>
@@ -74,7 +79,7 @@ const LogIn = () => {
                     <CustomButton
                       type="submit"
                       disabled={isSuccess}
-                      onClick={(e) => {
+                      onClick={(e: React.FormEvent<HTMLButtonElement>) => {
                         dispatch(setLoginEffect(true))
                       }}
                       onAnimationEnd={() => {

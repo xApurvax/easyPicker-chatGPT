@@ -7,18 +7,17 @@ import ReactPaginate from 'react-paginate'
 import { CgSmileNeutral } from 'react-icons/cg'
 import { IoSearchOutline, IoCopyOutline } from 'react-icons/io5'
 import { Oval } from 'react-loader-spinner'
-import { saveResultsDataFetchAPi } from '../../redux/slices/savedRecordSlice'
 import { toast } from 'react-hot-toast'
 import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md'
 import { GoHome } from 'react-icons/go'
 import { useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 import debounce from 'lodash.debounce'
-import { fixMeLater } from '../../utils/types/types'
-import { RootState } from '../../redux/store/store'
+import { AppDispatch, RootState } from '../../redux/store/store'
+import { saveResultsDataFetchAPi } from '../../redux/slices/savedRecordSlice'
 
 const SavedRecords = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const history = useNavigate()
   const { isLoading, saveResultsData, totalResults } = useSelector(
     (state: RootState) => ({
@@ -63,7 +62,7 @@ const SavedRecords = () => {
       {
         Header: 'Included Keyword(s)',
         id: 'headingType',
-        accessor: (row: fixMeLater) => {
+        accessor: (row: { heading_type: string; id: number }): JSX.Element => {
           return (
             <div key={row.id} className="group">
               <div className="flex gap-30 max-w-[100px]">
@@ -80,7 +79,7 @@ const SavedRecords = () => {
       {
         Header: 'Paragraph',
         id: 'Paragraph',
-        accessor: (row: fixMeLater) => {
+        accessor: (row: { id: number; paragraph: string }) => {
           return (
             <div key={row.id} className="">
               <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap max-h-[110px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
@@ -95,7 +94,7 @@ const SavedRecords = () => {
       {
         Header: 'Titles',
         id: 'Titles',
-        accessor: (row: fixMeLater) => {
+        accessor: (row: { id: number; title: string }) => {
           return (
             <div key={row.id} className="">
               <div className="flex flex-col gap-1.5 ms:gap-1.5 sm:gap-1.5 md:gap-3 lg:gap-3 w-full max-w-[300px] whitespace-pre-wrap max-h-[110px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">
@@ -133,7 +132,7 @@ const SavedRecords = () => {
       {
         Header: 'Tags',
         id: 'Tags',
-        accessor: (row: fixMeLater, i: number) => {
+        accessor: (row: { tag: string }, i: number) => {
           return (
             <div key={i} className="">
               <div className="flex flex-col gap-1.5 ms:gap-1.5 sm:gap-1.5 md:gap-3 lg:gap-3 w-full max-w-[300px] whitespace-pre-wrap max-h-[110px] overflow-scroll scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#ededed] group-hover:scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 p-2">

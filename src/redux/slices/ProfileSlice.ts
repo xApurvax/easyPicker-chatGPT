@@ -35,13 +35,9 @@ export const profileDetailsFetchAPI = createAsyncThunk(
   }
 )
 
-interface ProfileDetailsUpdatePayload {
-  data: any
-}
-
 export const profileDetailsUpdateFetchAPI = createAsyncThunk(
   'profileDetailsUpdateFetch/fetch',
-  async (data: ProfileDetailsUpdatePayload, { rejectWithValue }) => {
+  async (data: FormData, { rejectWithValue }): Promise<any> => {
     try {
       const response = await ApiMiddleware.put(`/api/auth/register/`, data)
       return response

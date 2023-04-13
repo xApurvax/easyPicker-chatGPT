@@ -3,14 +3,14 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import CustomButton from '../form/CustomButton'
 import { twoDigits } from '../../utils/helper'
+import OtpInput from 'react-otp-input'
+import { useSelector, useDispatch } from 'react-redux'
+import { Nullable } from '../../utils/types/types'
+import { AppDispatch, RootState } from '../../redux/store/store'
 import {
   forgotFetchAPi,
   forgotOtpVerifyApi,
 } from '../../redux/slices/auth/forgotPasswordSlice'
-import OtpInput from 'react-otp-input'
-import { useSelector, useDispatch } from 'react-redux'
-import { Nullable } from '../../utils/types/types'
-import { RootState } from '../../redux/store/store'
 
 const INITIAL_COUNT = 59
 const STATUS = {
@@ -19,7 +19,7 @@ const STATUS = {
 }
 
 const VerifyOtpModal = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const [otp, setOtp] = useState<string>('')
   const [secondsRemaining, setSecondsRemaining] = useState(INITIAL_COUNT)
   const [status, setStatus] = useState(STATUS.STARTED)

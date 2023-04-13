@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import {
   ForgotOtpVerifyApiPayload,
   ForgotPasswordFetchPayload,
+  Nullable,
   PasswordResetPayload,
 } from '../../../utils/types/types'
 import { SOMETHING_WENT_WRONG } from '../../../utils/constant'
@@ -18,7 +19,7 @@ interface UserState {
     isVisible: boolean
     otpVerified: boolean
   }
-  resetPasswordStatus: null | string
+  resetPasswordStatus: Nullable<number>
 }
 
 const initialState: UserState = {

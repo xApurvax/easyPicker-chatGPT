@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useField } from 'formik'
 import classNames from 'classnames'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
+import { InputProps } from '../../utils/types/types'
 
 const InputField = ({
   inputstyle,
@@ -11,10 +12,11 @@ const InputField = ({
   iconAfter,
   iconBefore,
   lable,
+  name,
   ...props
-}) => {
-  const [showPassword, setShowPassword] = useState(true)
-  const [field, meta] = useField(props)
+}: InputProps) => {
+  const [showPassword, setShowPassword] = useState<boolean>(true)
+  const [field, meta] = useField(name)
 
   return (
     <div className="relative w-full">
@@ -29,8 +31,8 @@ const InputField = ({
         placeholder={placeholder}
         className={classNames(
           { 'pl-[50px]': iconBefore },
-          { [inputstyle]: !meta.error },
-          { [borderstyle]: meta.error }
+          !meta.error && inputstyle,
+          meta.error && borderstyle
         )}
         autoComplete="off"
         type={

@@ -2,14 +2,14 @@ import React from 'react'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import { useDispatch } from 'react-redux'
-import { fixMeLater } from '../../utils/types/types'
+import { AppDispatch } from '../../redux/store/store'
 
 interface DualRangeProps {
   defaultValue: number | number[]
   min: number
   max: number
   step: number
-  setRange: fixMeLater
+  setRange: any
 }
 
 const DualRange: React.FC<DualRangeProps> = ({
@@ -19,19 +19,16 @@ const DualRange: React.FC<DualRangeProps> = ({
   step,
   setRange,
 }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   return (
     <div>
       <Slider
-        // color="blue"
-        // inverted={false}
         min={min}
         max={max}
         step={step}
         range
         allowCross={false}
         onChange={(e) => dispatch(setRange(e))}
-        // tooltip={false}
         defaultValue={defaultValue}
       />
     </div>

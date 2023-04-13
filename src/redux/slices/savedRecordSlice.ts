@@ -9,13 +9,19 @@ import {
 interface SaveRecordState {
   isLoading: boolean
   isRegenerate: boolean
-  saveResultsData: any[]
+  saveResultsData: {
+    heading_type: string
+    paragraph: string
+    id: number
+    title: string
+    tag: string
+  }[]
   totalResults: number
 }
 
 interface SaveRecordData {
   search?: string
-  page?: string
+  page?: number
 }
 
 export const saveResultsDataFetchAPi = createAsyncThunk(
@@ -25,8 +31,7 @@ export const saveResultsDataFetchAPi = createAsyncThunk(
       const response = await ApiMiddleware.get(
         `/api/search/heading/?search=${data?.search || ''}&page=${
           data?.page || '1'
-        }`,
-        { ...data }
+        }`
       )
       return response
     } catch (error: any) {

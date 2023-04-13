@@ -1,6 +1,6 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { getAccessToken } from './helper';
-import Cookies from 'js-cookie';
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import { getAccessToken } from './helper'
+import Cookies from 'js-cookie'
 
 const ApiMiddleware = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
@@ -8,39 +8,35 @@ const ApiMiddleware = axios.create({
     Accept: 'application/json',
   },
   timeout: 10000,
-});
+})
 
 ApiMiddleware.interceptors.request.use(
-  function (config: AxiosRequestConfig) {
-    const token = getAccessToken();
+  (config: InternalAxiosRequestConfig) => {
+    const token = getAccessToken()
     if (token) {
-      config.headers = {
-        Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
-      };
+      config.headers.Authorization = `Bearer ${token}`
+      config.headers.Accept = 'application/json'
     }
-    return config;
+    return config
   },
-  function (error) {
-    return Promise.reject(error);
-  }
-);
+  (error) => Promise.reject(error)
+)
 
 ApiMiddleware.interceptors.response.use(
-  function (response: AxiosResponse) {
+  (response: AxiosResponse) => {
     if (response?.status === 401) {
-      Cookies.remove('access_token');
-      Cookies.remove('refresh_token');
+      Cookies.remove('access_token')
+      Cookies.remove('refresh_token')
     }
-    return response;
+    return response
   },
-  function (error) {
+  (error) => {
     if (error?.response?.status === 401) {
-      Cookies.remove('access_token');
-      Cookies.remove('refresh_token');
+      Cookies.remove('access_token')
+      Cookies.remove('refresh_token')
     }
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-);
+)
 
-export default ApiMiddleware;
+export default ApiMiddleware

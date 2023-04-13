@@ -14,15 +14,26 @@ import { GoHome } from 'react-icons/go'
 import DropZone from '../layout/DropZone'
 import CropImageModal from '../modal/CropImageModal'
 
+import { AppDispatch, RootState } from '../../redux/store/store'
+import { UserPictureProps } from '../../utils/types/types'
+
+export type UserProfileProps = {
+  username: string
+  name: string
+  email: string
+}
+
 const Profile = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
-  const [image, setImage] = useState({})
-  const { isLoading, isUpdating, profileDetails } = useSelector((state) => ({
-    isLoading: state.ProfileSlice.isLoading,
-    isUpdating: state.ProfileSlice.isUpdating,
-    profileDetails: state.ProfileSlice.profileDetails,
-  }))
+  const [image, setImage] = useState<UserPictureProps | undefined>()
+  const { isLoading, isUpdating, profileDetails } = useSelector(
+    (state: RootState) => ({
+      isLoading: state.ProfileSlice.isLoading,
+      isUpdating: state.ProfileSlice.isUpdating,
+      profileDetails: state.ProfileSlice.profileDetails,
+    })
+  )
 
   useEffect(() => {}, [profileDetails?.profile_pic])
   useEffect(() => {
@@ -43,12 +54,12 @@ const Profile = () => {
     setImage({ url: profileDetails?.profile_pic })
   }, [profileDetails])
 
-  const handleProfileUpdateSubmit = (values) => {
+  const handleProfileUpdateSubmit = (values: UserProfileProps) => {
     const formData = {
       ...values,
     }
     const fData = new FormData()
-    if (image.file) fData.append('profile_pic', image?.file, image?.file?.name)
+    if (image!.file) fData.append('profile_pic', image!.file, image?.file?.name)
     // eslint-disable-next-line array-callback-return
     Object.entries(formData).map((field) => {
       fData.append(field[0], field[1] || '')
@@ -72,12 +83,12 @@ const Profile = () => {
           </h1>
         </div>
         <div className="flex flex-col gap-2 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-2 h-full w-full justify-center items-center py-0 ms:py-0 lg:py-5">
-          <Formik
+          <Formik<UserProfileProps>
             initialValues={initialValues}
             validationSchema={profileUpdateValidationSchema}
             validateOnBlur={false}
             validateOnChange={false}
-            onSubmit={handleProfileUpdateSubmit}
+            onSubmit={(values) => handleProfileUpdateSubmit(values)}
             enableReinitialize
           >
             {({ handleSubmit }) => (
@@ -142,7 +153,7 @@ const Profile = () => {
                     <CustomButton
                       type="submit"
                       disabled={isLoading || isUpdating}
-                      onClick={(e) => {
+                      onClick={(e: React.FormEvent<HTMLButtonElement>) => {
                         dispatch(setSignInEffect(true))
                       }}
                       onAnimationEnd={() => {

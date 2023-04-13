@@ -13,7 +13,10 @@ import {
   MdDateRange,
 } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
-import { transactionHistoryFetchAPi } from '../../redux/slices/pointsSlice'
+import {
+  AllTransactionHistory,
+  transactionHistoryFetchAPi,
+} from '../../redux/slices/pointsSlice'
 import { GiCoins } from 'react-icons/gi'
 import { RiCoinFill } from 'react-icons/ri'
 import { FaCoins } from 'react-icons/fa'
@@ -23,7 +26,6 @@ import moment from 'moment'
 import classNames from 'classnames'
 import { dateFormatter } from '../../utils/helper'
 import { AppDispatch, RootState } from '../../redux/store/store'
-import { fixMeLater } from '../../utils/types/types'
 
 const SavedRecords = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -63,7 +65,7 @@ const SavedRecords = () => {
         Header: 'Purchase Date',
         id: 'purchaseDate',
         sortable: true,
-        accessor: function (row: fixMeLater, i: number) {
+        accessor: function (row: AllTransactionHistory, i: number) {
           return (
             <div key={i} className="group">
               <div className="flex gap-30 max-w-[100px]">
@@ -78,7 +80,7 @@ const SavedRecords = () => {
       {
         Header: 'App Coins',
         id: 'appCoins',
-        accessor: (row: fixMeLater, i: number) => {
+        accessor: (row: AllTransactionHistory, i: number) => {
           return (
             <div key={i} className="group">
               <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap">
@@ -100,7 +102,7 @@ const SavedRecords = () => {
       {
         Header: 'Amount Spent',
         id: 'amountSpent',
-        accessor: (row: fixMeLater, i: number) => {
+        accessor: (row: AllTransactionHistory, i: number) => {
           return (
             <div key={i} className="group">
               <div className="flex gap-30 w-full max-w-[300px] whitespace-pre-wrap">

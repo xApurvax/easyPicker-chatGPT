@@ -14,10 +14,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { IoIosMail } from 'react-icons/io'
 import { FaGlobe, FaPhoneAlt, FaSkype, FaMapMarkerAlt } from 'react-icons/fa'
 import { Formik, FormikHelpers } from 'formik'
-import {
-  contactUsValidationSchema,
-  contactUsValidationWithoutCaptchaSchema,
-} from '../../utils/FormValidations'
+
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ContactUsFetchAPi } from '../../redux/slices/auth/contactusSlice'
@@ -27,6 +24,10 @@ import Tool from './Tool'
 import classNames from 'classnames'
 import { ContactUsPayload } from '../../utils/types/types'
 import { AppDispatch, RootState } from '../../redux/store/store'
+import {
+  contactUsValidationSchema,
+  contactUsValidationWithoutCaptchaSchema,
+} from '../../utils/FormValidations'
 
 interface InitialValues {
   name: string
@@ -51,7 +52,7 @@ const HomePage: React.FC = () => {
     captcha: '',
   }
 
-  const [validation, setValidation] = useState(contactUsValidationSchema)
+  const [validation, setValidation] = useState<any>(contactUsValidationSchema)
   const [error, setError] = useState(false)
 
   const handleGetInTouchSubmit = (
@@ -504,7 +505,6 @@ const HomePage: React.FC = () => {
                             placeholder="Share your email address with us!"
                           />
                           <CustomTextArea
-                            type="text"
                             id="message"
                             name="message"
                             inputstyle="w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid border-[#aab2b8] resize-none focus:outline-none placeholder:text-textGray focus:border-primary text-textGray"

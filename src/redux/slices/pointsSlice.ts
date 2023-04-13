@@ -3,16 +3,21 @@ import { toast } from 'react-hot-toast'
 import ApiMiddleware from '../../utils/ApiMiddleware'
 import { SOMETHING_WENT_WRONG } from '../../utils/constant'
 
+export type AllTransactionHistory = {
+  purchased_at: string
+  points: number
+  amount: number
+}
 interface PointsState {
   isLoading: boolean
   isLoadingTransactionHistory: boolean
   showBuyPointsModal: boolean
-  allTransactionHistory: any[]
+  allTransactionHistory: AllTransactionHistory[]
   totalResults: number
 }
 
 interface BuyPointsData {
-  amount: number
+  points: number
 }
 
 interface TransactionHistoryData {
@@ -45,8 +50,7 @@ export const transactionHistoryFetchAPi = createAsyncThunk(
       const response = await ApiMiddleware.get(
         `/api/upgrade/points/?date=${data?.date || ''}&page=${
           data?.page || ''
-        }&dsc=${data?.order || ''}&page_size=5`,
-        { ...data }
+        }&dsc=${data?.order || ''}&page_size=5`
       )
       return response
     } catch (error: any) {

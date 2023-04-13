@@ -1,10 +1,10 @@
 import AuthMiddleware from './AuthMiddleware'
-import FormValidations from './FormValidations'
+import * as FormValidations from './FormValidations'
 import RouteMiddleware from './RouteMiddleware'
 import ApiMiddleware from './ApiMiddleware'
 import ResetPasswordMiddleware from './ResetPasswordMiddleware'
-import helper from './helper'
-import Data from './Data'
+import * as helper from './helper'
+import { dynamicHeadline as Data } from './Data'
 export {
   AuthMiddleware,
   RouteMiddleware,

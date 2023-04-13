@@ -1,13 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { Formik } from 'formik'
+import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import InputField from '../form/InputField'
 import CustomButton from '../form/CustomButton'
 import { forgotPasswordValidationSchema } from '../../utils/FormValidations'
-import { useSelector, useDispatch } from 'react-redux'
 import { forgotFetchAPi } from '../../redux/slices/auth/forgotPasswordSlice'
-import { useNavigate } from 'react-router-dom'
 import AuthMiddleware from '../../utils/AuthMiddleware'
-import { useRef } from 'react'
+import { AppDispatch, RootState } from '../../redux/store/store'
+
+export type ForgotProps = {
+  email: string
+}
 
 const INITIAL_COUNT = 59
 const STATUS = {
@@ -15,7 +20,7 @@ const STATUS = {
   STOPPED: 'Stopped',
 }
 const Forgot = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   const [secondsRemaining, setSecondsRemaining] = useState(INITIAL_COUNT)
   const [status, setStatus] = useState(STATUS.STOPPED)
@@ -25,49 +30,17 @@ const Forgot = () => {
     setSecondsRemaining(INITIAL_COUNT)
   }
 
-  const { isVerify, forgotModal } = useSelector((state) => ({
-    isVerify: state.forgotPasswordSlice.isVerify,
-    forgotModal: state.forgotPasswordSlice.forgotModal,
+  const { isVerify, forgotModal } = useSelector((state: RootState) => ({
+    isVerify: state.ForgotPasswordSlice.isVerify,
+    forgotModal: state.ForgotPasswordSlice.forgotModal,
   }))
 
   const navigate = useNavigate()
   const initialValues = { email: '' }
-  const handleLoginSubmit = (values) => {
-    dispatch(forgotFetchAPi(values))
-    handleTimerStart()
-  }
 
   useEffect(() => {
     forgotModal.otpVerified && navigate('/reset-password')
   }, [forgotModal.otpVerified, navigate])
-
-  useInterval(
-    () => {
-      if (secondsRemaining > 0) setSecondsRemaining(secondsRemaining - 1)
-      else setStatus(STATUS.STOPPED)
-    },
-    status === STATUS.STARTED ? 1000 : null
-  )
-
-  function useInterval(callback, delay) {
-    const savedCallback = useRef()
-
-    // Remember the latest callback.
-    useEffect(() => {
-      savedCallback.current = callback
-    }, [callback])
-
-    // Set up the interval.
-    useEffect(() => {
-      function tick() {
-        savedCallback.current()
-      }
-      if (delay !== null) {
-        let id = setInterval(tick, delay)
-        return () => clearInterval(id)
-      }
-    }, [delay])
-  }
 
   useEffect(() => {
     document.title = 'Forgot password | Title Generator'
@@ -77,12 +50,15 @@ const Forgot = () => {
     <AuthMiddleware>
       <div className="flex p-5 ms:p-5 sm:p-5 md:p-10 lg:p-8 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[90%]">
         <div className="flex flex-col gap-2 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-10 ms:py-0 lg:py-3">
-          <Formik
+          <Formik<ForgotProps>
             initialValues={initialValues}
             validationSchema={forgotPasswordValidationSchema}
             validateOnBlur={false}
             validateOnChange={false}
-            onSubmit={handleLoginSubmit}
+            onSubmit={(values) => {
+              dispatch(forgotFetchAPi(values))
+              handleTimerStart()
+            }}
           >
             {({ handleSubmit }) => (
               <form

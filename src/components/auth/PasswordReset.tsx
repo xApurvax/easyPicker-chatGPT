@@ -12,20 +12,26 @@ import { useNavigate } from 'react-router-dom'
 import AuthMiddleware from '../../utils/AuthMiddleware'
 import Cookies from 'js-cookie'
 import ResetPasswordMiddleware from '../../utils/ResetPasswordMiddleware'
+import { AppDispatch, RootState } from '../../redux/store/store'
+
+export type PasswordResetProps = {
+  confirmPassword: string
+  password: string
+}
 
 const PasswordReset = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const { isPasswordChange, forgotModal, resetPasswordStatus } = useSelector(
-    (state) => ({
-      isPasswordChange: state.forgotPasswordSlice.isPasswordChange,
-      forgotModal: state.forgotPasswordSlice.forgotModal,
-      resetPasswordStatus: state.forgotPasswordSlice.resetPasswordStatus,
+    (state: RootState) => ({
+      isPasswordChange: state.ForgotPasswordSlice.isPasswordChange,
+      forgotModal: state.ForgotPasswordSlice.forgotModal,
+      resetPasswordStatus: state.ForgotPasswordSlice.resetPasswordStatus,
     })
   )
   const initialValues = { password: '', confirmPassword: '' }
 
-  const handleResetPassword = (values) => {
+  const handleResetPassword = (values: PasswordResetProps) => {
     dispatch(
       resetPasswordApi({
         email:
@@ -51,12 +57,12 @@ const PasswordReset = () => {
       <AuthMiddleware>
         <div className="flex p-5 ms:p-5 sm:p-5 md:p-10 lg:p-10 gap-8 rounded-xl bg-white w-full h-full ms:max-w-[90%]">
           <div className="flex flex-col gap-2 ms:gap-2 sm:gap-2 md:gap-4 lg:gap-4 h-full w-full justify-center items-center py-0 ms:py-0 lg:py-10">
-            <Formik
+            <Formik<PasswordResetProps>
               initialValues={initialValues}
               validationSchema={ResetPasswordValidationSchema}
               validateOnBlur={false}
               validateOnChange={false}
-              onSubmit={handleResetPassword}
+              onSubmit={(values) => handleResetPassword(values)}
             >
               {({ handleSubmit }) => (
                 <form className="w-full max-w-md" onSubmit={handleSubmit}>

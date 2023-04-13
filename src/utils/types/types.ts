@@ -1,5 +1,12 @@
-export type Nullable<T> = T | null
-export type fixMeLater = any
+import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit'
+import {
+  ButtonHTMLAttributes,
+  InputHTMLAttributes,
+  ReactNode,
+  TextareaHTMLAttributes,
+} from 'react'
+import { FieldHookConfig } from 'formik'
+import { RootState } from '../../redux/store/store'
 
 export type ErrorResponseType = {
   response: {
@@ -18,11 +25,11 @@ export type ApiResponse = {
 }
 
 export type ForgotPasswordFetchPayload = {
-  email: string
+  email: Nullable<string>
 }
 
 export type ForgotOtpVerifyApiPayload = {
-  email: string
+  email: Nullable<string>
   otp: string
 }
 
@@ -62,3 +69,53 @@ export type SaveResultPayload = {
   title: string
   language: string
 }
+
+export type fixMeLater = any
+
+export type UserPictureProps = {
+  file?: File
+  url?: string
+}
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  buttonStyle?: string
+  children?: ReactNode
+  loaderSize?: number
+  showLoader?: boolean
+}
+
+export type SVGComponent = React.FunctionComponent<
+  React.SVGProps<SVGSVGElement>
+>
+
+export type otherProps = {
+  props?: FieldHookConfig<string>
+}
+
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  inputstyle?: string
+  placeholder?: string
+  borderstyle?: string
+  errorRight?: string
+  iconAfter?: SVGComponent
+  iconBefore?: SVGComponent
+  lable?: string
+  props?: otherProps | string
+  name: string
+}
+
+export interface TextAreaProps
+  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  inputstyle?: string
+  placeholder?: string
+  borderstyle?: string
+  errorRight?: string
+  iconAfter?: SVGComponent
+  iconBefore?: SVGComponent
+  lable?: string
+  props?: otherProps | string
+  name: string
+}
+
+export type AppThunkDispatch = ThunkDispatch<RootState, any, AnyAction>
+
+export type Nullable<T> = T | null

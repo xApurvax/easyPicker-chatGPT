@@ -7,16 +7,12 @@ import { Fragment, useState } from 'react'
 import Cropper, { Area } from 'react-easy-crop'
 import getCroppedImg from '../crop/CropImage'
 import React from 'react'
-import { Nullable } from '../../utils/types/types'
-
-interface ImageType {
-  file: { name: string; size: number; type: string }
-  url?: string
-}
+import { Nullable, UserPictureProps } from '../../utils/types/types'
 
 interface CropImageModalProps {
   photoURL: { data_url: string }
-  setImage: React.Dispatch<React.SetStateAction<ImageType | {}>>
+  id: string
+  setImage: React.Dispatch<React.SetStateAction<UserPictureProps | undefined>>
   name?: string
 }
 
@@ -38,12 +34,14 @@ const CropImageModal: React.FC<CropImageModalProps> = ({
   const zoomPercentage = (value: number) => `${Math.round(value - 1)}%`
 
   const saveCropImage = async () => {
-    const croppedImage = await getCroppedImg(
-      photoURL.data_url,
-      croppedAreaPixels,
-      rotation
-    )
-    setImage(croppedImage)
+    if (croppedAreaPixels) {
+      const croppedImage = await getCroppedImg(
+        photoURL.data_url,
+        croppedAreaPixels,
+        rotation
+      )
+      croppedImage && setImage(croppedImage)
+    }
   }
 
   function closeModal() {

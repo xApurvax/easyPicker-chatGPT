@@ -4,19 +4,20 @@ import { Fragment, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setLogOutModal } from '../../redux/slices/auth/loginSlice'
 import { IoClose } from 'react-icons/io5'
-import {
-  BuyPointsFetchAPi,
-  setShowBuyPointsModal,
-} from '../../redux/slices/pointsSlice'
+
 import { GiTwoCoins, GiCoins } from 'react-icons/gi'
 import { RiCoinFill } from 'react-icons/ri'
 import { FaCoins } from 'react-icons/fa'
 import classNames from 'classnames'
 import { Nullable } from '../../utils/types/types'
-import { RootState } from '../../redux/store/store'
+import { AppDispatch, RootState } from '../../redux/store/store'
+import {
+  BuyPointsFetchAPi,
+  setShowBuyPointsModal,
+} from '../../redux/slices/pointsSlice'
 
 export const BuyPointsModal = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [counter, setCounter] = useState([
     { countValue: 10, price: 1, coinIcon: <RiCoinFill />, id: 1 },

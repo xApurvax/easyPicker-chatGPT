@@ -1,8 +1,6 @@
 import Cookies from 'js-cookie'
 
-export const getAccessToken = () => {
-  return Cookies.get('access_token')
-}
+export const getAccessToken = () => Cookies.get('access_token')
 
 export const generateCaptcha = (length: number) => {
   var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',

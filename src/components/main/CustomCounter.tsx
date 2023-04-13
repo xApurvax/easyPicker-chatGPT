@@ -2,10 +2,10 @@ import React from 'react'
 import { BiPlus, BiMinus } from 'react-icons/bi'
 import { useSelector, useDispatch } from 'react-redux'
 import { setDecrement, setIncrement } from '../../redux/slices/counterSlice'
-import { RootState } from '../../redux/store/store'
+import { AppDispatch, RootState } from '../../redux/store/store'
 
 const CustomCounter: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const { count } = useSelector((state: RootState) => ({
     count: state.CounterSlice.count,
   }))

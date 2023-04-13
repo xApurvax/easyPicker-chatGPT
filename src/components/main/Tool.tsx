@@ -8,7 +8,6 @@ import {
   setScanEffect,
   setGenerateHeadlineEffect,
 } from '../../redux/slices/buttonEffectSlice'
-import { setHeadlineLength } from '../../redux/slices/RangeSliderSlice'
 import {
   generateHeadlineFetchAPi,
   setIsFindUseSynonyms,
@@ -30,6 +29,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import classNames from 'classnames'
 import { Nullable } from '../../utils/types/types'
 import { AppDispatch, RootState } from '../../redux/store/store'
+import { setHeadlineLength } from '../../redux/slices/RangeSliderSlice'
 
 const Tool = () => {
   const dispatch = useDispatch<AppDispatch>()

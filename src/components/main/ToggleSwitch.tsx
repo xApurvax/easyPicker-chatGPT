@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch } from '@headlessui/react'
 import { useDispatch } from 'react-redux'
 import classNames from 'classnames'
+import { AppDispatch } from '../../redux/store/store'
 
 interface ToggleSwitchProps {
   toggle: boolean
@@ -9,7 +10,7 @@ interface ToggleSwitchProps {
 }
 
 const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ toggle, setToggle }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const handleToggle = () => dispatch(setToggle(!toggle))
 
   return (

@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useField } from 'formik'
 import classNames from 'classnames'
+import { TextAreaProps } from '../../utils/types/types'
 
 const CustomTextArea = ({
   inputstyle,
@@ -10,11 +11,10 @@ const CustomTextArea = ({
   iconAfter,
   iconBefore,
   lable,
+  name,
   ...props
-}) => {
-  // eslint-disable-next-line no-unused-vars
-  const [showPassword, setShowPassword] = useState(true)
-  const [field, meta] = useField(props)
+}: TextAreaProps) => {
+  const [field, meta] = useField(name)
 
   return (
     <div className="relative w-full">
@@ -24,17 +24,10 @@ const CustomTextArea = ({
         placeholder={placeholder}
         className={classNames(
           { 'pl-[50px]': iconBefore },
-          { [inputstyle]: !meta.error },
-          { [borderstyle]: meta.error }
+          !meta.error && inputstyle,
+          meta.error && borderstyle
         )}
         autoComplete="off"
-        type={
-          props?.type === 'password'
-            ? showPassword
-              ? 'password'
-              : 'text'
-            : props.type || 'text'
-        }
       />
 
       {meta.touched && meta.error && (

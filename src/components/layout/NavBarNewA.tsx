@@ -19,10 +19,10 @@ import { GoHome } from 'react-icons/go'
 import { BiPlus } from 'react-icons/bi'
 import { setShowBuyPointsModal } from '../../redux/slices/pointsSlice'
 import VerifyOtpModal from '../modal/VerifyOtpModal'
-import { RootState } from '../../redux/store/store'
+import { AppDispatch, RootState } from '../../redux/store/store'
 
 const NavbarNewA = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [toggle, setToggle] = useState(false)
   const [availableCoins, setAvailableCoins] = useState()
