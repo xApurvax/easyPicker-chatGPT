@@ -62,8 +62,6 @@ const Profile = () => {
     })
     dispatch(profileDetailsUpdateFetchAPI(fData))
   }
-
-   console.log(image,"sw");
    
   return (
     <>

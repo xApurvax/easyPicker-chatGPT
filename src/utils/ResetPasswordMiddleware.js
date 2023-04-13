@@ -3,13 +3,10 @@ import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import Cookies from 'js-cookie'
 
-type resetMiddleWareProps = {
-  children?: ReactNode;
-}
-const ResetPasswordMiddleware = ({ children } : resetMiddleWareProps) => {
+const ResetPasswordMiddleware = ({ children }) => {
   const navigate = useNavigate();
   const userMail = Cookies.get('user_mail')
-  const [unauthorized, setUnauthorized] = useState<Boolean>(false)
+  const [unauthorized, setUnauthorized] = useState(false)
   const { forgotModal } = useSelector((state) => ({
     forgotModal: state.forgotPasswordSlice.forgotModal,
   }));

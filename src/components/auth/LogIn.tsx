@@ -8,15 +8,14 @@ import { loginFetchAPi } from '../../redux/slices/auth/loginSlice'
 import { setLoginEffect } from '../../redux/slices/buttonEffectSlice'
 import { LoginValidationSchema } from '../../utils/FormValidations'
 import AuthMiddleware from '../../utils/AuthMiddleware'
-import { AppThunkDispatch, fixMeLater } from '../../utils/types'
+import { fixMeLater } from '../../utils/types'
 
 export type LoginProps = {
   username: string
   password: string
 }
-
 const LogIn = () => {
-  const dispatch = useDispatch<AppThunkDispatch>()
+  const dispatch = useDispatch()
 
   const { isSuccess } = useSelector((state : fixMeLater) => ({
     isSuccess: state.loginSlice.isSuccess,

@@ -46,4 +46,6 @@ export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
     name: string;
 }
 
+export type AppThunkDispatch = ThunkDispatch<RootState, any, AnyAction>;
+
 export type Nullable<T> = T | null

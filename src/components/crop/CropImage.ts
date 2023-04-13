@@ -1,8 +1,8 @@
 type PixelCropProps = {
-  height?: number;
-  width?: number;
-  x?: number;
-  y?: number;
+  height: number;
+  width: number;
+  x: number;
+  y: number;
 }
 
 
@@ -66,21 +66,23 @@ export default async function getCroppedImg(
   ctx.drawImage(image, 0, 0)
 
   const data = ctx.getImageData(
-    pixelCrop.x,
-    pixelCrop.y,
-    pixelCrop.width,
-    pixelCrop.height
+    pixelCrop?.x,
+    pixelCrop?.y,
+    pixelCrop?.width,
+    pixelCrop?.height
   )
 
-  canvas.width = pixelCrop.width
-  canvas.height = pixelCrop.height
+  canvas.width = pixelCrop?.width || 0
+  canvas.height = pixelCrop?.height ||0
   ctx.putImageData(data, 0, 0)
 
   return new Promise((resolve, reject) => {
     
-    canvas.toBlob((file) => {
-      file.name = 'cropped.jpeg'
-      resolve({ file: file, url: URL.createObjectURL(file) })
+    canvas.toBlob((file: Blob | null) => {
+      if(file) {
+        // file.name = 'cropped.jpeg'
+        resolve({ file: {...file,name:'cropped.jpeg'}, url: URL.createObjectURL(file) })
+      }
     }, 'image/jpeg')
   })
 }

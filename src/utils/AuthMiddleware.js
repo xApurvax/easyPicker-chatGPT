@@ -2,11 +2,8 @@ import React, { ReactNode, useEffect, useState } from 'react'
 import { getAccessToken } from './helper'
 import { useNavigate } from 'react-router'
 
-type authMiddleWareProps = {
-  children?: ReactNode;
-}
-const AuthMiddleware = ({ children }:authMiddleWareProps) => {
-  const [unauthorized, setUnauthorized] = useState<Boolean>(false)
+const AuthMiddleware = ({ children }) => {
+  const [unauthorized, setUnauthorized] = useState(false)
   const token = getAccessToken()
   const navigate = useNavigate()
 

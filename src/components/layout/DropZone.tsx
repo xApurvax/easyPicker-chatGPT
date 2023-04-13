@@ -17,9 +17,9 @@ const DropZone = ({ image, setImage, imageAfterCrop, imageAtEdit } : DropZonePro
   
   const [images, setImages] = React.useState([])
   const maxNumber = 69
-  const onChange = (imageList : ImageListType) => {
+  const onChange = (imageList : any) => {
     setImages(imageList as never[])
-    setImage!(imageList)
+    imageList && setImage!(imageList)
   }
   return (
     <div className="w-full h-full flex items-center justify-center">

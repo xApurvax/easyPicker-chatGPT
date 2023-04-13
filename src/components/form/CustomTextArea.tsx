@@ -27,17 +27,10 @@ const CustomTextArea = ({
         placeholder={placeholder}
         className={classNames(
           { 'pl-[50px]': iconBefore },
-          { [inputstyle]: !meta.error },
-          { [borderstyle]: meta.error }
+          !meta.error && inputstyle,
+          meta.error && borderstyle
         )}
         autoComplete="off"
-        type={
-          props?.type === 'password'
-            ? showPassword
-              ? 'password'
-              : 'text'
-            : props.type || 'text'
-        }
       />
 
       {meta.touched && meta.error && (
