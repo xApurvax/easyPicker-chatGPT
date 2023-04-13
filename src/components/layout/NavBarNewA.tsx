@@ -44,8 +44,8 @@ const NavbarNewA = () => {
   useEffect(() => {
     setAccessToken(Cookies.get('access_token'))
   }, [accessToken])
-
   const coins = Cookies.get('coins')
+
 
   useEffect(() => {
     if (Cookies.get('coins')) {

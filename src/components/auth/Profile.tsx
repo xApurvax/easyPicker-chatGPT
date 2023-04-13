@@ -64,6 +64,7 @@ const Profile = () => {
     Object.entries(formData).map((field) => {
       fData.append(field[0], field[1] || '')
     })
+    
     dispatch(profileDetailsUpdateFetchAPI(fData))
   }
 
