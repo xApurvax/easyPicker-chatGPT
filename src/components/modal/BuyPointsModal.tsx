@@ -12,28 +12,34 @@ import { GiTwoCoins, GiCoins } from 'react-icons/gi'
 import { RiCoinFill } from 'react-icons/ri'
 import { FaCoins } from 'react-icons/fa'
 import classNames from 'classnames'
+import { Nullable, fixMeLater } from '../../utils/types'
 
 export const BuyPointsModal = () => {
   const dispatch = useDispatch()
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [counter, setCounter] = useState([
     { countValue: 10, price: 1, coinIcon: <RiCoinFill />, id: 1 },
     { countValue: 100, price: 10, coinIcon: <FaCoins />, id: 2 },
     { countValue: 1000, price: 100, coinIcon: <GiCoins />, id: 3 },
   ])
   const [count, setCount] = useState(0)
-  const [counterSelected, setCounterSelected] = useState({
+  const [counterSelected, setCounterSelected] = useState<{
+    selected: boolean
+    id: Nullable<Number>
+  }>({
     selected: false,
     id: null,
   })
   // const [availableCoins, setAvailableCoins] = useState();
 
-  const { showBuyPointsModal, isLoading } = useSelector((state) => ({
-    showBuyPointsModal: state.pointsSlice.showBuyPointsModal,
-    isLoading: state.pointsSlice.isLoading,
-  }))
+  const { showBuyPointsModal, isLoading } = useSelector(
+    (state: fixMeLater) => ({
+      showBuyPointsModal: state.pointsSlice.showBuyPointsModal,
+      isLoading: state.pointsSlice.isLoading,
+    })
+  )
 
-  const handleBuyPoints = (e) => {
+  const handleBuyPoints = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     dispatch(
       BuyPointsFetchAPi({
@@ -42,12 +48,6 @@ export const BuyPointsModal = () => {
     )
     setCount(0)
   }
-
-  // useEffect(() => {
-  //     if(Cookies.get("coins") === String(0)){
-  //       dispatch(setShowBuyPointsModal(true))
-  //     }
-  // }, [Cookies.get("coins")]);
 
   return (
     <Transition appear show={showBuyPointsModal} as={Fragment}>
@@ -136,9 +136,7 @@ export const BuyPointsModal = () => {
                     disabled={isLoading}
                     className="inline-flex justify-center rounded-md border border-transparent bg-primary disabled:opacity-3 px-5 py-2 ms:px-2 sm:px-3 md:px-5 lg:px-5 
                     ms:py-1 sm:py-1 md:py-2 lg:py-2 text-sm font-medium text-white disabled:bg-[#966FD6] disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 tracking-widest"
-                    onClick={(e) => {
-                      handleBuyPoints(e)
-                    }}
+                    onClick={(e) => handleBuyPoints(e)}
                   >
                     Buy
                   </button>

@@ -9,6 +9,7 @@ import {
 } from '../../redux/slices/auth/forgotPasswordSlice'
 import OtpInput from 'react-otp-input'
 import { useSelector, useDispatch } from 'react-redux'
+import { Nullable, fixMeLater } from '../../utils/types'
 
 const INITIAL_COUNT = 59
 const STATUS = {
@@ -18,33 +19,38 @@ const STATUS = {
 
 const VerifyOtpModal = () => {
   const dispatch = useDispatch()
-  const [otp, setOtp] = useState('')
+  const [otp, setOtp] = useState<string>('')
   const [secondsRemaining, setSecondsRemaining] = useState(INITIAL_COUNT)
-  const [status, setStatus] = useState(STATUS.STOPPED)
+  const [status, setStatus] = useState(STATUS.STARTED)
 
   const secondsToDisplay = secondsRemaining % 60
   const minutesRemaining = (secondsRemaining - secondsToDisplay) % 60
   const minutesToDisplay = minutesRemaining % 60
 
-  const { isLoading, forgotModal, isVerified } = useSelector((state) => ({
-    isLoading: state.generateHeadlineSlice.isLoading,
-    isVerify: state.forgotPasswordSlice.isVerify,
-    isVerified: state.forgotPasswordSlice.isVerified,
-    forgotModal: state.forgotPasswordSlice.forgotModal,
-    minute: state.generateHeadlineSlice.minute,
-    second: state.forgotPasswordSlice.second,
-  }))
+  const { isLoading, forgotModal, isVerified } = useSelector(
+    (state: fixMeLater) => ({
+      isLoading: state.generateHeadlineSlice.isLoading,
+      isVerify: state.forgotPasswordSlice.isVerify,
+      isVerified: state.forgotPasswordSlice.isVerified,
+      forgotModal: state.forgotPasswordSlice.forgotModal,
+      minute: state.generateHeadlineSlice.minute,
+      second: state.forgotPasswordSlice.second,
+    })
+  )
 
   useInterval(
     () => {
-      if (secondsRemaining > 0) setSecondsRemaining(secondsRemaining - 1)
-      else setStatus(STATUS.STOPPED)
+      if (secondsRemaining > 0) {
+        setSecondsRemaining(secondsRemaining - 1)
+      } else {
+        setStatus(STATUS.STOPPED)
+      }
     },
     status === STATUS.STARTED ? 1000 : null
   )
 
-  function useInterval(callback, delay) {
-    const savedCallback = useRef()
+  function useInterval(callback: () => void, delay: Nullable<number>) {
+    const savedCallback = useRef<() => void>()
 
     useEffect(() => {
       savedCallback.current = callback
@@ -52,23 +58,25 @@ const VerifyOtpModal = () => {
 
     useEffect(() => {
       function tick() {
-        savedCallback.current()
+        if (savedCallback.current) {
+          savedCallback.current()
+        }
       }
       if (delay !== null) {
-        let id = setInterval(tick, delay)
+        const id = setInterval(tick, delay)
         return () => clearInterval(id)
       }
     }, [delay])
   }
 
-  const handleOtp = (otp) => setOtp(otp)
+  const handleOtp = (otp: string) => setOtp(otp)
 
   const handleTimerStart = async () => {
     setStatus(STATUS.STARTED)
     setSecondsRemaining(INITIAL_COUNT)
   }
 
-  const handleOtpVerify = (e) => {
+  const handleOtpVerify = (e: React.FormEvent) => {
     e.preventDefault()
     dispatch(forgotOtpVerifyApi({ email: forgotModal?.email, otp }))
     setOtp('')
