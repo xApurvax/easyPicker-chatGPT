@@ -9,7 +9,8 @@ import {
 } from '../../redux/slices/auth/forgotPasswordSlice'
 import OtpInput from 'react-otp-input'
 import { useSelector, useDispatch } from 'react-redux'
-import { Nullable, fixMeLater } from '../../utils/types'
+import { Nullable } from '../../utils/types/types'
+import { RootState } from '../../redux/store/store'
 
 const INITIAL_COUNT = 59
 const STATUS = {
@@ -28,13 +29,11 @@ const VerifyOtpModal = () => {
   const minutesToDisplay = minutesRemaining % 60
 
   const { isLoading, forgotModal, isVerified } = useSelector(
-    (state: fixMeLater) => ({
-      isLoading: state.generateHeadlineSlice.isLoading,
-      isVerify: state.forgotPasswordSlice.isVerify,
-      isVerified: state.forgotPasswordSlice.isVerified,
-      forgotModal: state.forgotPasswordSlice.forgotModal,
-      minute: state.generateHeadlineSlice.minute,
-      second: state.forgotPasswordSlice.second,
+    (state: RootState) => ({
+      isLoading: state.GenerateHeadlineSlice.isLoading,
+      isVerify: state.ForgotPasswordSlice.isVerify,
+      isVerified: state.ForgotPasswordSlice.isVerified,
+      forgotModal: state.ForgotPasswordSlice.forgotModal,
     })
   )
 

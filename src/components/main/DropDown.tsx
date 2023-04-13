@@ -4,18 +4,18 @@ import { BsArrowRightShort } from 'react-icons/bs'
 import { useSelector, useDispatch } from 'react-redux'
 import { setAddToFocusEffect } from '../../redux/slices/buttonEffectSlice'
 import classNames from 'classnames'
-import { fixMeLater } from '../../utils/types'
+import { RootState } from '../../redux/store/store'
 
 interface DropDownProps {
   data: string
-  setFocused: fixMeLater
+  setFocused: React.Dispatch<React.SetStateAction<string>>
 }
 
 const DropDown: React.FC<DropDownProps> = ({ data, setFocused }) => {
   const [dropDown, setDropDown] = useState(true)
   const dispatch = useDispatch()
-  const { addToFocusEffect } = useSelector((state: fixMeLater) => ({
-    addToFocusEffect: state.buttonEffectSlice.addToFocusEffect,
+  const { addToFocusEffect } = useSelector((state: RootState) => ({
+    addToFocusEffect: state.ButtonEffectSlice.addToFocusEffect,
   }))
   return (
     <div>

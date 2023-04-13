@@ -12,7 +12,8 @@ import { GiTwoCoins, GiCoins } from 'react-icons/gi'
 import { RiCoinFill } from 'react-icons/ri'
 import { FaCoins } from 'react-icons/fa'
 import classNames from 'classnames'
-import { Nullable, fixMeLater } from '../../utils/types'
+import { Nullable } from '../../utils/types/types'
+import { RootState } from '../../redux/store/store'
 
 export const BuyPointsModal = () => {
   const dispatch = useDispatch()
@@ -32,12 +33,10 @@ export const BuyPointsModal = () => {
   })
   // const [availableCoins, setAvailableCoins] = useState();
 
-  const { showBuyPointsModal, isLoading } = useSelector(
-    (state: fixMeLater) => ({
-      showBuyPointsModal: state.pointsSlice.showBuyPointsModal,
-      isLoading: state.pointsSlice.isLoading,
-    })
-  )
+  const { showBuyPointsModal, isLoading } = useSelector((state: RootState) => ({
+    showBuyPointsModal: state.PointsSlice.showBuyPointsModal,
+    isLoading: state.PointsSlice.isLoading,
+  }))
 
   const handleBuyPoints = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()

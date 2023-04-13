@@ -7,7 +7,7 @@ import { Fragment, useState } from 'react'
 import Cropper, { Area } from 'react-easy-crop'
 import getCroppedImg from '../crop/CropImage'
 import React from 'react'
-import { Nullable } from '../../utils/types'
+import { Nullable } from '../../utils/types/types'
 
 interface ImageType {
   file: { name: string; size: number; type: string }

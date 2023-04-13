@@ -2,11 +2,10 @@ import React from 'react'
 import { Switch } from '@headlessui/react'
 import { useDispatch } from 'react-redux'
 import classNames from 'classnames'
-import { fixMeLater } from '../../utils/types'
 
 interface ToggleSwitchProps {
   toggle: boolean
-  setToggle: fixMeLater
+  setToggle: any
 }
 
 const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ toggle, setToggle }) => {

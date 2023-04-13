@@ -1,37 +1,44 @@
 import { configureStore } from '@reduxjs/toolkit'
-import buttonEffectSlice from '../slices/buttonEffectSlice'
+import ButtonEffectSlice from '../slices/buttonEffectSlice'
 import RangeSliderSlice from '../slices/RangeSliderSlice'
-import generateHeadlineSlice from '../slices/generateHeadlineSlice'
-import pointsSlice from '../slices/pointsSlice'
+import GenerateHeadlineSlice from '../slices/generateHeadlineSlice'
+import PointsSlice from '../slices/pointsSlice'
 import ProfileSlice from '../slices/ProfileSlice'
-import otpTimerSlice from '../slices/otpTimerSlice'
-import savedRecordSlice from '../slices/savedRecordSlice'
-import counterSlice from '../slices/counterSlice'
-import contactusSlice from '../slices/auth/contactusSlice'
-import loginSlice from '../slices/auth/loginSlice'
-import registerSlice from '../slices/auth/registerSlice'
-import forgotPasswordSlice from '../slices/auth/forgotPasswordSlice'
+import LoginSlice from '../slices/auth/loginSlice'
+import OtpTimerSlice from '../slices/otpTimerSlice'
+import SavedRecordSlice from '../slices/savedRecordSlice'
+import CounterSlice from '../slices/counterSlice'
+import ContactusSlice from '../slices/auth/contactusSlice'
+import RegisterSlice from '../slices/auth/registerSlice'
+import ForgotPasswordSlice from '../slices/auth/forgotPasswordSlice'
+import logger from 'redux-logger'
+
+const rootReducer = {
+  ButtonEffectSlice,
+  RangeSliderSlice,
+  GenerateHeadlineSlice,
+  CounterSlice,
+  LoginSlice,
+  RegisterSlice,
+  ForgotPasswordSlice,
+  SavedRecordSlice,
+  PointsSlice,
+  ProfileSlice,
+  ContactusSlice,
+  OtpTimerSlice,
+}
 
 const store = configureStore({
-  reducer: {
-    buttonEffectSlice,
-    RangeSliderSlice,
-    generateHeadlineSlice,
-    counterSlice,
-    loginSlice,
-    registerSlice,
-    forgotPasswordSlice,
-    savedRecordSlice,
-    pointsSlice,
-    ProfileSlice,
-    contactusSlice,
-    otpTimerSlice,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddlerWare) =>
     getDefaultMiddlerWare({
       serializableCheck: false,
-    }),
+    }).concat(logger),
   devTools: true,
 })
+
+export type RootState = ReturnType<typeof store.getState>
+
+export type AppDispatch = typeof store.dispatch
 
 export default store

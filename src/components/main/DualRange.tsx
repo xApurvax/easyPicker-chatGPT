@@ -2,7 +2,7 @@ import React from 'react'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import { useDispatch } from 'react-redux'
-import { fixMeLater } from '../../utils/types'
+import { fixMeLater } from '../../utils/types/types'
 
 interface DualRangeProps {
   defaultValue: number | number[]

@@ -28,10 +28,11 @@ import { FaRegCopy } from 'react-icons/fa'
 import { BsCheck2 } from 'react-icons/bs'
 import toast, { Toaster } from 'react-hot-toast'
 import classNames from 'classnames'
-import { Nullable, fixMeLater } from '../../utils/types'
+import { Nullable } from '../../utils/types/types'
+import { AppDispatch, RootState } from '../../redux/store/store'
 
 const Tool = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const {
     scanEffect,
     generateHeadlineEffect,
@@ -44,21 +45,21 @@ const Tool = () => {
     allTitles,
     isLoading,
     goBackToSettings,
-  } = useSelector((state: fixMeLater) => ({
-    scanEffect: state.buttonEffectSlice.scanEffect,
-    generateHeadlineEffect: state.buttonEffectSlice.generateHeadlineEffect,
+  } = useSelector((state: RootState) => ({
+    scanEffect: state.ButtonEffectSlice.scanEffect,
+    generateHeadlineEffect: state.ButtonEffectSlice.generateHeadlineEffect,
     headlineLength: state.RangeSliderSlice.headlineLength,
     headlineType: state.RangeSliderSlice.headlineType,
-    isFindUseSynonyms: state.generateHeadlineSlice.isFindUseSynonyms,
-    isIncPowerWords: state.generateHeadlineSlice.isIncPowerWords,
-    isMakeQuestion: state.generateHeadlineSlice.isMakeQuestion,
-    goBackToSettings: state.generateHeadlineSlice.goBackToSettings,
-    isLoading: state.generateHeadlineSlice.isLoading,
-    allTitles: state.generateHeadlineSlice.allTitles,
-    count: state.counterSlice.count,
+    isFindUseSynonyms: state.GenerateHeadlineSlice.isFindUseSynonyms,
+    isIncPowerWords: state.GenerateHeadlineSlice.isIncPowerWords,
+    isMakeQuestion: state.GenerateHeadlineSlice.isMakeQuestion,
+    goBackToSettings: state.GenerateHeadlineSlice.goBackToSettings,
+    isLoading: state.GenerateHeadlineSlice.isLoading,
+    allTitles: state.GenerateHeadlineSlice.allTitles,
+    count: state.CounterSlice.count,
   }))
   const [hasArticle, setHasArticle] = useState('')
-  const [hasFocusedHeadline, setHasFocusedHeadline] = useState('')
+  const [hasFocusedHeadline, setHasFocusedHeadline] = useState<string>('')
   const [edit, setEdit] = useState(true)
   const [expIncHeadline, setExpIncHeadline] = useState(false)
   const [expExcHeadline, setExpExcHeadline] = useState(false)

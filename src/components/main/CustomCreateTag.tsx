@@ -6,12 +6,16 @@ interface CustomCreateTagProps {
   tags: string[]
   setTags: React.Dispatch<React.SetStateAction<string[] | []>>
   setHasSomethingTyped?: React.Dispatch<React.SetStateAction<string>>
+  disabled?: boolean
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const CustomCreateTag: React.FC<CustomCreateTagProps> = ({
   tags,
   setTags,
   setHasSomethingTyped,
+  disabled = false,
+  onChange,
   ...props
 }) => {
   const addTags = (event: React.KeyboardEvent<HTMLInputElement>) => {
