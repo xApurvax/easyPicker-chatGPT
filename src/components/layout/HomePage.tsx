@@ -75,8 +75,8 @@ const HomePage: React.FC = () => {
           <NavbarNewA />
         </div>
         <div className="flex flex-col justify-center items-center h-full w-full">
+          
           {/* INTRODUCTION HEADER  */}
-
           <div className="bg-primary py-8 ms:py-8 sm:py-10 md:py-14 lg:py-20 h-screen/2 flex flex-col items-center justify-center w-full">
             <div className="flex flex-col justify-center items-center gap-1 ms:gap-3 lg:gap-5 ">
               <div className="flex flex-col justify-center items-center ms:gap-1 max-w-[90%] ms:max-w-[60%] lg:max-w-[40%]">
@@ -137,7 +137,6 @@ const HomePage: React.FC = () => {
           </>
 
           {/* WHAT CAN YOU DO WITH IT  */}
-
           <div className="h-full w-full">
             <div className="bg-white py-8 ms:py-8 sm:py-10 md:py-14 lg:py-20 h-full flex flex-col items-center justify-center w-full">
               <div className="flex flex-col gap-3 justify-center items-center ms:gap-3 lg:gap-5">
@@ -208,7 +207,7 @@ const HomePage: React.FC = () => {
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-black">
                     👉 Love the titles our tool generated? Save generated titles
-                    for future use with one click. Access and copy past results
+                    for future use with one click. Access and copy paste results
                     anytime.
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-black">
@@ -216,7 +215,7 @@ const HomePage: React.FC = () => {
                     regenerate them again, we have that option available too.
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-black">
-                    👉 To increase reach, use generated keywords as # hastags
+                    👉 To increase reach, use generated keywords as &quot;#&quot; hastags
                     while posting it on social media.
                   </p>
                 </div>
@@ -231,7 +230,6 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* INTRO TEMPLATE 3 */}
-
             <div className="py-4 ms:p-4 md:py-12 md:px-10 lg:py-12 lg:px-0 flex flex-col ms:flex-col md:flex-row bg-primary max-w-7xl justify-center items-start gap-3 ms:gap-3 md:gap-0 w-full rounded-2xl">
               <div className="w-full h-full flex justify-center items-center">
                 <img
@@ -264,7 +262,6 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* WHY USE AI TITLE GENERATOR */}
-
           <div className="w-full h-full mt-6 ms:mt-6 sm:mt-10 md:mt-12 lg:mt-14 bg-secondaryYellow">
             <div className="flex flex-col py-12 ms:py-4 sm:py-6 md:py-8 lg:py-12 justify-center items-center">
               <div className="flex justify-center items-center">
@@ -328,7 +325,6 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* FAQ  */}
-
           <div className="py-8 ms:py-8 sm:py-10 md:py-14 lg:py-16 h-full flex flex-col items-center justify-center w-full">
             <div className="flex flex-col justify-center items-center gap-1 ms:gap-5 lg:gap-16 ">
               <div className="flex justify-center items-center">
@@ -455,7 +451,6 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* CONTACT US */}
-
           <div className="py-8 ms:py-8 sm:py-10 md:py-14 lg:py-16 h-full flex flex-col items-center justify-center w-full">
             <div className="flex flex-col justify-center items-center gap-1 ms:gap-5 lg:gap-10 w-full max-w-[90%] ms:max-w-[90%] md:max-w-[90%] lg:max-w-6xl h-full">
               <div className="flex justify-center items-center">
