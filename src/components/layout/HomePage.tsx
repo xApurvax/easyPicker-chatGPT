@@ -426,7 +426,7 @@ const HomePage: React.FC = () => {
                     Who Owns the Generated Text?
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-[#333333]">
-                    You do! You&spos;re free to use any title you generate in
+                    You do! You&apos;re free to use any title you generate in
                     your own work.
                   </p>
                 </motion.div>
@@ -604,30 +604,38 @@ const HomePage: React.FC = () => {
                           382481 Gujarat, India
                         </p>
                       </div>
+                      <a href='https://infynno.com/' target='_blank'>
                       <div className="flex items-center gap-2 h-full w-full">
                         <FaGlobe className="h-4 w-4 " />
+                        <p className="font-400 text-xs text-[#353535]">
+                            infynno.com
+                        </p>
+                      </div>
+                      </a>
+                      <a href="mailto:sales@infynno.com">
+                      <div className="flex items-center gap-2 h-full w-full">
+                        <IoIosMail className="h-4 w-4 " />
                         <p className="font-400 text-xs text-[#353535]">
                           sales@infynno.com
                         </p>
                       </div>
-                      <div className="flex items-center gap-2 h-full w-full">
-                        <IoIosMail className="h-4 w-4 " />
-                        <p className="font-400 text-xs text-[#353535]">
-                          hr@infynno.com
-                        </p>
-                      </div>
+                      </a>
+                      <a href="tel:+918488838308">
                       <div className="flex items-center gap-2 h-full w-full">
                         <FaPhoneAlt className="h-4 w-4 " />
                         <p className="font-400 text-xs text-[#353535]">
                           +91 848-883-8308
                         </p>
                       </div>
+                      </a>
+                      <a href="skype:live.Infynno">
                       <div className="flex items-center gap-2 h-full w-full">
                         <FaSkype className="h-4 w-4 " />
                         <p className="font-400 text-xs text-[#353535]">
                           live.Infynno
                         </p>
                       </div>
+                      </a>
                     </div>
                   </div>
                 </div>
