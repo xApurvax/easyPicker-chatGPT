@@ -5,10 +5,12 @@ import { ContactUsPayload } from '../../../utils/types/types'
 
 interface ContactUsState {
   isLoading: boolean
+  isSubmittedSuccessfully: boolean
 }
 
 const initialState: ContactUsState = {
   isLoading: false,
+  isSubmittedSuccessfully : false
 }
 
 export const ContactUsFetchAPi = createAsyncThunk(
@@ -35,9 +37,11 @@ const ContactusSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(ContactUsFetchAPi.pending, (state) => {
       state.isLoading = true
+      state.isSubmittedSuccessfully = false
     })
     builder.addCase(ContactUsFetchAPi.fulfilled, (state, { payload }) => {
       state.isLoading = false
+      state.isSubmittedSuccessfully = true
       if (payload?.data?.status_code === 200) {
         // state.allData = payload?.data?.result[0];
         // state.coins = payload?.data?.result[0]?.avaliable_credit;
@@ -50,6 +54,7 @@ const ContactusSlice = createSlice({
       ContactUsFetchAPi.rejected,
       (state, { payload }: PayloadAction<unknown>) => {
         state.isLoading = false
+        state.isSubmittedSuccessfully = false
         toast.error(payload as string)
       }
     )

@@ -14,7 +14,6 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { IoIosMail } from 'react-icons/io'
 import { FaGlobe, FaPhoneAlt, FaSkype, FaMapMarkerAlt } from 'react-icons/fa'
 import { Formik, FormikHelpers } from 'formik'
-
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ContactUsFetchAPi } from '../../redux/slices/auth/contactusSlice'
@@ -40,8 +39,9 @@ const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
   const captchaRef = useRef<any>(null)
   const navigate = useNavigate()
-  const { isLoading, limitExceeds } = useSelector((state: RootState) => ({
+  const { isLoading, isSubmittedSuccessfully, limitExceeds } = useSelector((state: RootState) => ({
     isLoading: state.ContactusSlice.isLoading,
+    isSubmittedSuccessfully: state.ContactusSlice.isSubmittedSuccessfully,
     limitExceeds: state.GenerateHeadlineSlice.limitExceeds,
   }))
 
@@ -61,13 +61,13 @@ const HomePage: React.FC = () => {
   ) => {
     dispatch(ContactUsFetchAPi(values))
     captchaRef.current?.reset()
-    resetForm({ values: initialValues })
+    isSubmittedSuccessfully && resetForm({ values: initialValues })
   }
 
   useEffect(() => {
     document.title = 'How it works | Title Generator'
   }, [])
-
+  
   return (
     <AuthMiddleware>
       <div className="flex flex-col w-full max-w-[100vw] overflow-x-hidden">
@@ -187,12 +187,12 @@ const HomePage: React.FC = () => {
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-white">
                     👉 To ensure your content's success, include strategic
                     keywords in your titles. Our tool can help you identify and
-                    add these words for optimal positioning..
+                    add these words for optimal positioning.
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-white">
                     👉 Increase your social media engagement with our generated
                     titles! Use them to captivate your audience and drive more
-                    traffic to your content.".
+                    traffic to your content.
                   </p>
                 </div>
               </div>
@@ -471,7 +471,6 @@ const HomePage: React.FC = () => {
                   validateOnBlur={false}
                   validateOnChange={false}
                   onSubmit={handleGetInTouchSubmit}
-                  enableReinitialize={true}
                 >
                   {({
                     handleSubmit,

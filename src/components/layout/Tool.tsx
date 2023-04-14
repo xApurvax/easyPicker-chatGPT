@@ -28,6 +28,7 @@ import classNames from 'classnames'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { Nullable } from '../../utils/types/types'
 import { AppDispatch, RootState } from '../../redux/store/store'
+import { useLocation } from 'react-router-dom'
 
 const Tool = ({ homepageTrial = false }) => {
   const dispatch = useDispatch<AppDispatch>()
@@ -41,6 +42,8 @@ const Tool = ({ homepageTrial = false }) => {
   })
   const [tag, setTag] = useState<string[]>([])
   const [availableCoins, setAvailableCoins] = useState()
+  const location = useLocation();
+
   const {
     generateHeadlineEffect,
     isLoading,
@@ -83,8 +86,7 @@ const Tool = ({ homepageTrial = false }) => {
   })
   const [copyAllId, setCopyAllId] = useState<{ id: Nullable<number> }>({
     id: specialTags?.length + allTitles?.length + 1,
-  })
-
+  });
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
     setHasArticle(e.target.value)
 
@@ -160,6 +162,7 @@ const Tool = ({ homepageTrial = false }) => {
           homepageTrial && 'mt-5'
         )}
       >
+        {location.pathname !== "/" &&
         <div className="flex justify-end gap-1 md:hidden w-full">
           <div
             className={classNames(
@@ -193,7 +196,7 @@ const Tool = ({ homepageTrial = false }) => {
               </button>
             </div>
           </div>
-        </div>
+        </div>}
         <div className="flex flex-col lg:flex-row p-4 ms:p-4 sm:p-6 md:p-8 lg:p-5 gap-8 md:rounded-xl lg:rounded-xl bg-white w-full ms:flex-col lg:max-w-[95%] mb-6">
           <div className="flex flex-col gap-3 w-full">
             <div className="flex flex-col">
