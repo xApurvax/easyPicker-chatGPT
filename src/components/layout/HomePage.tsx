@@ -516,7 +516,7 @@ const HomePage: React.FC = () => {
                           <ReCAPTCHA
                             name="captcha"
                             id="captcha"
-                            sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                            sitekey="6LcNZf4kAAAAAP_08qthiKFOd7JWz6IdPGjZzH-g"
                             onChange={(value: string) =>
                               setFieldValue('captcha', value)
                             }
