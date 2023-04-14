@@ -20,6 +20,7 @@
     "axios": "^1.2.1",
     "classnames": "^2.3.2",
     "copy-to-clipboard": "^3.3.3",
+    "cypress": "^12.9.0",
     "formik": "^2.2.9",
     "framer-motion": "^8.4.6",
     "js-cookie": "^3.0.1",
@@ -58,7 +59,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "npx eslint src/**/**/*.js src/**/*.js --max-warnings=0",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cypress": "cypress open --e2e --browser chrome",
+    "cypress:ci": "cypress run --e2e --browser chrome"
   },
   "eslintConfig": {
     "extends": [
