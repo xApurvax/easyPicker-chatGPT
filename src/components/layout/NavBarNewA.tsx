@@ -327,7 +327,7 @@ const NavbarNewA = () => {
                                 id="coins-text"
                                 className="font-semibold text-2xl ms:text-xs sm:text-base md:text-base lg:text-base text-white ml-2"
                               >
-                                {!availableCoins ? 0 : availableCoins}
+                                {availableCoins || 0}
                               </p>
                               <BiPlus className="text-2xl ms:text-[16px] sm:text-[20px] md:text-xl lg:text-2xl cursor-pointer text-white md:px-0.5" />
                             </button>

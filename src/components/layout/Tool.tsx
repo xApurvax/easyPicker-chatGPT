@@ -185,7 +185,7 @@ const Tool = ({ homepageTrial = false }) => {
                     id="coins-text"
                     className="font-semibold text-xs ms:text-xs sm:text-base md:text-xl lg:text-2xl text-primary"
                   >
-                    {!availableCoins ? 0 : availableCoins}
+                    {availableCoins || 0}
                   </p>
                   <AiOutlinePlus
                     color="#000"
