@@ -22,6 +22,7 @@ import Cookies from 'js-cookie'
 import RouteMiddleWare from '../../utils/RouteMiddleWare'
 import { Nullable } from '../../utils/types/types'
 import { AppDispatch, RootState } from '../../redux/store/store'
+import classNames from 'classnames'
 
 const Tool = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -81,7 +82,7 @@ const Tool = () => {
   const [copyAllId, setCopyAllId] = useState({
     id: specialTags?.length + allTitles?.length + 1,
   })
-  // let specialTag = new Set(specialTags)
+
   useEffect(() => {
     allTitles &&
       specialTags &&
@@ -138,14 +139,11 @@ const Tool = () => {
             <GiTwoCoins
               color="#FFD700"
               size={35}
-              className={`${
+              className={classNames(
                 availableCoins && 'origin-center hover:rotate-12 cursor-pointer'
-              }`}
+              )}
             />
-            <p
-              id="coins-text"
-              className={`font-semibold text-2xl text-primary`}
-            >
+            <p id="coins-text" className="font-semibold text-2xl text-primary">
               {availableCoins === 'undefined' ? 0 : availableCoins}
             </p>
           </div>
@@ -158,13 +156,12 @@ const Tool = () => {
                   Add your article text below
                 </p>
                 <textarea
-                  className="resize-none p-3 my-2 bg-[#EDF2F7] border-[1px] rounded-md border-solid border-[#f8f8f8] text-[16px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed"
+                  className="resize-none p-3 my-2 bg-secondary border-[1px] rounded-md border-solid border-secondaryBorder text-[16px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-primaryBorder focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed"
                   rows={10}
                   cols={75}
                   disabled={isLoading}
                   id="paragraph"
                   name="paragraph"
-                  // type="text"
                   value={hasArticle}
                   placeholder="Type in or copy and paste your text/article"
                   onChange={handleChange}
@@ -200,12 +197,13 @@ const Tool = () => {
                               setCount(data.countValue)
                               setCounterSelected({ selected: true, id: id })
                             }}
-                            className={`${
+                            className={classNames(
+                              'flex items-center justify-center w-11 h-11  rounded-md cursor-pointer disabled:cursor-not-allowed',
                               counterSelected.id === id &&
-                              data.countValue === count
-                                ? 'bg-primary text-white font-bold'
-                                : 'bg-[#EDF2F7] text-[#000000]'
-                            } flex items-center justify-center w-11 h-11  rounded-md cursor-pointer disabled:cursor-not-allowed`}
+                                data.countValue === count
+                                ? 'origin-center hover:rotate-12 cursor-pointer'
+                                : 'bg-secondary text-[#000000]'
+                            )}
                           >
                             {data.countValue}
                           </button>
@@ -221,15 +219,14 @@ const Tool = () => {
                         hasSomethingTyped.trim().length > 0 ||
                         isLoading
                       }
-                      className={`${
-                        generateHeadlineEffect && 'animate-wiggle'
-                      } flex items-center justify-center px-6 py-3 rounded-md bg-primary text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap
-                    ${isLoading ? 'disabled:px-20' : 'disabled:px-5'}`}
+                      className={classNames(
+                        'flex items-center justify-center px-6 py-3 rounded-md bg-primary text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap',
+                        generateHeadlineEffect && 'animate-wiggle',
+                        isLoading ? 'disabled:px-20' : 'disabled:px-5'
+                      )}
                       onClick={(e) => {
                         dispatch(setGenerateHeadlineEffect(true))
                         handleSubmit(e)
-                        // setHasArticle(hasArticle)
-                        // setEdit(false)
                       }}
                       onAnimationEnd={() => {
                         dispatch(setGenerateHeadlineEffect(false))
@@ -245,7 +242,6 @@ const Tool = () => {
                           color="#fafafa"
                           ariaLabel="three-dots-loading"
                           wrapperStyle={{}}
-                          // wrapperClassName=""
                           visible={true}
                         />
                       )}
@@ -267,7 +263,7 @@ const Tool = () => {
                         Headlines
                       </p>
                       {allTitles?.length > 0 && (
-                        <div className="border-[1px] border-solid border-[#EDF2F7] rounded-md p-2 max-h-[200px] scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
+                        <div className="border-[1px] border-solid border-secondary rounded-md p-2 max-h-[200px] scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
                           <div className="flex flex-col gap-2">
                             {allTitles &&
                               allTitles.map((title: string, id: number) => (
@@ -298,7 +294,7 @@ const Tool = () => {
                                         copied
                                       </p>
                                     ) : (
-                                      <p className="flex gap-2 items-center px-3 py-2 bg-[#EDF2F7] rounded-md text-[14px] leading-[14px] text-[#4A5568]">
+                                      <p className="flex gap-2 items-center px-3 py-2 bg-secondary rounded-md text-[14px] leading-[14px] text-[#4A5568]">
                                         <FaRegCopy />
                                         copy
                                       </p>
@@ -328,11 +324,12 @@ const Tool = () => {
                             toast.success('All Tags Copied!')
                           }}
                           type="button"
-                          className={`px-2 py-1.5  rounded-md text-base  ${
+                          className={classNames(
+                            'px-2 py-1.5  rounded-md text-base',
                             latestCopied.copiedId === copyAllId.id
                               ? 'bg-primary text-white'
-                              : 'bg-[#EDF2F7] text-[#4A5568]'
-                          }`}
+                              : 'bg-secondary text-[#4A5568]'
+                          )}
                         >
                           Copy All
                         </button>
@@ -356,12 +353,13 @@ const Tool = () => {
                                   toast.success('Tag Copied!')
                                 }}
                                 type="button"
-                                className={`${
+                                className={classNames(
+                                  'px-3 py-2 border-[1px] border-solid border-secondary rounded-md text-base text-[#4A5568]',
                                   latestCopied.copiedId ===
-                                  id + allTitles.length
+                                    id + allTitles.length
                                     ? 'bg-primary font-medium text-white'
-                                    : 'bg-[#EDF2F7]'
-                                } px-3 py-2 border-[1px] border-solid border-[#EDF2F7] rounded-md text-base text-[#4A5568]`}
+                                    : 'bg-secondary'
+                                )}
                               >
                                 {tag.trim()}
                               </button>
@@ -375,9 +373,10 @@ const Tool = () => {
                     <div>
                       <button
                         type="button"
-                        className={`${
+                        className={classNames(
+                          'flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed',
                           saveResult && 'animate-wiggle'
-                        } flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed`}
+                        )}
                         onClick={(e) => {
                           dispatch(setSaveResult(true))
                         }}
@@ -392,9 +391,10 @@ const Tool = () => {
                       <button
                         type="button"
                         disabled={isRegenerate}
-                        className={`${
+                        className={classNames(
+                          'flex gap-2 px-4 py-2 rounded-md bg-[#2D3748] text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed',
                           reGenerate && 'animate-wiggle'
-                        } flex gap-2 px-4 py-2 rounded-md bg-[#2D3748] text-[#E3E3E3] hover:text-white font-medium text-lg disabled:bg-[#2D3748] disabled:cursor-not-allowed`}
+                        )}
                         onClick={(e) => {
                           dispatch(setReGenerate(true))
                           dispatch(reGenerateHeadlineFetchAPi(reGenerateData))

@@ -93,7 +93,7 @@ const CustomForm = ({tool,login,register}) => {
                     <div className=''>
                     <p className='font-medium text-sm text-[#4A5568]'>Put your article text below</p>
                     <textarea
-                        className="resize-none p-3 my-2 bg-[#EDF2F7] border-[1px] rounded-md border-solid border-[#f8f8f8] text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed"
+                        className="resize-none p-3 my-2 bg-secondary border-[1px] rounded-md border-solid border-secondaryBorder text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-primaryBorder focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed"
                         rows={10}
                         cols={90}
                         disabled={isLoading}
@@ -125,7 +125,7 @@ const CustomForm = ({tool,login,register}) => {
                                         setCount(data.countValue);
                                         setCounterSelected({selected:true,id:id});
                                     }} 
-                                        className={`${counterSelected.id == id && data.countValue == count ? "bg-[#544BB9] text-white font-bold":"bg-[#EDF2F7] text-[#000000]"} flex items-center justify-center w-11 h-11  rounded-md cursor-pointer disabled:cursor-not-allowed`}>
+                                        className={`${counterSelected.id == id && data.countValue == count ? "bg-[#544BB9] text-white font-bold":"bg-secondary text-[#000000]"} flex items-center justify-center w-11 h-11  rounded-md cursor-pointer disabled:cursor-not-allowed`}>
                                             {data.countValue}
                                     </button>
                                 </>
@@ -183,7 +183,7 @@ const CustomForm = ({tool,login,register}) => {
                             type='text'
                             id='username'
                             name='username'
-                            inputstyle='w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                            inputstyle='w-full  text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-secondary border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
                             borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
                             placeholder='Username' />
                             <div className='flex flex-col gap-4 items-start w-full'>
@@ -191,7 +191,7 @@ const CustomForm = ({tool,login,register}) => {
                                 type='password'
                                 id='password'
                                 name='password'
-                                inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
+                                inputstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-secondary border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                 borderstyle='w-full text-[#737373] text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-[#737373]'
                                 placeholder='Password' />
                                 <a className='flex items-center justify-end w-full font-semibold text-base text-[#4A5568]' href='/'>Forgot password?</a>
@@ -224,7 +224,7 @@ const CustomForm = ({tool,login,register}) => {
                 <div className='flex flex-col gap-5 w-full'>
                      <div className='flex flex-col gap-1 w-full group'>
                          <p className='font-500 text-sm text-[#4A5568]'>Headlines</p>
-                         <div className='border-[1px] border-solid border-[#EDF2F7] rounded-md p-2 max-h-[200px] scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3'>
+                         <div className='border-[1px] border-solid border-secondary rounded-md p-2 max-h-[200px] scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3'>
                              <div className='flex flex-col gap-2'>
                                  {allTitles && allTitles.map((title,id) => (
                                 <div key={id} className='flex items-start justify-between'>
@@ -238,7 +238,7 @@ const CustomForm = ({tool,login,register}) => {
                                             {latestCopied.copiedId == id ? 
                                             <p className='flex gap-1 items-center w-16 px-2 py-2 bg-[#544BB9] rounded-md text-[12px] leading-[14px] text-white'><BsCheck2 />copied</p>
                                             : 
-                                            <p className='flex gap-1 items-center w-16 px-2 py-2 bg-[#EDF2F7] rounded-md text-[12px] leading-[14px] text-[#4A5568]'><FaRegCopy />copy</p>
+                                            <p className='flex gap-1 items-center w-16 px-2 py-2 bg-secondary rounded-md text-[12px] leading-[14px] text-[#4A5568]'><FaRegCopy />copy</p>
                                             }
                                         </button>
                                 </div>))}
@@ -250,7 +250,7 @@ const CustomForm = ({tool,login,register}) => {
                             <p className='font-500 text-sm text-[#4A5568]'>Keywords</p>
                             <button onClick={() => {navigator.clipboard.writeText(copyAllSpecialTags);
                             setLatestCopied({copiedId:specialTags.length + allTitles.length + 1});
-                            toast.success('All Tags Copied!')}} type='button' className={`px-2 py-1.5  rounded-md text-[12px] leading-[14px]  ${latestCopied.copiedId == copyAllId.id ? "bg-[#544BB9] text-white":"bg-[#EDF2F7] text-[#4A5568]" }`}>Copy All</button>
+                            toast.success('All Tags Copied!')}} type='button' className={`px-2 py-1.5  rounded-md text-[12px] leading-[14px]  ${latestCopied.copiedId == copyAllId.id ? "bg-[#544BB9] text-white":"bg-secondary text-[#4A5568]" }`}>Copy All</button>
                         </div>
                         <div className='py-1'>  
                             <div className='flex gap-2 flex-wrap'>
@@ -260,7 +260,7 @@ const CustomForm = ({tool,login,register}) => {
                                     setLatestCopied({copiedId:id + allTitles.length});
                                     setCopyAllId({id:allTitles.length + specialTags.length +1})
                                     toast.success('Tag Copied!') }} 
-                                    type='button' className={`${latestCopied.copiedId === id + allTitles.length ? "bg-[#544BB9] font-medium text-white":"bg-[#EDF2F7]"} px-3 py-2 border-[1px] border-solid border-[#EDF2F7] rounded-md text-xs text-[#4A5568]`}>{tag.trim()}</button>
+                                    type='button' className={`${latestCopied.copiedId === id + allTitles.length ? "bg-[#544BB9] font-medium text-white":"bg-secondary"} px-3 py-2 border-[1px] border-solid border-secondary rounded-md text-xs text-[#4A5568]`}>{tag.trim()}</button>
                                 ))} 
                             </div>
                         </div>

@@ -46,7 +46,6 @@ const NavbarNewA = () => {
   }, [accessToken])
   const coins = Cookies.get('coins')
 
-
   useEffect(() => {
     if (Cookies.get('coins')) {
       setAvailableCoins(Cookies.get('coins'))
@@ -193,7 +192,6 @@ const NavbarNewA = () => {
                               const coinsText =
                                 document.querySelector('#nav-icon4')
                               coinsText?.classList?.remove('open')
-                              // dispatch(setHasTitleTag([]));
                               navigate('/generator')
                             }}
                             className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]"
@@ -254,7 +252,7 @@ const NavbarNewA = () => {
                               coinsText?.classList?.remove('open')
                               navigate('/')
                             }}
-                            className="font-bold text-lg rounded-md text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap list-none"
+                            className="font-bold text-lg rounded-md text-secondaryLayout hover:text-white transition duration-[0.4s] whitespace-nowrap list-none"
                           >
                             How it works
                           </button>
@@ -263,7 +261,7 @@ const NavbarNewA = () => {
                             target="_blank"
                             rel="noreferrer"
                           >
-                            <li className="font-bold text-lg text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap">
+                            <li className="font-bold text-lg text-secondaryLayout hover:text-white transition duration-[0.4s] whitespace-nowrap">
                               About us
                             </li>
                           </a>
@@ -314,7 +312,6 @@ const NavbarNewA = () => {
                           <div className="flex items-center gap-6 ms:gap-2 sm:gap-3 md:gap-1 px-2 py-1">
                             <GiTwoCoins
                               color="#FFD700"
-                              // size={35}
                               className={classNames(
                                 availableCoins &&
                                   'origin-center hover:rotate-12 text-2xl ms:text-[16px] sm:text-[24px] md:text-lg lg:text-lg cursor-pointer'
@@ -386,7 +383,6 @@ const NavbarNewA = () => {
                                     const coinsText =
                                       document.querySelector('#nav-icon4')
                                     coinsText?.classList?.remove('open')
-                                    // dispatch(setHasTitleTag([]));
                                     navigate('/generator')
                                   }}
                                   className={classNames(
@@ -522,7 +518,7 @@ const NavbarNewA = () => {
                           handleClickScroll()
                           navigate('/')
                         }}
-                        className="font-bold text-lg text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap list-none"
+                        className="font-bold text-lg text-secondaryLayout hover:text-white transition duration-[0.4s] whitespace-nowrap list-none"
                       >
                         How it works
                       </button>
@@ -533,7 +529,7 @@ const NavbarNewA = () => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <li className="font-bold text-lg text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap">
+                        <li className="font-bold text-lg text-secondaryLayout hover:text-white transition duration-[0.4s] whitespace-nowrap">
                           About us
                         </li>
                       </a>

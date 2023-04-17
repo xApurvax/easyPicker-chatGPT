@@ -16,7 +16,7 @@ const PrivacyPolicy = () => {
         <NavbarNewA />
       </div>
       <div className="my-5 max-w-[90%] flex flex-col gap-5">
-        <h1 className="font-800 font-bold ms:text-xl text-2xl text-[#141414] flex items-center gap-1">
+        <h1 className="font-800 font-bold ms:text-xl text-2xl text-textBlack flex items-center gap-1">
           <GoHome
             className="cursor-pointer"
             onClick={(e) => {
@@ -67,7 +67,7 @@ const PrivacyPolicy = () => {
         </p>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Personal information we collect:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -93,7 +93,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Why do we process your data?
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -132,10 +132,10 @@ const PrivacyPolicy = () => {
 
         <div className="flex flex-col gap-3">
           <div className="flex flex-col">
-            <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+            <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
               Your rights:
             </h2>
-            <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+            <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
               You have the following rights related to your personal data:
             </h2>
           </div>
@@ -181,7 +181,7 @@ const PrivacyPolicy = () => {
         </p>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Links to other websites:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -195,7 +195,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Information security:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -210,7 +210,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Legal disclosure:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -224,7 +224,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Contact information:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">

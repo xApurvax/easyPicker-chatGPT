@@ -13,7 +13,7 @@ const NotFound = () => {
       <button className="mt-5">
         <a
           href="#"
-          className="relative inline-block text-sm font-medium text-seconbg-secondaryYellow group active:text-orange-500 focus:outline-none focus:ring"
+          className="relative inline-block text-sm font-medium text-secondary bg-secondary Yellow group active:text-orange-500 focus:outline-none focus:ring"
         >
           <span className="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-secondaryYellow group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
