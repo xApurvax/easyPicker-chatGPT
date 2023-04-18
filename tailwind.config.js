@@ -5,8 +5,13 @@ module.exports = {
     extend: {
       colors: {
         primary: '#544bb9',
+        secondary: '#EDF2F7',
         secondaryYellow: '#ffe84d',
         textGray: '#737373',
+        secondaryLayout: '#e5e5e5',
+        primaryBorder: '#aab2b8',
+        secondaryBorder: '#f8f8f8',
+        textBlack: '#141414',
       },
       keyframes: {
         wiggle: {

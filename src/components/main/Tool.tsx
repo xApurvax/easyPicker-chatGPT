@@ -72,7 +72,6 @@ const Tool = () => {
     copied: false,
     id: null,
   })
-  // const [goBackToSettings, setGoBackToHeadlineSettings] = useState(true)
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
     setHasArticle(e.target.value)
@@ -138,7 +137,7 @@ const Tool = () => {
                     Put your article text below
                   </label>
                   <textarea
-                    className="resize-none h-full w-full p-3 border-[1px] rounded-md border-solid border-[#f8f8f8] text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-[#aab2b8] focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3"
+                    className="resize-none h-full w-full p-3 border-[1px] rounded-md border-solid border-secondaryBorder text-[14px] focus:outline-none focus:border-[1px] focus:border-solid focus:border-primaryBorder focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3"
                     rows={18}
                     id="paragraph"
                     name="paragraph"
@@ -164,12 +163,10 @@ const Tool = () => {
                       Generate your headline
                     </p>
                   </div>
-                  <div className="flex flex-col justify-between py-3 border-solid border-b-[1px] border-[#f8f8f8]">
+                  <div className="flex flex-col justify-between py-3 border-solid border-b-[1px] border-secondaryBorder">
                     <div className="flex justify-between w-full">
                       <div>
-                        <p className="font-semibold text-[16px]">
-                          Hedline Focus
-                        </p>
+                        <p className="font-semibold text-base">Hedline Focus</p>
                         <p className="font-normal text-[12px] text-[#aab2b8]">
                           Text to focus on headline
                         </p>
@@ -180,7 +177,7 @@ const Tool = () => {
                     </div>
                     {hasFocusedHeadline !== '' && (
                       <div className="flex my-2 justify-between">
-                        <div className="border-[1px] rounded-md border-solid border-[#f8f8f8] p-2">
+                        <div className="border-[1px] rounded-md border-solid border-secondaryBorder p-2">
                           <p className="font-normal text-[10px] text-[#252728]">
                             {hasFocusedHeadline}
                           </p>
@@ -197,13 +194,13 @@ const Tool = () => {
                       </div>
                     )}
                   </div>
-                  <div className="flex justify-between flex-col py-3 border-solid border-b-[1px] border-[#f8f8f8]">
+                  <div className="flex justify-between flex-col py-3 border-solid border-b-[1px] border-secondaryBorder">
                     <div
                       className="flex justify-between w-full"
                       onClick={() => setExpIncHeadline(!expIncHeadline)}
                     >
                       <div>
-                        <p className="font-semibold text-[16px]">
+                        <p className="font-semibold text-base">
                           Include specific words on headline
                         </p>
                       </div>
@@ -230,13 +227,13 @@ const Tool = () => {
                       />
                     </section>
                   </div>
-                  <div className="flex justify-between flex-col py-3 border-solid border-b-[1px] border-[#f8f8f8]">
+                  <div className="flex justify-between flex-col py-3 border-solid border-b-[1px] border-secondaryBorder">
                     <div
                       className="flex justify-between w-full"
                       onClick={() => setExpExcHeadline(!expExcHeadline)}
                     >
                       <div>
-                        <p className="font-semibold text-[16px]">
+                        <p className="font-semibold text-base">
                           Exclude specific words on headline
                         </p>
                       </div>
@@ -266,16 +263,16 @@ const Tool = () => {
                           toggle={isFindUseSynonyms}
                           setToggle={setIsFindUseSynonyms}
                         />
-                        <p className="font-[600] text-[16px] leading-[22px] text-[#252728]">
+                        <p className="font-semibold text-base leading-[22px] text-[#252728]">
                           Find & use synonyms for Facebook, Twitter
                         </p>
                       </div>
                     </section>
                   </div>
-                  <div className="flex flex-col gap-3 w-full justify-between py-3 border-solid border-b-[1px] border-[#f8f8f8]">
+                  <div className="flex flex-col gap-3 w-full justify-between py-3 border-solid border-b-[1px] border-secondaryBorder">
                     <div className="flex justify-between">
                       <div className="flex">
-                        <p className="font-semibold text-[16px]">
+                        <p className="font-semibold text-base">
                           Length of Headline
                         </p>
                       </div>
@@ -285,7 +282,7 @@ const Tool = () => {
                             {' '}
                             Min
                             <div className="bg-[#f0f2f3] px-1 rounded-md min-w-[32px] flex items-center justify-center">
-                              <p className="font-[500] text-[16px] leading-[24px] text-[#252728]">
+                              <p className="font-medium text-base text-[#252728]">
                                 {headlineLength[0]}
                               </p>
                             </div>
@@ -305,7 +302,7 @@ const Tool = () => {
                             {' '}
                             Max
                             <div className="bg-[#f0f2f3] px-1 rounded-md min-w-[32px] flex items-center justify-center">
-                              <p className="font-[500] text-[16px] leading-[24px] text-[#252728]">
+                              <p className="font-medium text-base text-[#252728]">
                                 {headlineLength[headlineLength.length - 1]}
                               </p>
                             </div>
@@ -318,7 +315,7 @@ const Tool = () => {
                         toggle={isIncPowerWords}
                         setToggle={setIsIncPowerWords}
                       />
-                      <p className="font-[600] text-[16px] leading-[22px] text-[#252728]">
+                      <p className="font-medium text-base text-[#252728]">
                         Include Power Words in the headline
                       </p>
                       <CustomTooltip tooltip="By including above words can add more power to content">
@@ -333,20 +330,20 @@ const Tool = () => {
                         toggle={isMakeQuestion}
                         setToggle={setIsMakeQuestion}
                       />
-                      <p className="font-[600] text-[16px] leading-[22px] text-[#252728]">
+                      <p className="font-medium text-base text-[#252728]">
                         Make the headline as a question
                       </p>
                     </div>
                     <div className="flex justify-between">
                       <div className="flex">
-                        <p className="font-semibold text-[16px]">
+                        <p className="font-semibold text-base">
                           Headline Range
                         </p>
                       </div>
                       <div className="flex justify-center items-center gap-2">
                         <div className="flex justify-between items-center">
                           <div className="flex gap-1">
-                            <p className="bg-[#f0f2f3] px-1 rounded-md font-[500] text-[16px] leading-[24px] text-[#252728]">
+                            <p className="bg-[#f0f2f3] px-1 rounded-md font-medium text-base text-[#252728]">
                               Neutral
                             </p>
                           </div>
@@ -354,7 +351,6 @@ const Tool = () => {
                         <div className="w-[180px]">
                           <StepDotsRange
                             defaultValue={headlineType}
-                            // setRange={setHeadlineType}
                             min={0}
                             max={40}
                             step={10}
@@ -362,7 +358,7 @@ const Tool = () => {
                         </div>
                         <div className="flex justify-between items-center">
                           <div className="flex gap-1 ">
-                            <p className="bg-[#f0f2f3] px-1 rounded-md font-[600] text-[16px] leading-[24px] text-[#252728]">
+                            <p className="bg-[#f0f2f3] px-1 rounded-md font-semibold text-base text-[#252728]">
                               Sensational
                             </p>
                           </div>
@@ -398,7 +394,6 @@ const Tool = () => {
                           color="#fafafa"
                           ariaLabel="three-dots-loading"
                           wrapperStyle={{}}
-                          // wrapperClassName=""
                           visible={true}
                         />
                       )}

@@ -42,7 +42,7 @@ const Tool = ({ homepageTrial = false }) => {
   })
   const [tag, setTag] = useState<string[]>([])
   const [availableCoins, setAvailableCoins] = useState()
-  const location = useLocation();
+  const location = useLocation()
 
   const {
     generateHeadlineEffect,
@@ -73,7 +73,6 @@ const Tool = ({ homepageTrial = false }) => {
   }))
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [counter, setCounter] = useState([
-    // { countValue: 1, id: 1 },
     { countValue: 3, id: 1 },
     { countValue: 5, id: 2 },
     { countValue: 7, id: 3 },
@@ -86,7 +85,7 @@ const Tool = ({ homepageTrial = false }) => {
   })
   const [copyAllId, setCopyAllId] = useState<{ id: Nullable<number> }>({
     id: specialTags?.length + allTitles?.length + 1,
-  });
+  })
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
     setHasArticle(e.target.value)
 
@@ -162,41 +161,41 @@ const Tool = ({ homepageTrial = false }) => {
           homepageTrial && 'mt-5'
         )}
       >
-        {location.pathname !== "/" &&
-        <div className="flex justify-end gap-1 md:hidden w-full">
-          <div
-            className={classNames(
-              'bg-primary flex justify-end items-end',
-              homepageTrial && 'bg-secondaryYellow'
-            )}
-          >
-            <div className="flex gap-2 ms:gap-2 sm:gap-3 md:gap-4 bg-white rounded-t-xl px-5 py-1 justify-end items-center">
-              <GiTwoCoins
-                color="#FFD700"
-                // size={35}
-                className={classNames(
-                  availableCoins &&
-                    'origin-center hover:rotate-12 text-[16px] ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-4xl cursor-pointer'
-                )}
-              />
-              <button
-                onClick={() => dispatch(setShowBuyPointsModal(true))}
-                className="flex items-center justify-center"
-              >
-                <p
-                  id="coins-text"
-                  className="font-semibold text-xs ms:text-xs sm:text-base md:text-xl lg:text-2xl text-primary"
-                >
-                  {!availableCoins ? 0 : availableCoins}
-                </p>
-                <AiOutlinePlus
-                  color="#000"
-                  className="text-[16px] ms:text-[16px] sm:text-[20px] md:text-[20px] lg:text-2xl cursor-pointer"
+        {location.pathname !== '/' && (
+          <div className="flex justify-end gap-1 md:hidden w-full">
+            <div
+              className={classNames(
+                'bg-primary flex justify-end items-end',
+                homepageTrial && 'bg-secondaryYellow'
+              )}
+            >
+              <div className="flex gap-2 ms:gap-2 sm:gap-3 md:gap-4 bg-white rounded-t-xl px-5 py-1 justify-end items-center">
+                <GiTwoCoins
+                  color="#FFD700"
+                  className={classNames(
+                    availableCoins &&
+                      'origin-center hover:rotate-12 text-[16px] ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-4xl cursor-pointer'
+                  )}
                 />
-              </button>
+                <button
+                  onClick={() => dispatch(setShowBuyPointsModal(true))}
+                  className="flex items-center justify-center"
+                >
+                  <p
+                    id="coins-text"
+                    className="font-semibold text-xs ms:text-xs sm:text-base md:text-xl lg:text-2xl text-primary"
+                  >
+                    {availableCoins || 0}
+                  </p>
+                  <AiOutlinePlus
+                    color="#000"
+                    className="text-[16px] ms:text-[16px] sm:text-[20px] md:text-[20px] lg:text-2xl cursor-pointer"
+                  />
+                </button>
+              </div>
             </div>
           </div>
-        </div>}
+        )}
         <div className="flex flex-col lg:flex-row p-4 ms:p-4 sm:p-6 md:p-8 lg:p-5 gap-8 md:rounded-xl lg:rounded-xl bg-white w-full ms:flex-col lg:max-w-[95%] mb-6">
           <div className="flex flex-col gap-3 w-full">
             <div className="flex flex-col">
@@ -207,7 +206,7 @@ const Tool = ({ homepageTrial = false }) => {
                 </p>
                 <div className="w-full">
                   <textarea
-                    className="resize-none ms:resize-y p-3 my-2 lg:my-1 bg-[#EDF2F7] border-[1px] rounded-md border-solid border-[#aab2b8] text-xs ms:text-xs sm:text-base md:text-lg lg:text-xs min-h-[180px] w-full focus:outline-none focus:border-[1px] focus:border-solid focus:border-primary focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed "
+                    className="resize-none ms:resize-y p-3 my-2 lg:my-1 bg-secondary border-[1px] rounded-md border-solid border-primaryBorder text-xs ms:text-xs sm:text-base md:text-lg lg:text-xs min-h-[180px] w-full focus:outline-none focus:border-[1px] focus:border-solid focus:border-primary focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed "
                     rows={10}
                     cols={75}
                     disabled={isLoading}
@@ -237,7 +236,6 @@ const Tool = ({ homepageTrial = false }) => {
                 <p className="font-bold text-base ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]">
                   No of Titles
                 </p>
-                {/* <div className="flex lg:flex-row justify-between items-center ms:items-start ms:gap-5 sm:flex-col"> */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-between sm:items-center ms:flex-col ms:items-start">
                   <div className="flex gap-2 my-2 ">
                     {counter &&
@@ -255,7 +253,7 @@ const Tool = ({ homepageTrial = false }) => {
                               counterSelected.id === id &&
                                 data.countValue === count
                                 ? 'bg-primary text-white font-bold'
-                                : 'bg-[#EDF2F7] text-[#000000]'
+                                : 'bg-secondary text-[#000000]'
                             )}
                           >
                             {data.countValue}
@@ -334,7 +332,7 @@ const Tool = ({ homepageTrial = false }) => {
                                 .map((title: string, id: number) => (
                                   <div
                                     key={id}
-                                    className="flex gap-5 w-full items-start justify-between border-[1px] border-solid border-[#EDF2F7] rounded-md p-2"
+                                    className="flex gap-5 w-full items-start justify-between border-[1px] border-solid border-secondary rounded-md p-2"
                                   >
                                     <p className="font-medium text-base ms:text-xs sm:text-sm md:text-base lg:text-sm text-[#4A5568]">
                                       {title.replace(
@@ -370,7 +368,7 @@ const Tool = ({ homepageTrial = false }) => {
                                           copied
                                         </p>
                                       ) : (
-                                        <p className="flex gap-2 items-center px-3 py-2 ms:px-2 sm:px-2 md:px-2 lg:px-2 ms:py-1 sm:py-1 md:py-1 lg:py-1 bg-[#EDF2F7] rounded-md text-[14px] leading-[14px] ms:text-xs sm:text-sm md:text-base lg:text-sm text-[#4A5568]">
+                                        <p className="flex gap-2 items-center px-3 py-2 ms:px-2 sm:px-2 md:px-2 lg:px-2 ms:py-1 sm:py-1 md:py-1 lg:py-1 bg-secondary rounded-md text-[14px] leading-[14px] ms:text-xs sm:text-sm md:text-base lg:text-sm text-[#4A5568]">
                                           <FaRegCopy />
                                           copy
                                         </p>
@@ -414,7 +412,7 @@ const Tool = ({ homepageTrial = false }) => {
                               'px-2 py-1.5 ms:px-1.5 sm:px-1.5 md:px-1.5 lg:px-1.5 ms:py-1 sm:py-1 md:py-1 lg:py-1 rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-sm',
                               latestCopied.copiedId === copyAllId.id
                                 ? 'bg-violet-500 text-white'
-                                : 'bg-[#EDF2F7] text-[#4A5568]'
+                                : 'bg-secondary text-[#4A5568]'
                             )}
                           >
                             Copy All
@@ -450,11 +448,11 @@ const Tool = ({ homepageTrial = false }) => {
                                     }}
                                     type="button"
                                     className={classNames(
-                                      'px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-2 ms:py-1 sm:py-1 md:py-2 lg:py-1 border-[1px] border-solid border-[#EDF2F7] rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]',
+                                      'px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-2 ms:py-1 sm:py-1 md:py-2 lg:py-1 border-[1px] border-solid border-secondary rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]',
                                       latestCopied.copiedId ===
                                         id + allTitles.length
                                         ? 'bg-primary font-medium text-white'
-                                        : 'bg-[#EDF2F7]'
+                                        : 'bg-secondary'
                                     )}
                                   >
                                     {tag.trim()}
@@ -495,10 +493,6 @@ const Tool = ({ homepageTrial = false }) => {
                       onClick={(e) => {
                         dispatch(setReGenerate(true))
                         dispatch(reGenerateHeadlineFetchAPi(reGenerateData))
-                        // setLatestCopied({copiedId: null})
-                        // setCopyAllId({
-                        //   id: 0,
-                        // })
                       }}
                       onAnimationEnd={() => {
                         dispatch(setReGenerate(false))

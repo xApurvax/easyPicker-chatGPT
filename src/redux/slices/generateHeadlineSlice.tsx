@@ -179,7 +179,7 @@ const GenerateHeadlineSlice = createSlice({
       if (typeof payload === 'string' && payload === NO_CREDIT_POINTS_MESSAGE) {
         toast(payload, {
           icon: (
-            <GiTwoCoins color="#FFD700" size={35} className="animate-pulse" />
+            <GiTwoCoins color="#FFD700" size={25} className="animate-pulse" />
           ),
         })
         const audio = new Audio(coins)
@@ -232,7 +232,6 @@ const GenerateHeadlineSlice = createSlice({
     builder.addCase(saveResultsFetchAPi.fulfilled, (state, { payload }) => {
       const { data } = payload || {}
       state.isSaved = false
-      // if(action?.payload?.data?.status_code === 200) {
       state.goBackToSettings = false
       state.allTitles = data?.result[0]['title']
       state.saveTitles = data?.result[0]['title'].join()
@@ -245,7 +244,6 @@ const GenerateHeadlineSlice = createSlice({
       if (data?.result.length === 0) {
         toast.error('Something went wrong!')
       }
-      // }
     })
     builder.addCase(saveResultsFetchAPi.rejected, (state, { payload }) => {
       state.isSaved = false

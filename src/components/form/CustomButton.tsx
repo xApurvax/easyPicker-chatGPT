@@ -3,7 +3,6 @@ import React from 'react'
 import { Oval } from 'react-loader-spinner'
 import { ButtonProps } from '../../utils/types/types'
 
-
 const CustomButton = ({
   buttonStyle,
   children,
@@ -11,7 +10,7 @@ const CustomButton = ({
   showLoader,
   disabled,
   ...props
-} : ButtonProps) => {
+}: ButtonProps) => {
   return (
     <button
       {...props}

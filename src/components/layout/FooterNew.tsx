@@ -9,7 +9,7 @@ const FooterNew: React.FC = () => {
       <footer className="flex flex-col justify-center w-full h-full bg-primary items-center py-5 ms:py-1 sm:py-2 md:py-2 lg:py-1.5">
         <div className="flex justify-between w-full py-3 ms:py-0.5 sm:py-1 md:py-1.5 lg:py-3">
           <div className="flex gap-3 items-center justify-center w-full font-medium text-sm ms:text-sm sm:text-base md:text-lg lg:text-xl">
-            <p className="text-[#e5e5e5] hover:text-white transition duration-[0.4s]">
+            <p className="text-secondaryLayout hover:text-white transition duration-[0.4s]">
               Made with
             </p>
             <motion.div
@@ -26,13 +26,9 @@ const FooterNew: React.FC = () => {
                 },
               }}
             >
-              <FaHeart
-                fill="red"
-                //  size={30}
-                className="focus-within:animate-ping"
-              />
+              <FaHeart fill="red" className="focus-within:animate-ping" />
             </motion.div>
-            <p className="text-[#e5e5e5] hover:text-white transition duration-[0.4s]">
+            <p className="text-secondaryLayout hover:text-white transition duration-[0.4s]">
               by
             </p>
             <a href="https://infynno.com/" target="_blank" rel="noreferrer">
@@ -49,26 +45,26 @@ const FooterNew: React.FC = () => {
           </div>
         </div>
         <div className="flex gap-2 md:hidden">
-          <div className="text-white font-600 font-semibold hover:text-[#141414] transition ease-in-out duration-[.4s] cursor-pointer">
+          <div className="text-white font-600 font-semibold hover:text-textBlack transition ease-in-out duration-[.4s] cursor-pointer">
             <a href="/terms-of-use" target="_blank">
               Terms of use
             </a>
           </div>
           <div className="text-white font-600 font-semibold">|</div>
-          <div className="text-white font-600 font-semibold hover:text-[#141414] transition ease-in-out duration-[.4s] cursor-pointer">
+          <div className="text-white font-600 font-semibold hover:text-textBlack transition ease-in-out duration-[.4s] cursor-pointer">
             <a href="/privacy-policy" target="_blank">
               Privacy policy
             </a>
           </div>
         </div>
         <div className="hidden gap-2 md:flex absolute right-[5%]">
-          <div className="text-white font-600 font-semibold hover:text-[#141414] transition ease-in-out duration-[.4s] cursor-pointer">
+          <div className="text-white font-600 font-semibold hover:text-textBlack transition ease-in-out duration-[.4s] cursor-pointer">
             <a href="/terms-of-use" target="_blank">
               Terms of use
             </a>
           </div>
           <div className="text-white font-600 font-semibold">|</div>
-          <div className="text-white font-600 font-semibold hover:text-[#141414] transition ease-in-out duration-[.4s] cursor-pointer">
+          <div className="text-white font-600 font-semibold hover:text-textBlack transition ease-in-out duration-[.4s] cursor-pointer">
             <a href="/privacy-policy" target="_blank">
               Privacy policy
             </a>

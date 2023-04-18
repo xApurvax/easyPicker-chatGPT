@@ -18,8 +18,6 @@ const DropZone = ({
   imageAfterCrop,
   imageAtEdit,
 }: DropZonePropsTypes) => {
-  // console.log(image);
-
   const [images, setImages] = React.useState([])
   const maxNumber = 69
   const onChange = (imageList: any) => {

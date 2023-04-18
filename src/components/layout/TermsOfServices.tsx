@@ -15,7 +15,7 @@ const TermsOfServices = () => {
         <NavbarNewA />
       </div>
       <div className="my-5 max-w-[90%] flex flex-col gap-5">
-        <h1 className="font-800 font-bold ms:text-xl text-2xl text-[#141414] flex items-center gap-1">
+        <h1 className="font-800 font-bold ms:text-xl text-2xl text-textBlack flex items-center gap-1">
           <GoHome
             className="cursor-pointer"
             onClick={(e) => {
@@ -53,7 +53,7 @@ const TermsOfServices = () => {
           signed by you, and it governs your use of the Services.
         </p>
 
-        <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+        <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
           PLEASE READ THESE TERMS OF SERVICE CAREFULLY. IF YOU DO NOT AGREE WITH
           THESE TERMS, YOU MAY NOT REGISTER FOR OR USE THE SERVICES.
         </h2>
@@ -108,7 +108,7 @@ const TermsOfServices = () => {
         </p>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Visitors and Users:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -140,7 +140,7 @@ const TermsOfServices = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             {' '}
             Right to Use Services:
           </h2>
@@ -162,7 +162,7 @@ const TermsOfServices = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Content:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -210,7 +210,7 @@ const TermsOfServices = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Privacy:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -243,13 +243,13 @@ const TermsOfServices = () => {
           </p>
         </div>
 
-        <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+        <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
           {' '}
           REGISTRATION AND ACCOUNT.
         </h2>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Registration:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -279,7 +279,7 @@ const TermsOfServices = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             User Responsibilities:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -300,12 +300,12 @@ const TermsOfServices = () => {
           </p>
         </div>
 
-        <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+        <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
           FEES AND PAYMENT.
         </h2>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Fees:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -346,7 +346,7 @@ const TermsOfServices = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Taxes:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -368,7 +368,7 @@ const TermsOfServices = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Change in Fees:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -388,12 +388,12 @@ const TermsOfServices = () => {
           </p>
         </div>
 
-        <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+        <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
           GENERAL PROVISIONS.
         </h2>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Languages:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -409,7 +409,7 @@ const TermsOfServices = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             No Waiver:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
@@ -421,7 +421,7 @@ const TermsOfServices = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-base md:text-lg font-600 font-bold text-[#141414]">
+          <h2 className="text-base md:text-lg font-600 font-bold text-textBlack">
             Changes:
           </h2>
           <p className="text-xs md:text-base text-[#353535]">
