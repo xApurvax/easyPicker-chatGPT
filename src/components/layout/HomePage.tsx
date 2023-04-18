@@ -507,7 +507,6 @@ const HomePage: React.FC = () => {
                             placeholder="What's on your mind?"
                           />
                         </div>
-                        {/* {!error &&  */}
                         <div className="relative h-full w-full flex justify-center items-center">
                           <ReCAPTCHA
                             name="captcha"
@@ -534,7 +533,6 @@ const HomePage: React.FC = () => {
                             </div>
                           )}
                         </div>
-                        {/* } */}
                         <div className="py-3 ms:py-0 sm:py-0 md:py-3 lg:py-3 w-full flex justify-center items-center">
                           {values.name.trim().length < 1 ||
                           values.email.trim().length < 1 ||

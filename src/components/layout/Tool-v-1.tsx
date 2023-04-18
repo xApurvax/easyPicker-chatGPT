@@ -307,7 +307,6 @@ const Tool = () => {
                       )}
                     </div>
                   )}
-                  {/* {specialTags?.length > 0 || !specialTag.has("") && */}
                   <div className="flex flex-col gap-1 w-full">
                     <div className="flex items-center gap-3">
                       <p className="font-bold text-lg text-[#4A5568]">
@@ -368,7 +367,6 @@ const Tool = () => {
                       </div>
                     </div>
                   </div>
-                  {/* } */}
                   <div className="flex py-3 gap-4 w-full">
                     <div>
                       <button

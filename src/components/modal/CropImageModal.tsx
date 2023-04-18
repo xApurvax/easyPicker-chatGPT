@@ -3,8 +3,8 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Field } from 'formik'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
-import { Fragment, useState } from 'react'
-import Cropper, { Area } from 'react-easy-crop'
+import { Fragment, useCallback, useState } from 'react'
+import Cropper, { Area, Point } from 'react-easy-crop'
 import getCroppedImg from '../crop/CropImage'
 import React from 'react'
 import { Nullable, UserPictureProps } from '../../utils/types/types'
@@ -22,17 +22,20 @@ const CropImageModal: React.FC<CropImageModalProps> = ({
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(true)
-  const [crop, setCrop] = useState({ x: 0, y: 0 })
+  const [crop, setCrop] = useState<Point>({ x: 0, y: 0 })
   const [zoom, setZoom] = useState<number | undefined>(1)
   const [rotation, setRotation] = useState<number | undefined>(0)
   const [croppedAreaPixels, setCroppedAreaPixels] =
     useState<Nullable<Area>>(null)
 
-  const cropComplete = (croppedAreaPixels: Area) =>
+  const cropComplete = (croppedArea: Area, croppedAreaPixels: Area) => {
     setCroppedAreaPixels(croppedAreaPixels)
+  }
 
-  const zoomPercentage = (value: number) => `${Math.round(value - 1)}%`
-
+  const zoomPercentage = (value: number) => {
+    return `${Math.round(value - 1)}%`
+  }
+  console.log(crop)
   const saveCropImage = async () => {
     if (croppedAreaPixels) {
       const croppedImage = await getCroppedImg(
@@ -40,6 +43,7 @@ const CropImageModal: React.FC<CropImageModalProps> = ({
         croppedAreaPixels,
         rotation
       )
+      console.log(croppedAreaPixels)
       croppedImage && setImage(croppedImage)
     }
   }
@@ -129,7 +133,7 @@ const CropImageModal: React.FC<CropImageModalProps> = ({
                         <button
                           type="button"
                           className="inline-flex justify-center rounded-md border-1 border-solid border-light-blue px-3 py-2 text-sm font-medium bg-primary text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                          onClick={saveCropImage}
+                          onClick={() => saveCropImage()}
                         >
                           Save
                         </button>

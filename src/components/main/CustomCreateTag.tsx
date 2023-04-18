@@ -15,7 +15,6 @@ const CustomCreateTag: React.FC<CustomCreateTagProps> = ({
   setTags,
   setHasSomethingTyped,
   disabled = false,
-  onChange,
   ...props
 }) => {
   const addTags = (event: React.KeyboardEvent<HTMLInputElement>) => {

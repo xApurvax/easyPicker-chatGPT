@@ -54,9 +54,6 @@ const NavbarNewA = () => {
                 className="w-14 cursor-pointer"
               />
             </a>
-            {/* <a href="/">
-          <p className="font-bold text-black text-xl text-transparent bg-clip-text bg-gradient-to-t from-purple-400 to-blue-600 transition duration-[0.4s]">TAGLINE GENERATOR</p>
-        </a> */}
           </div>
           <div className="">
             <div className="hidden ms:flex md:hidden w-full h-full">

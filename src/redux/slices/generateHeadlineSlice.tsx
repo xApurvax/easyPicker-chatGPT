@@ -179,7 +179,7 @@ const GenerateHeadlineSlice = createSlice({
       if (typeof payload === 'string' && payload === NO_CREDIT_POINTS_MESSAGE) {
         toast(payload, {
           icon: (
-            <GiTwoCoins color="#FFD700" size={35} className="animate-pulse" />
+            <GiTwoCoins color="#FFD700" size={25} className="animate-pulse" />
           ),
         })
         const audio = new Audio(coins)

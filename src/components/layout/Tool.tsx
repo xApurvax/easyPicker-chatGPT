@@ -236,7 +236,6 @@ const Tool = ({ homepageTrial = false }) => {
                 <p className="font-bold text-base ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]">
                   No of Titles
                 </p>
-                {/* <div className="flex lg:flex-row justify-between items-center ms:items-start ms:gap-5 sm:flex-col"> */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-between sm:items-center ms:flex-col ms:items-start">
                   <div className="flex gap-2 my-2 ">
                     {counter &&

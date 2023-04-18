@@ -1,8 +1,9 @@
+type RotateSize = { width: number; height: number; rotation: number }
 type PixelCropProps = {
-  height: number
-  width: number
   x: number
   y: number
+  height: number
+  width: number
 }
 
 export const createImage = (url: string): Promise<HTMLImageElement> =>
@@ -19,8 +20,6 @@ export const createImage = (url: string): Promise<HTMLImageElement> =>
 export function getRadianAngle(degreeValue: number) {
   return (degreeValue * Math.PI) / 180
 }
-
-type RotateSize = { width: number; height: number; rotation: number }
 
 export function rotateSize(image: RotateSize) {
   const { width, height, rotation } = image
@@ -41,8 +40,8 @@ export default async function getCroppedImg(
   flip = { horizontal: false, vertical: false }
 ) {
   const image: any = await createImage(imageSrc)
-  const canvas = document.createElement('canvas')
-  const ctx = canvas.getContext('2d')
+  const canvas: HTMLCanvasElement = document.createElement('canvas')
+  const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!
   if (!ctx) {
     return null
   }
@@ -69,9 +68,9 @@ export default async function getCroppedImg(
     pixelCrop?.width,
     pixelCrop?.height
   )
-
-  canvas.width = pixelCrop?.width || 0
-  canvas.height = pixelCrop?.height || 0
+  // console.log(bBoxWidth, bBoxHeight, data, 'c')
+  canvas.width = pixelCrop?.width
+  canvas.height = pixelCrop?.height
   ctx.putImageData(data, 0, 0)
 
   /* kept this commented code for future understanding */

@@ -97,9 +97,6 @@ const NavbarNewA = () => {
                   </div>
                 </Link>
               )}
-              {/* <a href="/">
-          <p className="font-bold text-black text-xl text-transparent bg-clip-text bg-gradient-to-t from-purple-400 to-blue-600 transition duration-[0.4s]">TAGLINE GENERATOR</p>
-        </a> */}
             </div>
             <div className="">
               <div className="flex ms:flex md:hidden w-full h-full">
@@ -265,7 +262,6 @@ const NavbarNewA = () => {
                               About us
                             </li>
                           </a>
-                          {/* </div> */}
                         </>
                       )}
                     </ul>
