@@ -35,7 +35,6 @@ const CropImageModal: React.FC<CropImageModalProps> = ({
   const zoomPercentage = (value: number) => {
     return `${Math.round(value - 1)}%`
   }
-  console.log(crop)
   const saveCropImage = async () => {
     if (croppedAreaPixels) {
       const croppedImage = await getCroppedImg(
@@ -43,7 +42,6 @@ const CropImageModal: React.FC<CropImageModalProps> = ({
         croppedAreaPixels,
         rotation
       )
-      console.log(croppedAreaPixels)
       croppedImage && setImage(croppedImage)
     }
   }

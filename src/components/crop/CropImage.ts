@@ -68,7 +68,6 @@ export default async function getCroppedImg(
     pixelCrop?.width,
     pixelCrop?.height
   )
-  // console.log(bBoxWidth, bBoxHeight, data, 'c')
   canvas.width = pixelCrop?.width
   canvas.height = pixelCrop?.height
   ctx.putImageData(data, 0, 0)
