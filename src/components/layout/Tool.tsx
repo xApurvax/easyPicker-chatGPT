@@ -44,14 +44,11 @@ const Tool = ({
 }) => {
   const dispatch = useDispatch<AppDispatch>()
   const [count, setCount] = useState(3)
-  // const [hasSomethingTyped, setHasSomethingTyped] = useState('')
   const [latestCopied, setLatestCopied] = useState<{
     copiedId: Nullable<number>
   }>({
     copiedId: null,
   })
-  // const handle = useFullScreenHandle()
-  // const [tag, setTag] = useState<string[]>([])
   const [availableCoins, setAvailableCoins] = useState()
   const location = useLocation()
   const tabAble = useRef<HTMLTextAreaElement>(null)
@@ -132,28 +129,12 @@ const Tool = ({
   }
 
   const handleFullScreenOpen = useCallback(() => {
-    // setHandle({ active: true })
     dispatch(setHandle(true))
-    // dispatch(setHasTitleTag([]))
-    // setTag([])
-    // setHasSomethingTyped('')
-    // setHasArticle('')
   }, [handle])
-  // const handleFullScreenOpen = () => {
-  //   setHandle({ active: true })
-  // }
 
   const handleFullScreenClose = useCallback(() => {
-    // setHandle({ active: false })
     dispatch(setHandle(false))
-    // dispatch(setHasTitleTag([]))
-    // setTag([])
-    // setHasSomethingTyped('')
-    // setHasArticle('')
   }, [handle])
-  // const handleFullScreenClose = () => {
-  //   setHandle({ active: false })
-  // }
 
   const handleSaveResults = (e: React.FormEvent) => {
     e.preventDefault()
@@ -198,7 +179,6 @@ const Tool = ({
         />
         <meta name="image" content={demo1} />
       </Helmet>
-      {/* <FullScreen handle={handle}> */}
       <div
         className={classNames(
           'flex flex-col w-full justify-center items-center',
@@ -644,8 +624,6 @@ const Tool = ({
           </div>
         </div>
       </div>
-      {/* </FullScreen> */}
-      {/* <FullScreen handle={handle}></FullScreen> */}
       {defaultHandle && <FullScreenToolModal />}
     </HelmetProvider>
   )
