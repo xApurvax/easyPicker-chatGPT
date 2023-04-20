@@ -1,32 +1,30 @@
+type RotateSize = { width: number; height: number; rotation: number }
 type PixelCropProps = {
-  height: number;
-  width: number;
-  x: number;
-  y: number;
+  x: number
+  y: number
+  height: number
+  width: number
 }
 
+export const createImage = (url: string): Promise<HTMLImageElement> =>
+  new Promise((resolve, reject) => {
+    const image = new Image()
+    if (image) {
+      image.addEventListener('load', () => resolve(image))
+      image.addEventListener('error', (error) => reject(error))
+      image.setAttribute('crossOrigin', 'anonymous')
+      image.src = url
+    }
+  })
 
-export const createImage = (url : string): Promise<HTMLImageElement> =>
-new Promise((resolve, reject) => {
-  const image = new Image()
-  if (image) {
-    image.addEventListener('load', () => resolve(image))
-    image.addEventListener('error', (error) => reject(error))
-    image.setAttribute('crossOrigin', 'anonymous')
-    image.src = url
-  }
-})
-
-export function getRadianAngle(degreeValue : number) {
+export function getRadianAngle(degreeValue: number) {
   return (degreeValue * Math.PI) / 180
 }
 
-type RotateSize = {width : number, height: number, rotation: number}
-
 export function rotateSize(image: RotateSize) {
-  const {width , height , rotation} = image
+  const { width, height, rotation } = image
   const rotRad = getRadianAngle(rotation)
-  
+
   return {
     width:
       Math.abs(Math.cos(rotRad) * width) + Math.abs(Math.sin(rotRad) * height),
@@ -41,10 +39,9 @@ export default async function getCroppedImg(
   rotation = 0,
   flip = { horizontal: false, vertical: false }
 ) {
-
-  const image:any = await createImage(imageSrc)
-  const canvas = document.createElement('canvas')
-  const ctx = canvas.getContext('2d')
+  const image: any = await createImage(imageSrc)
+  const canvas: HTMLCanvasElement = document.createElement('canvas')
+  const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!
   if (!ctx) {
     return null
   }
@@ -71,17 +68,16 @@ export default async function getCroppedImg(
     pixelCrop?.width,
     pixelCrop?.height
   )
-
-  canvas.width = pixelCrop?.width || 0
-  canvas.height = pixelCrop?.height ||0
+  canvas.width = pixelCrop?.width
+  canvas.height = pixelCrop?.height
   ctx.putImageData(data, 0, 0)
 
+  /* kept this commented code for future understanding */
   return new Promise((resolve, reject) => {
-    
     // canvas.toBlob((file: Omit<Blob, "name"> & {name: string} | null) => {
     canvas.toBlob((file: Blob | null) => {
-      if(file) {
-        const customFile: Omit<Blob, "name"> & {name: string} = file;
+      if (file) {
+        const customFile: Omit<Blob, 'name'> & { name: string } = file
         // const selectedFile = new Blob([file as BlobPart], {
         //   // ...file,
         //   name: 'cropped.jpeg',

@@ -11,13 +11,11 @@ const CustomCounter: React.FC = () => {
   }))
   return (
     <div>
-      <div className="flex items-center justify-center h-9 w-12 border-[1px] rounded-md border-solid border-[#f8f8f8]">
-        <p className="font-[600] text-[16px] leading-[24px] text-[#252728] w-5">
-          {count}
-        </p>
-        <div className="flex flex-col border-l-[1px] border-solid border-[#f8f8f8]">
+      <div className="flex items-center justify-center h-9 w-12 border-[1px] rounded-md border-solid border-secondaryBorder">
+        <p className="font-semibold text-base text-[#252728] w-5">{count}</p>
+        <div className="flex flex-col border-l-[1px] border-solid border-secondaryBorder">
           <button
-            className="border-b-[1px] border-solid border-[#f8f8f8] text-[#252728] disabled:text-[#aab2b8]"
+            className="border-b-[1px] border-solid border-secondaryBorder text-[#252728] disabled:text-[#aab2b8]"
             onClick={(e) => {
               e.preventDefault()
               dispatch(setIncrement(1))

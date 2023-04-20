@@ -189,7 +189,6 @@ const SavedRecords = () => {
       columns,
       data: saveResultsData,
       initialState: { pageSize: 3 },
-      //   globalFilter: ourGlobalFilterFunction,
     },
     useGlobalFilter,
     usePagination
@@ -208,7 +207,7 @@ const SavedRecords = () => {
               onChange={debouncedResults}
               autoComplete="off"
               className={classNames(
-                'pr-2 py-2 lg:py-1.5 text-sm ms:text-[14px] ms:leading-4 sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-[#aab2b8] max-w-[155px] ms:max-w-[155px] sm:max-w-[180px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-primary',
+                'pr-2 py-2 lg:py-1.5 text-sm ms:text-[14px] ms:leading-4 sm:text-base md:text-lg lg:text-base border-[1px] border-solid border-primaryBorder max-w-[155px] ms:max-w-[155px] sm:max-w-[180px] md:max-w-[200px] rounded-md focus:outline-none focus:border-[1px] focus:border-solid focus:border-primary',
                 showInputIcon
                   ? 'pl-7 pr-2 ms:pl-6 sm:pl-8 md:pl-8 lg:pl-10'
                   : 'px-6'
@@ -217,7 +216,6 @@ const SavedRecords = () => {
             {showInputIcon && (
               <IoSearchOutline
                 color="#544bb9"
-                //  size={25}
                 className="absolute top-1/4 left-2 text-base ms:text-base sm:text-lg md:text-xl lg:text-xl"
               />
             )}
@@ -266,7 +264,6 @@ const SavedRecords = () => {
                         <tr
                           {...row.getRowProps()}
                           className="first:border-t border-solid border-black"
-                          // rowSpan={1}
                           key={i}
                         >
                           {row.cells?.map((cell, id: number) => {
@@ -312,7 +309,6 @@ const SavedRecords = () => {
                         color="#544bb9"
                         height="50"
                         width="50"
-                        // radius="25"
                         secondaryColor="#ab97d0"
                         strokeWidth={5}
                         strokeWidthSecondary={5}
@@ -355,7 +351,6 @@ const SavedRecords = () => {
                   </div>
                 </button>
               }
-              // renderOnZeroPageCount={1}
               containerClassName={
                 'flex py-2 justify-center gap-x-[10px] ms:gap-x-[10px] sm:gap-x-[15px] md:gap-x-[20px] lg:gap-x-[24px]'
               }

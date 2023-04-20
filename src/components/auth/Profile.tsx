@@ -64,7 +64,7 @@ const Profile = () => {
     Object.entries(formData).map((field) => {
       fData.append(field[0], field[1] || '')
     })
-    
+
     dispatch(profileDetailsUpdateFetchAPI(fData))
   }
 
@@ -116,7 +116,7 @@ const Profile = () => {
                           type="text"
                           id="username"
                           name="username"
-                          inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                          inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-secondary border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
                           borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                           placeholder="Username"
                         />
@@ -129,7 +129,7 @@ const Profile = () => {
                           type="text"
                           id="name"
                           name="name"
-                          inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                          inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-secondary border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
                           borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                           placeholder="Name"
                         />
@@ -143,8 +143,7 @@ const Profile = () => {
                         type="text"
                         id="email"
                         name="email"
-                        // disabled={true}
-                        inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray disabled:cursor-not-allowed focus:border-primary"
+                        inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-secondary border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray disabled:cursor-not-allowed focus:border-primary"
                         borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                         placeholder="E-mail"
                       />
@@ -160,7 +159,7 @@ const Profile = () => {
                       onAnimationEnd={() => {
                         dispatch(setSignInEffect(false))
                       }}
-                      buttonStyle="w-full py-[12px] 2xl:py-[13px] text-sm sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg"
+                      buttonStyle="w-full py-3 2xl:py-[13px] text-sm sm:text-sm lg:py-3 lg:text-base lg:leading-none 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg"
                       loaderSize={20}
                       showLoader
                     >

@@ -54,7 +54,7 @@ const HeaderNew = ({ children }: { children: ReactNode }) => {
               {heading}
             </h6>
           </div>
-          <div className="absolute bottom-0 h-[50%] w-full z-[10] bg-[#EDF2F7]" />
+          <div className="absolute bottom-0 h-[50%] w-full z-[10] bg-secondary" />
           <div className="mt-4 w-full">
             <CustomForm>{children}</CustomForm>
           </div>

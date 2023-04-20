@@ -36,7 +36,7 @@ const HeaderAfterAuth: React.FC<HeaderAfterAuthProps> = ({ children }) => {
       <NavBarNewA />
       <div className="">
         <header className="bg-primary relative h-full min-h-[75vh] flex flex-col items-center ms:justify-center md:justify-start w-full">
-          <div className="absolute bottom-0 h-[50%] w-full z-[10] bg-[#EDF2F7]" />
+          <div className="absolute bottom-0 h-[50%] w-full z-[10] bg-secondary" />
           <div id="headerAaHRP" className="mt-0 w-full">
             <CustomForm>{children}</CustomForm>
           </div>

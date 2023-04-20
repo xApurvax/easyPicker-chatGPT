@@ -10,7 +10,7 @@ interface ContactUsState {
 
 const initialState: ContactUsState = {
   isLoading: false,
-  isSubmittedSuccessfully : false
+  isSubmittedSuccessfully: false,
 }
 
 export const ContactUsFetchAPi = createAsyncThunk(
@@ -42,13 +42,6 @@ const ContactusSlice = createSlice({
     builder.addCase(ContactUsFetchAPi.fulfilled, (state, { payload }) => {
       state.isLoading = false
       state.isSubmittedSuccessfully = true
-      if (payload?.data?.status_code === 200) {
-        // state.allData = payload?.data?.result[0];
-        // state.coins = payload?.data?.result[0]?.avaliable_credit;
-        // Cookies.set("access_token", payload?.data?.result[0]?.token?.access);
-        // Cookies.set("refresh_token", payload?.data?.result[0]?.token?.refresh);
-        // Cookies.set("coins", payload?.data?.result[0]?.avaliable_credit);
-      }
     })
     builder.addCase(
       ContactUsFetchAPi.rejected,

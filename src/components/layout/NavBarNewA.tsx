@@ -6,7 +6,12 @@ import { setLogOutModal } from '../../redux/slices/auth/loginSlice'
 import { useNavigate } from 'react-router-dom'
 import { FiLogOut } from 'react-icons/fi'
 import { CgProfile } from 'react-icons/cg'
-import { setHasTitleTag } from '../../redux/slices/generateHeadlineSlice'
+import {
+  setHasArticle,
+  setHasSomethingTyped,
+  setHasTitleTag,
+  setTag,
+} from '../../redux/slices/generateHeadlineSlice'
 import { LogoutModal } from '../modal/LogoutModal'
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
@@ -45,7 +50,6 @@ const NavbarNewA = () => {
     setAccessToken(Cookies.get('access_token'))
   }, [accessToken])
   const coins = Cookies.get('coins')
-
 
   useEffect(() => {
     if (Cookies.get('coins')) {
@@ -98,9 +102,6 @@ const NavbarNewA = () => {
                   </div>
                 </Link>
               )}
-              {/* <a href="/">
-          <p className="font-bold text-black text-xl text-transparent bg-clip-text bg-gradient-to-t from-purple-400 to-blue-600 transition duration-[0.4s]">TAGLINE GENERATOR</p>
-        </a> */}
             </div>
             <div className="">
               <div className="flex ms:flex md:hidden w-full h-full">
@@ -190,10 +191,12 @@ const NavbarNewA = () => {
                             onClick={() => {
                               setIsNavOpen(false)
                               setToggle(false)
+                              dispatch(setTag([]))
+                              dispatch(setHasSomethingTyped(''))
+                              dispatch(setHasArticle(''))
                               const coinsText =
                                 document.querySelector('#nav-icon4')
                               coinsText?.classList?.remove('open')
-                              // dispatch(setHasTitleTag([]));
                               navigate('/generator')
                             }}
                             className="font-normal text-lg text-center text-[#e3e3e3] hover:text-white transition delay-[0s]"
@@ -204,6 +207,9 @@ const NavbarNewA = () => {
                             onClick={() => {
                               setIsNavOpen(false)
                               setToggle(false)
+                              dispatch(setTag([]))
+                              dispatch(setHasSomethingTyped(''))
+                              dispatch(setHasArticle(''))
                               const coinsText =
                                 document.querySelector('#nav-icon4')
                               coinsText?.classList?.remove('open')
@@ -218,6 +224,9 @@ const NavbarNewA = () => {
                             onClick={() => {
                               setIsNavOpen(false)
                               setToggle(false)
+                              dispatch(setTag([]))
+                              dispatch(setHasSomethingTyped(''))
+                              dispatch(setHasArticle(''))
                               const coinsText =
                                 document.querySelector('#nav-icon4')
                               coinsText?.classList?.remove('open')
@@ -232,6 +241,9 @@ const NavbarNewA = () => {
                             onClick={() => {
                               setIsNavOpen(false)
                               setToggle(false)
+                              dispatch(setTag([]))
+                              dispatch(setHasSomethingTyped(''))
+                              dispatch(setHasArticle(''))
                               const coinsText =
                                 document.querySelector('#nav-icon4')
                               coinsText?.classList?.remove('open')
@@ -249,12 +261,15 @@ const NavbarNewA = () => {
                             onClick={() => {
                               setIsNavOpen(false)
                               setToggle(false)
+                              dispatch(setTag([]))
+                              dispatch(setHasSomethingTyped(''))
+                              dispatch(setHasArticle(''))
                               const coinsText =
                                 document.querySelector('#nav-icon4')
                               coinsText?.classList?.remove('open')
                               navigate('/')
                             }}
-                            className="font-bold text-lg rounded-md text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap list-none"
+                            className="font-bold text-lg rounded-md text-secondaryLayout hover:text-white transition duration-[0.4s] whitespace-nowrap list-none"
                           >
                             How it works
                           </button>
@@ -263,11 +278,10 @@ const NavbarNewA = () => {
                             target="_blank"
                             rel="noreferrer"
                           >
-                            <li className="font-bold text-lg text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap">
+                            <li className="font-bold text-lg text-secondaryLayout hover:text-white transition duration-[0.4s] whitespace-nowrap">
                               About us
                             </li>
                           </a>
-                          {/* </div> */}
                         </>
                       )}
                     </ul>
@@ -277,6 +291,9 @@ const NavbarNewA = () => {
                           dispatch(setLogOutModal(true))
                           setIsNavOpen(false)
                           setToggle(false)
+                          dispatch(setTag([]))
+                          dispatch(setHasSomethingTyped(''))
+                          dispatch(setHasArticle(''))
                           const coinsText = document.querySelector('#nav-icon4')
                           coinsText?.classList?.remove('open')
                         }}
@@ -291,6 +308,9 @@ const NavbarNewA = () => {
                           onClick={() => {
                             setIsNavOpen(false)
                             setToggle(false)
+                            dispatch(setTag([]))
+                            dispatch(setHasSomethingTyped(''))
+                            dispatch(setHasArticle(''))
                             const coinsText =
                               document.querySelector('#nav-icon4')
                             coinsText?.classList?.remove('open')
@@ -314,10 +334,9 @@ const NavbarNewA = () => {
                           <div className="flex items-center gap-6 ms:gap-2 sm:gap-3 md:gap-1 px-2 py-1">
                             <GiTwoCoins
                               color="#FFD700"
-                              // size={35}
                               className={classNames(
                                 availableCoins &&
-                                  'origin-center hover:rotate-12 text-2xl ms:text-[16px] sm:text-[24px] md:text-lg lg:text-lg cursor-pointer'
+                                  'origin-center hover:rotate-12 text-2xl ms:text-base ms:leading-none sm:text-2xl sm:leading-none md:text-lg lg:text-lg cursor-pointer'
                               )}
                             />
                             <button
@@ -330,9 +349,9 @@ const NavbarNewA = () => {
                                 id="coins-text"
                                 className="font-semibold text-2xl ms:text-xs sm:text-base md:text-base lg:text-base text-white ml-2"
                               >
-                                {!availableCoins ? 0 : availableCoins}
+                                {availableCoins || 0}
                               </p>
-                              <BiPlus className="text-2xl ms:text-[16px] sm:text-[20px] md:text-xl lg:text-2xl cursor-pointer text-white md:px-0.5" />
+                              <BiPlus className="text-2xl ms:text-base ms:leading-none sm:text-xl sm:leading-none md:text-xl lg:text-2xl cursor-pointer text-white md:px-0.5" />
                             </button>
                           </div>
                         </div>
@@ -341,6 +360,9 @@ const NavbarNewA = () => {
                             onClick={() => {
                               navigate('/bookmarks')
                               dispatch(setHasTitleTag([]))
+                              dispatch(setTag([]))
+                              dispatch(setHasSomethingTyped(''))
+                              dispatch(setHasArticle(''))
                             }}
                             className="flex gap-6 bg-primary px-2 py-1 h-full w-full"
                           >
@@ -386,7 +408,6 @@ const NavbarNewA = () => {
                                     const coinsText =
                                       document.querySelector('#nav-icon4')
                                     coinsText?.classList?.remove('open')
-                                    // dispatch(setHasTitleTag([]));
                                     navigate('/generator')
                                   }}
                                   className={classNames(
@@ -416,6 +437,9 @@ const NavbarNewA = () => {
                                 <button
                                   onClick={() => {
                                     setIsNavOpen(false)
+                                    dispatch(setTag([]))
+                                    dispatch(setHasSomethingTyped(''))
+                                    dispatch(setHasArticle(''))
                                     const coinsText =
                                       document.querySelector('#nav-icon4')
                                     coinsText?.classList?.remove('open')
@@ -447,6 +471,9 @@ const NavbarNewA = () => {
                                 <button
                                   onClick={() => {
                                     setIsNavOpen(false)
+                                    dispatch(setTag([]))
+                                    dispatch(setHasSomethingTyped(''))
+                                    dispatch(setHasArticle(''))
                                     const coinsText =
                                       document.querySelector('#nav-icon4')
                                     coinsText?.classList?.remove('open')
@@ -517,12 +544,15 @@ const NavbarNewA = () => {
                         onClick={() => {
                           setIsNavOpen(false)
                           setToggle(false)
+                          dispatch(setTag([]))
+                          dispatch(setHasSomethingTyped(''))
+                          dispatch(setHasArticle(''))
                           const coinsText = document.querySelector('#nav-icon4')
                           coinsText?.classList?.remove('open')
                           handleClickScroll()
                           navigate('/')
                         }}
-                        className="font-bold text-lg text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap list-none"
+                        className="font-bold text-lg text-secondaryLayout hover:text-white transition duration-[0.4s] whitespace-nowrap list-none"
                       >
                         How it works
                       </button>
@@ -533,7 +563,7 @@ const NavbarNewA = () => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <li className="font-bold text-lg text-[#e5e5e5] hover:text-white transition duration-[0.4s] whitespace-nowrap">
+                        <li className="font-bold text-lg text-secondaryLayout hover:text-white transition duration-[0.4s] whitespace-nowrap">
                           About us
                         </li>
                       </a>
@@ -541,6 +571,9 @@ const NavbarNewA = () => {
                     <button
                       onClick={() => {
                         setIsNavOpen(false)
+                        dispatch(setTag([]))
+                        dispatch(setHasSomethingTyped(''))
+                        dispatch(setHasArticle(''))
                         const coinsText = document.querySelector('#nav-icon4')
                         coinsText?.classList?.remove('open')
                         navigate('/auth/signin')

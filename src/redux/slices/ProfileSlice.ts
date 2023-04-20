@@ -68,6 +68,12 @@ const ProfileSlice = createSlice({
           'userDetails',
           JSON.stringify(action.payload?.data?.result[0]?.user[0])
         )
+        Cookies.set(
+          'coins',
+          JSON.stringify(
+            action.payload?.data?.result[0]?.user[0].available_credit
+          )
+        )
       }
     )
     builder.addCase(profileDetailsFetchAPI.rejected, (state) => {

@@ -22,7 +22,6 @@ const LogIn = () => {
   }))
   const navigate = useNavigate()
   const initialValues = { username: '', password: '' }
-  // const handleLoginSubmit = (values : LoginProps ) => dispatch(loginFetchAPi(values))
 
   useEffect(() => {
     document.title = 'Sign in | Title Generator'
@@ -52,7 +51,7 @@ const LogIn = () => {
                       type="text"
                       id="username"
                       name="username"
-                      inputstyle="w-full  text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                      inputstyle="w-full  text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-secondary border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
                       borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                       placeholder="E-mail or username"
                     />
@@ -61,7 +60,7 @@ const LogIn = () => {
                         type="password"
                         id="password"
                         name="password"
-                        inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-[#EDF2F7] border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
+                        inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-secondary border border-[#FFFFFF]/[10%] pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
                         borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 bg-transparent pl-5 2xl:pl-6 placeholder:text-textGray"
                         placeholder="Password"
                       />
@@ -85,7 +84,7 @@ const LogIn = () => {
                       onAnimationEnd={() => {
                         dispatch(setLoginEffect(false))
                       }}
-                      buttonStyle="w-full py-[12px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg"
+                      buttonStyle="w-full py-3 2xl:py-[13px] text-base sm:text-sm lg:py-3 lg:text-base lg:leading-none 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg"
                       loaderSize={20}
                       showLoader
                     >

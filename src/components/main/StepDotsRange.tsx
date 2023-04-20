@@ -16,16 +16,12 @@ const StepDotsRange: React.FC<StepDotsRangeProps> = ({
   return (
     <div>
       <Slider
-        // color="blue"
-        // inverted={false}
         min={min}
         max={max}
         step={step}
         dots={true}
         allowCross={false}
         onChange={(e) => {}}
-        // tooltip={false}
-        // onAfterChange={() => dispatch(fetchPage())}
         defaultValue={defaultValue}
       />
     </div>

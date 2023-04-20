@@ -45,7 +45,7 @@ const InputField = ({
       />
       {props.type === 'password' ? (
         <div
-          className="absolute top-4 2xl:top-[24px] right-5 cursor-pointer select-none text-textGray"
+          className="absolute top-4 2xl:top-6 right-5 cursor-pointer select-none text-textGray"
           onClick={() => setShowPassword(!showPassword)}
         >
           {showPassword ? <BsEyeSlash size={20} /> : <BsEye size={20} />}

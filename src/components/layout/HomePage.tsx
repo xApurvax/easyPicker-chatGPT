@@ -27,6 +27,7 @@ import {
   contactUsValidationSchema,
   contactUsValidationWithoutCaptchaSchema,
 } from '../../utils/FormValidations'
+import { setHandle } from '../../redux/slices/pointsSlice'
 
 interface InitialValues {
   name: string
@@ -39,11 +40,13 @@ const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
   const captchaRef = useRef<any>(null)
   const navigate = useNavigate()
-  const { isLoading, isSubmittedSuccessfully, limitExceeds } = useSelector((state: RootState) => ({
-    isLoading: state.ContactusSlice.isLoading,
-    isSubmittedSuccessfully: state.ContactusSlice.isSubmittedSuccessfully,
-    limitExceeds: state.GenerateHeadlineSlice.limitExceeds,
-  }))
+  const { isLoading, isSubmittedSuccessfully, limitExceeds } = useSelector(
+    (state: RootState) => ({
+      isLoading: state.ContactusSlice.isLoading,
+      isSubmittedSuccessfully: state.ContactusSlice.isSubmittedSuccessfully,
+      limitExceeds: state.GenerateHeadlineSlice.limitExceeds,
+    })
+  )
 
   const initialValues: InitialValues = {
     name: '',
@@ -67,7 +70,7 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     document.title = 'How it works | Title Generator'
   }, [])
-  
+
   return (
     <AuthMiddleware>
       <div className="flex flex-col w-full max-w-[100vw] overflow-x-hidden">
@@ -75,7 +78,6 @@ const HomePage: React.FC = () => {
           <NavbarNewA />
         </div>
         <div className="flex flex-col justify-center items-center h-full w-full">
-          
           {/* INTRODUCTION HEADER  */}
           <div className="bg-primary py-8 ms:py-8 sm:py-10 md:py-14 lg:py-20 h-screen/2 flex flex-col items-center justify-center w-full">
             <div className="flex flex-col justify-center items-center gap-1 ms:gap-3 lg:gap-5 ">
@@ -115,7 +117,7 @@ const HomePage: React.FC = () => {
                 >
                   <Tool homepageTrial={true} />
                 </div>
-                {limitExceeds && (
+                {limitExceeds && dispatch(setHandle(false)) && (
                   <div className="absolute top-0 backdrop-blur-md back  w-full h-full flex flex-col items-center justify-center gap-10 font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-3xl text-center text-black ms:max-w-full lg:max-w-full">
                     <p className="w-[90%] select-none ">
                       Oops! Looks like you've hit the limit of demo attempts.
@@ -124,7 +126,7 @@ const HomePage: React.FC = () => {
                     <CustomButton
                       type="submit"
                       onClick={() => navigate('/auth/signin')}
-                      buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary shadow-lg"
+                      buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-3 lg:text-base lg:leading 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary shadow-lg"
                       loaderSize={20}
                       showLoader
                     >
@@ -215,8 +217,8 @@ const HomePage: React.FC = () => {
                     regenerate them again, we have that option available too.
                   </p>
                   <p className="font-normal text-xs ms:text-xs sm:text-base md:text-lg lg:text-xl text-black">
-                    👉 To increase reach, use generated keywords as &quot;#&quot; hastags
-                    while posting it on social media.
+                    👉 To increase reach, use generated keywords as
+                    &quot;#&quot; hastags while posting it on social media.
                   </p>
                 </div>
               </div>
@@ -486,7 +488,7 @@ const HomePage: React.FC = () => {
                             type="text"
                             id="name"
                             name="name"
-                            inputstyle="w-full  text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-white border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-textGray focus:border-primary"
+                            inputstyle="w-full  text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md bg-white border border-primaryBorder pl-3 2xl:pl-5 placeholder:text-textGray focus:border-primary"
                             borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
                             placeholder="What's your name, stranger?"
                           />
@@ -494,19 +496,18 @@ const HomePage: React.FC = () => {
                             type="text"
                             id="email"
                             name="email"
-                            inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md border border-[#aab2b8] pl-3 2xl:pl-5 placeholder:text-textGray bg-white focus:border-primary"
+                            inputstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-md border border-primaryBorder pl-3 2xl:pl-5 placeholder:text-textGray bg-white focus:border-primary"
                             borderstyle="w-full text-textGray text-xs 2xl:text-xl outline-none py-[14px] 2xl:py-[15px] rounded-2xl border border-red-500 pl-5 2xl:pl-6 placeholder:text-textGray focus:border-primary"
                             placeholder="Share your email address with us!"
                           />
                           <CustomTextArea
                             id="message"
                             name="message"
-                            inputstyle="w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid border-[#aab2b8] resize-none focus:outline-none placeholder:text-textGray focus:border-primary text-textGray"
-                            borderstyle="w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid border-[#aab2b8] resize-none focus:outline-none placeholder:text-textGray focus:border-primary text-textGray"
+                            inputstyle="w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid border-primaryBorder resize-none focus:outline-none placeholder:text-textGray focus:border-primary text-textGray"
+                            borderstyle="w-full h-full min-h-[150px] text-xs 2xl:text-xl p-3 2xl:pl-5  border-[1px] rounded-md border-solid border-primaryBorder resize-none focus:outline-none placeholder:text-textGray focus:border-primary text-textGray"
                             placeholder="What's on your mind?"
                           />
                         </div>
-                        {/* {!error &&  */}
                         <div className="relative h-full w-full flex justify-center items-center">
                           <ReCAPTCHA
                             name="captcha"
@@ -533,7 +534,6 @@ const HomePage: React.FC = () => {
                             </div>
                           )}
                         </div>
-                        {/* } */}
                         <div className="py-3 ms:py-0 sm:py-0 md:py-3 lg:py-3 w-full flex justify-center items-center">
                           {values.name.trim().length < 1 ||
                           values.email.trim().length < 1 ||
@@ -547,7 +547,7 @@ const HomePage: React.FC = () => {
                                 values.message.trim().length < 1 ||
                                 (!error && values.captcha.trim().length < 1)
                               }
-                              buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary"
+                              buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-3 lg:text-base lg:leading-none 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary"
                               loaderSize={20}
                             >
                               Send
@@ -562,7 +562,7 @@ const HomePage: React.FC = () => {
                                 (!error && values.captcha.trim().length < 1) ||
                                 isLoading
                               }
-                              buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary"
+                              buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-3 lg:text-base lg:leading-none 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary"
                               loaderSize={20}
                               showLoader
                             >
@@ -578,7 +578,6 @@ const HomePage: React.FC = () => {
                   <div className="aspect-w-8 aspect-h-4 w-full h-full border-[3px] border-solid border-primary rounded-md">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.541138621801!2d72.53909061505688!3d23.113887518709067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9ddd5e24dcd1%3A0xdf5c3d5463cdece5!2sInfynno%20Solutions%20%7C%20Expert%20in%20Laravel%2C%20React%20and%20Node%20Apps!5e0!3m2!1sen!2sin!4v1679390031546!5m2!1sen!2sin"
-                      // allowFullScreen=""
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
                       title="map"
@@ -599,37 +598,37 @@ const HomePage: React.FC = () => {
                           382481 Gujarat, India
                         </p>
                       </div>
-                      <a href='https://infynno.com/' target='_blank'>
-                      <div className="flex items-center gap-2 h-full w-full">
-                        <FaGlobe className="h-4 w-4 " />
-                        <p className="font-400 text-xs text-[#353535]">
+                      <a href="https://infynno.com/" target="_blank">
+                        <div className="flex items-center gap-2 h-full w-full">
+                          <FaGlobe className="h-4 w-4 " />
+                          <p className="font-400 text-xs text-[#353535]">
                             infynno.com
-                        </p>
-                      </div>
+                          </p>
+                        </div>
                       </a>
                       <a href="mailto:sales@infynno.com">
-                      <div className="flex items-center gap-2 h-full w-full">
-                        <IoIosMail className="h-4 w-4 " />
-                        <p className="font-400 text-xs text-[#353535]">
-                          sales@infynno.com
-                        </p>
-                      </div>
+                        <div className="flex items-center gap-2 h-full w-full">
+                          <IoIosMail className="h-4 w-4 " />
+                          <p className="font-400 text-xs text-[#353535]">
+                            sales@infynno.com
+                          </p>
+                        </div>
                       </a>
                       <a href="tel:+918488838308">
-                      <div className="flex items-center gap-2 h-full w-full">
-                        <FaPhoneAlt className="h-4 w-4 " />
-                        <p className="font-400 text-xs text-[#353535]">
-                          +91 848-883-8308
-                        </p>
-                      </div>
+                        <div className="flex items-center gap-2 h-full w-full">
+                          <FaPhoneAlt className="h-4 w-4 " />
+                          <p className="font-400 text-xs text-[#353535]">
+                            +91 848-883-8308
+                          </p>
+                        </div>
                       </a>
                       <a href="skype:live.Infynno">
-                      <div className="flex items-center gap-2 h-full w-full">
-                        <FaSkype className="h-4 w-4 " />
-                        <p className="font-400 text-xs text-[#353535]">
-                          live.Infynno
-                        </p>
-                      </div>
+                        <div className="flex items-center gap-2 h-full w-full">
+                          <FaSkype className="h-4 w-4 " />
+                          <p className="font-400 text-xs text-[#353535]">
+                            live.Infynno
+                          </p>
+                        </div>
                       </a>
                     </div>
                   </div>

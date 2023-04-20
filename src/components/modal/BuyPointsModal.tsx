@@ -32,7 +32,6 @@ export const BuyPointsModal = () => {
     selected: false,
     id: null,
   })
-  // const [availableCoins, setAvailableCoins] = useState();
 
   const { showBuyPointsModal, isLoading } = useSelector((state: RootState) => ({
     showBuyPointsModal: state.PointsSlice.showBuyPointsModal,
@@ -89,7 +88,6 @@ export const BuyPointsModal = () => {
                   Buy Coins
                   <GiTwoCoins
                     color="#FFD700"
-                    // size={35}
                     className="text-2xl cursor-pointer"
                   />
                 </Dialog.Title>
@@ -118,11 +116,11 @@ export const BuyPointsModal = () => {
                             counterSelected.id === id &&
                               data.countValue === count
                               ? 'bg-primary text-white font-bold'
-                              : 'bg-[#EDF2F7] text-[#000000]'
+                              : 'bg-secondary text-[#000000]'
                           )}
                         >
                           <p>Buy {data.countValue}</p>
-                          <p className="text-[#FFD700] text-2xl ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-2xl">
+                          <p className="text-[#FFD700] text-2xl ms:text-base ms:leading-none sm:text-2xl sm:leading-none md:text-[28px] lg:text-2xl">
                             {data.coinIcon}
                           </p>
                           <p>Coins In ₹{data.price}</p>
