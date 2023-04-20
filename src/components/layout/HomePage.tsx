@@ -27,6 +27,7 @@ import {
   contactUsValidationSchema,
   contactUsValidationWithoutCaptchaSchema,
 } from '../../utils/FormValidations'
+import { setHandle } from '../../redux/slices/pointsSlice'
 
 interface InitialValues {
   name: string
@@ -116,7 +117,7 @@ const HomePage: React.FC = () => {
                 >
                   <Tool homepageTrial={true} />
                 </div>
-                {limitExceeds && (
+                {limitExceeds && dispatch(setHandle(false)) && (
                   <div className="absolute top-0 backdrop-blur-md back  w-full h-full flex flex-col items-center justify-center gap-10 font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-3xl text-center text-black ms:max-w-full lg:max-w-full">
                     <p className="w-[90%] select-none ">
                       Oops! Looks like you've hit the limit of demo attempts.

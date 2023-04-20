@@ -1,22 +1,31 @@
 import React from 'react'
 import { IoIosClose } from 'react-icons/io'
 import classNames from 'classnames'
+import {
+  setHasSomethingTyped,
+  setTag,
+} from '../../redux/slices/generateHeadlineSlice'
+import { useDispatch } from 'react-redux'
+import { AppDispatch, RootState } from '../../redux/store/store'
+import { useSelector } from 'react-redux'
 
 interface CustomCreateTagProps {
-  tags: string[]
-  setTags: React.Dispatch<React.SetStateAction<string[] | []>>
-  setHasSomethingTyped?: React.Dispatch<React.SetStateAction<string>>
+  // tag: string[]
+  // setTag: React.Dispatch<React.SetStateAction<string[] | []>>
   disabled?: boolean
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const CustomCreateTag: React.FC<CustomCreateTagProps> = ({
-  tags,
-  setTags,
-  setHasSomethingTyped,
+  // tag,
+  // setTag,
   disabled = false,
   ...props
 }) => {
+  const dispatch = useDispatch<AppDispatch>()
+  const { tag } = useSelector((state: RootState) => ({
+    tag: state.GenerateHeadlineSlice.tag,
+  }))
   const addTags = (event: React.KeyboardEvent<HTMLInputElement>) => {
     event.preventDefault()
     const eventTarget = event.target as HTMLInputElement
@@ -25,23 +34,30 @@ const CustomCreateTag: React.FC<CustomCreateTagProps> = ({
       eventTarget.value !== '' &&
       eventTarget.value.trim() !== ''
     ) {
-      setTags([
-        ...tags,
-        eventTarget.value.charAt(0).toUpperCase() + eventTarget.value.slice(1),
-      ])
+      dispatch(
+        setTag([
+          ...tag,
+          eventTarget.value.charAt(0).toUpperCase() +
+            eventTarget.value.slice(1),
+        ])
+      )
       eventTarget.value = ''
-      setHasSomethingTyped && setHasSomethingTyped('')
+      setHasSomethingTyped && dispatch(setHasSomethingTyped(''))
     }
   }
   const removeTags = (index: number) => {
-    setTags([...tags.filter((tag: string) => tags?.indexOf(tag) !== index)])
+    dispatch(
+      setTag([
+        ...tag.filter((tag: string, tagIndex: number) => tagIndex !== index),
+      ])
+    )
   }
 
   return (
     <main className="w-full max-w-[700px]">
-      <div className={classNames('flex flex-col', tags.length > 0 && 'gap-3')}>
+      <div className={classNames('flex flex-col', tag.length > 0 && 'gap-3')}>
         <ul className="flex gap-2 flex-wrap">
-          {tags.map((tag: string, index: number) => (
+          {tag.map((tag: string, index: number) => (
             <li
               key={index}
               className="flex items-center p-2 gap-2
@@ -56,7 +72,7 @@ const CustomCreateTag: React.FC<CustomCreateTagProps> = ({
           ))}
         </ul>
         <div className="w-full">
-          {tags.length < 10 && (
+          {tag.length < 10 && (
             <input
               {...props}
               type="text"
