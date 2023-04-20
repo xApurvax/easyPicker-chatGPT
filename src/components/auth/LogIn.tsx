@@ -84,7 +84,7 @@ const LogIn = () => {
                       onAnimationEnd={() => {
                         dispatch(setLoginEffect(false))
                       }}
-                      buttonStyle="w-full py-[12px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg"
+                      buttonStyle="w-full py-3 2xl:py-[13px] text-base sm:text-sm lg:py-3 lg:text-base lg:leading-none 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg"
                       loaderSize={20}
                       showLoader
                     >

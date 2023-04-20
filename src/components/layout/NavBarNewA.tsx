@@ -336,7 +336,7 @@ const NavbarNewA = () => {
                               color="#FFD700"
                               className={classNames(
                                 availableCoins &&
-                                  'origin-center hover:rotate-12 text-2xl ms:text-[16px] sm:text-[24px] md:text-lg lg:text-lg cursor-pointer'
+                                  'origin-center hover:rotate-12 text-2xl ms:text-base ms:leading-none sm:text-2xl sm:leading-none md:text-lg lg:text-lg cursor-pointer'
                               )}
                             />
                             <button
@@ -351,7 +351,7 @@ const NavbarNewA = () => {
                               >
                                 {availableCoins || 0}
                               </p>
-                              <BiPlus className="text-2xl ms:text-[16px] sm:text-[20px] md:text-xl lg:text-2xl cursor-pointer text-white md:px-0.5" />
+                              <BiPlus className="text-2xl ms:text-base ms:leading-none sm:text-xl sm:leading-none md:text-xl lg:text-2xl cursor-pointer text-white md:px-0.5" />
                             </button>
                           </div>
                         </div>

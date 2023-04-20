@@ -5,15 +5,7 @@ import { Tool } from '../layout'
 import { AppDispatch, RootState } from '../../redux/store/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { setHandle } from '../../redux/slices/pointsSlice'
-// interface ShowModal {
-//   active: boolean
-// }
-// type handleFullScreenModal = {
-//   handle: ShowModal
-//   setHandle: (value: ShowModal) => void
-// }
 
-// const FullScreenToolModal = ({ handle, setHandle }: handleFullScreenModal) => {
 const FullScreenToolModal = () => {
   const dispatch = useDispatch<AppDispatch>()
 
@@ -26,7 +18,6 @@ const FullScreenToolModal = () => {
         as="div"
         className="relative z-50 h-full w-full"
         onClose={() => {
-          // setHandle({ active: false })
           dispatch(setHandle(false))
         }}
       >
@@ -53,7 +44,6 @@ const FullScreenToolModal = () => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              {/* <Dialog.Panel className="w-full relative max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[400px] p-5 transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all"> */}
               <Dialog.Panel className="w-full h-full">
                 <Tool defaultHandle={false} />
               </Dialog.Panel>

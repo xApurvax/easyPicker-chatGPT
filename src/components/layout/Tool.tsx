@@ -199,7 +199,7 @@ const Tool = ({
                   color="#FFD700"
                   className={classNames(
                     availableCoins &&
-                      'origin-center hover:rotate-12 text-[16px] ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-4xl cursor-pointer'
+                      'origin-center hover:rotate-12 text-base leading-none ms:text-base ms:leading-none sm:text-2xl sm:leading-none md:text-[28px] lg:text-4xl cursor-pointer'
                   )}
                 />
                 <button
@@ -214,7 +214,7 @@ const Tool = ({
                   </p>
                   <AiOutlinePlus
                     color="#000"
-                    className="text-[16px] ms:text-[16px] sm:text-[20px] md:text-[20px] lg:text-2xl cursor-pointer"
+                    className="text-base leading-none ms:text-base ms:leading-none sm:text-xl sm:leading-none md:text-xl md:leading-none lg:text-2xl cursor-pointer"
                   />
                 </button>
               </div>
@@ -275,8 +275,6 @@ const Tool = ({
                   <CustomCreateTag
                     disabled={isLoading}
                     onChange={(e) => hasTypedSomething(e)}
-                    // tags={tag}
-                    // setTags={setTag}
                   />
                 </div>
               </div>
@@ -306,7 +304,7 @@ const Tool = ({
                               counterSelected.id === id &&
                                 data.countValue === count
                                 ? 'bg-primary text-white font-bold'
-                                : 'bg-secondary text-[#000000]'
+                                : 'bg-secondary text-black'
                             )}
                           >
                             {data.countValue}
@@ -347,7 +345,6 @@ const Tool = ({
                           radius="9"
                           color="#fafafa"
                           ariaLabel="three-dots-loading"
-                          wrapperStyle={{}}
                           visible={true}
                         />
                       )}
@@ -361,14 +358,12 @@ const Tool = ({
             <div className="absolute -top-2 -right-2 cursor-pointer hidden lg:block">
               {!handle && (
                 <BsFullscreen
-                  // onClick={handle.enter}
                   onClick={handleFullScreenOpen}
                   className="hover:scale-105"
                 />
               )}
               {handle && (
                 <BsFullscreenExit
-                  // onClick={handle.exit}
                   onClick={handleFullScreenClose}
                   className="hover:scale-105"
                 />
@@ -569,9 +564,7 @@ const Tool = ({
                           dispatch(setReGenerate(true))
                           dispatch(reGenerateHeadlineFetchAPi(reGenerateData))
                         }}
-                        onKeyUp={(e) => {
-                          e.type === 'keyup' && tabAble.current?.focus()
-                        }}
+                        onKeyUp={() => tabAble.current?.focus()}
                         onAnimationEnd={() => {
                           dispatch(setReGenerate(false))
                         }}
