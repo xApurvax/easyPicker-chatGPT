@@ -44,11 +44,7 @@ const Tool = ({
 }) => {
   const dispatch = useDispatch<AppDispatch>()
   const [count, setCount] = useState(3)
-  const [latestCopied, setLatestCopied] = useState<{
-    copiedId: Nullable<number>
-  }>({
-    copiedId: null,
-  })
+  const [latestCopied, setLatestCopied] = useState<Nullable<number>>(null)
   const [availableCoins, setAvailableCoins] = useState()
   const location = useLocation()
   const tabAble = useRef<HTMLTextAreaElement>(null)
@@ -417,7 +413,7 @@ const Tool = ({
                                             ''
                                           )
                                         )
-                                        setLatestCopied({ copiedId: id })
+                                        setLatestCopied(id)
                                         setCopyAllId({
                                           id:
                                             allTitles.length +
@@ -425,13 +421,13 @@ const Tool = ({
                                             1,
                                         })
                                         setTimeout(function () {
-                                          setLatestCopied({ copiedId: null })
+                                          setLatestCopied(null)
                                         }, 2000)
                                         toast.success('Title Copied!')
                                       }}
                                       type="button"
                                     >
-                                      {latestCopied.copiedId === id ? (
+                                      {latestCopied === id ? (
                                         <p className="flex gap-1 items-center px-2 py-2 ms:px-1 sm:px-1 md:px-1 lg:px-1 ms:py-1 sm:py-1 md:py-1 lg:py-1 bg-primary rounded-md text-[14px] leading-[14px] ms:text-xs sm:text-sm md:text-base lg:text-sm text-white">
                                           <BsCheck2 />
                                           copied
@@ -466,12 +462,11 @@ const Tool = ({
                           <button
                             onClick={() => {
                               navigator.clipboard.writeText(copyAllSpecialTags)
-                              setLatestCopied({
-                                copiedId:
-                                  specialTags.length + allTitles.length + 1,
-                              })
+                              setLatestCopied(
+                                specialTags.length + allTitles.length + 1
+                              )
                               setTimeout(function () {
-                                setLatestCopied({ copiedId: null })
+                                setLatestCopied(null)
                                 setCopyAllId({ id: null })
                               }, 2000)
                               toast.success('All Tags Copied!')
@@ -479,7 +474,7 @@ const Tool = ({
                             type="button"
                             className={classNames(
                               'px-2 py-1.5 ms:px-1.5 sm:px-1.5 md:px-1.5 lg:px-1.5 ms:py-1 sm:py-1 md:py-1 lg:py-1 rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-sm',
-                              latestCopied.copiedId === copyAllId.id
+                              latestCopied === copyAllId.id
                                 ? 'bg-violet-500 text-white'
                                 : 'bg-secondary text-[#4A5568]'
                             )}
@@ -501,9 +496,7 @@ const Tool = ({
                                   <button
                                     onClick={(e) => {
                                       navigator.clipboard.writeText(tag.trim())
-                                      setLatestCopied({
-                                        copiedId: id + allTitles.length,
-                                      })
+                                      setLatestCopied(id + allTitles.length)
                                       setCopyAllId({
                                         id:
                                           allTitles.length +
@@ -511,15 +504,14 @@ const Tool = ({
                                           1,
                                       })
                                       setTimeout(function () {
-                                        setLatestCopied({ copiedId: null })
+                                        setLatestCopied(null)
                                       }, 2000)
                                       toast.success('Tag Copied!')
                                     }}
                                     type="button"
                                     className={classNames(
                                       'px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-2 ms:py-1 sm:py-1 md:py-2 lg:py-1 border-[1px] border-solid border-secondary rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]',
-                                      latestCopied.copiedId ===
-                                        id + allTitles.length
+                                      latestCopied === id + allTitles.length
                                         ? 'bg-primary font-medium text-white'
                                         : 'bg-secondary'
                                     )}
