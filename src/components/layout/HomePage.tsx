@@ -27,6 +27,7 @@ import {
   contactUsValidationSchema,
   contactUsValidationWithoutCaptchaSchema,
 } from '../../utils/FormValidations'
+import { setHandle } from '../../redux/slices/pointsSlice'
 
 interface InitialValues {
   name: string
@@ -116,7 +117,7 @@ const HomePage: React.FC = () => {
                 >
                   <Tool homepageTrial={true} />
                 </div>
-                {limitExceeds && (
+                {limitExceeds && dispatch(setHandle(false)) && (
                   <div className="absolute top-0 backdrop-blur-md back  w-full h-full flex flex-col items-center justify-center gap-10 font-bold text-xl ms:text-xl sm:text-3xl md:text-3xl lg:text-3xl text-center text-black ms:max-w-full lg:max-w-full">
                     <p className="w-[90%] select-none ">
                       Oops! Looks like you've hit the limit of demo attempts.
@@ -125,7 +126,7 @@ const HomePage: React.FC = () => {
                     <CustomButton
                       type="submit"
                       onClick={() => navigate('/auth/signin')}
-                      buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary shadow-lg"
+                      buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-3 lg:text-base lg:leading 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary shadow-lg"
                       loaderSize={20}
                       showLoader
                     >
@@ -546,7 +547,7 @@ const HomePage: React.FC = () => {
                                 values.message.trim().length < 1 ||
                                 (!error && values.captcha.trim().length < 1)
                               }
-                              buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary"
+                              buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-3 lg:text-base lg:leading-none 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary"
                               loaderSize={20}
                             >
                               Send
@@ -561,7 +562,7 @@ const HomePage: React.FC = () => {
                                 (!error && values.captcha.trim().length < 1) ||
                                 isLoading
                               }
-                              buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-[12px] lg:text-[16px] 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary"
+                              buttonStyle="w-full py-[6px] md:py-[10px] 2xl:py-[13px] text-base sm:text-sm lg:py-3 lg:text-base lg:leading-none 2xl:text-xl font-medium sm:font-medium rounded-md text-white bg-primary shadow-lg max-w-[300px] disabled:cursor-not-allowed disabled:opacity-70 disabled:bg-primary"
                               loaderSize={20}
                               showLoader
                             >

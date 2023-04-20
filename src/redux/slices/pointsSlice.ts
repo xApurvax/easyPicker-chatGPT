@@ -11,6 +11,7 @@ export type AllTransactionHistory = {
 interface PointsState {
   isLoading: boolean
   isLoadingTransactionHistory: boolean
+  handle: boolean
   showBuyPointsModal: boolean
   allTransactionHistory: AllTransactionHistory[]
   totalResults: number
@@ -68,6 +69,7 @@ const initialState: PointsState = {
   showBuyPointsModal: false,
   allTransactionHistory: [],
   totalResults: 0,
+  handle: false,
 }
 
 const PointsSlice = createSlice({
@@ -76,6 +78,9 @@ const PointsSlice = createSlice({
   reducers: {
     setShowBuyPointsModal: (state, action: PayloadAction<boolean>) => {
       state.showBuyPointsModal = action.payload
+    },
+    setHandle: (state, action: PayloadAction<boolean>) => {
+      state.handle = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -105,5 +110,5 @@ const PointsSlice = createSlice({
   },
 })
 
-export const { setShowBuyPointsModal } = PointsSlice.actions
+export const { setShowBuyPointsModal, setHandle } = PointsSlice.actions
 export default PointsSlice.reducer

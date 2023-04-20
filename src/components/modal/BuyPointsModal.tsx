@@ -120,7 +120,7 @@ export const BuyPointsModal = () => {
                           )}
                         >
                           <p>Buy {data.countValue}</p>
-                          <p className="text-[#FFD700] text-2xl ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-2xl">
+                          <p className="text-[#FFD700] text-2xl ms:text-base ms:leading-none sm:text-2xl sm:leading-none md:text-[28px] lg:text-2xl">
                             {data.coinIcon}
                           </p>
                           <p>Coins In ₹{data.price}</p>

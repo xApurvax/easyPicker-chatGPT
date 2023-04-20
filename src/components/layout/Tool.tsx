@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   setGenerateHeadlineEffect,
@@ -10,13 +10,15 @@ import CustomCreateTag from '../main/CustomCreateTag'
 import { FaBookmark } from 'react-icons/fa'
 import toast from 'react-hot-toast'
 import { FaRegCopy } from 'react-icons/fa'
-import { BsCheck2 } from 'react-icons/bs'
+import { BsCheck2, BsFullscreen, BsFullscreenExit } from 'react-icons/bs'
 import { GiTwoCoins } from 'react-icons/gi'
 import { AiOutlinePlus } from 'react-icons/ai'
 import {
   generateHeadlineFetchAPi,
   reGenerateHeadlineFetchAPi,
   saveResultsFetchAPi,
+  setHasArticle,
+  setHasSomethingTyped,
   setReGenerateData,
 } from '../../redux/slices/generateHeadlineSlice'
 import logo from '../../assets/recycle.svg'
@@ -29,21 +31,23 @@ import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { Nullable } from '../../utils/types/types'
 import { AppDispatch, RootState } from '../../redux/store/store'
 import { useLocation } from 'react-router-dom'
+import FullScreenToolModal from '../modal/FullScreenToolModal'
+import { setHandle } from '../../redux/slices/pointsSlice'
+interface ShowModal {
+  active: boolean
+}
 
-const Tool = ({ homepageTrial = false }) => {
+const Tool = ({
+  widthModal = true,
+  defaultHandle = true,
+  homepageTrial = false,
+}) => {
   const dispatch = useDispatch<AppDispatch>()
   const [count, setCount] = useState(3)
-  const [hasArticle, setHasArticle] = useState('')
-  const [hasSomethingTyped, setHasSomethingTyped] = useState('')
-  const [latestCopied, setLatestCopied] = useState<{
-    copiedId: Nullable<number>
-  }>({
-    copiedId: null,
-  })
-  const [tag, setTag] = useState<string[]>([])
+  const [latestCopied, setLatestCopied] = useState<Nullable<number>>(null)
   const [availableCoins, setAvailableCoins] = useState()
   const location = useLocation()
-
+  const tabAble = useRef<HTMLTextAreaElement>(null)
   const {
     generateHeadlineEffect,
     isLoading,
@@ -53,10 +57,14 @@ const Tool = ({ homepageTrial = false }) => {
     specialTags,
     hasTitleTag,
     copyAllSpecialTags,
+    hasArticle,
+    hasSomethingTyped,
     reGenerateData,
+    tag,
     isRegenerate,
     saveTags,
     saveTitles,
+    handle,
   } = useSelector((state: RootState) => ({
     generateHeadlineEffect: state.ButtonEffectSlice.generateHeadlineEffect,
     saveResult: state.ButtonEffectSlice.saveResult,
@@ -70,6 +78,10 @@ const Tool = ({ homepageTrial = false }) => {
     saveTitles: state.GenerateHeadlineSlice.saveTitles,
     reGenerateData: state.GenerateHeadlineSlice.reGenerateData,
     copyAllSpecialTags: state.GenerateHeadlineSlice.copyAllSpecialTags,
+    hasArticle: state.GenerateHeadlineSlice.hasArticle,
+    hasSomethingTyped: state.GenerateHeadlineSlice.hasSomethingTyped,
+    tag: state.GenerateHeadlineSlice.tag,
+    handle: state.PointsSlice.handle,
   }))
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [counter, setCounter] = useState([
@@ -87,10 +99,10 @@ const Tool = ({ homepageTrial = false }) => {
     id: specialTags?.length + allTitles?.length + 1,
   })
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
-    setHasArticle(e.target.value)
+    dispatch(setHasArticle(e.target.value))
 
   const hasTypedSomething = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setHasSomethingTyped(e.target.value)
+    dispatch(setHasSomethingTyped(e.target.value))
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -111,6 +123,14 @@ const Tool = ({ homepageTrial = false }) => {
       })
     )
   }
+
+  const handleFullScreenOpen = useCallback(() => {
+    dispatch(setHandle(true))
+  }, [handle])
+
+  const handleFullScreenClose = useCallback(() => {
+    dispatch(setHandle(false))
+  }, [handle])
 
   const handleSaveResults = (e: React.FormEvent) => {
     e.preventDefault()
@@ -158,7 +178,8 @@ const Tool = ({ homepageTrial = false }) => {
       <div
         className={classNames(
           'flex flex-col w-full justify-center items-center',
-          homepageTrial && 'mt-5'
+          homepageTrial && 'mt-5',
+          handle && 'h-full'
         )}
       >
         {location.pathname !== '/' && (
@@ -174,7 +195,7 @@ const Tool = ({ homepageTrial = false }) => {
                   color="#FFD700"
                   className={classNames(
                     availableCoins &&
-                      'origin-center hover:rotate-12 text-[16px] ms:text-[16px] sm:text-[24px] md:text-[28px] lg:text-4xl cursor-pointer'
+                      'origin-center hover:rotate-12 text-base leading-none ms:text-base ms:leading-none sm:text-2xl sm:leading-none md:text-[28px] lg:text-4xl cursor-pointer'
                   )}
                 />
                 <button
@@ -189,24 +210,43 @@ const Tool = ({ homepageTrial = false }) => {
                   </p>
                   <AiOutlinePlus
                     color="#000"
-                    className="text-[16px] ms:text-[16px] sm:text-[20px] md:text-[20px] lg:text-2xl cursor-pointer"
+                    className="text-base leading-none ms:text-base ms:leading-none sm:text-xl sm:leading-none md:text-xl md:leading-none lg:text-2xl cursor-pointer"
                   />
                 </button>
               </div>
             </div>
           </div>
         )}
-        <div className="flex flex-col lg:flex-row p-4 ms:p-4 sm:p-6 md:p-8 lg:p-5 gap-8 md:rounded-xl lg:rounded-xl bg-white w-full ms:flex-col lg:max-w-[95%] mb-6">
+        <div
+          className={classNames(
+            'flex flex-col lg:flex-row p-4 ms:p-4 sm:p-6 md:p-8 lg:p-5 gap-8 md:rounded-xl lg:rounded-xl bg-white w-full ms:flex-col lg:max-w-[95%] mb-6',
+            handle && '!h-[100vh] w-screen !max-w-[100%] !rounded-none !mb-0'
+          )}
+        >
           <div className="flex flex-col gap-3 w-full">
-            <div className="flex flex-col">
-              <div className="">
-                <p className="font-bold text-base ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]">
+            <div
+              className={classNames(
+                'flex flex-col',
+                handle && 'justify-between h-full w-full items-start'
+              )}
+            >
+              <div className={classNames(handle && 'h-full w-full')}>
+                <p
+                  className={classNames(
+                    'font-bold text-base ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]',
+                    handle && '!text-base'
+                  )}
+                >
                   Get Unique and Catchy Title Ideas by Entering Your Article
                   Text!" 💥📝💡
                 </p>
                 <div className="w-full">
                   <textarea
-                    className="resize-none ms:resize-y p-3 my-2 lg:my-1 bg-secondary border-[1px] rounded-md border-solid border-primaryBorder text-xs ms:text-xs sm:text-base md:text-lg lg:text-xs min-h-[180px] w-full focus:outline-none focus:border-[1px] focus:border-solid focus:border-primary focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed "
+                    ref={tabAble}
+                    className={classNames(
+                      ' resize-none ms:resize-y p-3 my-2 lg:my-1 bg-secondary border-[1px] rounded-md border-solid border-primaryBorder text-xs ms:text-xs sm:text-base md:text-lg lg:text-xs min-h-[180px] w-full focus:outline-none focus:border-[1px] focus:border-solid focus:border-primary focus:rounded-md scrollbar-thumb-transparent scrollbar-track-transparent group-hover:scrollbar-thumb-[#c3c3c3] group-hover:scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3 disabled:cursor-not-allowed ',
+                      handle && 'min-h-[45vh] !w-full'
+                    )}
                     rows={10}
                     cols={75}
                     disabled={isLoading}
@@ -218,22 +258,29 @@ const Tool = ({ homepageTrial = false }) => {
                   />
                 </div>
               </div>
-              <div className="mt-2">
-                <p className="font-bold text-base ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]">
+              <div className={classNames('mt-2', handle && 'h-full w-full')}>
+                <p
+                  className={classNames(
+                    'font-bold text-base ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]',
+                    handle && '!text-base'
+                  )}
+                >
                   Keywords to Include in Title
                 </p>
                 <div className="my-2">
                   <CustomCreateTag
                     disabled={isLoading}
-                    setHasSomethingTyped={setHasSomethingTyped}
                     onChange={(e) => hasTypedSomething(e)}
-                    tags={tag}
-                    setTags={setTag}
                   />
                 </div>
               </div>
-              <div className="mt-4">
-                <p className="font-bold text-base ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]">
+              <div className={classNames('mt-4', handle && 'h-full w-full')}>
+                <p
+                  className={classNames(
+                    'font-bold text-base ms:text-base sm:text-lg md:text-xl lg:text-[12px] text-[#4A5568]',
+                    handle && '!text-base'
+                  )}
+                >
                   No of Titles
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-between sm:items-center ms:flex-col ms:items-start">
@@ -253,7 +300,7 @@ const Tool = ({ homepageTrial = false }) => {
                               counterSelected.id === id &&
                                 data.countValue === count
                                 ? 'bg-primary text-white font-bold'
-                                : 'bg-secondary text-[#000000]'
+                                : 'bg-secondary text-black'
                             )}
                           >
                             {data.countValue}
@@ -294,7 +341,6 @@ const Tool = ({ homepageTrial = false }) => {
                           radius="9"
                           color="#fafafa"
                           ariaLabel="three-dots-loading"
-                          wrapperStyle={{}}
                           visible={true}
                         />
                       )}
@@ -304,7 +350,21 @@ const Tool = ({ homepageTrial = false }) => {
               </div>
             </div>
           </div>
-          <div className="w-full">
+          <div className="w-full relative">
+            <div className="absolute -top-2 -right-2 cursor-pointer hidden lg:block">
+              {!handle && (
+                <BsFullscreen
+                  onClick={handleFullScreenOpen}
+                  className="hover:scale-105"
+                />
+              )}
+              {handle && (
+                <BsFullscreenExit
+                  onClick={handleFullScreenClose}
+                  className="hover:scale-105"
+                />
+              )}
+            </div>
             {(allTitles?.length > 0 || specialTags?.length > 0) &&
             hasTitleTag?.length > 0 ? (
               <div className="flex flex-col gap-5 w-full">
@@ -322,7 +382,12 @@ const Tool = ({ homepageTrial = false }) => {
                         {allTitles?.length === 1 ? 'Title' : 'Titles'} Generated
                       </p>
                       {allTitles?.length > 0 && (
-                        <div className="max-h-[200px] scrollbar-thumb-[#c3c3c3] scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3">
+                        <div
+                          className={classNames(
+                            'max-h-[200px] scrollbar-thumb-[#c3c3c3] scrollbar-track-[#ededed] scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-opacity-0.3',
+                            handle && 'max-h-[55vh]'
+                          )}
+                        >
                           <div className="flex flex-col gap-2">
                             {allTitles &&
                               allTitles
@@ -348,7 +413,7 @@ const Tool = ({ homepageTrial = false }) => {
                                             ''
                                           )
                                         )
-                                        setLatestCopied({ copiedId: id })
+                                        setLatestCopied(id)
                                         setCopyAllId({
                                           id:
                                             allTitles.length +
@@ -356,13 +421,13 @@ const Tool = ({ homepageTrial = false }) => {
                                             1,
                                         })
                                         setTimeout(function () {
-                                          setLatestCopied({ copiedId: null })
+                                          setLatestCopied(null)
                                         }, 2000)
                                         toast.success('Title Copied!')
                                       }}
                                       type="button"
                                     >
-                                      {latestCopied.copiedId === id ? (
+                                      {latestCopied === id ? (
                                         <p className="flex gap-1 items-center px-2 py-2 ms:px-1 sm:px-1 md:px-1 lg:px-1 ms:py-1 sm:py-1 md:py-1 lg:py-1 bg-primary rounded-md text-[14px] leading-[14px] ms:text-xs sm:text-sm md:text-base lg:text-sm text-white">
                                           <BsCheck2 />
                                           copied
@@ -397,12 +462,11 @@ const Tool = ({ homepageTrial = false }) => {
                           <button
                             onClick={() => {
                               navigator.clipboard.writeText(copyAllSpecialTags)
-                              setLatestCopied({
-                                copiedId:
-                                  specialTags.length + allTitles.length + 1,
-                              })
+                              setLatestCopied(
+                                specialTags.length + allTitles.length + 1
+                              )
                               setTimeout(function () {
-                                setLatestCopied({ copiedId: null })
+                                setLatestCopied(null)
                                 setCopyAllId({ id: null })
                               }, 2000)
                               toast.success('All Tags Copied!')
@@ -410,7 +474,7 @@ const Tool = ({ homepageTrial = false }) => {
                             type="button"
                             className={classNames(
                               'px-2 py-1.5 ms:px-1.5 sm:px-1.5 md:px-1.5 lg:px-1.5 ms:py-1 sm:py-1 md:py-1 lg:py-1 rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-sm',
-                              latestCopied.copiedId === copyAllId.id
+                              latestCopied === copyAllId.id
                                 ? 'bg-violet-500 text-white'
                                 : 'bg-secondary text-[#4A5568]'
                             )}
@@ -432,9 +496,7 @@ const Tool = ({ homepageTrial = false }) => {
                                   <button
                                     onClick={(e) => {
                                       navigator.clipboard.writeText(tag.trim())
-                                      setLatestCopied({
-                                        copiedId: id + allTitles.length,
-                                      })
+                                      setLatestCopied(id + allTitles.length)
                                       setCopyAllId({
                                         id:
                                           allTitles.length +
@@ -442,15 +504,14 @@ const Tool = ({ homepageTrial = false }) => {
                                           1,
                                       })
                                       setTimeout(function () {
-                                        setLatestCopied({ copiedId: null })
+                                        setLatestCopied(null)
                                       }, 2000)
                                       toast.success('Tag Copied!')
                                     }}
                                     type="button"
                                     className={classNames(
                                       'px-3 py-2 ms:px-2 sm:px-2 md:px-3 lg:px-2 ms:py-1 sm:py-1 md:py-2 lg:py-1 border-[1px] border-solid border-secondary rounded-md text-base ms:text-xs sm:text-sm md:text-base lg:text-base text-[#4A5568]',
-                                      latestCopied.copiedId ===
-                                        id + allTitles.length
+                                      latestCopied === id + allTitles.length
                                         ? 'bg-primary font-medium text-white'
                                         : 'bg-secondary'
                                     )}
@@ -463,63 +524,66 @@ const Tool = ({ homepageTrial = false }) => {
                       </div>
                     </div>
                   )}
-                <div className="flex py-3 gap-4 w-full">
-                  <div>
-                    <button
-                      type="button"
-                      className={classNames(
-                        'flex items-center gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 rounded-md bg-primary text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-xs sm:text-sm md:text-base lg:text-sm disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap',
-                        saveResult && 'animate-wiggle'
-                      )}
-                      onClick={(e) => {
-                        dispatch(setSaveResult(true))
-                        handleSaveResults(e)
-                      }}
-                      onAnimationEnd={() => {
-                        dispatch(setSaveResult(false))
-                      }}
-                    >
-                      <FaBookmark /> Add Bookmark
-                    </button>
+                {location.pathname !== '/' && (
+                  <div className="flex py-3 gap-4 w-full">
+                    <div>
+                      <button
+                        type="button"
+                        className={classNames(
+                          'flex items-center gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-2 rounded-md bg-primary text-[#E3E3E3] hover:text-white font-medium text-lg ms:text-xs sm:text-sm md:text-base lg:text-sm disabled:bg-[#2D3748] disabled:cursor-not-allowed whitespace-nowrap',
+                          saveResult && 'animate-wiggle'
+                        )}
+                        onClick={(e) => {
+                          dispatch(setSaveResult(true))
+                          handleSaveResults(e)
+                        }}
+                        onAnimationEnd={() => {
+                          dispatch(setSaveResult(false))
+                        }}
+                      >
+                        <FaBookmark /> Add Bookmark
+                      </button>
+                    </div>
+                    <div>
+                      <button
+                        type="button"
+                        disabled={isRegenerate}
+                        className={classNames(
+                          'flex gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-[7px] rounded-md border-[1px] border-solid border-primary text-primary hover:text-primary font-medium text-lg disabled:cursor-not-allowed',
+                          reGenerate && 'animate-wiggle'
+                        )}
+                        onClick={(e) => {
+                          dispatch(setReGenerate(true))
+                          dispatch(reGenerateHeadlineFetchAPi(reGenerateData))
+                        }}
+                        onKeyUp={() => tabAble.current?.focus()}
+                        onAnimationEnd={() => {
+                          dispatch(setReGenerate(false))
+                        }}
+                      >
+                        {isRegenerate ? (
+                          <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm ">
+                            <img
+                              src={logo}
+                              alt="regenerating"
+                              className="w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5 animate-spin"
+                            />
+                            Regenerating
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm ">
+                            <img
+                              src={logo}
+                              alt="regenerate"
+                              className="w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5"
+                            />
+                            Regenerate
+                          </div>
+                        )}
+                      </button>
+                    </div>
                   </div>
-                  <div>
-                    <button
-                      type="button"
-                      disabled={isRegenerate}
-                      className={classNames(
-                        'flex gap-2 px-4 py-2 ms:px-2 sm:px-2 md:px-4 lg:px-4 ms:py-1 sm:py-1 md:py-2 lg:py-[7px] rounded-md border-[1px] border-solid border-primary text-primary hover:text-primary font-medium text-lg disabled:cursor-not-allowed',
-                        reGenerate && 'animate-wiggle'
-                      )}
-                      onClick={(e) => {
-                        dispatch(setReGenerate(true))
-                        dispatch(reGenerateHeadlineFetchAPi(reGenerateData))
-                      }}
-                      onAnimationEnd={() => {
-                        dispatch(setReGenerate(false))
-                      }}
-                    >
-                      {isRegenerate ? (
-                        <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm ">
-                          <img
-                            src={logo}
-                            alt="regenerating"
-                            className="w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5 animate-spin"
-                          />
-                          Regenerating
-                        </div>
-                      ) : (
-                        <div className="flex items-center gap-2 ms:text-xs sm:text-sm md:text-base lg:text-sm ">
-                          <img
-                            src={logo}
-                            alt="regenerate"
-                            className="w-6 ms:w-3 sm:w-3 md:w-6 lg:w-5"
-                          />
-                          Regenerate
-                        </div>
-                      )}
-                    </button>
-                  </div>
-                </div>
+                )}
               </div>
             ) : (
               <div className="flex h-full justify-center items-center px-4 w-full">
@@ -532,12 +596,12 @@ const Tool = ({ homepageTrial = false }) => {
                     />
                   </div>
                   <div className="absolute flex justify-center items-center h-full w-full pb-[20%]">
-                    <p className="font-semibold text-base text-[#4A5568] whitespace-nowrap">
+                    <p className="font-semibold text-base text-[#4A5568] whitespace-nowrap select-none">
                       Fill out the left form to generate titles.
                     </p>
                   </div>
                 </div>
-                <p className="font-bold text-xs text-[#4A5568] ms:text-xs sm:text-base md:text-lg lg:text-lg sm:flex lg:hidden">
+                <p className="font-bold text-xs text-[#4A5568] ms:text-xs sm:text-base md:text-lg lg:text-lg sm:flex lg:hidden select-none">
                   Fill out the above form to generate titles.
                 </p>
               </div>
@@ -545,6 +609,7 @@ const Tool = ({ homepageTrial = false }) => {
           </div>
         </div>
       </div>
+      {defaultHandle && <FullScreenToolModal />}
     </HelmetProvider>
   )
 }

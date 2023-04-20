@@ -28,6 +28,9 @@ type StateType = {
   isMakeQuestion: boolean
   goBackToSettings: boolean
   hasTitleTag: string[]
+  tag: string[]
+  hasArticle: string
+  hasSomethingTyped: string
   message: string
   saveTitles: string
   saveTags: string
@@ -52,6 +55,9 @@ const initialState: StateType = {
   isMakeQuestion: false,
   goBackToSettings: true,
   hasTitleTag: [],
+  hasArticle: '',
+  hasSomethingTyped: '',
+  tag: [],
   message: '',
   saveTitles: '',
   saveTags: '',
@@ -152,6 +158,15 @@ const GenerateHeadlineSlice = createSlice({
     },
     setHasTitleTag: (state, action) => {
       state.hasTitleTag = action.payload
+    },
+    setHasArticle: (state, action) => {
+      state.hasArticle = action.payload
+    },
+    setHasSomethingTyped: (state, action) => {
+      state.hasSomethingTyped = action.payload
+    },
+    setTag: (state, action) => {
+      state.tag = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -267,5 +282,8 @@ export const {
   setGoBackToHeadlineSettings,
   setReGenerateData,
   setHasTitleTag,
+  setHasArticle,
+  setHasSomethingTyped,
+  setTag,
 } = GenerateHeadlineSlice.actions
 export default GenerateHeadlineSlice.reducer

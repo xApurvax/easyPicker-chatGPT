@@ -81,6 +81,7 @@
   },
   "devDependencies": {
     "@kamona/tailwindcss-perspective": "^0.1.1",
+    "@locator/babel-jsx": "^0.2.4",
     "@types/react-redux": "^7.1.25",
     "@types/redux": "^3.6.0",
     "autoprefixer": "^10.4.13",
